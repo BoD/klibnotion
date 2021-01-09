@@ -1,0 +1,9 @@
+build
+out
+.gradle
+*.iml
+.DS_Store
+.idea/*
+!.idea/codeStyles
+!.idea/copyright
+local.properties
