@@ -32,9 +32,6 @@ import org.jraf.klibnotion.model.common.UuidString
  */
 interface User {
     val id: UuidString
-    val type: UserType
-    val person: Person?
-    val bot: Bot?
     val name: String
     val avatarUrl: UrlString?
 }

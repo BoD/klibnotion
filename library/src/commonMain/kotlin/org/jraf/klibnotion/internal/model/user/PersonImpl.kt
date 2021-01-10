@@ -24,8 +24,13 @@
 
 package org.jraf.klibnotion.internal.model.user
 
+import org.jraf.klibnotion.model.common.UrlString
+import org.jraf.klibnotion.model.common.UuidString
 import org.jraf.klibnotion.model.user.Person
 
 internal data class PersonImpl(
+    override val id: UuidString,
+    override val name: String,
+    override val avatarUrl: UrlString?,
     override val email: String
 ) : Person

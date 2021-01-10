@@ -24,9 +24,7 @@
 
 package org.jraf.klibnotion.model.user
 
-import org.jraf.klibnotion.model.common.UuidString
-
 /**
  * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
  */
-interface Bot
+interface Bot : User

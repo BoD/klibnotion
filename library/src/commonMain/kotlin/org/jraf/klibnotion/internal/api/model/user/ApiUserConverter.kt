@@ -25,16 +25,24 @@
 package org.jraf.klibnotion.internal.api.model.user
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.model.user.UserImpl
+import org.jraf.klibnotion.internal.api.model.ApiConverterException
+import org.jraf.klibnotion.internal.model.user.BotImpl
+import org.jraf.klibnotion.internal.model.user.PersonImpl
 import org.jraf.klibnotion.model.user.User
 
 internal object ApiUserConverter : ApiConverter<ApiUser, User>() {
-    override fun apiToModel(apiModel: ApiUser) = UserImpl(
-        id = apiModel.id,
-        type = ApiUserTypeConverter.apiToModel(apiModel.type),
-        person = apiModel.person?.let { ApiPersonConverter.apiToModel(it) },
-        bot = apiModel.bot?.let { ApiBotConverter.apiToModel(it) },
-        name = apiModel.name,
-        avatarUrl = apiModel.avatar_url
-    )
+    override fun apiToModel(apiModel: ApiUser) = when (apiModel.type) {
+        "person" -> PersonImpl(
+            id = apiModel.id,
+            name = apiModel.name,
+            avatarUrl = apiModel.avatar_url,
+            email = apiModel.person!!.email,
+        )
+        "bot" -> BotImpl(
+            id = apiModel.id,
+            name = apiModel.name,
+            avatarUrl = apiModel.avatar_url,
+        )
+        else -> throw ApiConverterException("Unknown user type '${apiModel.type}'")
+    }
 }

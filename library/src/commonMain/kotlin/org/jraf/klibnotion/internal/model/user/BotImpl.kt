@@ -24,6 +24,12 @@
 
 package org.jraf.klibnotion.internal.model.user
 
+import org.jraf.klibnotion.model.common.UrlString
+import org.jraf.klibnotion.model.common.UuidString
 import org.jraf.klibnotion.model.user.Bot
 
-internal class BotImpl : Bot
+internal data class BotImpl(
+    override val id: UuidString,
+    override val name: String,
+    override val avatarUrl: UrlString?,
+) : Bot
