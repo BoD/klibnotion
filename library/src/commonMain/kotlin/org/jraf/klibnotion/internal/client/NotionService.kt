@@ -26,14 +26,32 @@ package org.jraf.klibnotion.internal.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+import org.jraf.klibnotion.internal.api.model.pagination.ApiPage
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
 
 internal class NotionService(private val httpClient: HttpClient) {
     companion object {
-        private const val BASE_URL = "https://api.notion.com/v1/"
+        private const val BASE_URL = "https://api.notion.com/v1"
+
+        private const val START_CURSOR = "start_cursor"
+
+        private const val USERS = "users"
     }
 
+    // region Users
+
     suspend fun getUser(id: String): ApiUser {
-        return httpClient.get(BASE_URL + "users/$id")
+        return httpClient.get("$BASE_URL/$USERS/$id")
     }
+
+
+    suspend fun getUserList(startCursor: String?): ApiPage<ApiUser> {
+        return httpClient.get("$BASE_URL/$USERS") {
+            if (startCursor != null) parameter(START_CURSOR, startCursor)
+        }
+    }
+
+    // endregion
+
 }

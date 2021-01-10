@@ -22,13 +22,20 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.client
+package org.jraf.klibnotion.model.pagination
 
-import org.jraf.klibnotion.internal.client.VERSION
-import kotlin.jvm.JvmOverloads
-
-data class ClientConfiguration @JvmOverloads constructor(
-    val authentication: Authentication,
-    val httpConfiguration: HttpConfiguration = HttpConfiguration(),
-    val userAgent: String = "klibnotion/$VERSION"
-)
+/**
+ * Used to specify a specific page to retrieve when doing a query.
+ */
+data class Pagination(
+    /**
+     * Index of the page to request.
+     *
+     * Note: page indices are 1 based (the first page is 1).
+     */
+    val startCursor: String? = FIRST_CURSOR,
+) {
+    companion object {
+        val FIRST_CURSOR: String? = null
+    }
+}

@@ -22,13 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.client
+package org.jraf.klibnotion.internal.api.model.pagination
 
-import org.jraf.klibnotion.internal.client.VERSION
-import kotlin.jvm.JvmOverloads
+import kotlinx.serialization.Serializable
 
-data class ClientConfiguration @JvmOverloads constructor(
-    val authentication: Authentication,
-    val httpConfiguration: HttpConfiguration = HttpConfiguration(),
-    val userAgent: String = "klibnotion/$VERSION"
+/**
+ * See [https://www.notion.so/Notion-data-model-6bb5636d791d49568e291b619608827e#bfc81d1e24f644399637ce305eb16365].
+ */
+@Serializable
+internal data class ApiPage<T : Any>(
+    val results: List<T>,
+    val next_cursor: String?
 )

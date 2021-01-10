@@ -22,13 +22,20 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.client
+package org.jraf.klibnotion.model.pagination
 
-import org.jraf.klibnotion.internal.client.VERSION
-import kotlin.jvm.JvmOverloads
+/**
+ * A page of results.
+ */
+data class Page<T : Any>(
+    /**
+     * The actual items of that page.
+     */
+    val results: List<T>,
 
-data class ClientConfiguration @JvmOverloads constructor(
-    val authentication: Authentication,
-    val httpConfiguration: HttpConfiguration = HttpConfiguration(),
-    val userAgent: String = "klibnotion/$VERSION"
+    /**
+     * Next [Pagination] (if any), that can be used to retrieve the next page.
+     * This will be `null` if this page is the last page.
+     */
+    val nextPagination: Pagination?,
 )

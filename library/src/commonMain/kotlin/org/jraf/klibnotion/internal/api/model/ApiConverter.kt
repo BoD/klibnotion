@@ -33,3 +33,6 @@ internal abstract class ApiConverter<API_MODEL, MODEL> {
 
     open fun modelToApi(modelList: List<MODEL>): List<API_MODEL> = modelList.map { modelToApi(it) }
 }
+
+internal fun <API_MODEL, MODEL> API_MODEL.apiToModel(converter: ApiConverter<API_MODEL, MODEL>) =
+    converter.apiToModel(this)

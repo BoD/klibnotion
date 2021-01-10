@@ -59,6 +59,11 @@ class Sample {
             println("User:")
             val user = client.users.getUser("00000000-0000-0000-0000-000000000000")
             println(user)
+
+            // Get user list
+            println("User list first page:")
+            val userListFirstPage = client.users.getUserList()
+            println(userListFirstPage)
         }
 
         // Close

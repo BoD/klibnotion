@@ -3,6 +3,21 @@ plugins {
     kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
 }
 
+// Generate a Version.kt file with a constant for the version name
+tasks.register("generateVersionKt") {
+    val outputDir = layout.buildDirectory.dir("generated/source/kotlin").get().asFile
+    outputs.dir(outputDir)
+    doFirst {
+        val outputWithPackageDir = File(outputDir, "org/jraf/klibnotion/internal/client").apply { mkdirs() }
+        File(outputWithPackageDir, "Version.kt").writeText(
+            """
+                package org.jraf.klibnotion.internal.client
+                internal const val VERSION = "${project.version}"
+            """.trimIndent()
+        )
+    }
+}
+
 kotlin {
     jvm {
         val main by compilations.getting {
@@ -27,6 +42,9 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+
+            kotlin.srcDir(tasks.getByName("generateVersionKt").outputs.files)
+
             dependencies {
                 implementation(kotlin("stdlib"))
                 implementation("io.ktor", "ktor-client-core", Versions.KTOR)

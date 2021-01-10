@@ -22,13 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.client
+package org.jraf.klibnotion.internal.api.model.user
 
-import org.jraf.klibnotion.internal.client.VERSION
-import kotlin.jvm.JvmOverloads
+import org.jraf.klibnotion.internal.api.model.pagination.ApiPageConverter
+import org.jraf.klibnotion.model.user.User
 
-data class ClientConfiguration @JvmOverloads constructor(
-    val authentication: Authentication,
-    val httpConfiguration: HttpConfiguration = HttpConfiguration(),
-    val userAgent: String = "klibnotion/$VERSION"
-)
+internal object ApiUserListConverter : ApiPageConverter<ApiUser, User>(ApiUserConverter)

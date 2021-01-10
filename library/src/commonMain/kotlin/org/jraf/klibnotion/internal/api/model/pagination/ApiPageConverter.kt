@@ -22,13 +22,19 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.client
+package org.jraf.klibnotion.internal.api.model.pagination
 
-import org.jraf.klibnotion.internal.client.VERSION
-import kotlin.jvm.JvmOverloads
+import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.model.pagination.Page
+import org.jraf.klibnotion.model.pagination.Pagination
 
-data class ClientConfiguration @JvmOverloads constructor(
-    val authentication: Authentication,
-    val httpConfiguration: HttpConfiguration = HttpConfiguration(),
-    val userAgent: String = "klibnotion/$VERSION"
-)
+internal abstract class ApiPageConverter<API_MODEL : Any, MODEL : Any>(
+    private val apiConverter: ApiConverter<API_MODEL, MODEL>
+) : ApiConverter<ApiPage<API_MODEL>, Page<MODEL>>() {
+    override fun apiToModel(apiModel: ApiPage<API_MODEL>): Page<MODEL> {
+        return Page(
+            results = apiConverter.apiToModel(apiModel.results),
+            nextPagination = apiModel.next_cursor?.let { Pagination(startCursor = it) }
+        )
+    }
+}

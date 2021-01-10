@@ -27,6 +27,7 @@ package org.jraf.klibnotion.internal.client
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.ProxyBuilder
+import io.ktor.client.features.HttpTimeout
 import io.ktor.client.features.UserAgent
 import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
@@ -42,8 +43,12 @@ import kotlinx.serialization.json.Json
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
+import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
+import org.jraf.klibnotion.internal.api.model.user.ApiUserListConverter
 import org.jraf.klibnotion.model.common.UuidString
+import org.jraf.klibnotion.model.pagination.Page
+import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.user.User
 
 internal class NotionClientImpl(
@@ -72,6 +77,12 @@ internal class NotionClientImpl(
             }
             install(UserAgent) {
                 agent = clientConfiguration.userAgent
+            }
+            // Notion API is very slow, so...
+            install(HttpTimeout) {
+                requestTimeoutMillis = HttpTimeout.INFINITE_TIMEOUT_MS
+                connectTimeoutMillis = HttpTimeout.INFINITE_TIMEOUT_MS
+                socketTimeoutMillis = HttpTimeout.INFINITE_TIMEOUT_MS
             }
             engine {
                 // Setup a proxy if requested
@@ -102,10 +113,19 @@ internal class NotionClientImpl(
         NotionService(httpClient)
     }
 
+    // region Users
+
     override suspend fun getUser(id: UuidString): User {
         return service.getUser(id)
-            .let(ApiUserConverter::apiToModel)
+            .apiToModel(ApiUserConverter)
     }
+
+    override suspend fun getUserList(pagination: Pagination): Page<User> {
+        return service.getUserList(pagination.startCursor)
+            .apiToModel(ApiUserListConverter)
+    }
+
+    // endregion
 
     override fun close() = httpClient.close()
 }
@@ -113,3 +133,4 @@ internal class NotionClientImpl(
 internal expect fun createHttpClient(
     block: HttpClientConfig<*>.() -> Unit
 ): HttpClient
+

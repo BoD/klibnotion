@@ -26,6 +26,8 @@ package org.jraf.klibnotion.client
 
 import org.jraf.klibnotion.internal.client.NotionClientImpl
 import org.jraf.klibnotion.model.common.UuidString
+import org.jraf.klibnotion.model.pagination.Page
+import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.user.User
 import kotlin.jvm.JvmStatic
 
@@ -40,9 +42,16 @@ interface NotionClient {
      */
     interface Users {
         /**
-         * [Retrieve a user](https://www.notion.so/Retrieve-a-user-94e3370083a74d96b8091ae28cff6058)
+         * Retrieve a user.
+         * @see <a href="https://www.notion.so/Retrieve-a-user-94e3370083a74d96b8091ae28cff6058">Retrieve a user</a>
          */
         suspend fun getUser(id: UuidString): User
+
+        /**
+         * List all users.
+         * @see <a href="https://www.notion.so/List-all-users-5d5fc45e1a5144e0abcbc9b8ac15206d">List all users</a>
+         */
+        suspend fun getUserList(pagination: Pagination = Pagination()): Page<User>
     }
 
 
