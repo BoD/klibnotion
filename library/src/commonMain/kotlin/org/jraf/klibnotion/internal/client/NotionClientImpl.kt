@@ -27,6 +27,8 @@ package org.jraf.klibnotion.internal.client
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.ProxyBuilder
+import io.ktor.client.features.ClientRequestException
+import io.ktor.client.features.HttpResponseValidator
 import io.ktor.client.features.HttpTimeout
 import io.ktor.client.features.UserAgent
 import io.ktor.client.features.defaultRequest
@@ -37,6 +39,7 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.header
+import io.ktor.client.statement.readText
 import io.ktor.http.URLBuilder
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.serialization.json.Json
@@ -47,6 +50,8 @@ import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserListConverter
 import org.jraf.klibnotion.model.common.UuidString
+import org.jraf.klibnotion.model.exceptions.NotionClientException
+import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.pagination.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.user.User
@@ -104,6 +109,15 @@ internal class NotionClientImpl(
                         HttpLoggingLevel.BODY -> LogLevel.BODY
                         HttpLoggingLevel.ALL -> LogLevel.ALL
                     }
+                }
+            }
+            HttpResponseValidator {
+                handleResponseException { cause: Throwable ->
+                    if (cause is ClientRequestException) throw NotionClientRequestException(
+                        cause,
+                        cause.response.readText()
+                    )
+                    throw NotionClientException(cause)
                 }
             }
         }
