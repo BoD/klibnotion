@@ -22,16 +22,21 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.internal.api.model.property
 
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+import kotlinx.serialization.Serializable
 
 /**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
-}
+@Serializable
+internal data class ApiProperty(
+    val id: String,
+    val type: String,
+    val number: ApiPropertyNumber? = null,
+    val select: ApiPropertySelect? = null,
+    val multiSelect: ApiPropertyMultiSelect? = null,
+    val formula: ApiPropertyFormula? = null,
+    val relation: ApiPropertyRelation? = null,
+    val rollup: ApiPropertyRollup? = null,
+)

@@ -24,8 +24,8 @@
 
 package org.jraf.klibnotion.internal.model.user
 
-import org.jraf.klibnotion.model.common.UrlString
-import org.jraf.klibnotion.model.common.UuidString
+import org.jraf.klibnotion.model.base.UrlString
+import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.user.Person
 
 internal data class PersonImpl(

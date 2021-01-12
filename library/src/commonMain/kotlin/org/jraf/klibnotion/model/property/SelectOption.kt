@@ -22,16 +22,23 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.model.property
 
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.color.Color
 
-/**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
- */
-interface User {
-    val id: UuidString
+interface SelectOption {
+    /**
+     * Name of the option as it appears in Notion.
+     */
     val name: String
-    val avatarUrl: UrlString?
+
+    /**
+     * ID of the option, which does not change if the name is changed. These are sometimes, but not always, UUIDs.
+     */
+    val id: String
+
+    /**
+     * Color of the option.
+     */
+    val color: Color
 }

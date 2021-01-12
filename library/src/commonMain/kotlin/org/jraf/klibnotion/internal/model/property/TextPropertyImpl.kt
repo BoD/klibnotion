@@ -22,9 +22,8 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.common
+package org.jraf.klibnotion.internal.model.property
 
-/**
- * A String representing an url.
- */
-typealias UrlString = String
+import org.jraf.klibnotion.model.property.TextProperty
+
+internal data class TextPropertyImpl(override val name: String, override val id: String) : TextProperty

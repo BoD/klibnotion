@@ -47,9 +47,11 @@ import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserListConverter
-import org.jraf.klibnotion.model.common.UuidString
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.exceptions.NotionClientException
 import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.pagination.Page
@@ -59,9 +61,11 @@ import org.jraf.klibnotion.model.user.User
 internal class NotionClientImpl(
     clientConfiguration: ClientConfiguration
 ) : NotionClient,
-    NotionClient.Users {
+    NotionClient.Users,
+    NotionClient.Databases {
 
     override val users = this
+    override val databases = this
 
     @OptIn(KtorExperimentalAPI::class)
     private val httpClient by lazy {
@@ -140,6 +144,17 @@ internal class NotionClientImpl(
     }
 
     // endregion
+
+
+    // region Databases
+
+    override suspend fun getDatabase(id: UuidString): Database {
+        return service.getDatabase(id)
+            .apiToModel(ApiDatabaseConverter)
+    }
+
+    // endregion
+
 
     override fun close() = httpClient.close()
 }

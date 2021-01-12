@@ -22,16 +22,20 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.internal.api.model.database
 
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.property.ApiPropertyConverter
+import org.jraf.klibnotion.internal.model.database.DatabaseImpl
+import org.jraf.klibnotion.model.database.Database
 
-/**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
- */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
+internal object ApiDatabaseConverter : ApiConverter<ApiDatabase, Database>() {
+    override fun apiToModel(apiModel: ApiDatabase): DatabaseImpl = DatabaseImpl(
+        id = apiModel.id,
+        // TODO
+        title = apiModel.title.joinToString(separator = "") { it.plain_text },
+        properties = ApiPropertyConverter.apiToModel(
+            apiModel.properties.map { it.key to it.value }
+        )
+    )
 }

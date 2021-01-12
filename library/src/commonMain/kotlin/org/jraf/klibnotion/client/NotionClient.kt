@@ -25,7 +25,8 @@
 package org.jraf.klibnotion.client
 
 import org.jraf.klibnotion.internal.client.NotionClientImpl
-import org.jraf.klibnotion.model.common.UuidString
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.pagination.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.user.User
@@ -54,11 +55,26 @@ interface NotionClient {
         suspend fun getUserList(pagination: Pagination = Pagination()): Page<User>
     }
 
+    /**
+     * Database related APIs.
+     */
+    interface Databases {
+        /**
+         * Retrieve a database.
+         * @see <a href="https://www.notion.so/Retrieve-a-database-54cdc49884544e1382a27abbfca24b6e">Retrieve a database</a>
+         */
+        suspend fun getDatabase(id: UuidString): Database
+    }
 
     /**
-     * Labels related APIs.
+     * User related APIs.
      */
     val users: Users
+
+    /**
+     * Database related APIs.
+     */
+    val databases: Databases
 
     /**
      * Dispose of this client instance.

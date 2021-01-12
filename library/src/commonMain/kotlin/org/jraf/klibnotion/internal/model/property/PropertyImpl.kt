@@ -22,16 +22,12 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.internal.model.property
 
-import org.jraf.klibnotion.model.base.UrlString
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.property.Property
 
-/**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
- */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
-}
+internal data class PropertyImpl(
+    override val id: UuidString,
+    override val name: String,
+) : Property

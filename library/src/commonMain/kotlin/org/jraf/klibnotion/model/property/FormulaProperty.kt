@@ -22,16 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
-
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+package org.jraf.klibnotion.model.property
 
 /**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
+interface FormulaProperty : Property {
+    /**
+     * Formula to evaluate for this property.
+     * You can read more about the [syntax for formulas](https://notion.so/notion/Formulas-28f3f5c3ae644c59b4d862046ea6a541) in the help center.
+     */
+    val value: String
 }

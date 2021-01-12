@@ -22,16 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.internal.api.model.richtext
 
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+import kotlinx.serialization.Serializable
 
 /**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
+ * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * TODO for now only plain text is supported
  */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
-}
+@Serializable
+internal data class ApiRichText(
+    val plain_text: String,
+)

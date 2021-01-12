@@ -22,16 +22,28 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.model.color
 
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+enum class Color {
+    _UNKNOWN,
 
-/**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
- */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
+    DEFAULT,
+    GRAY,
+    BROWN,
+    ORANGE,
+    YELLOW,
+    GREEN,
+    BLUE,
+    PURPLE,
+    PINK,
+    RED,
+    GRAY_BACKGROUND,
+    BROWN_BACKGROUND,
+    ORANGE_BACKGROUND,
+    YELLOW_BACKGROUND,
+    GREEN_BACKGROUND,
+    BLUE_BACKGROUND,
+    PURPLE_BACKGROUND,
+    PINK_BACKGROUND,
+    RED_BACKGROUND,
 }

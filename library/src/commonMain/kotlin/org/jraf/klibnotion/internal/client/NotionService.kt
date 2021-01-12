@@ -27,8 +27,10 @@ package org.jraf.klibnotion.internal.client
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
+import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
 import org.jraf.klibnotion.internal.api.model.pagination.ApiPage
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
+import org.jraf.klibnotion.model.base.UuidString
 
 internal class NotionService(private val httpClient: HttpClient) {
     companion object {
@@ -37,6 +39,8 @@ internal class NotionService(private val httpClient: HttpClient) {
         private const val START_CURSOR = "start_cursor"
 
         private const val USERS = "users"
+        private const val DATABASES = "databases"
+
     }
 
     // region Users
@@ -50,6 +54,14 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.get("$BASE_URL/$USERS") {
             if (startCursor != null) parameter(START_CURSOR, startCursor)
         }
+    }
+
+    // endregion
+
+
+    // region Databases
+    suspend fun getDatabase(id: UuidString): ApiDatabase {
+        return httpClient.get("$BASE_URL/$DATABASES/$id")
     }
 
     // endregion

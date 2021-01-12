@@ -22,16 +22,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.internal.api.model.property
 
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.color.ApiColorConverter
+import org.jraf.klibnotion.internal.model.property.SelectOptionImpl
+import org.jraf.klibnotion.model.property.SelectOption
 
-/**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
- */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
+internal object ApiPropertySelectOptionConverter : ApiConverter<ApiPropertySelectOption, SelectOption>() {
+    override fun apiToModel(apiModel: ApiPropertySelectOption) = SelectOptionImpl(
+        name = apiModel.name,
+        id = apiModel.id,
+        color = apiModel.color.apiToModel(ApiColorConverter)
+    )
 }

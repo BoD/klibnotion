@@ -36,3 +36,6 @@ internal abstract class ApiConverter<API_MODEL, MODEL> {
 
 internal fun <API_MODEL, MODEL> API_MODEL.apiToModel(converter: ApiConverter<API_MODEL, MODEL>) =
     converter.apiToModel(this)
+
+internal fun <API_MODEL, MODEL> List<API_MODEL>.apiToModel(converter: ApiConverter<API_MODEL, MODEL>) =
+    converter.apiToModel(this)

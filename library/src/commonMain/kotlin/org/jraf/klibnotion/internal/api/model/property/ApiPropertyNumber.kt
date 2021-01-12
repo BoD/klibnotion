@@ -22,9 +22,14 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.common
+package org.jraf.klibnotion.internal.api.model.property
+
+import kotlinx.serialization.Serializable
 
 /**
- * A String representing an UUID.
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-typealias UuidString = String
+@Serializable
+internal data class ApiPropertyNumber(
+    val format: String
+)

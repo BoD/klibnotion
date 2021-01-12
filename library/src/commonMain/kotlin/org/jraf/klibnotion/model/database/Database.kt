@@ -22,16 +22,21 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.model.database
 
-import org.jraf.klibnotion.model.base.UrlString
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.property.Property
 
 /**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-interface User {
+interface Database {
     val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
+
+    /**
+     * TODO: For now this is exposed a simple String but in future versions this will be a
+     * list of rich text elements, reflecting the [Notion API](https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f).
+     */
+    val title: String
+    val properties: List<Property>
 }

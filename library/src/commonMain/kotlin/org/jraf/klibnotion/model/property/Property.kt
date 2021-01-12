@@ -22,16 +22,21 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
-
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+package org.jraf.klibnotion.model.property
 
 /**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-interface User {
-    val id: UuidString
+interface Property {
+    /**
+     * The name of the property as it appears in Notion.
+     */
     val name: String
-    val avatarUrl: UrlString?
+
+    /**
+     * The ID of the property, usually a short string of random letters and symbols.
+     * Some automatically generated property types have special human-readable IDs.
+     * For example, all Title properties have an ID of `title`.
+     */
+    val id: String
 }

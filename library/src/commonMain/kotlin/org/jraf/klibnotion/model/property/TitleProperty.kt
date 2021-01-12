@@ -22,16 +22,12 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
-
-import org.jraf.klibnotion.model.base.UrlString
-import org.jraf.klibnotion.model.base.UuidString
+package org.jraf.klibnotion.model.property
 
 /**
- * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
+ * Each database must have exactly one title property. This property controls the
+ * title that appears at the top of the page when the page is opened.
+ *
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-interface User {
-    val id: UuidString
-    val name: String
-    val avatarUrl: UrlString?
-}
+interface TitleProperty : Property
