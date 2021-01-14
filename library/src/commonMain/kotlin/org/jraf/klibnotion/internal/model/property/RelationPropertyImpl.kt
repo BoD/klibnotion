@@ -31,6 +31,6 @@ internal data class RelationPropertyImpl(
     override val name: String,
     override val id: String,
     override val databaseId: UuidString,
-    override val syncedPropertyName: String?,
-    override val syncedPropertyId: String?
+    override val syncedPropertyName: String,
+    override val syncedPropertyId: String,
 ) : RelationProperty

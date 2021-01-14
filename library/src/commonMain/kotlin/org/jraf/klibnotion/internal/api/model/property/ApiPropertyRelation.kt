@@ -32,6 +32,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class ApiPropertyRelation(
     val database_id: String,
-    val synced_property_name: String? = null,
-    val synced_property_id: String? = null,
+    val synced_property_name: String,
+    val synced_property_id: String,
 )
