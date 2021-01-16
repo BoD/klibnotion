@@ -22,21 +22,17 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.database
+package org.jraf.klibnotion.internal.model.richtext
 
-import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.api.model.property.ApiPropertyConverter
-import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
-import org.jraf.klibnotion.internal.model.database.DatabaseImpl
-import org.jraf.klibnotion.internal.model.richtext.RichTextListImpl
-import org.jraf.klibnotion.model.database.Database
+import org.jraf.klibnotion.model.richtext.RichText
+import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal object ApiDatabaseConverter : ApiConverter<ApiDatabase, Database>() {
-    override fun apiToModel(apiModel: ApiDatabase): DatabaseImpl = DatabaseImpl(
-        id = apiModel.id,
-        title = RichTextListImpl(ApiRichTextConverter.apiToModel(apiModel.title)),
-        properties = ApiPropertyConverter.apiToModel(
-            apiModel.properties.map { it.key to it.value }
-        )
-    )
+internal data class RichTextListImpl(private val richTextList: List<RichText>) :
+    List<RichText> by richTextList,
+    RichTextList {
+    override val plainText: String? = if (isEmpty()) {
+        null
+    } else {
+        joinToString(separator = "") { it.plainText }
+    }
 }

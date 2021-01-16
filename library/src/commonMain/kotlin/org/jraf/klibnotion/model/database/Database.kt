@@ -26,14 +26,13 @@ package org.jraf.klibnotion.model.database
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.property.Property
-import org.jraf.klibnotion.model.richtext.RichText
+import org.jraf.klibnotion.model.richtext.RichTextList
 
 /**
  * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
 interface Database {
     val id: UuidString
-    val titleRichText: List<RichText>
-    val title: String?
+    val title: RichTextList
     val properties: List<Property>
 }
