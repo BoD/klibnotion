@@ -22,12 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.property
+package org.jraf.klibnotion.internal.model.richtext
 
-import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.property.Property
+import org.jraf.klibnotion.model.date.DateOrDateRange
+import org.jraf.klibnotion.model.richtext.Annotations
+import org.jraf.klibnotion.model.richtext.DateMentionRichText
 
-internal data class PropertyImpl(
-    override val id: UuidString,
-    override val name: String,
-) : Property
+internal data class DateMentionRichTextImpl(
+    override val plainText: String,
+    override val href: String?,
+    override val annotations: Annotations,
+    override val dateOrDateRange: DateOrDateRange,
+) : DateMentionRichText

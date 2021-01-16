@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2019-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,20 +22,17 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.richtext
+package org.jraf.klibnotion.internal.api.model.date
 
-import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.model.date.DateOrDateRangeImpl
+import org.jraf.klibnotion.model.date.DateOrDateRange
 
-/**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
- */
-@Serializable
-internal data class ApiRichText(
-    val plain_text: String,
-    val href: String? = null,
-    val annotations: ApiAnnotations,
-    val type: String,
-    val text: ApiRichTextText? = null,
-    val mention: ApiRichTextMention? = null,
-    val equation: ApiRichTextEquation? = null,
-)
+internal object ApiDateConverter : ApiConverter<ApiDate, DateOrDateRange>() {
+    override fun apiToModel(apiModel: ApiDate): DateOrDateRange {
+        return DateOrDateRangeImpl(
+            start = ApiDateStringConverter.apiToModel(apiModel.start)!!,
+            end = ApiDateStringConverter.apiToModel(apiModel.end)
+        )
+    }
+}

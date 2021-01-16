@@ -22,20 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.richtext
+package org.jraf.klibnotion.internal.api.model.date
 
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://www.notion.so/date-900111fd6cfa4dc3a542e7e2961cc89e].
  */
 @Serializable
-internal data class ApiRichText(
-    val plain_text: String,
-    val href: String? = null,
-    val annotations: ApiAnnotations,
-    val type: String,
-    val text: ApiRichTextText? = null,
-    val mention: ApiRichTextMention? = null,
-    val equation: ApiRichTextEquation? = null,
+internal data class ApiDate(
+    val start: String,
+    val end: String? = null,
 )

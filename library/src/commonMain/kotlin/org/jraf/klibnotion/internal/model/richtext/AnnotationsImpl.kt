@@ -22,20 +22,16 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.richtext
+package org.jraf.klibnotion.internal.model.richtext
 
-import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.model.color.Color
+import org.jraf.klibnotion.model.richtext.Annotations
 
-/**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
- */
-@Serializable
-internal data class ApiRichText(
-    val plain_text: String,
-    val href: String? = null,
-    val annotations: ApiAnnotations,
-    val type: String,
-    val text: ApiRichTextText? = null,
-    val mention: ApiRichTextMention? = null,
-    val equation: ApiRichTextEquation? = null,
-)
+internal data class AnnotationsImpl(
+    override val bold: Boolean,
+    override val italic: Boolean,
+    override val strikethrough: Boolean,
+    override val underline: Boolean,
+    override val code: Boolean,
+    override val color: Color,
+) : Annotations

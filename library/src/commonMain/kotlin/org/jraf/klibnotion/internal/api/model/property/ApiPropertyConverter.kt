@@ -39,12 +39,12 @@ import org.jraf.klibnotion.internal.model.property.MultiSelectPropertyImpl
 import org.jraf.klibnotion.internal.model.property.NumberPropertyImpl
 import org.jraf.klibnotion.internal.model.property.PeoplePropertyImpl
 import org.jraf.klibnotion.internal.model.property.PhonePropertyImpl
-import org.jraf.klibnotion.internal.model.property.PropertyImpl
 import org.jraf.klibnotion.internal.model.property.RelationPropertyImpl
 import org.jraf.klibnotion.internal.model.property.RollupPropertyImpl
 import org.jraf.klibnotion.internal.model.property.SelectPropertyImpl
 import org.jraf.klibnotion.internal.model.property.TextPropertyImpl
 import org.jraf.klibnotion.internal.model.property.TitlePropertyImpl
+import org.jraf.klibnotion.internal.model.property.UnknownTypePropertyImpl
 import org.jraf.klibnotion.internal.model.property.UrlPropertyImpl
 import org.jraf.klibnotion.model.property.NumberProperty.NumberFormat
 import org.jraf.klibnotion.model.property.Property
@@ -54,7 +54,7 @@ internal object ApiPropertyConverter : ApiConverter<Pair<String, ApiProperty>, P
     override fun apiToModel(apiModel: Pair<String, ApiProperty>): Property {
         val (name, apiProperty) = apiModel
         val id = apiProperty.id
-        return when (apiModel.second.type) {
+        return when (apiProperty.type) {
             "title" -> TitlePropertyImpl(name = name, id = id)
             "text" -> TextPropertyImpl(name = name, id = id)
             "number" -> NumberPropertyImpl(
@@ -133,7 +133,7 @@ internal object ApiPropertyConverter : ApiConverter<Pair<String, ApiProperty>, P
             "created_by" -> CreatedByPropertyImpl(name = name, id = id)
             "last_edited_time" -> LastEditedTimePropertyImpl(name = name, id = id)
             "last_edited_by" -> LastEditedByPropertyImpl(name = name, id = id)
-            else -> PropertyImpl(name = name, id = id)
+            else -> UnknownTypePropertyImpl(name = name, id = id, type = apiProperty.type)
         }
     }
 }

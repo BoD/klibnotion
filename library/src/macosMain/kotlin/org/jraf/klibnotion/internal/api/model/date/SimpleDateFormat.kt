@@ -22,20 +22,19 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.richtext
+package org.jraf.klibnotion.internal.api.model.date
 
-import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.model.date.Date
+import platform.Foundation.NSDateFormatter
 
-/**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
- */
-@Serializable
-internal data class ApiRichText(
-    val plain_text: String,
-    val href: String? = null,
-    val annotations: ApiAnnotations,
-    val type: String,
-    val text: ApiRichTextText? = null,
-    val mention: ApiRichTextMention? = null,
-    val equation: ApiRichTextEquation? = null,
-)
+internal actual class SimpleDateFormat actual constructor(format: String) {
+    private val nsDateFormatter = NSDateFormatter().apply { dateFormat = format }
+
+    actual fun parse(formattedDate: String): Date {
+        return nsDateFormatter.dateFromString(formattedDate)!!
+    }
+
+    actual fun format(dateToFormat: Date): String {
+        return nsDateFormatter.stringFromDate(dateToFormat)
+    }
+}

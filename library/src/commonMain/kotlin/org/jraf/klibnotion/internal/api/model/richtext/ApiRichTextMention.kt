@@ -25,17 +25,17 @@
 package org.jraf.klibnotion.internal.api.model.richtext
 
 import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.date.ApiDate
+import org.jraf.klibnotion.internal.api.model.user.ApiUser
 
 /**
  * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
  */
 @Serializable
-internal data class ApiRichText(
-    val plain_text: String,
-    val href: String? = null,
-    val annotations: ApiAnnotations,
+internal data class ApiRichTextMention(
     val type: String,
-    val text: ApiRichTextText? = null,
-    val mention: ApiRichTextMention? = null,
-    val equation: ApiRichTextEquation? = null,
+    val user: ApiUser? = null,
+    val page: ApiRichTextMentionPage? = null,
+    val database: ApiRichTextMentionDatabase? = null,
+    val date: ApiDate? = null,
 )

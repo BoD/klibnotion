@@ -27,9 +27,16 @@ package org.jraf.klibnotion.internal.model.database
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.property.Property
+import org.jraf.klibnotion.model.richtext.RichText
 
 internal data class DatabaseImpl(
     override val id: UuidString,
-    override val title: String,
-    override val properties: List<Property>
-) : Database
+    override val titleRichText: List<RichText>,
+    override val properties: List<Property>,
+) : Database {
+    override val title: String? = if (titleRichText.isEmpty()) {
+        null
+    } else {
+        titleRichText.joinToString(separator = "") { it.plainText }
+    }
+}

@@ -22,20 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.richtext
-
-import kotlinx.serialization.Serializable
+package org.jraf.klibnotion.model.user
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * This type is returned by the library when a User of a type unknown to this library is returned by the Notion API.
+ *
+ * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
  */
-@Serializable
-internal data class ApiRichText(
-    val plain_text: String,
-    val href: String? = null,
-    val annotations: ApiAnnotations,
-    val type: String,
-    val text: ApiRichTextText? = null,
-    val mention: ApiRichTextMention? = null,
-    val equation: ApiRichTextEquation? = null,
-)
+interface UnknownTypeUser : User {
+    val type: String
+}

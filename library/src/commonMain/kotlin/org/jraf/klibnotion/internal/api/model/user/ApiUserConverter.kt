@@ -25,9 +25,9 @@
 package org.jraf.klibnotion.internal.api.model.user
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.api.model.ApiConverterException
 import org.jraf.klibnotion.internal.model.user.BotImpl
 import org.jraf.klibnotion.internal.model.user.PersonImpl
+import org.jraf.klibnotion.internal.model.user.UnknownTypeUserImpl
 import org.jraf.klibnotion.model.user.User
 
 internal object ApiUserConverter : ApiConverter<ApiUser, User>() {
@@ -43,6 +43,11 @@ internal object ApiUserConverter : ApiConverter<ApiUser, User>() {
             name = apiModel.name,
             avatarUrl = apiModel.avatar_url,
         )
-        else -> throw ApiConverterException("Unknown user type '${apiModel.type}'")
+        else -> UnknownTypeUserImpl(
+            id = apiModel.id,
+            name = apiModel.name,
+            avatarUrl = apiModel.avatar_url,
+            type = apiModel.type,
+        )
     }
 }

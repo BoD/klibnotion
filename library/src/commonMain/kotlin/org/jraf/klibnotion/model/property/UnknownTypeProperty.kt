@@ -22,20 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.richtext
-
-import kotlinx.serialization.Serializable
+package org.jraf.klibnotion.model.property
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * This type is returned by the library when a Property of a type unknown to this library is returned by the Notion API.
+ *
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-@Serializable
-internal data class ApiRichText(
-    val plain_text: String,
-    val href: String? = null,
-    val annotations: ApiAnnotations,
-    val type: String,
-    val text: ApiRichTextText? = null,
-    val mention: ApiRichTextMention? = null,
-    val equation: ApiRichTextEquation? = null,
-)
+interface UnknownTypeProperty : Property {
+    val type: String
+}
