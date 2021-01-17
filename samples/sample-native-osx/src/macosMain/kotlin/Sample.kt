@@ -24,6 +24,12 @@
 
 import kotlinx.coroutines.runBlocking
 import org.jraf.klibnotion.client.*
+import org.jraf.klibnotion.model.database.Database
+import org.jraf.klibnotion.model.page.Page
+import org.jraf.klibnotion.model.pagination.ResultPage
+import org.jraf.klibnotion.model.property.SelectOption
+import org.jraf.klibnotion.model.richtext.RichTextList
+import org.jraf.klibnotion.model.user.User
 import kotlin.system.exitProcess
 
 // !!!!! DO THIS FIRST !!!!!
@@ -58,24 +64,24 @@ class Sample {
         runBlocking {
             // Get user
             println("User:")
-            val user = client.users.getUser(USER_ID)
+            val user: User = client.users.getUser(USER_ID)
             println(user)
 
             // Get user list
             println("User list first page:")
-            val userListFirstPage = client.users.getUserList()
-            println(userListFirstPage)
+            val userResultPage: ResultPage<User> = client.users.getUserList()
+            println(userResultPage)
 
             // Get database
             println("Database:")
-            val database = client.databases.getDatabase(DATABASE_ID)
+            val database: Database = client.databases.getDatabase(DATABASE_ID)
             println(database)
             println("title=${database.title.plainText}")
 
             // Query database
             println("Query results:")
-            val results = client.databases.queryDatabase(DATABASE_ID)
-            println(results)
+            val pageResultPage: ResultPage<Page> = client.databases.queryDatabase(DATABASE_ID)
+            println(pageResultPage.results.joinToString("") { it.toFormattedString() })
         }
 
         // Close
@@ -83,6 +89,23 @@ class Sample {
 
         // Exit process
         exitProcess(0)
+    }
+
+    private fun Page.toFormattedString(): String {
+        val res = StringBuilder("-----------\n")
+        res.append("Id: $id\n")
+        for (propertyValue in propertyValues) {
+            res.append("${propertyValue.name}: ${propertyValue.value.toFormattedString()}\n")
+        }
+        return res.toString()
+    }
+
+    private fun <T> T.toFormattedString(): String {
+        return when (this) {
+            is RichTextList -> plainText ?: ""
+            is SelectOption -> name
+            else -> toString()
+        }
     }
 }
 

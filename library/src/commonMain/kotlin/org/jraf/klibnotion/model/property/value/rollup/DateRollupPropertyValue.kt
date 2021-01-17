@@ -29,6 +29,4 @@ import org.jraf.klibnotion.model.date.DateOrDateRange
 /**
  * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
  */
-interface DateRollupPropertyValue : RollupPropertyValue {
-    val value: DateOrDateRange
-}
+interface DateRollupPropertyValue : RollupPropertyValue<DateOrDateRange>

@@ -32,6 +32,6 @@ import org.jraf.klibnotion.model.property.value.PropertyValue
 internal data class PageImpl(
     override val id: UuidString,
     override val parent: Reference,
-    override val propertyValues: List<PropertyValue>,
+    override val propertyValues: List<PropertyValue<*>>,
     override val archived: Boolean,
 ) : Page

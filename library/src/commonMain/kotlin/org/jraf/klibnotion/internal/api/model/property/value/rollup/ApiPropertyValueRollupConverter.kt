@@ -35,8 +35,8 @@ import org.jraf.klibnotion.internal.model.property.value.rollup.UnknownTypeRollu
 import org.jraf.klibnotion.model.property.value.rollup.RollupPropertyValue
 
 internal object ApiPropertyValueRollupConverter :
-    ApiConverter<Pair<String, ApiPropertyValue>, RollupPropertyValue>() {
-    override fun apiToModel(apiModel: Pair<String, ApiPropertyValue>): RollupPropertyValue {
+    ApiConverter<Pair<String, ApiPropertyValue>, RollupPropertyValue<*>>() {
+    override fun apiToModel(apiModel: Pair<String, ApiPropertyValue>): RollupPropertyValue<*> {
         val (name, apiPropertyValue) = apiModel
         val id = apiPropertyValue.id
         val rollup = apiPropertyValue.rollup!!

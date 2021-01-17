@@ -40,8 +40,8 @@ import org.jraf.klibnotion.internal.model.richtext.RichTextListImpl
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
 internal object ApiPropertyValueConverter :
-    ApiConverter<Pair<String, ApiPropertyValue>, PropertyValue>() {
-    override fun apiToModel(apiModel: Pair<String, ApiPropertyValue>): PropertyValue {
+    ApiConverter<Pair<String, ApiPropertyValue>, PropertyValue<*>>() {
+    override fun apiToModel(apiModel: Pair<String, ApiPropertyValue>): PropertyValue<*> {
         val (name, apiPropertyValue) = apiModel
         val id = apiPropertyValue.id
         return when (val type = apiPropertyValue.type) {

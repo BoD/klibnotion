@@ -34,6 +34,6 @@ import org.jraf.klibnotion.model.property.value.PropertyValue
 interface Page {
     val id: UuidString
     val parent: Reference
-    val propertyValues: List<PropertyValue>
+    val propertyValues: List<PropertyValue<*>>
     val archived: Boolean
 }

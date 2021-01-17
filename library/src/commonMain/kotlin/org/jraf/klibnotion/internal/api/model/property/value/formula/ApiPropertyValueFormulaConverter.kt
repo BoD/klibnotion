@@ -34,8 +34,8 @@ import org.jraf.klibnotion.internal.model.property.value.formula.UnknownTypeForm
 import org.jraf.klibnotion.model.property.value.formula.FormulaPropertyValue
 
 internal object ApiPropertyValueFormulaConverter :
-    ApiConverter<Pair<String, ApiPropertyValue>, FormulaPropertyValue>() {
-    override fun apiToModel(apiModel: Pair<String, ApiPropertyValue>): FormulaPropertyValue {
+    ApiConverter<Pair<String, ApiPropertyValue>, FormulaPropertyValue<*>>() {
+    override fun apiToModel(apiModel: Pair<String, ApiPropertyValue>): FormulaPropertyValue<*> {
         val (name, apiPropertyValue) = apiModel
         val id = apiPropertyValue.id
         val formula = apiPropertyValue.formula!!

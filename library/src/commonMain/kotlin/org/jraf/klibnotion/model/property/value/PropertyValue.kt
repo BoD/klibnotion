@@ -27,7 +27,8 @@ package org.jraf.klibnotion.model.property.value
 /**
  * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
  */
-interface PropertyValue {
+interface PropertyValue<T : Any> {
     val id: String
     val name: String
+    val value: T
 }
