@@ -27,14 +27,10 @@ package org.jraf.klibnotion.internal.api.model.richtext
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
-import org.jraf.klibnotion.internal.model.richtext.DatabaseMentionRichTextImpl
-import org.jraf.klibnotion.internal.model.richtext.DateMentionRichTextImpl
 import org.jraf.klibnotion.internal.model.richtext.EquationRichTextImpl
-import org.jraf.klibnotion.internal.model.richtext.PageMentionRichTextImpl
 import org.jraf.klibnotion.internal.model.richtext.TextRichTextImpl
-import org.jraf.klibnotion.internal.model.richtext.UnknownTypeMentionRichTextImpl
 import org.jraf.klibnotion.internal.model.richtext.UnknownTypeRichTextImpl
-import org.jraf.klibnotion.internal.model.richtext.UserMentionRichTextImpl
+import org.jraf.klibnotion.internal.model.richtext.mention.*
 import org.jraf.klibnotion.model.richtext.RichText
 
 internal object ApiRichTextConverter : ApiConverter<ApiRichText, RichText>() {

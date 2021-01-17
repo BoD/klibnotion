@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.model.property.spec
 
 /**
- * This type is returned when a Property of a type unknown to this library is returned by the Notion API.
+ * This type is returned when a Property Spec of a type unknown to this library is returned by the Notion API.
  *
  * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */

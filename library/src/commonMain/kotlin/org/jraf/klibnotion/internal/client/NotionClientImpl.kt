@@ -24,42 +24,36 @@
 
 package org.jraf.klibnotion.internal.client
 
-import io.ktor.client.HttpClient
-import io.ktor.client.HttpClientConfig
-import io.ktor.client.engine.ProxyBuilder
-import io.ktor.client.features.ClientRequestException
-import io.ktor.client.features.HttpResponseValidator
-import io.ktor.client.features.HttpTimeout
-import io.ktor.client.features.UserAgent
-import io.ktor.client.features.defaultRequest
+import io.ktor.client.*
+import io.ktor.client.engine.*
+import io.ktor.client.features.*
 import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.DEFAULT
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
-import io.ktor.client.request.header
-import io.ktor.client.statement.readText
-import io.ktor.http.URLBuilder
-import io.ktor.util.KtorExperimentalAPI
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
+import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
-import org.jraf.klibnotion.internal.api.model.user.ApiUserListConverter
+import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.exceptions.NotionClientException
 import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
-import org.jraf.klibnotion.model.pagination.Page
+import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
+import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.user.User
 
 internal class NotionClientImpl(
-    clientConfiguration: ClientConfiguration
+    clientConfiguration: ClientConfiguration,
 ) : NotionClient,
     NotionClient.Users,
     NotionClient.Databases {
@@ -75,6 +69,9 @@ internal class NotionClientImpl(
                     Json {
                         // XXX Comment this to have API changes make the parsing fail
                         ignoreUnknownKeys = true
+
+                        // This is needed to accept JSON Numbers to be deserialized as Strings
+                        isLenient = true
                     }
                 )
             }
@@ -138,9 +135,9 @@ internal class NotionClientImpl(
             .apiToModel(ApiUserConverter)
     }
 
-    override suspend fun getUserList(pagination: Pagination): Page<User> {
+    override suspend fun getUserList(pagination: Pagination): ResultPage<User> {
         return service.getUserList(pagination.startCursor)
-            .apiToModel(ApiUserListConverter)
+            .apiToModel(ApiUserResultPageConverter)
     }
 
     // endregion
@@ -153,6 +150,11 @@ internal class NotionClientImpl(
             .apiToModel(ApiDatabaseConverter)
     }
 
+    override suspend fun queryDatabase(id: UuidString, pagination: Pagination): ResultPage<Page> {
+        return service.queryDatabase(id, pagination.startCursor)
+            .apiToModel(ApiPageResultPageConverter)
+    }
+
     // endregion
 
 
@@ -160,6 +162,6 @@ internal class NotionClientImpl(
 }
 
 internal expect fun createHttpClient(
-    block: HttpClientConfig<*>.() -> Unit
+    block: HttpClientConfig<*>.() -> Unit,
 ): HttpClient
 

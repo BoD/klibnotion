@@ -24,11 +24,11 @@
 
 package org.jraf.klibnotion.internal.client
 
-import io.ktor.client.HttpClient
-import io.ktor.client.request.get
-import io.ktor.client.request.parameter
+import io.ktor.client.*
+import io.ktor.client.request.*
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
-import org.jraf.klibnotion.internal.api.model.pagination.ApiPage
+import org.jraf.klibnotion.internal.api.model.page.ApiPage
+import org.jraf.klibnotion.internal.api.model.pagination.ApiResultPage
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
 import org.jraf.klibnotion.model.base.UuidString
 
@@ -50,7 +50,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     }
 
 
-    suspend fun getUserList(startCursor: String?): ApiPage<ApiUser> {
+    suspend fun getUserList(startCursor: String?): ApiResultPage<ApiUser> {
         return httpClient.get("$BASE_URL/$USERS") {
             if (startCursor != null) parameter(START_CURSOR, startCursor)
         }
@@ -60,8 +60,15 @@ internal class NotionService(private val httpClient: HttpClient) {
 
 
     // region Databases
+
     suspend fun getDatabase(id: UuidString): ApiDatabase {
         return httpClient.get("$BASE_URL/$DATABASES/$id")
+    }
+
+    suspend fun queryDatabase(id: UuidString, startCursor: String?): ApiResultPage<ApiPage> {
+        return httpClient.post("$BASE_URL/$DATABASES/$id/query") {
+            if (startCursor != null) parameter(START_CURSOR, startCursor)
+        }
     }
 
     // endregion

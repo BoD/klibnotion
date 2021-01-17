@@ -24,8 +24,9 @@
 
 package org.jraf.klibnotion.model.page
 
-import org.jraf.klibnotion.model.base.Reference
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.base.reference.Reference
+import org.jraf.klibnotion.model.property.value.PropertyValue
 
 /**
  * See [https://www.notion.so/Page-object-2a08cb77f9c14c25bece5c3408fe7762].
@@ -33,7 +34,6 @@ import org.jraf.klibnotion.model.base.UuidString
 interface Page {
     val id: UuidString
     val parent: Reference
-
-    //    val propertyValues: List<PropertyValue>
+    val propertyValues: List<PropertyValue>
     val archived: Boolean
 }

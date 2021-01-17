@@ -27,15 +27,15 @@ package org.jraf.klibnotion.internal.api.model.date
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.model.date.Date
 
-internal object ApiDateStringConverter : ApiConverter<String?, Date?>() {
+internal object ApiDateStringConverter : ApiConverter<String, Date>() {
     private const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
 
-    override fun apiToModel(apiModel: String?): Date? {
-        return apiModel?.let { SimpleDateFormat(DATE_FORMAT).parse(it) }
+    override fun apiToModel(apiModel: String): Date {
+        return SimpleDateFormat(DATE_FORMAT).parse(apiModel)
     }
 
-    override fun modelToApi(model: Date?): String? {
-        return model?.let { SimpleDateFormat(DATE_FORMAT).format(it) }
+    override fun modelToApi(model: Date): String {
+        return SimpleDateFormat(DATE_FORMAT).format(model)
     }
 }
 

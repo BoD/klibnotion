@@ -27,41 +27,22 @@ package org.jraf.klibnotion.internal.api.model.property.spec
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.property.ApiSelectOptionConverter
-import org.jraf.klibnotion.internal.model.property.spec.CheckboxPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.CreatedByPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.CreatedTimePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.DatePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.EmailPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.FilePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.FormulaPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.LastEditedByPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.LastEditedTimePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.MultiSelectPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.NumberPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.PeoplePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.PhonePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.RelationPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.RollupPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.SelectPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.TextPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.TitlePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.UnknownTypePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.UrlPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.*
 import org.jraf.klibnotion.model.property.spec.NumberPropertySpec.NumberFormat
 import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.property.spec.RollupPropertySpec.RollupFunction
 
 internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiPropertySpec>, PropertySpec>() {
     override fun apiToModel(apiModel: Pair<String, ApiPropertySpec>): PropertySpec {
-        val (name, apiProperty) = apiModel
-        val id = apiProperty.id
-        return when (apiProperty.type) {
+        val (name, apiPropertySpec) = apiModel
+        val id = apiPropertySpec.id
+        return when (apiPropertySpec.type) {
             "title" -> TitlePropertySpecImpl(name = name, id = id)
             "text" -> TextPropertySpecImpl(name = name, id = id)
             "number" -> NumberPropertySpecImpl(
                 name = name,
                 id = id,
-                format = when (apiProperty.number!!.format) {
+                format = when (apiPropertySpec.number!!.format) {
                     "number" -> NumberFormat.NUMBER
                     "number_with_commas" -> NumberFormat.NUMBER_WITH_COMMAS
                     "percent" -> NumberFormat.PERCENT
@@ -79,12 +60,12 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
             "select" -> SelectPropertySpecImpl(
                 name = name,
                 id = id,
-                options = apiProperty.select!!.options.apiToModel(ApiSelectOptionConverter)
+                options = apiPropertySpec.select!!.options.apiToModel(ApiSelectOptionConverter)
             )
             "multi_select" -> MultiSelectPropertySpecImpl(
                 name = name,
                 id = id,
-                options = apiProperty.select!!.options.apiToModel(ApiSelectOptionConverter)
+                options = apiPropertySpec.select!!.options.apiToModel(ApiSelectOptionConverter)
             )
 
             "date" -> DatePropertySpecImpl(name = name, id = id)
@@ -97,23 +78,23 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
             "formula" -> FormulaPropertySpecImpl(
                 name = name,
                 id = id,
-                value = apiProperty.formula!!.value
+                value = apiPropertySpec.formula!!.value
             )
             "relation" -> RelationPropertySpecImpl(
                 name = name,
                 id = id,
-                databaseId = apiProperty.relation!!.database_id,
-                syncedPropertyName = apiProperty.relation.synced_property_name,
-                syncedPropertyId = apiProperty.relation.synced_property_id
+                databaseId = apiPropertySpec.relation!!.database_id,
+                syncedPropertyName = apiPropertySpec.relation.synced_property_name,
+                syncedPropertyId = apiPropertySpec.relation.synced_property_id
             )
             "rollup" -> RollupPropertySpecImpl(
                 name = name,
                 id = id,
-                relationPropertyName = apiProperty.rollup!!.relation_property_name,
-                relationPropertyId = apiProperty.rollup.relation_property_id,
-                rollupPropertyName = apiProperty.rollup.rollup_property_name,
-                rollupPropertyId = apiProperty.rollup.rollup_property_id,
-                function = when (apiProperty.rollup.function) {
+                relationPropertyName = apiPropertySpec.rollup!!.relation_property_name,
+                relationPropertyId = apiPropertySpec.rollup.relation_property_id,
+                rollupPropertyName = apiPropertySpec.rollup.rollup_property_name,
+                rollupPropertyId = apiPropertySpec.rollup.rollup_property_id,
+                function = when (apiPropertySpec.rollup.function) {
                     "count_all" -> RollupFunction.COUNT_ALL
                     "count_values" -> RollupFunction.COUNT_VALUES
                     "count_unique_values" -> RollupFunction.COUNT_UNIQUE_VALUES
@@ -134,7 +115,7 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
             "created_by" -> CreatedByPropertySpecImpl(name = name, id = id)
             "last_edited_time" -> LastEditedTimePropertySpecImpl(name = name, id = id)
             "last_edited_by" -> LastEditedByPropertySpecImpl(name = name, id = id)
-            else -> UnknownTypePropertySpecImpl(name = name, id = id, type = apiProperty.type)
+            else -> UnknownTypePropertySpecImpl(name = name, id = id, type = apiPropertySpec.type)
         }
     }
 }

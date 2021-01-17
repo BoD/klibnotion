@@ -25,18 +25,19 @@
 package org.jraf.klibnotion.sample
 
 import kotlinx.coroutines.runBlocking
-import org.jraf.klibnotion.client.Authentication
-import org.jraf.klibnotion.client.ClientConfiguration
-import org.jraf.klibnotion.client.HttpConfiguration
-import org.jraf.klibnotion.client.HttpLoggingLevel
-import org.jraf.klibnotion.client.HttpProxy
-import org.jraf.klibnotion.client.NotionClient
+import org.jraf.klibnotion.client.*
 import kotlin.system.exitProcess
 
 // !!!!! DO THIS FIRST !!!!!
 // Replace this constant with your API key
 // that you will find by following the instructions here: https://www.notion.so/Getting-started-da32a6fc1bcc4403a6126ee735710d89
 private const val API_KEY = "secret_XXX"
+
+// Replace this constant with a user id that exists
+private const val USER_ID = "00000000-0000-0000-0000-000000000000"
+
+// Replace this constant with a database id that exists
+private const val DATABASE_ID = "00000000000000000000"
 
 class Sample {
     private val client: NotionClient by lazy {
@@ -59,13 +60,24 @@ class Sample {
         runBlocking {
             // Get user
             println("User:")
-            val user = client.users.getUser("00000000-0000-0000-0000-000000000000")
+            val user = client.users.getUser(USER_ID)
             println(user)
 
             // Get user list
             println("User list first page:")
             val userListFirstPage = client.users.getUserList()
             println(userListFirstPage)
+
+            // Get database
+            println("Database:")
+            val database = client.databases.getDatabase(DATABASE_ID)
+            println(database)
+            println("title=${database.title.plainText}")
+
+            // Query database
+            println("Query results:")
+            val results = client.databases.queryDatabase(DATABASE_ID)
+            println(results)
         }
 
         // Close

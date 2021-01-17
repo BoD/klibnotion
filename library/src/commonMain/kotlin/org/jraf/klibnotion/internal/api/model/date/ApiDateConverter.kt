@@ -31,8 +31,8 @@ import org.jraf.klibnotion.model.date.DateOrDateRange
 internal object ApiDateConverter : ApiConverter<ApiDate, DateOrDateRange>() {
     override fun apiToModel(apiModel: ApiDate): DateOrDateRange {
         return DateOrDateRangeImpl(
-            start = ApiDateStringConverter.apiToModel(apiModel.start)!!,
-            end = ApiDateStringConverter.apiToModel(apiModel.end)
+            start = ApiDateStringConverter.apiToModel(apiModel.start),
+            end = apiModel.end?.let { ApiDateStringConverter.apiToModel(it) }
         )
     }
 }
