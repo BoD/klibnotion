@@ -22,17 +22,32 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.database
+package org.jraf.klibnotion.model.property.spec
 
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.property.spec.PropertySpec
-import org.jraf.klibnotion.model.richtext.RichTextList
 
 /**
  * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
  */
-interface Database {
-    val id: UuidString
-    val title: RichTextList
-    val propertySpecs: List<PropertySpec>
+interface RelationPropertySpec : PropertySpec {
+    /**
+     * The database this relation refers to.
+     * New linked pages must belong to this database in order to be valid.
+     */
+    val databaseId: UuidString
+
+    /**
+     * By default, relations are formed as two synced properties across databases: if you make a change to one property,
+     * it updates the synced property at the same time.
+     * [syncedPropertyName] refers to the name of the property in the related database.
+     */
+    val syncedPropertyName: String?
+
+    /**
+     * By default, relations are formed as two synced properties across databases: if you make a change to one property,
+     * it updates the synced property at the same time.
+     * [syncedPropertyId] refers to the id of the property in the related database.
+     * Like [PropertySpec.id], this is usually a short string of random letters and symbols.
+     */
+    val syncedPropertyId: String?
 }

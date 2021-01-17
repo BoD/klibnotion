@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.internal.api.model.database
 
 import kotlinx.serialization.Serializable
-import org.jraf.klibnotion.internal.api.model.property.ApiProperty
+import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
 /**
@@ -35,5 +35,5 @@ import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 internal data class ApiDatabase(
     val id: String,
     val title: List<ApiRichText>,
-    val properties: Map<String, ApiProperty>,
+    val properties: Map<String, ApiPropertySpec>,
 )

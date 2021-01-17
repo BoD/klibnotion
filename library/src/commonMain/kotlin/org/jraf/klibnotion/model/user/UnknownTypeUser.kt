@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.model.user
 
 /**
- * This type is returned by the library when a User of a type unknown to this library is returned by the Notion API.
+ * This type is returned when a User of a type unknown to this library is returned by the Notion API.
  *
  * See [https://www.notion.so/User-object-4f8d1a2fc1e54680b5f810ed0c6903a6].
  */

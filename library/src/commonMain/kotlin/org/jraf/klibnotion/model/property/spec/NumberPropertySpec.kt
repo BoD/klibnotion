@@ -22,31 +22,33 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.color
+package org.jraf.klibnotion.model.property.spec
 
-enum class Color {
+/**
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ */
+interface NumberPropertySpec : PropertySpec {
     /**
-     * This type is returned when a type unknown to this library is returned by the Notion API.
+     * How the number is displayed in Notion.
      */
-    _UNKNOWN,
+    val format: NumberFormat
 
-    DEFAULT,
-    GRAY,
-    BROWN,
-    ORANGE,
-    YELLOW,
-    GREEN,
-    BLUE,
-    PURPLE,
-    PINK,
-    RED,
-    GRAY_BACKGROUND,
-    BROWN_BACKGROUND,
-    ORANGE_BACKGROUND,
-    YELLOW_BACKGROUND,
-    GREEN_BACKGROUND,
-    BLUE_BACKGROUND,
-    PURPLE_BACKGROUND,
-    PINK_BACKGROUND,
-    RED_BACKGROUND,
+    enum class NumberFormat {
+        /**
+         * This type is returned when a type unknown to this library is returned by the Notion API.
+         */
+        _UNKNOWN,
+
+        NUMBER,
+        NUMBER_WITH_COMMAS,
+        PERCENT,
+        DOLLAR,
+        EURO,
+        POUND,
+        YEN,
+        RUBLE,
+        RUPEE,
+        WON,
+        YUAN,
+    }
 }

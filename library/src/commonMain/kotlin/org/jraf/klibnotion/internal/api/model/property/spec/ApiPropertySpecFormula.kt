@@ -22,31 +22,14 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.color
+package org.jraf.klibnotion.internal.api.model.property.spec
 
-enum class Color {
-    /**
-     * This type is returned when a type unknown to this library is returned by the Notion API.
-     */
-    _UNKNOWN,
+import kotlinx.serialization.Serializable
 
-    DEFAULT,
-    GRAY,
-    BROWN,
-    ORANGE,
-    YELLOW,
-    GREEN,
-    BLUE,
-    PURPLE,
-    PINK,
-    RED,
-    GRAY_BACKGROUND,
-    BROWN_BACKGROUND,
-    ORANGE_BACKGROUND,
-    YELLOW_BACKGROUND,
-    GREEN_BACKGROUND,
-    BLUE_BACKGROUND,
-    PURPLE_BACKGROUND,
-    PINK_BACKGROUND,
-    RED_BACKGROUND,
-}
+/**
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ */
+@Serializable
+internal data class ApiPropertySpecFormula(
+    val value: String,
+)

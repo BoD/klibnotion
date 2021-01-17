@@ -22,31 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.color
+package org.jraf.klibnotion.model.base
 
-enum class Color {
-    /**
-     * This type is returned when a type unknown to this library is returned by the Notion API.
-     */
-    _UNKNOWN,
-
-    DEFAULT,
-    GRAY,
-    BROWN,
-    ORANGE,
-    YELLOW,
-    GREEN,
-    BLUE,
-    PURPLE,
-    PINK,
-    RED,
-    GRAY_BACKGROUND,
-    BROWN_BACKGROUND,
-    ORANGE_BACKGROUND,
-    YELLOW_BACKGROUND,
-    GREEN_BACKGROUND,
-    BLUE_BACKGROUND,
-    PURPLE_BACKGROUND,
-    PINK_BACKGROUND,
-    RED_BACKGROUND,
-}
+/**
+ * A reference to a [org.jraf.klibnotion.model.database.Database].
+ */
+interface DatabaseReference : Reference

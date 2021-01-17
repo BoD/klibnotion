@@ -22,31 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.color
+package org.jraf.klibnotion.model.property.spec
 
-enum class Color {
+/**
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ */
+interface FormulaPropertySpec : PropertySpec {
     /**
-     * This type is returned when a type unknown to this library is returned by the Notion API.
+     * Formula to evaluate for this property.
+     * You can read more about the [syntax for formulas](https://notion.so/notion/Formulas-28f3f5c3ae644c59b4d862046ea6a541) in the help center.
      */
-    _UNKNOWN,
-
-    DEFAULT,
-    GRAY,
-    BROWN,
-    ORANGE,
-    YELLOW,
-    GREEN,
-    BLUE,
-    PURPLE,
-    PINK,
-    RED,
-    GRAY_BACKGROUND,
-    BROWN_BACKGROUND,
-    ORANGE_BACKGROUND,
-    YELLOW_BACKGROUND,
-    GREEN_BACKGROUND,
-    BLUE_BACKGROUND,
-    PURPLE_BACKGROUND,
-    PINK_BACKGROUND,
-    RED_BACKGROUND,
+    val value: String
 }
