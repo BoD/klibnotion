@@ -31,5 +31,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class ApiPropertySpecFormula(
-    val value: String,
+    val expression: String,
 )

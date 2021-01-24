@@ -24,27 +24,39 @@
 
 package org.jraf.klibnotion.internal.client
 
-import io.ktor.client.*
-import io.ktor.client.engine.*
-import io.ktor.client.features.*
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.ProxyBuilder
+import io.ktor.client.features.ClientRequestException
+import io.ktor.client.features.HttpResponseValidator
+import io.ktor.client.features.HttpTimeout
+import io.ktor.client.features.UserAgent
+import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
-import io.ktor.util.*
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.DEFAULT
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.features.logging.Logger
+import io.ktor.client.features.logging.Logging
+import io.ktor.client.request.header
+import io.ktor.client.statement.readText
+import io.ktor.http.URLBuilder
+import io.ktor.util.KtorExperimentalAPI
 import kotlinx.serialization.json.Json
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
+import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
+import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
+import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
+import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.exceptions.NotionClientException
 import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.page.Page
@@ -150,8 +162,16 @@ internal class NotionClientImpl(
             .apiToModel(ApiDatabaseConverter)
     }
 
-    override suspend fun queryDatabase(id: UuidString, pagination: Pagination): ResultPage<Page> {
-        return service.queryDatabase(id, pagination.startCursor)
+    override suspend fun queryDatabase(
+        id: UuidString,
+        query: DatabaseQuery,
+        pagination: Pagination,
+    ): ResultPage<Page> {
+        return service.queryDatabase(
+            id,
+            (query as DatabaseQueryImpl).modelToApi(ApiDatabaseQueryConverter),
+            pagination.startCursor
+        )
             .apiToModel(ApiPageResultPageConverter)
     }
 

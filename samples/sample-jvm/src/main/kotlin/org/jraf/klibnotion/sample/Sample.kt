@@ -25,8 +25,16 @@
 package org.jraf.klibnotion.sample
 
 import kotlinx.coroutines.runBlocking
-import org.jraf.klibnotion.client.*
+import org.jraf.klibnotion.client.Authentication
+import org.jraf.klibnotion.client.ClientConfiguration
+import org.jraf.klibnotion.client.HttpConfiguration
+import org.jraf.klibnotion.client.HttpLoggingLevel
+import org.jraf.klibnotion.client.HttpProxy
+import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.model.database.Database
+import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
+import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
@@ -80,10 +88,41 @@ class Sample {
             println(database)
             println("title=${database.title.plainText}")
 
-            // Query database
-            println("Query results:")
-            val pageResultPage: ResultPage<Page> = client.databases.queryDatabase(DATABASE_ID)
-            println(pageResultPage.results.joinToString("") { it.toFormattedString() })
+            // Query database (simple)
+            println("Simple query results:")
+            val simpleQueryResultPage: ResultPage<Page> =
+                client.databases.queryDatabase(DATABASE_ID)
+            println(simpleQueryResultPage.results.joinToString("") { it.toFormattedString() })
+
+            // Query database (filters)
+            println("Filtered query results:")
+            val filteredQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(
+                DATABASE_ID,
+                query = DatabaseQuery.newInstance()
+                    .addAnyFilters(
+                        DatabaseQueryPropertyFilter.Text(
+                            propertyIdOrName = "Famous quote",
+                            predicate = DatabaseQueryPredicate.Text.Equals("a")
+                        ),
+                        DatabaseQueryPropertyFilter.Text(
+                            propertyIdOrName = "Famous quote",
+                            predicate = DatabaseQueryPredicate.Text.Contains("imp")
+                        ),
+                        DatabaseQueryPropertyFilter.Number(
+                            propertyIdOrName = "Legs",
+                            predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(4)
+                        ),
+                        DatabaseQueryPropertyFilter.Formula(
+                            propertyIdOrName = "Legs plus one",
+                            predicate = DatabaseQueryPredicate.Formula.Number.GreaterThan(4)
+                        ),
+                        DatabaseQueryPropertyFilter.Checkbox(
+                            propertyIdOrName = "Is Greedo",
+                            predicate = DatabaseQueryPredicate.Checkbox(true)
+                        ),
+                    )
+            )
+            println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
         }
 
         // Close

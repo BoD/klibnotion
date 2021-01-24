@@ -22,23 +22,17 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.date
+package org.jraf.klibnotion.internal.api.model.database.query
 
-import org.jraf.klibnotion.model.date.Date
-import java.util.TimeZone
+import kotlinx.serialization.Serializable
 
-internal actual class SimpleDateFormat actual constructor(format: String) {
-    private val simpleDateFormat = java.text.SimpleDateFormat(format).apply {
-        // Set the default timezone to GMT for the case where it's not present in the date to parse
-        // which is the case when it's a date without a time.
-        timeZone = TimeZone.getTimeZone("GMT")
-    }
-
-    actual fun parse(formattedDate: String): Date {
-        return simpleDateFormat.parse(formattedDate)
-    }
-
-    actual fun format(dateToFormat: Date): String {
-        return simpleDateFormat.format(dateToFormat)
-    }
-}
+/**
+ * See [https://www.notion.so/Query-a-database-f150c8e10ead4afe9045d56bc8114855].
+ */
+@Serializable
+internal data class ApiPeopleDatabaseQueryFilter(
+    val contains: String? = null,
+    val does_not_contain: String? = null,
+    val is_empty: Boolean? = null,
+    val is_not_empty: Boolean? = null,
+)

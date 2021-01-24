@@ -28,14 +28,20 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.model.date.Date
 
 internal object ApiDateStringConverter : ApiConverter<String, Date>() {
-    private const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+    private const val DATE_FORMAT = "yyyy-MM-dd"
+    private const val DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
 
     override fun apiToModel(apiModel: String): Date {
-        return SimpleDateFormat(DATE_FORMAT).parse(apiModel)
+        // Try date + time first, fallback to date only
+        return try {
+            SimpleDateFormat(DATE_TIME_FORMAT).parse(apiModel)
+        } catch (e: Exception) {
+            SimpleDateFormat(DATE_FORMAT).parse(apiModel)
+        }
     }
 
     override fun modelToApi(model: Date): String {
-        return SimpleDateFormat(DATE_FORMAT).format(model)
+        return SimpleDateFormat(DATE_TIME_FORMAT).format(model)
     }
 }
 

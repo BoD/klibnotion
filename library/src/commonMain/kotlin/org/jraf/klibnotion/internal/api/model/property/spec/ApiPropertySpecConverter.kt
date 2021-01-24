@@ -27,7 +27,26 @@ package org.jraf.klibnotion.internal.api.model.property.spec
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.property.ApiSelectOptionConverter
-import org.jraf.klibnotion.internal.model.property.spec.*
+import org.jraf.klibnotion.internal.model.property.spec.CheckboxPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.CreatedByPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.CreatedTimePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.DatePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.EmailPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.FilePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.FormulaPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.LastEditedByPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.LastEditedTimePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.MultiSelectPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.NumberPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.PeoplePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.PhonePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.RelationPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.RollupPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.SelectPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.TextPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.TitlePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.UnknownTypePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.UrlPropertySpecImpl
 import org.jraf.klibnotion.model.property.spec.NumberPropertySpec.NumberFormat
 import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.property.spec.RollupPropertySpec.RollupFunction
@@ -78,7 +97,7 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
             "formula" -> FormulaPropertySpecImpl(
                 name = name,
                 id = id,
-                value = apiPropertySpec.formula!!.value
+                expression = apiPropertySpec.formula!!.expression
             )
             "relation" -> RelationPropertySpecImpl(
                 name = name,

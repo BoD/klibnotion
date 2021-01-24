@@ -22,23 +22,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.date
+package org.jraf.klibnotion.model.database.query
 
-import org.jraf.klibnotion.model.date.Date
-import java.util.TimeZone
+import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
+import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
+import kotlin.jvm.JvmStatic
 
-internal actual class SimpleDateFormat actual constructor(format: String) {
-    private val simpleDateFormat = java.text.SimpleDateFormat(format).apply {
-        // Set the default timezone to GMT for the case where it's not present in the date to parse
-        // which is the case when it's a date without a time.
-        timeZone = TimeZone.getTimeZone("GMT")
-    }
+interface DatabaseQuery {
+    fun addAllFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
+    fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
 
-    actual fun parse(formattedDate: String): Date {
-        return simpleDateFormat.parse(formattedDate)
-    }
-
-    actual fun format(dateToFormat: Date): String {
-        return simpleDateFormat.format(dateToFormat)
+    companion object {
+        @JvmStatic
+        fun newInstance(): DatabaseQuery = DatabaseQueryImpl()
     }
 }

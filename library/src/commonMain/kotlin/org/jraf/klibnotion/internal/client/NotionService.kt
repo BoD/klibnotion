@@ -24,9 +24,14 @@
 
 package org.jraf.klibnotion.internal.client
 
-import io.ktor.client.*
-import io.ktor.client.request.*
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+import io.ktor.client.request.post
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
+import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
 import org.jraf.klibnotion.internal.api.model.page.ApiPage
 import org.jraf.klibnotion.internal.api.model.pagination.ApiResultPage
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
@@ -65,9 +70,11 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.get("$BASE_URL/$DATABASES/$id")
     }
 
-    suspend fun queryDatabase(id: UuidString, startCursor: String?): ApiResultPage<ApiPage> {
+    suspend fun queryDatabase(id: UuidString, query: ApiDatabaseQuery, startCursor: String?): ApiResultPage<ApiPage> {
         return httpClient.post("$BASE_URL/$DATABASES/$id/query") {
             if (startCursor != null) parameter(START_CURSOR, startCursor)
+            contentType(ContentType.Application.Json)
+            body = query
         }
     }
 

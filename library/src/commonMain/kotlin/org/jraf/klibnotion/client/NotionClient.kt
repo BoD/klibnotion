@@ -27,6 +27,7 @@ package org.jraf.klibnotion.client
 import org.jraf.klibnotion.internal.client.NotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
+import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
@@ -36,7 +37,8 @@ import kotlin.jvm.JvmStatic
 interface NotionClient {
     companion object {
         @JvmStatic
-        fun newInstance(configuration: ClientConfiguration): NotionClient = NotionClientImpl(configuration)
+        fun newInstance(configuration: ClientConfiguration): NotionClient =
+            NotionClientImpl(configuration)
     }
 
     /**
@@ -72,6 +74,7 @@ interface NotionClient {
          */
         suspend fun queryDatabase(
             id: UuidString,
+            query: DatabaseQuery = DatabaseQuery.newInstance(),
             pagination: Pagination = Pagination(),
         ): ResultPage<Page>
     }

@@ -29,5 +29,5 @@ import org.jraf.klibnotion.model.property.spec.FormulaPropertySpec
 internal data class FormulaPropertySpecImpl(
     override val name: String,
     override val id: String,
-    override val value: String,
+    override val expression: String,
 ) : FormulaPropertySpec

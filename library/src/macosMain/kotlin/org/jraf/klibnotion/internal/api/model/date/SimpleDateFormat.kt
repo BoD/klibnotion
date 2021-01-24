@@ -26,9 +26,16 @@ package org.jraf.klibnotion.internal.api.model.date
 
 import org.jraf.klibnotion.model.date.Date
 import platform.Foundation.NSDateFormatter
+import platform.Foundation.NSTimeZone
+import platform.Foundation.timeZoneWithName
 
 internal actual class SimpleDateFormat actual constructor(format: String) {
-    private val nsDateFormatter = NSDateFormatter().apply { dateFormat = format }
+    private val nsDateFormatter = NSDateFormatter().apply {
+        dateFormat = format
+        // Set the default timezone to GMT for the case where it's not present in the date to parse
+        // which is the case when it's a date without a time.
+        timeZone = NSTimeZone.timeZoneWithName("GMT")!!
+    }
 
     actual fun parse(formattedDate: String): Date {
         return nsDateFormatter.dateFromString(formattedDate)!!
