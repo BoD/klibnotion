@@ -82,6 +82,17 @@ interface NotionClient {
     }
 
     /**
+     * Page related APIs.
+     */
+    interface Pages {
+        /**
+         * Retrieve a page.
+         * @see <a href="https://www.notion.so/Retrieve-a-page-dabcf81142514685a70b38c911e6d126">Retrieve a page</a>
+         */
+        suspend fun getPage(id: UuidString, isArchived: Boolean = false): Page
+    }
+
+    /**
      * User related APIs.
      */
     val users: Users
@@ -90,6 +101,12 @@ interface NotionClient {
      * Database related APIs.
      */
     val databases: Databases
+
+
+    /**
+     * Page related APIs.
+     */
+    val pages: Pages
 
     /**
      * Dispose of this client instance.

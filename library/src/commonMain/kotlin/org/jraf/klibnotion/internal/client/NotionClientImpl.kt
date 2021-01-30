@@ -50,6 +50,7 @@ import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
+import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
@@ -69,10 +70,12 @@ internal class NotionClientImpl(
     clientConfiguration: ClientConfiguration,
 ) : NotionClient,
     NotionClient.Users,
-    NotionClient.Databases {
+    NotionClient.Databases,
+    NotionClient.Pages {
 
     override val users = this
     override val databases = this
+    override val pages = this
 
     @OptIn(KtorExperimentalAPI::class)
     private val httpClient by lazy {
@@ -175,6 +178,15 @@ internal class NotionClientImpl(
             pagination.startCursor
         )
             .apiToModel(ApiPageResultPageConverter)
+    }
+
+    // endregion
+
+
+    // region Pages
+    override suspend fun getPage(id: UuidString, isArchived: Boolean): Page {
+        return service.getPage(id, isArchived)
+            .apiToModel(ApiPageConverter)
     }
 
     // endregion

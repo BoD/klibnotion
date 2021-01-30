@@ -45,7 +45,7 @@ internal class NotionService(private val httpClient: HttpClient) {
 
         private const val USERS = "users"
         private const val DATABASES = "databases"
-
+        private const val PAGES = "pages"
     }
 
     // region Users
@@ -75,6 +75,17 @@ internal class NotionService(private val httpClient: HttpClient) {
             if (startCursor != null) parameter(START_CURSOR, startCursor)
             contentType(ContentType.Application.Json)
             body = query
+        }
+    }
+
+    // endregion
+
+
+    // region Pages
+
+    suspend fun getPage(id: UuidString, archived: Boolean): ApiPage {
+        return httpClient.get("$BASE_URL/$PAGES/$id") {
+            if (archived) parameter("archived", true)
         }
     }
 

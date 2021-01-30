@@ -50,7 +50,10 @@ private const val API_KEY = "secret_XXX"
 private const val USER_ID = "00000000-0000-0000-0000-000000000000"
 
 // Replace this constant with a database id that exists
-private const val DATABASE_ID = "00000000000000000000"
+private const val DATABASE_ID = "00000000-0000-0000-0000-000000000000"
+
+// Replace this constant with a page id that exists
+private const val PAGE_ID = "00000000-0000-0000-0000-000000000000"
 
 class Sample {
     private val client: NotionClient by lazy {
@@ -124,6 +127,11 @@ class Sample {
                     .add("title", DatabaseQuerySort.Direction.DESCENDING)
             )
             println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
+
+            // Get page
+            println("Page:")
+            val page: Page = client.pages.getPage(PAGE_ID)
+            println(page)
         }
 
         // Close
