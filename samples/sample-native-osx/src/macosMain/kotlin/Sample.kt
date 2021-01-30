@@ -31,6 +31,7 @@ import org.jraf.klibnotion.client.HttpProxy
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
 import org.jraf.klibnotion.model.page.Page
@@ -96,7 +97,7 @@ class Sample {
             println("Filtered query results:")
             val filteredQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(
                 DATABASE_ID,
-                query = DatabaseQuery.newInstance()
+                query = DatabaseQuery()
                     .addAnyFilters(
                         DatabaseQueryPropertyFilter.Text(
                             propertyIdOrName = "Famous quote",
@@ -118,7 +119,9 @@ class Sample {
                             propertyIdOrName = "Is Greedo",
                             predicate = DatabaseQueryPredicate.Checkbox(true)
                         ),
-                    )
+                    ),
+                sort = DatabaseQuerySort("Created time", DatabaseQuerySort.Direction.ASCENDING)
+                    .add("title", DatabaseQuerySort.Direction.DESCENDING)
             )
             println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
         }

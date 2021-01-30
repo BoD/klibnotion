@@ -32,4 +32,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class ApiDatabaseQuery(
     val filter: ApiDatabaseQueryFilters? = null,
+    val sorts: List<ApiDatabaseQuerySort>? = null,
 )

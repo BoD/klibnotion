@@ -57,6 +57,7 @@ import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.exceptions.NotionClientException
 import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.page.Page
@@ -164,12 +165,13 @@ internal class NotionClientImpl(
 
     override suspend fun queryDatabase(
         id: UuidString,
-        query: DatabaseQuery,
+        query: DatabaseQuery?,
+        sort: DatabaseQuerySort?,
         pagination: Pagination,
     ): ResultPage<Page> {
         return service.queryDatabase(
             id,
-            (query as DatabaseQueryImpl).modelToApi(ApiDatabaseQueryConverter),
+            (query as DatabaseQueryImpl? to sort).modelToApi(ApiDatabaseQueryConverter),
             pagination.startCursor
         )
             .apiToModel(ApiPageResultPageConverter)

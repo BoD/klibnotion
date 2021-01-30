@@ -28,18 +28,35 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
+import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
 
-internal object ApiDatabaseQueryConverter : ApiConverter<ApiDatabaseQuery, DatabaseQueryImpl>() {
-    override fun modelToApi(model: DatabaseQueryImpl): ApiDatabaseQuery {
+internal object ApiDatabaseQueryConverter :
+    ApiConverter<ApiDatabaseQuery, Pair<DatabaseQueryImpl?, DatabaseQuerySort?>>() {
+    override fun modelToApi(model: Pair<DatabaseQueryImpl?, DatabaseQuerySort?>): ApiDatabaseQuery {
+        val query = model.first
+        val sort = model.second
         return ApiDatabaseQuery(
-            filter = ApiDatabaseQueryFilters(
-                or = model.anyFilters.toList().modelToApi(ApiDatabaseQueryFilterConverter)
-                    .ifEmpty { null },
-                and = model.allFilters.toList().modelToApi(ApiDatabaseQueryFilterConverter)
-                    .ifEmpty { null },
-            ).let { if (it.or == null && it.and == null) null else it }
+            filter = query?.let {
+                ApiDatabaseQueryFilters(
+                    or = query.anyFilters.toList().modelToApi(ApiDatabaseQueryFilterConverter)
+                        .ifEmpty { null },
+                    and = query.allFilters.toList().modelToApi(ApiDatabaseQueryFilterConverter)
+                        .ifEmpty { null },
+                )
+            }?.let { if (it.or == null && it.and == null) null else it },
+            sorts = sort?.let { sortElem ->
+                sortElem.sorting.map { (propertyName, direction) ->
+                    ApiDatabaseQuerySort(
+                        property = propertyName,
+                        direction = when (direction) {
+                            DatabaseQuerySort.Direction.ASCENDING -> "ascending"
+                            DatabaseQuerySort.Direction.DESCENDING -> "descending"
+                        }
+                    )
+                }
+            }
         )
     }
 }

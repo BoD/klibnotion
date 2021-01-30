@@ -22,20 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.database.query
+package org.jraf.klibnotion.internal.api.model.database.query
 
-import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
-import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
-import kotlin.jvm.JvmStatic
+import kotlinx.serialization.Serializable
 
-interface DatabaseQuery {
-    fun addAllFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
-    fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
-
-    companion object {
-        @JvmStatic
-        fun newInstance(): DatabaseQuery = DatabaseQueryImpl()
-
-        operator fun invoke() = newInstance()
-    }
-}
+/**
+ * See [https://www.notion.so/Query-a-database-f150c8e10ead4afe9045d56bc8114855].
+ */
+@Serializable
+internal data class ApiDatabaseQuerySort(
+    val property: String,
+    val direction: String,
+)

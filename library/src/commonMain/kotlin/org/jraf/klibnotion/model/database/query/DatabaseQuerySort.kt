@@ -24,18 +24,20 @@
 
 package org.jraf.klibnotion.model.database.query
 
-import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
-import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
-import kotlin.jvm.JvmStatic
+class DatabaseQuerySort() {
+    internal val sorting: MutableList<Pair<String, Direction>> = mutableListOf()
 
-interface DatabaseQuery {
-    fun addAllFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
-    fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
+    constructor(propertyName: String, direction: Direction) : this() {
+        sorting += propertyName to direction
+    }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(): DatabaseQuery = DatabaseQueryImpl()
+    fun add(propertyName: String, direction: Direction): DatabaseQuerySort {
+        sorting += propertyName to direction
+        return this
+    }
 
-        operator fun invoke() = newInstance()
+    enum class Direction {
+        ASCENDING,
+        DESCENDING,
     }
 }
