@@ -24,11 +24,11 @@
 
 package org.jraf.klibnotion.internal.model.property.value
 
-import org.jraf.klibnotion.model.date.Date
+import org.jraf.klibnotion.model.date.DateOrDateTime
 import org.jraf.klibnotion.model.property.value.LastEditedTimePropertyValue
 
 internal data class LastEditedTimePropertyValueImpl(
     override val id: String,
     override val name: String,
-    override val value: Date,
+    override val value: DateOrDateTime,
 ) : LastEditedTimePropertyValue

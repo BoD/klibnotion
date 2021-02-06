@@ -84,7 +84,7 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
             "multi_select" -> MultiSelectPropertySpecImpl(
                 name = name,
                 id = id,
-                options = apiPropertySpec.select!!.options.apiToModel(ApiSelectOptionConverter)
+                options = apiPropertySpec.multi_select!!.options.apiToModel(ApiSelectOptionConverter)
             )
 
             "date" -> DatePropertySpecImpl(name = name, id = id)

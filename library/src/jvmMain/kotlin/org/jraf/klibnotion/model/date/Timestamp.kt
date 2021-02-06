@@ -24,10 +24,6 @@
 
 package org.jraf.klibnotion.model.date
 
-/**
- * See [https://www.notion.so/date-900111fd6cfa4dc3a542e7e2961cc89e].
- */
-interface DateOrDateRange {
-    val start: DateOrDateTime
-    val end: DateOrDateTime?
-}
+import java.util.Date
+
+actual typealias Timestamp = Date

@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.model.database.query.filter
 
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.date.DateOrDateTime
 
 interface DatabaseQueryPropertyFilter {
     val propertyIdOrName: String
@@ -216,23 +217,23 @@ interface DatabaseQueryPredicate {
 
     interface Date : DatabaseQueryPredicate {
         data class Equals(
-            val value: org.jraf.klibnotion.model.date.Date,
+            val value: DateOrDateTime,
         ) : Date
 
         data class Before(
-            val value: org.jraf.klibnotion.model.date.Date,
+            val value: DateOrDateTime,
         ) : Date
 
         data class After(
-            val value: org.jraf.klibnotion.model.date.Date,
+            val value: DateOrDateTime,
         ) : Date
 
         data class OnOrBefore(
-            val value: org.jraf.klibnotion.model.date.Date,
+            val value: DateOrDateTime,
         ) : Date
 
         data class OnOrAfter(
-            val value: org.jraf.klibnotion.model.date.Date,
+            val value: DateOrDateTime,
         ) : Date
 
         object IsPastWeek : Date
@@ -353,23 +354,23 @@ interface DatabaseQueryPredicate {
 
         interface Date : Formula {
             data class Equals(
-                val value: org.jraf.klibnotion.model.date.Date,
+                val value: DateOrDateTime,
             ) : Date
 
             data class Before(
-                val value: org.jraf.klibnotion.model.date.Date,
+                val value: DateOrDateTime,
             ) : Date
 
             data class After(
-                val value: org.jraf.klibnotion.model.date.Date,
+                val value: DateOrDateTime,
             ) : Date
 
             data class OnOrBefore(
-                val value: org.jraf.klibnotion.model.date.Date,
+                val value: DateOrDateTime,
             ) : Date
 
             data class OnOrAfter(
-                val value: org.jraf.klibnotion.model.date.Date,
+                val value: DateOrDateTime,
             ) : Date
 
             object IsPastWeek : Date

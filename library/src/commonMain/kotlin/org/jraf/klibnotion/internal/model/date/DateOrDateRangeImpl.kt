@@ -24,10 +24,10 @@
 
 package org.jraf.klibnotion.internal.model.date
 
-import org.jraf.klibnotion.model.date.Date
 import org.jraf.klibnotion.model.date.DateOrDateRange
+import org.jraf.klibnotion.model.date.DateOrDateTime
 
 internal data class DateOrDateRangeImpl(
-    override val start: Date,
-    override val end: Date?,
+    override val start: DateOrDateTime,
+    override val end: DateOrDateTime?,
 ) : DateOrDateRange

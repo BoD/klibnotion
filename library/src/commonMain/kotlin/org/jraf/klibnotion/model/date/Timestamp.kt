@@ -24,6 +24,4 @@
 
 package org.jraf.klibnotion.model.date
 
-import java.util.Date
-
-actual typealias Date = Date
+expect class Timestamp

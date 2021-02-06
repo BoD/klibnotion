@@ -24,4 +24,7 @@
 
 package org.jraf.klibnotion.model.date
 
-expect class Date
+sealed class DateOrDateTime(open val timestamp: Timestamp)
+
+data class Date(override val timestamp: Timestamp) : DateOrDateTime(timestamp)
+data class DateTime(override val timestamp: Timestamp) : DateOrDateTime(timestamp)

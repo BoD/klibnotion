@@ -24,21 +24,22 @@
 
 package org.jraf.klibnotion.internal.api.model.date
 
-import org.jraf.klibnotion.model.date.Date
+import org.jraf.klibnotion.model.date.Timestamp
+import java.text.SimpleDateFormat
 import java.util.TimeZone
 
-internal actual class SimpleDateFormat actual constructor(format: String) {
-    private val simpleDateFormat = java.text.SimpleDateFormat(format).apply {
+internal actual class TimestampFormatter actual constructor(format: String) {
+    private val simpleDateFormat = SimpleDateFormat(format).apply {
         // Set the default timezone to GMT for the case where it's not present in the date to parse
         // which is the case when it's a date without a time.
         timeZone = TimeZone.getTimeZone("GMT")
     }
 
-    actual fun parse(formattedDate: String): Date {
+    actual fun parse(formattedDate: String): Timestamp {
         return simpleDateFormat.parse(formattedDate)
     }
 
-    actual fun format(dateToFormat: Date): String {
-        return simpleDateFormat.format(dateToFormat)
+    actual fun format(timestampToFormat: Timestamp): String {
+        return simpleDateFormat.format(timestampToFormat)
     }
 }

@@ -35,7 +35,7 @@ internal data class ApiPropertySpec(
     val type: String,
     val number: ApiPropertySpecNumber? = null,
     val select: ApiPropertySpecSelect? = null,
-    val multiSelect: ApiPropertySpecMultiSelect? = null,
+    val multi_select: ApiPropertySpecMultiSelect? = null,
     val formula: ApiPropertySpecFormula? = null,
     val relation: ApiPropertySpecRelation? = null,
     val rollup: ApiPropertySpecRollup? = null,

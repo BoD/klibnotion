@@ -26,26 +26,32 @@ package org.jraf.klibnotion.internal.api.model.date
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.model.date.Date
+import org.jraf.klibnotion.model.date.DateOrDateTime
+import org.jraf.klibnotion.model.date.DateTime
+import org.jraf.klibnotion.model.date.Timestamp
 
-internal object ApiDateStringConverter : ApiConverter<String, Date>() {
+internal object ApiDateStringConverter : ApiConverter<String, DateOrDateTime>() {
     private const val DATE_FORMAT = "yyyy-MM-dd"
     private const val DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
 
-    override fun apiToModel(apiModel: String): Date {
+    override fun apiToModel(apiModel: String): DateOrDateTime {
         // Try date + time first, fallback to date only
         return try {
-            SimpleDateFormat(DATE_TIME_FORMAT).parse(apiModel)
+            DateTime(TimestampFormatter(DATE_TIME_FORMAT).parse(apiModel))
         } catch (e: Exception) {
-            SimpleDateFormat(DATE_FORMAT).parse(apiModel)
+            Date(TimestampFormatter(DATE_FORMAT).parse(apiModel))
         }
     }
 
-    override fun modelToApi(model: Date): String {
-        return SimpleDateFormat(DATE_TIME_FORMAT).format(model)
+    override fun modelToApi(model: DateOrDateTime): String {
+        return when (model) {
+            is DateTime -> TimestampFormatter(DATE_TIME_FORMAT).format(model.timestamp)
+            is Date -> TimestampFormatter(DATE_FORMAT).format(model.timestamp)
+        }
     }
 }
 
-internal expect class SimpleDateFormat(format: String) {
-    fun parse(formattedDate: String): Date
-    fun format(dateToFormat: Date): String
+internal expect class TimestampFormatter(format: String) {
+    fun parse(formattedDate: String): Timestamp
+    fun format(timestampToFormat: Timestamp): String
 }

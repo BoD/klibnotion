@@ -26,4 +26,4 @@ package org.jraf.klibnotion.model.date
 
 import platform.Foundation.NSDate
 
-actual typealias Date = NSDate
+actual typealias Timestamp = NSDate
