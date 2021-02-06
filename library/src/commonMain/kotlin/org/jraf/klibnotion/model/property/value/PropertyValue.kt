@@ -25,14 +25,18 @@
 package org.jraf.klibnotion.model.property.value
 
 import org.jraf.klibnotion.internal.model.property.SelectOptionImpl
+import org.jraf.klibnotion.internal.model.property.value.DatePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.MultiSelectPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.NumberPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
 import org.jraf.klibnotion.internal.model.richtext.AnnotationsImpl
 import org.jraf.klibnotion.internal.model.richtext.RichTextListImpl
 import org.jraf.klibnotion.internal.model.richtext.TextRichTextImpl
+import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.color.Color
+import org.jraf.klibnotion.model.date.DateOrDateRange
 
 /**
  * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
@@ -97,6 +101,18 @@ interface PropertyValue<T : Any> {
                 }
             )
 
+        fun dateProperty(idOrName: String, date: DateOrDateRange): DatePropertyValue =
+            DatePropertyValueImpl(
+                id = idOrName,
+                name = idOrName,
+                value = date,
+            )
 
+        fun relationProperty(idOrName: String, vararg pageIds: UuidString): RelationPropertyValue =
+            RelationPropertyValueImpl(
+                id = idOrName,
+                name = idOrName,
+                value = pageIds.asList(),
+            )
     }
 }

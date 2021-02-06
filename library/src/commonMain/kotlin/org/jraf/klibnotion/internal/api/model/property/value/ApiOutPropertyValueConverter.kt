@@ -32,9 +32,13 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
+import org.jraf.klibnotion.internal.api.model.modelToApi
+import org.jraf.klibnotion.model.property.value.DatePropertyValue
 import org.jraf.klibnotion.model.property.value.MultiSelectPropertyValue
 import org.jraf.klibnotion.model.property.value.NumberPropertyValue
 import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.model.property.value.RelationPropertyValue
 import org.jraf.klibnotion.model.property.value.SelectPropertyValue
 import org.jraf.klibnotion.model.property.value.TextPropertyValue
 
@@ -71,6 +75,18 @@ internal object ApiOutPropertyValueConverter :
                         } else {
                             put("id", option.id)
                         }
+                    }
+            }
+
+            is DatePropertyValue -> buildJsonObject {
+                put("start", model.value.start.modelToApi(ApiDateStringConverter))
+                model.value.end?.let { put("end", it.modelToApi(ApiDateStringConverter)) }
+            }
+
+            is RelationPropertyValue -> buildJsonArray {
+                for (id in model.value)
+                    addJsonObject {
+                        put("id", id)
                     }
             }
 
