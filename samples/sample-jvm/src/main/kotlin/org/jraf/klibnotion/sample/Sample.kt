@@ -39,8 +39,13 @@ import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilt
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
+import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.multiSelectPropertyByName
+import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.numberProperty
+import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.selectPropertyByName
+import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.textProperty
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
+import kotlin.random.Random
 import kotlin.system.exitProcess
 
 // !!!!! DO THIS FIRST !!!!!
@@ -76,64 +81,77 @@ class Sample {
 
     fun main() {
         runBlocking {
-            // Get user
-            println("User:")
-            val user: User = client.users.getUser(USER_ID)
-            println(user)
+            if (false) {
+                // Get user
+                println("User:")
+                val user: User = client.users.getUser(USER_ID)
+                println(user)
 
-            // Get user list
-            println("User list first page:")
-            val userResultPage: ResultPage<User> = client.users.getUserList()
-            println(userResultPage)
+                // Get user list
+                println("User list first page:")
+                val userResultPage: ResultPage<User> = client.users.getUserList()
+                println(userResultPage)
 
-            // Get database
-            println("Database:")
-            val database: Database = client.databases.getDatabase(DATABASE_ID)
-            println(database)
-            println("title=${database.title.plainText}")
+                // Get database
+                println("Database:")
+                val database: Database = client.databases.getDatabase(DATABASE_ID)
+                println(database)
+                println("title=${database.title.plainText}")
 
-            // Query database (simple)
-            println("Simple query results:")
-            val simpleQueryResultPage: ResultPage<Page> =
-                client.databases.queryDatabase(DATABASE_ID)
-            println(simpleQueryResultPage.results.joinToString("") { it.toFormattedString() })
+                // Query database (simple)
+                println("Simple query results:")
+                val simpleQueryResultPage: ResultPage<Page> =
+                    client.databases.queryDatabase(DATABASE_ID)
+                println(simpleQueryResultPage.results.joinToString("") { it.toFormattedString() })
 
-            // Query database (filters)
-            println("Filtered query results:")
-            val filteredQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(
-                DATABASE_ID,
-                query = DatabaseQuery()
-                    .addAnyFilters(
-                        DatabaseQueryPropertyFilter.Text(
-                            propertyIdOrName = "Famous quote",
-                            predicate = DatabaseQueryPredicate.Text.Equals("a")
+                // Query database (filters)
+                println("Filtered query results:")
+                val filteredQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(
+                    DATABASE_ID,
+                    query = DatabaseQuery()
+                        .addAnyFilters(
+                            DatabaseQueryPropertyFilter.Text(
+                                propertyIdOrName = "Famous quote",
+                                predicate = DatabaseQueryPredicate.Text.Equals("a")
+                            ),
+                            DatabaseQueryPropertyFilter.Text(
+                                propertyIdOrName = "Famous quote",
+                                predicate = DatabaseQueryPredicate.Text.Contains("imp")
+                            ),
+                            DatabaseQueryPropertyFilter.Number(
+                                propertyIdOrName = "Legs",
+                                predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(4)
+                            ),
+                            DatabaseQueryPropertyFilter.Formula(
+                                propertyIdOrName = "Legs plus one",
+                                predicate = DatabaseQueryPredicate.Formula.Number.GreaterThan(4)
+                            ),
+                            DatabaseQueryPropertyFilter.Checkbox(
+                                propertyIdOrName = "Is Greedo",
+                                predicate = DatabaseQueryPredicate.Checkbox(true)
+                            ),
                         ),
-                        DatabaseQueryPropertyFilter.Text(
-                            propertyIdOrName = "Famous quote",
-                            predicate = DatabaseQueryPredicate.Text.Contains("imp")
-                        ),
-                        DatabaseQueryPropertyFilter.Number(
-                            propertyIdOrName = "Legs",
-                            predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(4)
-                        ),
-                        DatabaseQueryPropertyFilter.Formula(
-                            propertyIdOrName = "Legs plus one",
-                            predicate = DatabaseQueryPredicate.Formula.Number.GreaterThan(4)
-                        ),
-                        DatabaseQueryPropertyFilter.Checkbox(
-                            propertyIdOrName = "Is Greedo",
-                            predicate = DatabaseQueryPredicate.Checkbox(true)
-                        ),
-                    ),
-                sort = DatabaseQuerySort("Created time", DatabaseQuerySort.Direction.ASCENDING)
-                    .add("title", DatabaseQuerySort.Direction.DESCENDING)
+                    sort = DatabaseQuerySort("Created time", DatabaseQuerySort.Direction.ASCENDING)
+                        .add("title", DatabaseQuerySort.Direction.DESCENDING)
+                )
+                println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
+
+                // Get page
+                println("Page:")
+                val page: Page = client.pages.getPage(PAGE_ID)
+                println(page)
+            }
+
+            // Create page
+            println("Created page:")
+            val createdPage: Page = client.pages.createPage(
+                parentDatabaseId = DATABASE_ID,
+                numberProperty("Legs", Random.nextInt()),
+                textProperty("Name", "Name ${Random.nextInt()}"),
+                selectPropertyByName("Species", "Alien"),
+                multiSelectPropertyByName("Planets", "Tatooine", "Bespin"),
             )
-            println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
-
-            // Get page
-            println("Page:")
-            val page: Page = client.pages.getPage(PAGE_ID)
-            println(page)
+            println(createdPage)
         }
 
         // Close

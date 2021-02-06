@@ -24,18 +24,41 @@
 
 package org.jraf.klibnotion.model.database.query
 
-import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
-import kotlin.jvm.JvmStatic
 
-interface DatabaseQuery {
-    fun addAllFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
-    fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery
+class DatabaseQuery {
+    internal val allFilters = mutableSetOf<DatabaseQueryPropertyFilter>()
+    internal val anyFilters = mutableSetOf<DatabaseQueryPropertyFilter>()
 
-    companion object {
-        @JvmStatic
-        fun newInstance(): DatabaseQuery = DatabaseQueryImpl()
+    fun addAllFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery {
+        allFilters += filter
+        return this
+    }
 
-        operator fun invoke() = newInstance()
+    fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery {
+        anyFilters += filter
+        return this
+    }
+
+    override fun toString(): String {
+        return "DatabaseQueryImpl(allFilters=$allFilters, anyFilters=$anyFilters)"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as DatabaseQuery
+
+        if (allFilters != other.allFilters) return false
+        if (anyFilters != other.anyFilters) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = allFilters.hashCode()
+        result = 31 * result + anyFilters.hashCode()
+        return result
     }
 }

@@ -32,6 +32,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
+import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParameters
 import org.jraf.klibnotion.internal.api.model.page.ApiPage
 import org.jraf.klibnotion.internal.api.model.pagination.ApiResultPage
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
@@ -86,6 +87,13 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun getPage(id: UuidString, archived: Boolean): ApiPage {
         return httpClient.get("$BASE_URL/$PAGES/$id") {
             if (archived) parameter("archived", true)
+        }
+    }
+
+    suspend fun createPage(parameters: ApiCreateTableParameters): ApiPage {
+        return httpClient.post("$BASE_URL/$PAGES") {
+            contentType(ContentType.Application.Json)
+            body = parameters
         }
     }
 

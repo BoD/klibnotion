@@ -25,12 +25,13 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 
 /**
- * See [https://www.notion.so/Page-object-2a08cb77f9c14c25bece5c3408fe7762].
+ * See [https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b].
  */
 @Serializable
-internal data class ApiPageParent(
-    val type: String? = null,
-    val database_id: String? = null,
+internal data class ApiCreateTableParameters(
+    val parent: ApiPageParent,
+    val properties: Map<String, JsonElement>,
 )

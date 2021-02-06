@@ -41,7 +41,7 @@ internal data class ApiPropertyValue(
     val text: List<ApiRichText>? = null,
     val number: String? = null,
     val select: ApiSelectOption? = null,
-    val multiSelect: List<ApiSelectOption>? = null,
+    val multi_select: List<ApiSelectOption>? = null,
     val date: ApiDate? = null,
     val formula: ApiPropertyValueFormula? = null,
     val relation: List<ApiPropertyValueRelation>? = null,

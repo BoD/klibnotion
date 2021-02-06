@@ -35,7 +35,24 @@ import org.jraf.klibnotion.internal.api.model.property.value.formula.ApiProperty
 import org.jraf.klibnotion.internal.api.model.property.value.rollup.ApiPropertyValueRollupConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
-import org.jraf.klibnotion.internal.model.property.value.*
+import org.jraf.klibnotion.internal.model.property.value.CheckboxPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.CreatedByPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.CreatedTimePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.DatePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.EmailPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.FilesPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.LastEditedByPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.LastEditedTimePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.MultiSelectPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.NumberPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.PeoplePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.PhonePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.TitlePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.UnknownTypePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.UrlPropertyValueImpl
 import org.jraf.klibnotion.internal.model.richtext.RichTextListImpl
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
@@ -63,7 +80,7 @@ internal object ApiPropertyValueConverter :
             "multi_select" -> MultiSelectPropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiSelectOptionConverter.apiToModel(apiPropertyValue.multiSelect!!)
+                value = ApiSelectOptionConverter.apiToModel(apiPropertyValue.multi_select!!)
             )
             "date" -> DatePropertyValueImpl(
                 id = id,

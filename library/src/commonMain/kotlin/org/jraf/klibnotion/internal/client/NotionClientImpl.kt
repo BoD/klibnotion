@@ -50,11 +50,11 @@ import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
+import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
-import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -64,6 +64,7 @@ import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
+import org.jraf.klibnotion.model.property.value.PropertyValue
 import org.jraf.klibnotion.model.user.User
 
 internal class NotionClientImpl(
@@ -174,7 +175,7 @@ internal class NotionClientImpl(
     ): ResultPage<Page> {
         return service.queryDatabase(
             id,
-            (query as DatabaseQueryImpl? to sort).modelToApi(ApiDatabaseQueryConverter),
+            (query to sort).modelToApi(ApiDatabaseQueryConverter),
             pagination.startCursor
         )
             .apiToModel(ApiPageResultPageConverter)
@@ -184,8 +185,14 @@ internal class NotionClientImpl(
 
 
     // region Pages
+
     override suspend fun getPage(id: UuidString, isArchived: Boolean): Page {
         return service.getPage(id, isArchived)
+            .apiToModel(ApiPageConverter)
+    }
+
+    override suspend fun createPage(parentDatabaseId: UuidString, vararg properties: PropertyValue<*>): Page {
+        return service.createPage((parentDatabaseId to properties.toList()).modelToApi(ApiCreateTableParametersConverter))
             .apiToModel(ApiPageConverter)
     }
 

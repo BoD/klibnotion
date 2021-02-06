@@ -25,20 +25,20 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValueConverter
-import org.jraf.klibnotion.internal.model.base.reference.DatabaseReferenceImpl
-import org.jraf.klibnotion.internal.model.base.reference.UnknownTypeReferenceImpl
-import org.jraf.klibnotion.internal.model.page.PageImpl
-import org.jraf.klibnotion.model.page.Page
+import org.jraf.klibnotion.internal.api.model.property.value.ApiOutPropertyValueConverter
+import org.jraf.klibnotion.model.property.value.PropertyValue
 
-internal object ApiPageConverter : ApiConverter<ApiPage, Page>() {
-    override fun apiToModel(apiModel: ApiPage) = PageImpl(
-        id = apiModel.id,
-        parent = when (val type = apiModel.parent.type!!) {
-            "database_id" -> DatabaseReferenceImpl(apiModel.parent.database_id!!)
-            else -> UnknownTypeReferenceImpl(type = type, id = "(unknown)")
-        },
-        propertyValues = ApiPropertyValueConverter.apiToModel(apiModel.properties.map { it.key to it.value }),
-        archived = apiModel.archived
-    )
+internal object ApiCreateTableParametersConverter :
+    ApiConverter<ApiCreateTableParameters, Pair<String, List<PropertyValue<*>>>>() {
+    override fun modelToApi(model: Pair<String, List<PropertyValue<*>>>): ApiCreateTableParameters {
+        val parentDatabaseId = model.first
+        val properties = model.second
+        return ApiCreateTableParameters(
+            parent = ApiPageParent(
+                database_id = parentDatabaseId,
+            ),
+            properties = properties.associate(ApiOutPropertyValueConverter::modelToApi)
+        )
+    }
 }
+

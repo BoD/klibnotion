@@ -27,14 +27,14 @@ package org.jraf.klibnotion.internal.api.model.database.query
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
-import org.jraf.klibnotion.internal.model.database.query.DatabaseQueryImpl
+import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
 
 internal object ApiDatabaseQueryConverter :
-    ApiConverter<ApiDatabaseQuery, Pair<DatabaseQueryImpl?, DatabaseQuerySort?>>() {
-    override fun modelToApi(model: Pair<DatabaseQueryImpl?, DatabaseQuerySort?>): ApiDatabaseQuery {
+    ApiConverter<ApiDatabaseQuery, Pair<DatabaseQuery?, DatabaseQuerySort?>>() {
+    override fun modelToApi(model: Pair<DatabaseQuery?, DatabaseQuerySort?>): ApiDatabaseQuery {
         val query = model.first
         val sort = model.second
         return ApiDatabaseQuery(
