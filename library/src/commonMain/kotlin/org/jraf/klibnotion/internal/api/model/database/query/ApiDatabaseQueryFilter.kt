@@ -53,7 +53,7 @@ internal data class ApiDatabaseQueryFilter(
     val files: ApiFilesDatabaseQueryFilter? = null,
     val url: ApiTextDatabaseQueryFilter? = null,
     val email: ApiTextDatabaseQueryFilter? = null,
-    val phone: ApiTextDatabaseQueryFilter? = null,
+    val phone_number: ApiTextDatabaseQueryFilter? = null,
     val relation: ApiRelationDatabaseQueryFilter? = null,
     val formula: ApiFormulaDatabaseQueryFilter? = null,
     val created_by: ApiPeopleDatabaseQueryFilter? = null,

@@ -1,7 +1,7 @@
 object Versions {
     // Misc and plugins
-    const val GRADLE = "6.8"
-    const val KOTLIN = "1.4.21-2"
+    const val GRADLE = "6.8.2"
+    const val KOTLIN = "1.4.30"
     const val BEN_MANES_VERSIONS_PLUGIN = "0.36.0"
     const val DOKKA_PLUGIN = "1.4.20"
 

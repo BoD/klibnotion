@@ -25,15 +25,19 @@
 package org.jraf.klibnotion.model.property.value
 
 import org.jraf.klibnotion.internal.model.property.SelectOptionImpl
+import org.jraf.klibnotion.internal.model.property.value.CheckboxPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.DatePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.MultiSelectPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.NumberPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.PeoplePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.StringPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
 import org.jraf.klibnotion.internal.model.richtext.AnnotationsImpl
 import org.jraf.klibnotion.internal.model.richtext.RichTextListImpl
 import org.jraf.klibnotion.internal.model.richtext.TextRichTextImpl
+import org.jraf.klibnotion.internal.model.user.PersonImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.date.DateOrDateRange
@@ -45,74 +49,100 @@ interface PropertyValue<T : Any> {
     val id: String
     val name: String
     val value: T
+}
 
-    companion object {
-        fun numberProperty(idOrName: String, value: Number): NumberPropertyValue = NumberPropertyValueImpl(
-            id = idOrName,
-            name = idOrName,
-            value = value
-        )
+class PropertyValueList {
+    internal val propertyValueList = mutableListOf<PropertyValue<*>>()
 
-        fun textProperty(idOrName: String, value: String): TextPropertyValue = TextPropertyValueImpl(
-            id = idOrName,
-            name = idOrName,
-            value = RichTextListImpl(
-                listOf(
-                    TextRichTextImpl(
-                        plainText = value,
-                        href = null,
-                        annotations = AnnotationsImpl(
-                            bold = false,
-                            italic = false,
-                            strikethrough = false,
-                            underline = false,
-                            code = false,
-                            color = Color.DEFAULT
-                        )
+    private fun add(propertyValue: PropertyValue<*>): PropertyValueList {
+        propertyValueList.add(propertyValue)
+        return this
+    }
+
+    fun number(idOrName: String, value: Number): PropertyValueList = add(NumberPropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = value
+    ))
+
+    fun text(idOrName: String, value: String): PropertyValueList = add(TextPropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = RichTextListImpl(
+            listOf(
+                TextRichTextImpl(
+                    plainText = value,
+                    href = null,
+                    annotations = AnnotationsImpl(
+                        bold = false,
+                        italic = false,
+                        strikethrough = false,
+                        underline = false,
+                        code = false,
+                        color = Color.DEFAULT
                     )
                 )
             )
         )
+    ))
 
-        fun selectPropertyByName(idOrName: String, selectName: String): SelectPropertyValue = SelectPropertyValueImpl(
+    fun selectByName(idOrName: String, selectName: String): PropertyValueList = add(SelectPropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = SelectOptionImpl(id = "", name = selectName, color = Color.DEFAULT)
+    ))
+
+    // Actually not supported by the Notion API for now. Keeping it commented out for now because it may be supported
+    // in a future version.
+    //        fun selectById(idOrName: String, selectId: UuidString): PropertyValueList = add(SelectPropertyValueImpl(
+    //            id = idOrName,
+    //            name = idOrName,
+    //            value = SelectOptionImpl(id = selectId, name = "", color = Color.DEFAULT)
+    //        ))
+
+    fun multiSelectByNames(idOrName: String, vararg selectNames: String): PropertyValueList =
+        add(MultiSelectPropertyValueImpl(
             id = idOrName,
             name = idOrName,
-            value = SelectOptionImpl(id = "", name = selectName, color = Color.DEFAULT)
-        )
+            value = selectNames.map { selectName ->
+                SelectOptionImpl(
+                    id = "",
+                    name = selectName,
+                    color = Color.DEFAULT
+                )
+            }
+        ))
 
-        // Actually not supported by the Notion API for now. Keeping it commented out for now because it may be supported
-        // in a future version.
-        //        fun selectPropertyById(idOrName: String, selectId: UuidString): SelectPropertyValue = SelectPropertyValueImpl(
-        //            id = idOrName,
-        //            name = idOrName,
-        //            value = SelectOptionImpl(id = selectId, name = "", color = Color.DEFAULT)
-        //        )
+    fun date(idOrName: String, date: DateOrDateRange): PropertyValueList = add(DatePropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = date,
+    ))
 
-        fun multiSelectPropertyByName(idOrName: String, vararg selectNames: String): MultiSelectPropertyValue =
-            MultiSelectPropertyValueImpl(
-                id = idOrName,
-                name = idOrName,
-                value = selectNames.map { selectName ->
-                    SelectOptionImpl(
-                        id = "",
-                        name = selectName,
-                        color = Color.DEFAULT
-                    )
-                }
-            )
+    fun relation(idOrName: String, vararg pageIds: UuidString): PropertyValueList = add(RelationPropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = pageIds.asList(),
+    ))
 
-        fun dateProperty(idOrName: String, date: DateOrDateRange): DatePropertyValue =
-            DatePropertyValueImpl(
-                id = idOrName,
-                name = idOrName,
-                value = date,
-            )
+    fun people(idOrName: String, vararg peopleIds: UuidString): PropertyValueList = add(PeoplePropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = peopleIds.map { PersonImpl(it, "", null, "") },
+    ))
 
-        fun relationProperty(idOrName: String, vararg pageIds: UuidString): RelationPropertyValue =
-            RelationPropertyValueImpl(
-                id = idOrName,
-                name = idOrName,
-                value = pageIds.asList(),
-            )
-    }
+    fun checkbox(idOrName: String, value: Boolean): PropertyValueList = add(CheckboxPropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = value,
+    ))
+
+    /**
+     * Can be used for Url, Email and Phone number properties.
+     */
+    fun string(idOrName: String, value: String): PropertyValueList = add(StringPropertyValueImpl(
+        id = idOrName,
+        name = idOrName,
+        value = value,
+    ))
 }

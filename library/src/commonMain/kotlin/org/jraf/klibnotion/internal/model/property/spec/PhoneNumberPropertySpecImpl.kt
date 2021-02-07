@@ -22,9 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.value
+package org.jraf.klibnotion.internal.model.property.spec
 
-/**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
- */
-interface PhonePropertyValue : PropertyValue<String>
+import org.jraf.klibnotion.model.property.spec.PhoneNumberPropertySpec
+
+internal data class PhoneNumberPropertySpecImpl(override val name: String, override val id: String) :
+    PhoneNumberPropertySpec

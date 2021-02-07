@@ -52,7 +52,7 @@ internal data class ApiPropertyValue(
     val checkbox: Boolean? = null,
     val url: String? = null,
     val email: String? = null,
-    val phone: String? = null,
+    val phone_number: String? = null,
     val created_time: String? = null,
     val created_by: ApiUser? = null,
     val last_edited_time: String? = null,

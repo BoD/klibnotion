@@ -46,7 +46,7 @@ import org.jraf.klibnotion.internal.model.property.value.LastEditedTimePropertyV
 import org.jraf.klibnotion.internal.model.property.value.MultiSelectPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.NumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.PeoplePropertyValueImpl
-import org.jraf.klibnotion.internal.model.property.value.PhonePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.PhoneNumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
@@ -124,10 +124,10 @@ internal object ApiPropertyValueConverter :
                 name = name,
                 value = apiPropertyValue.email!!
             )
-            "phone" -> PhonePropertyValueImpl(
+            "phone_number" -> PhoneNumberPropertyValueImpl(
                 id = id,
                 name = name,
-                value = apiPropertyValue.phone!!
+                value = apiPropertyValue.phone_number!!
             )
             "created_time" -> CreatedTimePropertyValueImpl(
                 id = id,

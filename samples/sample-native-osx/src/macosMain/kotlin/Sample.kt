@@ -34,11 +34,17 @@ import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
+import org.jraf.klibnotion.model.date.Date
+import org.jraf.klibnotion.model.date.DateOrDateRange
+import org.jraf.klibnotion.model.date.DateTime
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
+import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
+import platform.Foundation.NSDate
+import kotlin.random.Random
 import kotlin.system.exitProcess
 
 // !!!!! DO THIS FIRST !!!!!
@@ -132,6 +138,30 @@ class Sample {
             println("Page:")
             val page: Page = client.pages.getPage(PAGE_ID)
             println(page)
+
+            // Create page
+            println("Created page:")
+            val createdPage: Page = client.pages.createPage(
+                parentDatabaseId = DATABASE_ID,
+                PropertyValueList()
+                    .number("Legs", Random.nextInt())
+                    .text("Name", "Name ${Random.nextInt()}")
+                    .text("title", "Title ${Random.nextInt()}")
+                    .selectByName("Species", "Alien")
+                    .multiSelectByNames("Planets", "Tatooine", "Bespin")
+                    .date("Some date",
+                        DateOrDateRange(
+                            start = DateTime(NSDate()),
+                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L)))
+                    )
+                    .relation("Android version", "0438efab-3f83-4e9c-a541-205df49b294d")
+                    .people("User", "4042ebe0-055f-479b-8475-d5fd1bf2b4ec")
+                    .checkbox("Is Greedo", Random.nextBoolean())
+                    .string("Email", "aaa@aaa.com")
+                    .string("PhoneNumber", "+1 424 2424 266")
+                    .string("Url", "https://zgluteks.com")
+            )
+            println(createdPage)
         }
 
         // Close

@@ -36,13 +36,13 @@ import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
+import org.jraf.klibnotion.model.date.Date
+import org.jraf.klibnotion.model.date.DateOrDateRange
+import org.jraf.klibnotion.model.date.DateTime
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
-import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.multiSelectPropertyByName
-import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.numberProperty
-import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.selectPropertyByName
-import org.jraf.klibnotion.model.property.value.PropertyValue.Companion.textProperty
+import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
 import kotlin.random.Random
@@ -81,75 +81,86 @@ class Sample {
 
     fun main() {
         runBlocking {
-            if (false) {
-                // Get user
-                println("User:")
-                val user: User = client.users.getUser(USER_ID)
-                println(user)
+            // Get user
+            println("User:")
+            val user: User = client.users.getUser(USER_ID)
+            println(user)
 
-                // Get user list
-                println("User list first page:")
-                val userResultPage: ResultPage<User> = client.users.getUserList()
-                println(userResultPage)
+            // Get user list
+            println("User list first page:")
+            val userResultPage: ResultPage<User> = client.users.getUserList()
+            println(userResultPage)
 
-                // Get database
-                println("Database:")
-                val database: Database = client.databases.getDatabase(DATABASE_ID)
-                println(database)
-                println("title=${database.title.plainText}")
+            // Get database
+            println("Database:")
+            val database: Database = client.databases.getDatabase(DATABASE_ID)
+            println(database)
+            println("title=${database.title.plainText}")
 
-                // Query database (simple)
-                println("Simple query results:")
-                val simpleQueryResultPage: ResultPage<Page> =
-                    client.databases.queryDatabase(DATABASE_ID)
-                println(simpleQueryResultPage.results.joinToString("") { it.toFormattedString() })
+            // Query database (simple)
+            println("Simple query results:")
+            val simpleQueryResultPage: ResultPage<Page> =
+                client.databases.queryDatabase(DATABASE_ID)
+            println(simpleQueryResultPage.results.joinToString("") { it.toFormattedString() })
 
-                // Query database (filters)
-                println("Filtered query results:")
-                val filteredQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(
-                    DATABASE_ID,
-                    query = DatabaseQuery()
-                        .addAnyFilters(
-                            DatabaseQueryPropertyFilter.Text(
-                                propertyIdOrName = "Famous quote",
-                                predicate = DatabaseQueryPredicate.Text.Equals("a")
-                            ),
-                            DatabaseQueryPropertyFilter.Text(
-                                propertyIdOrName = "Famous quote",
-                                predicate = DatabaseQueryPredicate.Text.Contains("imp")
-                            ),
-                            DatabaseQueryPropertyFilter.Number(
-                                propertyIdOrName = "Legs",
-                                predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(4)
-                            ),
-                            DatabaseQueryPropertyFilter.Formula(
-                                propertyIdOrName = "Legs plus one",
-                                predicate = DatabaseQueryPredicate.Formula.Number.GreaterThan(4)
-                            ),
-                            DatabaseQueryPropertyFilter.Checkbox(
-                                propertyIdOrName = "Is Greedo",
-                                predicate = DatabaseQueryPredicate.Checkbox(true)
-                            ),
+            // Query database (filters)
+            println("Filtered query results:")
+            val filteredQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(
+                DATABASE_ID,
+                query = DatabaseQuery()
+                    .addAnyFilters(
+                        DatabaseQueryPropertyFilter.Text(
+                            propertyIdOrName = "Famous quote",
+                            predicate = DatabaseQueryPredicate.Text.Equals("a")
                         ),
-                    sort = DatabaseQuerySort("Created time", DatabaseQuerySort.Direction.ASCENDING)
-                        .add("title", DatabaseQuerySort.Direction.DESCENDING)
-                )
-                println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
+                        DatabaseQueryPropertyFilter.Text(
+                            propertyIdOrName = "Famous quote",
+                            predicate = DatabaseQueryPredicate.Text.Contains("imp")
+                        ),
+                        DatabaseQueryPropertyFilter.Number(
+                            propertyIdOrName = "Legs",
+                            predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(4)
+                        ),
+                        DatabaseQueryPropertyFilter.Formula(
+                            propertyIdOrName = "Legs plus one",
+                            predicate = DatabaseQueryPredicate.Formula.Number.GreaterThan(4)
+                        ),
+                        DatabaseQueryPropertyFilter.Checkbox(
+                            propertyIdOrName = "Is Greedo",
+                            predicate = DatabaseQueryPredicate.Checkbox(true)
+                        ),
+                    ),
+                sort = DatabaseQuerySort("Created time", DatabaseQuerySort.Direction.ASCENDING)
+                    .add("title", DatabaseQuerySort.Direction.DESCENDING)
+            )
+            println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
 
-                // Get page
-                println("Page:")
-                val page: Page = client.pages.getPage(PAGE_ID)
-                println(page)
-            }
+            // Get page
+            println("Page:")
+            val page: Page = client.pages.getPage(PAGE_ID)
+            println(page)
 
             // Create page
             println("Created page:")
             val createdPage: Page = client.pages.createPage(
                 parentDatabaseId = DATABASE_ID,
-                numberProperty("Legs", Random.nextInt()),
-                textProperty("Name", "Name ${Random.nextInt()}"),
-                selectPropertyByName("Species", "Alien"),
-                multiSelectPropertyByName("Planets", "Tatooine", "Bespin"),
+                PropertyValueList()
+                    .number("Legs", Random.nextInt())
+                    .text("Name", "Name ${Random.nextInt()}")
+                    .text("title", "Title ${Random.nextInt()}")
+                    .selectByName("Species", "Alien")
+                    .multiSelectByNames("Planets", "Tatooine", "Bespin")
+                    .date("Some date",
+                        DateOrDateRange(
+                            start = DateTime(java.util.Date()),
+                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)))
+                    )
+                    .relation("Android version", "0438efab-3f83-4e9c-a541-205df49b294d")
+                    .people("User", "4042ebe0-055f-479b-8475-d5fd1bf2b4ec")
+                    .checkbox("Is Greedo", Random.nextBoolean())
+                    .string("Email", "aaa@aaa.com")
+                    .string("Phone", "+1 424 2424 266")
+                    .string("Url", "https://zgluteks.com")
             )
             println(createdPage)
         }

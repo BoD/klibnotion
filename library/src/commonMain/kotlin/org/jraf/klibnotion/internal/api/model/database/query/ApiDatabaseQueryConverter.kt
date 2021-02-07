@@ -87,7 +87,7 @@ internal object ApiDatabaseQueryFilterConverter : ApiConverter<ApiDatabaseQueryF
                 ApiTextDatabaseQueryFilterConverter),
             email = (model as? DatabaseQueryPropertyFilter.Email)?.predicate?.modelToApi(
                 ApiTextDatabaseQueryFilterConverter),
-            phone = (model as? DatabaseQueryPropertyFilter.Phone)?.predicate?.modelToApi(
+            phone_number = (model as? DatabaseQueryPropertyFilter.PhoneNumber)?.predicate?.modelToApi(
                 ApiTextDatabaseQueryFilterConverter),
             relation = (model as? DatabaseQueryPropertyFilter.Relation)?.predicate?.modelToApi(
                 ApiRelationDatabaseQueryFilterConverter),

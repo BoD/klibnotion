@@ -39,7 +39,7 @@ import org.jraf.klibnotion.internal.model.property.spec.LastEditedTimePropertySp
 import org.jraf.klibnotion.internal.model.property.spec.MultiSelectPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.NumberPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.PeoplePropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.PhonePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.PhoneNumberPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.RelationPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.RollupPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.SelectPropertySpecImpl
@@ -93,7 +93,7 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
             "checkbox" -> CheckboxPropertySpecImpl(name = name, id = id)
             "url" -> UrlPropertySpecImpl(name = name, id = id)
             "email" -> EmailPropertySpecImpl(name = name, id = id)
-            "phone" -> PhonePropertySpecImpl(name = name, id = id)
+            "phone_number" -> PhoneNumberPropertySpecImpl(name = name, id = id)
             "formula" -> FormulaPropertySpecImpl(
                 name = name,
                 id = id,

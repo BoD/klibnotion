@@ -64,7 +64,7 @@ import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
-import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
 
 internal class NotionClientImpl(
@@ -191,8 +191,9 @@ internal class NotionClientImpl(
             .apiToModel(ApiPageConverter)
     }
 
-    override suspend fun createPage(parentDatabaseId: UuidString, vararg properties: PropertyValue<*>): Page {
-        return service.createPage((parentDatabaseId to properties.toList()).modelToApi(ApiCreateTableParametersConverter))
+    override suspend fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Page {
+        return service.createPage((parentDatabaseId to properties.propertyValueList).modelToApi(
+            ApiCreateTableParametersConverter))
             .apiToModel(ApiPageConverter)
     }
 

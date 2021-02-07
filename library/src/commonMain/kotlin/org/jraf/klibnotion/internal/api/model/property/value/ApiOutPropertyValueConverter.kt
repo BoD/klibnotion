@@ -34,9 +34,12 @@ import kotlinx.serialization.json.putJsonObject
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
+import org.jraf.klibnotion.internal.model.property.value.StringPropertyValueImpl
+import org.jraf.klibnotion.model.property.value.CheckboxPropertyValue
 import org.jraf.klibnotion.model.property.value.DatePropertyValue
 import org.jraf.klibnotion.model.property.value.MultiSelectPropertyValue
 import org.jraf.klibnotion.model.property.value.NumberPropertyValue
+import org.jraf.klibnotion.model.property.value.PeoplePropertyValue
 import org.jraf.klibnotion.model.property.value.PropertyValue
 import org.jraf.klibnotion.model.property.value.RelationPropertyValue
 import org.jraf.klibnotion.model.property.value.SelectPropertyValue
@@ -90,7 +93,18 @@ internal object ApiOutPropertyValueConverter :
                     }
             }
 
-            else -> TODO()
+            is PeoplePropertyValue -> buildJsonArray {
+                for (user in model.value)
+                    addJsonObject {
+                        put("id", user.id)
+                    }
+            }
+
+            is CheckboxPropertyValue -> JsonPrimitive(model.value)
+
+            is StringPropertyValueImpl -> JsonPrimitive(model.value)
+
+            else -> throw IllegalStateException()
         }
     }
 }

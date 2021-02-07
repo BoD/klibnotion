@@ -32,7 +32,7 @@ import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
-import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
 import kotlin.jvm.JvmStatic
 
@@ -96,7 +96,7 @@ interface NotionClient {
          * Create a page.
          * @see <a href="https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b">Create a page</a>
          */
-        suspend fun createPage(parentDatabaseId: UuidString, vararg properties: PropertyValue<*>): Page
+        suspend fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Page
     }
 
     /**

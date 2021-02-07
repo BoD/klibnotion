@@ -22,9 +22,12 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.property.spec
+package org.jraf.klibnotion.internal.model.property.value
 
-import org.jraf.klibnotion.model.property.spec.PhonePropertySpec
+import org.jraf.klibnotion.model.property.value.PropertyValue
 
-internal data class PhonePropertySpecImpl(override val name: String, override val id: String) :
-    PhonePropertySpec
+internal data class StringPropertyValueImpl(
+    override val id: String,
+    override val name: String,
+    override val value: String,
+) : PropertyValue<String>

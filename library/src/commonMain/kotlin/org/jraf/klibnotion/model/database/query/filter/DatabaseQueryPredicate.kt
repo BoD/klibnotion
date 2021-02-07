@@ -96,7 +96,7 @@ interface DatabaseQueryPropertyFilter {
         override val predicate: DatabaseQueryPredicate.Text,
     ) : DatabaseQueryPropertyFilter
 
-    data class Phone(
+    data class PhoneNumber(
         override val propertyIdOrName: String,
         override val predicate: DatabaseQueryPredicate.Text,
     ) : DatabaseQueryPropertyFilter
