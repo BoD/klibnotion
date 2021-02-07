@@ -97,6 +97,12 @@ interface NotionClient {
          * @see <a href="https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b">Create a page</a>
          */
         suspend fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Page
+
+        /**
+         * Update a page.
+         * @see <a href="https://www.notion.so/Update-page-properties-70ef58bea0034d21b5fec686cb5bf980">Update page properties</a>
+         */
+        suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page
     }
 
     /**

@@ -53,6 +53,7 @@ import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
+import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.model.base.UuidString
@@ -194,6 +195,11 @@ internal class NotionClientImpl(
     override suspend fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Page {
         return service.createPage((parentDatabaseId to properties.propertyValueList).modelToApi(
             ApiCreateTableParametersConverter))
+            .apiToModel(ApiPageConverter)
+    }
+
+    override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
+        return service.updatePage(id, properties.propertyValueList.modelToApi(ApiUpdateTableParametersConverter))
             .apiToModel(ApiPageConverter)
     }
 

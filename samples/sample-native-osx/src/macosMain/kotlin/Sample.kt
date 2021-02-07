@@ -162,6 +162,30 @@ class Sample {
                     .string("Url", "https://zgluteks.com")
             )
             println(createdPage)
+
+            // Update page
+            println("Updated page:")
+            val updatedPage: Page = client.pages.updatePage(
+                id = PAGE_ID,
+                PropertyValueList()
+                    .number("Legs", Random.nextInt())
+                    .text("Name", "Updated page ${Random.nextInt()}")
+                    .text("title", "Updated page ${Random.nextInt()}")
+                    .selectByName("Species", "Alien")
+                    .multiSelectByNames("Planets", "Tatooine", "Bespin")
+                    .date("Some date",
+                        DateOrDateRange(
+                            start = DateTime(NSDate()),
+                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L)))
+                    )
+                    .relation("Android version", "0438efab-3f83-4e9c-a541-205df49b294d")
+                    .people("User", "4042ebe0-055f-479b-8475-d5fd1bf2b4ec")
+                    .checkbox("Is Greedo", Random.nextBoolean())
+                    .string("Email", "aaa@aaa.com")
+                    .string("Phone", "+1 424 2424 266")
+                    .string("Url", "https://zgluteks.com")
+            )
+            println(updatedPage)
         }
 
         // Close
