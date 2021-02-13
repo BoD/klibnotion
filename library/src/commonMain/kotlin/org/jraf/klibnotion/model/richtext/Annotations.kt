@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.model.richtext
 
 import org.jraf.klibnotion.model.color.Color
+import kotlin.jvm.JvmField
 
 /**
  * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
@@ -37,12 +38,25 @@ data class Annotations(
     val code: Boolean = false,
     val color: Color = Color.DEFAULT,
 ) {
+    constructor(color: Color) : this(false, false, false, false, false, color)
+
     companion object {
+        @JvmField
         val DEFAULT: Annotations = Annotations()
+
+        @JvmField
         val BOLD: Annotations = Annotations(bold = true)
+
+        @JvmField
         val ITALIC: Annotations = Annotations(italic = true)
+
+        @JvmField
         val STRIKETHROUGH: Annotations = Annotations(strikethrough = true)
+
+        @JvmField
         val UNDERLINE: Annotations = Annotations(underline = true)
+
+        @JvmField
         val CODE: Annotations = Annotations(code = true)
     }
 }

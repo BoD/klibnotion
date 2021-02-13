@@ -53,8 +53,8 @@ import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TitlePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.UnknownTypePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.UrlPropertyValueImpl
-import org.jraf.klibnotion.internal.model.richtext.RichTextListImpl
 import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal object ApiPropertyValueConverter :
     ApiConverter<Pair<String, ApiPropertyValue>, PropertyValue<*>>() {
@@ -65,7 +65,7 @@ internal object ApiPropertyValueConverter :
             "text" -> TextPropertyValueImpl(
                 id = id,
                 name = name,
-                value = RichTextListImpl(apiPropertyValue.text!!.apiToModel(ApiRichTextConverter))
+                value = RichTextList(apiPropertyValue.text!!.apiToModel(ApiRichTextConverter))
             )
             "number" -> NumberPropertyValueImpl(
                 id = id,
@@ -97,7 +97,7 @@ internal object ApiPropertyValueConverter :
             "title" -> TitlePropertyValueImpl(
                 id = id,
                 name = name,
-                value = RichTextListImpl(apiPropertyValue.title!!.apiToModel(ApiRichTextConverter))
+                value = RichTextList(apiPropertyValue.title!!.apiToModel(ApiRichTextConverter))
             )
             "people" -> PeoplePropertyValueImpl(
                 id = id,

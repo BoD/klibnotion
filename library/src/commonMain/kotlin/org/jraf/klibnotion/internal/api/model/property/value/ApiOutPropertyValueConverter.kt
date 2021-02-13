@@ -62,7 +62,7 @@ internal object ApiOutPropertyValueConverter :
             is NumberPropertyValue -> JsonPrimitive(model.value)
 
             is TextPropertyValue -> buildJsonArray {
-                for (richText in model.value) {
+                for (richText in model.value.richTextList) {
                     addJsonObject {
                         if (richText.annotations != Annotations.DEFAULT) {
                             putJsonObject("annotations") {

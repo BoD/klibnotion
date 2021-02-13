@@ -44,13 +44,6 @@ import org.jraf.klibnotion.model.property.SelectOption
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
-import org.jraf.klibnotion.model.richtext.databaseMention
-import org.jraf.klibnotion.model.richtext.dateMention
-import org.jraf.klibnotion.model.richtext.equation
-import org.jraf.klibnotion.model.richtext.pageMention
-import org.jraf.klibnotion.model.richtext.richTextList
-import org.jraf.klibnotion.model.richtext.text
-import org.jraf.klibnotion.model.richtext.userMention
 import org.jraf.klibnotion.model.user.User
 import platform.Foundation.NSDate
 import kotlin.random.Random
@@ -156,7 +149,7 @@ class Sample {
                     .number("Legs", Random.nextInt())
                     .text("Name", "Name ${Random.nextInt()}")
                     .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
-                    .text("Oui", richTextList()
+                    .text("Oui", RichTextList()
                         .text("default ")
                         .text("red ", Annotations(color = Color.RED))
                         .text("pink background ", Annotations(color = Color.PINK_BACKGROUND))
@@ -167,7 +160,7 @@ class Sample {
                         .text("code ", Annotations.CODE)
                         .text("mixed", Annotations(bold = true, italic = true, color = Color.PURPLE))
                     )
-                    .text("Non", richTextList()
+                    .text("Non", RichTextList()
                         .text("some url", linkUrl = "https://JRAF.org").text("\n")
                         .userMention(USER_ID).text("\n")
                         .databaseMention(DATABASE_ID).text("\n")

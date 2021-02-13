@@ -40,8 +40,7 @@ import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.date.DateOrDateRange
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
-import org.jraf.klibnotion.model.richtext.richTextList
-import org.jraf.klibnotion.model.richtext.text
+import kotlin.jvm.JvmOverloads
 
 /**
  * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
@@ -66,12 +65,13 @@ class PropertyValueList {
         value = value
     ))
 
+    @JvmOverloads
     fun text(
         idOrName: String,
         value: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): PropertyValueList = text(idOrName = idOrName, value = richTextList().text(value, linkUrl, annotations))
+    ): PropertyValueList = text(idOrName = idOrName, value = RichTextList().text(value, linkUrl, annotations))
 
     fun text(idOrName: String, value: RichTextList): PropertyValueList = add(TextPropertyValueImpl(
         id = idOrName,
