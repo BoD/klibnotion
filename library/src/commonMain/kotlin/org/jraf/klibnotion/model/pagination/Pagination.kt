@@ -29,9 +29,9 @@ package org.jraf.klibnotion.model.pagination
  */
 data class Pagination(
     /**
-     * Index of the page to request.
+     * Cursor pointing to the first element of the page to retrieve.
      *
-     * Note: page indices are 1 based (the first page is 1).
+     * Use [FIRST_CURSOR] to the the first page.
      */
     val startCursor: String? = FIRST_CURSOR,
 ) {
