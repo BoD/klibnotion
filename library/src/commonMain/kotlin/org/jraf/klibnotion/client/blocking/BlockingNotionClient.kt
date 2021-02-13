@@ -22,12 +22,12 @@
  * limitations under the License.
  */
 
-@file:JvmName("FutureNotionClientUtils")
+@file:JvmName("BlockingNotionClientUtils")
 
-package org.jraf.klibnotion.client.future
+package org.jraf.klibnotion.client.blocking
 
 import org.jraf.klibnotion.client.NotionClient
-import org.jraf.klibnotion.internal.client.future.FutureNotionClientImpl
+import org.jraf.klibnotion.internal.client.blocking.BlockingNotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -37,16 +37,17 @@ import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
-import java.util.concurrent.Future
+import kotlin.jvm.JvmName
 
 /**
- * A [Future] based version of a Notion client.
+ * A 'blocking' version of a Notion client.
  *
- * All the methods here are non blocking and return their results as a [Future].
+ * All the methods here are blocking, meaning the calling thread will wait for the
+ * result to be available.
  *
  * This is useful from Java, which doesn't have a notion of `suspend` functions.
  */
-interface FutureNotionClient {
+interface BlockingNotionClient {
     /**
      * See [NotionClient.Users].
      */
@@ -54,12 +55,12 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Users.getUser].
          */
-        fun getUser(id: UuidString): Future<User>
+        fun getUser(id: UuidString): User
 
         /**
          * See [NotionClient.Users.getUserList].
          */
-        fun getUserList(pagination: Pagination = Pagination()): Future<ResultPage<User>>
+        fun getUserList(pagination: Pagination = Pagination()): ResultPage<User>
     }
 
     /**
@@ -69,7 +70,7 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Databases.getDatabase].
          */
-        fun getDatabase(id: UuidString): Future<Database>
+        fun getDatabase(id: UuidString): Database
 
         /**
          * See [NotionClient.Databases.queryDatabase].
@@ -79,7 +80,7 @@ interface FutureNotionClient {
             query: DatabaseQuery? = null,
             sort: DatabaseQuerySort? = null,
             pagination: Pagination = Pagination(),
-        ): Future<ResultPage<Page>>
+        ): ResultPage<Page>
     }
 
     /**
@@ -89,17 +90,17 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Pages.getPage].
          */
-        fun getPage(id: UuidString, isArchived: Boolean = false): Future<Page>
+        fun getPage(id: UuidString, isArchived: Boolean = false): Page
 
         /**
          * See [NotionClient.Pages.createPage].
          */
-        fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Future<Page>
+        fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Page
 
         /**
          * See [NotionClient.Pages.updatePage].
          */
-        fun updatePage(id: UuidString, properties: PropertyValueList): Future<Page>
+        fun updatePage(id: UuidString, properties: PropertyValueList): Page
     }
 
     /**
@@ -125,10 +126,10 @@ interface FutureNotionClient {
 }
 
 /**
- * Get a Future based client from a [NotionClient].
+ * Get a blocking client from a [NotionClient].
  *
  * This is useful from Java, which doesn't have a notion of `suspend` functions.
  */
-fun NotionClient.asFutureNotionClient(): FutureNotionClient {
-    return FutureNotionClientImpl(this)
+fun NotionClient.asBlockingNotionClient(): BlockingNotionClient {
+    return BlockingNotionClientImpl(this)
 }
