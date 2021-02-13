@@ -31,4 +31,5 @@ internal data class TextRichTextImpl(
     override val plainText: String,
     override val href: String?,
     override val annotations: Annotations,
+    override val linkUrl: String?,
 ) : TextRichText

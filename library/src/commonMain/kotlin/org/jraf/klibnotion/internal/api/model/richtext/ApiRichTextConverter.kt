@@ -30,7 +30,11 @@ import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.model.richtext.EquationRichTextImpl
 import org.jraf.klibnotion.internal.model.richtext.TextRichTextImpl
 import org.jraf.klibnotion.internal.model.richtext.UnknownTypeRichTextImpl
-import org.jraf.klibnotion.internal.model.richtext.mention.*
+import org.jraf.klibnotion.internal.model.richtext.mention.DatabaseMentionRichTextImpl
+import org.jraf.klibnotion.internal.model.richtext.mention.DateMentionRichTextImpl
+import org.jraf.klibnotion.internal.model.richtext.mention.PageMentionRichTextImpl
+import org.jraf.klibnotion.internal.model.richtext.mention.UnknownTypeMentionRichTextImpl
+import org.jraf.klibnotion.internal.model.richtext.mention.UserMentionRichTextImpl
 import org.jraf.klibnotion.model.richtext.RichText
 
 internal object ApiRichTextConverter : ApiConverter<ApiRichText, RichText>() {
@@ -43,6 +47,7 @@ internal object ApiRichTextConverter : ApiConverter<ApiRichText, RichText>() {
                 plainText = plainText,
                 href = href,
                 annotations = annotations,
+                linkUrl = apiModel.text!!.link?.url
             )
 
             "mention" -> when (apiModel.mention!!.type) {

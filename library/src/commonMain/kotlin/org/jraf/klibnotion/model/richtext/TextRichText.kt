@@ -27,4 +27,6 @@ package org.jraf.klibnotion.model.richtext
 /**
  * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
  */
-interface TextRichText : RichText
+interface TextRichText : RichText {
+    val linkUrl: String?
+}

@@ -29,11 +29,20 @@ import org.jraf.klibnotion.model.color.Color
 /**
  * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
  */
-interface Annotations {
-    val bold: Boolean
-    val italic: Boolean
-    val strikethrough: Boolean
-    val underline: Boolean
-    val code: Boolean
-    val color: Color
+data class Annotations(
+    val bold: Boolean = false,
+    val italic: Boolean = false,
+    val strikethrough: Boolean = false,
+    val underline: Boolean = false,
+    val code: Boolean = false,
+    val color: Color = Color.DEFAULT,
+) {
+    companion object {
+        val DEFAULT: Annotations = Annotations()
+        val BOLD: Annotations = Annotations(bold = true)
+        val ITALIC: Annotations = Annotations(italic = true)
+        val STRIKETHROUGH: Annotations = Annotations(strikethrough = true)
+        val UNDERLINE: Annotations = Annotations(underline = true)
+        val CODE: Annotations = Annotations(code = true)
+    }
 }

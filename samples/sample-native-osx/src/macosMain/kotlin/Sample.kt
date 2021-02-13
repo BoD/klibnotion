@@ -29,6 +29,7 @@ import org.jraf.klibnotion.client.HttpConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.HttpProxy
 import org.jraf.klibnotion.client.NotionClient
+import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
@@ -41,7 +42,15 @@ import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
 import org.jraf.klibnotion.model.property.value.PropertyValueList
+import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
+import org.jraf.klibnotion.model.richtext.databaseMention
+import org.jraf.klibnotion.model.richtext.dateMention
+import org.jraf.klibnotion.model.richtext.equation
+import org.jraf.klibnotion.model.richtext.pageMention
+import org.jraf.klibnotion.model.richtext.richTextList
+import org.jraf.klibnotion.model.richtext.text
+import org.jraf.klibnotion.model.richtext.userMention
 import org.jraf.klibnotion.model.user.User
 import platform.Foundation.NSDate
 import kotlin.random.Random
@@ -146,7 +155,28 @@ class Sample {
                 PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .text("Name", "Name ${Random.nextInt()}")
-                    .text("title", "Title ${Random.nextInt()}")
+                    .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
+                    .text("Oui", richTextList()
+                        .text("default ")
+                        .text("red ", Annotations(color = Color.RED))
+                        .text("pink background ", Annotations(color = Color.PINK_BACKGROUND))
+                        .text("bold ", Annotations.BOLD)
+                        .text("italic ", Annotations.ITALIC)
+                        .text("strikethrough ", Annotations.STRIKETHROUGH)
+                        .text("underline ", Annotations.UNDERLINE)
+                        .text("code ", Annotations.CODE)
+                        .text("mixed", Annotations(bold = true, italic = true, color = Color.PURPLE))
+                    )
+                    .text("Non", richTextList()
+                        .text("some url", linkUrl = "https://JRAF.org").text("\n")
+                        .userMention(USER_ID).text("\n")
+                        .databaseMention(DATABASE_ID).text("\n")
+                        .pageMention(PAGE_ID).text("\n")
+                        .dateMention(DateTime(NSDate()), annotations = Annotations(color = Color.GREEN))
+                        .text("\n")
+                        .equation("f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi",
+                            Annotations(color = Color.YELLOW))
+                    )
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
                     .date("Some date",
@@ -154,11 +184,11 @@ class Sample {
                             start = DateTime(NSDate()),
                             end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L)))
                     )
-                    .relation("Android version", "0438efab-3f83-4e9c-a541-205df49b294d")
-                    .people("User", "4042ebe0-055f-479b-8475-d5fd1bf2b4ec")
+                    .relation("Android version", PAGE_ID)
+                    .people("User", USER_ID)
                     .checkbox("Is Greedo", Random.nextBoolean())
                     .string("Email", "aaa@aaa.com")
-                    .string("PhoneNumber", "+1 424 2424 266")
+                    .string("Phone", "+1 424 2424 266")
                     .string("Url", "https://zgluteks.com")
             )
             println(createdPage)
@@ -178,8 +208,8 @@ class Sample {
                             start = DateTime(NSDate()),
                             end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L)))
                     )
-                    .relation("Android version", "0438efab-3f83-4e9c-a541-205df49b294d")
-                    .people("User", "4042ebe0-055f-479b-8475-d5fd1bf2b4ec")
+                    .relation("Android version", PAGE_ID)
+                    .people("User", USER_ID)
                     .checkbox("Is Greedo", Random.nextBoolean())
                     .string("Email", "aaa@aaa.com")
                     .string("Phone", "+1 424 2424 266")

@@ -34,13 +34,14 @@ import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueIm
 import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.StringPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
-import org.jraf.klibnotion.internal.model.richtext.AnnotationsImpl
-import org.jraf.klibnotion.internal.model.richtext.RichTextListImpl
-import org.jraf.klibnotion.internal.model.richtext.TextRichTextImpl
 import org.jraf.klibnotion.internal.model.user.PersonImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.date.DateOrDateRange
+import org.jraf.klibnotion.model.richtext.Annotations
+import org.jraf.klibnotion.model.richtext.RichTextList
+import org.jraf.klibnotion.model.richtext.richTextList
+import org.jraf.klibnotion.model.richtext.text
 
 /**
  * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
@@ -65,25 +66,17 @@ class PropertyValueList {
         value = value
     ))
 
-    fun text(idOrName: String, value: String): PropertyValueList = add(TextPropertyValueImpl(
+    fun text(
+        idOrName: String,
+        value: String,
+        linkUrl: String? = null,
+        annotations: Annotations = Annotations.DEFAULT,
+    ): PropertyValueList = text(idOrName = idOrName, value = richTextList().text(value, linkUrl, annotations))
+
+    fun text(idOrName: String, value: RichTextList): PropertyValueList = add(TextPropertyValueImpl(
         id = idOrName,
         name = idOrName,
-        value = RichTextListImpl(
-            listOf(
-                TextRichTextImpl(
-                    plainText = value,
-                    href = null,
-                    annotations = AnnotationsImpl(
-                        bold = false,
-                        italic = false,
-                        strikethrough = false,
-                        underline = false,
-                        code = false,
-                        color = Color.DEFAULT
-                    )
-                )
-            )
-        )
+        value = value,
     ))
 
     fun selectByName(idOrName: String, selectName: String): PropertyValueList = add(SelectPropertyValueImpl(

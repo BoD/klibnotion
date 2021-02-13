@@ -27,9 +27,9 @@ package org.jraf.klibnotion.internal.model.richtext
 import org.jraf.klibnotion.model.richtext.RichText
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class RichTextListImpl(private val richTextList: List<RichText>) :
-    List<RichText> by richTextList,
-    RichTextList {
+internal data class RichTextListImpl(
+    private val richTextList: List<RichText>,
+) : MutableList<RichText> by richTextList.toMutableList(), RichTextList {
     override val plainText: String? = if (isEmpty()) {
         null
     } else {

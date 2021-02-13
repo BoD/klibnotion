@@ -50,4 +50,26 @@ internal object ApiColorConverter : ApiConverter<String, Color>() {
         "red_background" -> Color.RED_BACKGROUND
         else -> Color._UNKNOWN
     }
+
+    override fun modelToApi(model: Color): String = when (model) {
+        Color._UNKNOWN, Color.DEFAULT -> "default"
+        Color.GRAY -> "gray"
+        Color.BROWN -> "brown"
+        Color.ORANGE -> "orange"
+        Color.YELLOW -> "yellow"
+        Color.GREEN -> "green"
+        Color.BLUE -> "blue"
+        Color.PURPLE -> "purple"
+        Color.PINK -> "pink"
+        Color.RED -> "red"
+        Color.GRAY_BACKGROUND -> "gray_background"
+        Color.BROWN_BACKGROUND -> "brown_background"
+        Color.ORANGE_BACKGROUND -> "orange_background"
+        Color.YELLOW_BACKGROUND -> "yellow_background"
+        Color.GREEN_BACKGROUND -> "green_background"
+        Color.BLUE_BACKGROUND -> "blue_background"
+        Color.PURPLE_BACKGROUND -> "purple_background"
+        Color.PINK_BACKGROUND -> "pink_background"
+        Color.RED_BACKGROUND -> "red_background"
+    }
 }

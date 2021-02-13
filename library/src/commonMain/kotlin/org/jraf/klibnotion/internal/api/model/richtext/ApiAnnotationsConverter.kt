@@ -26,11 +26,10 @@ package org.jraf.klibnotion.internal.api.model.richtext
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.color.ApiColorConverter
-import org.jraf.klibnotion.internal.model.richtext.AnnotationsImpl
 import org.jraf.klibnotion.model.richtext.Annotations
 
 internal object ApiAnnotationsConverter : ApiConverter<ApiAnnotations, Annotations>() {
-    override fun apiToModel(apiModel: ApiAnnotations) = AnnotationsImpl(
+    override fun apiToModel(apiModel: ApiAnnotations) = Annotations(
         bold = apiModel.bold,
         italic = apiModel.italic,
         strikethrough = apiModel.strikethrough,
