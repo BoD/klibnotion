@@ -27,16 +27,22 @@ package org.jraf.klibnotion.model.database.query
 class DatabaseQuerySort() {
     internal val sorting: MutableList<Pair<String, Direction>> = mutableListOf()
 
+    @Deprecated("Use ascending and descending methods instead")
     constructor(propertyName: String, direction: Direction) : this() {
         sorting += propertyName to direction
     }
 
+    @Deprecated("Use ascending and descending methods instead")
     fun add(propertyName: String, direction: Direction): DatabaseQuerySort {
         sorting += propertyName to direction
         return this
     }
 
-    enum class Direction {
+    fun ascending(propertyName: String) = add(propertyName, direction = Direction.ASCENDING)
+    fun descending(propertyName: String) = add(propertyName, direction = Direction.DESCENDING)
+
+    @Deprecated("Use ascending and descending methods")
+    /* internal */ enum class Direction {
         ASCENDING,
         DESCENDING,
     }

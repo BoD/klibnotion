@@ -114,7 +114,7 @@ class FutureSample {
         ResultPage<Page> filteredQueryResultPage = client.getDatabases().queryDatabase(
                 DATABASE_ID,
                 new DatabaseQuery()
-                        .addAnyFilters(
+                        .any(
                                 new DatabaseQueryPropertyFilter.Text(
                                         "Famous quote",
                                         new DatabaseQueryPredicate.Text.Equals("a")
@@ -136,8 +136,9 @@ class FutureSample {
                                         new DatabaseQueryPredicate.Checkbox(true)
                                 )
                         ),
-                new DatabaseQuerySort("Created time", DatabaseQuerySort.Direction.ASCENDING)
-                        .add("title", DatabaseQuerySort.Direction.DESCENDING),
+                new DatabaseQuerySort()
+                        .ascending("Created time")
+                        .descending("title"),
                 new Pagination()
         ).get();
         System.out.println(filteredQueryResultPage.results);

@@ -30,15 +30,21 @@ class DatabaseQuery {
     internal val allFilters = mutableSetOf<DatabaseQueryPropertyFilter>()
     internal val anyFilters = mutableSetOf<DatabaseQueryPropertyFilter>()
 
-    fun addAllFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery {
+    fun all(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery {
         allFilters += filter
         return this
     }
 
-    fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery {
+    fun any(vararg filter: DatabaseQueryPropertyFilter): DatabaseQuery {
         anyFilters += filter
         return this
     }
+
+    @Deprecated("Use all method instead", replaceWith = ReplaceWith("this.all(*filter)"))
+    fun addAllFilters(vararg filter: DatabaseQueryPropertyFilter) = all(*filter)
+
+    @Deprecated("Use any method instead", replaceWith = ReplaceWith("this.any(*filter)"))
+    fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter) = any(*filter)
 
     override fun toString(): String {
         return "DatabaseQueryImpl(allFilters=$allFilters, anyFilters=$anyFilters)"

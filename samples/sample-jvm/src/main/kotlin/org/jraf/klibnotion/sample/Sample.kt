@@ -110,7 +110,7 @@ class Sample {
             val filteredQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(
                 DATABASE_ID,
                 query = DatabaseQuery()
-                    .addAnyFilters(
+                    .any(
                         DatabaseQueryPropertyFilter.Text(
                             propertyIdOrName = "Famous quote",
                             predicate = DatabaseQueryPredicate.Text.Equals("a")
@@ -132,8 +132,9 @@ class Sample {
                             predicate = DatabaseQueryPredicate.Checkbox(true)
                         ),
                     ),
-                sort = DatabaseQuerySort("Created time", DatabaseQuerySort.Direction.ASCENDING)
-                    .add("title", DatabaseQuerySort.Direction.DESCENDING)
+                sort = DatabaseQuerySort()
+                    .ascending("Created time")
+                    .descending("title")
             )
             println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
 
