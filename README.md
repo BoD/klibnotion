@@ -1,7 +1,7 @@
 # klibnotion
 
-A [Notion API (currently beta)](https://www.notion.so/Notion-API-spec-c29dd39d851543b49a24e1571f63c488) client library
-for Kotlin, Java and more.
+A [Notion API (currently private beta)](https://www.notion.so/Notion-API-spec-c29dd39d851543b49a24e1571f63c488) client
+library for Kotlin, Java and more.
 
 This library is written in [Kotlin Multiplatform](https://kotlinlang.org/docs/reference/multiplatform.html)
 so _in theory_ it can be used from the JVM, Android, iOS, Linux, MacOS, Windows, Javascript and more. In practice this

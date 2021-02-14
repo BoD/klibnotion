@@ -6,7 +6,7 @@ object Versions {
     const val DOKKA_PLUGIN = "1.4.20"
 
     // Lib dependencies
-    const val KOTLIN_SERIALIZATION = "1.4.21-2"
+    const val KOTLIN_SERIALIZATION = "1.4.30"
     const val KTOR = "1.5.0"
     const val COROUTINES = "1.4.2"
     const val SLF4J = "1.7.30"

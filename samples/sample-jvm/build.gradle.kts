@@ -17,5 +17,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8", Versions.COROUTINES)
 
     // Library
-    implementation(project(":library"))
+    implementation(project(":klibnotion"))
+    // implementation("org.jraf", "klibnotion", "1.0.0")
 }

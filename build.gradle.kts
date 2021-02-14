@@ -6,22 +6,18 @@ plugins {
 
 buildscript {
     repositories {
-        google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
         classpath(kotlin("gradle-plugin", Versions.KOTLIN))
-        classpath("com.github.ben-manes", "gradle-versions-plugin", Versions.BEN_MANES_VERSIONS_PLUGIN)
-        classpath("org.jetbrains.dokka", "dokka-gradle-plugin", Versions.DOKKA_PLUGIN)
     }
 }
 
 allprojects {
     repositories {
         mavenLocal()
-        google()
-        jcenter()
+        mavenCentral()
     }
 
     group = "org.jraf"

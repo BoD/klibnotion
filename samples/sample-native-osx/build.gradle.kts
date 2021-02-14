@@ -13,7 +13,8 @@ kotlin {
         val macosMain by getting {
             dependencies {
                 // Library
-                implementation(project(":library"))
+                implementation(project(":klibnotion"))
+                // implementation("org.jraf", "klibnotion", "1.0.0")
             }
         }
     }
