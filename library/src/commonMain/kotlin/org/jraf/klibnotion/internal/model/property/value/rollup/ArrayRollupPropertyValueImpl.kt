@@ -22,20 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.client
+package org.jraf.klibnotion.internal.model.property.value.rollup
 
-import io.ktor.client.HttpClient
-import io.ktor.client.HttpClientConfig
-import io.ktor.client.engine.curl.Curl
+import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.model.property.value.rollup.ArrayRollupPropertyValue
 
-internal actual fun createHttpClient(
-    bypassSslChecks: Boolean,
-    block: HttpClientConfig<*>.() -> Unit,
-): HttpClient {
-    return HttpClient(Curl) {
-        apply(block)
-        if (bypassSslChecks) engine {
-            sslVerify = false
-        }
-    }
-}
+internal data class ArrayRollupPropertyValueImpl(
+    override val id: String,
+    override val name: String,
+    override val value: List<PropertyValue<*>>,
+) : ArrayRollupPropertyValue

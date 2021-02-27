@@ -36,7 +36,11 @@ import org.jraf.klibnotion.internal.api.model.user.ApiUser
  */
 @Serializable
 internal data class ApiPropertyValue(
-    val id: String,
+    /**
+     * Can be omitted in case of rollup array properties.
+     */
+    val id: String = "",
+
     val type: String,
     val text: List<ApiRichText>? = null,
     val number: String? = null,

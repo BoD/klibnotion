@@ -35,4 +35,5 @@ internal data class ApiPropertyValueRollup(
     val type: String,
     val number: String? = null,
     val date: ApiDate? = null,
+    val array: List<ApiPropertyValue>? = null,
 )

@@ -29,5 +29,6 @@ import kotlin.jvm.JvmOverloads
 data class HttpConfiguration @JvmOverloads constructor(
     val loggingLevel: HttpLoggingLevel = HttpLoggingLevel.NONE,
     val mockServerBaserUri: BaseUri? = null,
-    val httpProxy: HttpProxy? = null
+    val httpProxy: HttpProxy? = null,
+    val bypassSslChecks: Boolean = false,
 )

@@ -32,12 +32,10 @@ kotlin {
             dependencies {
                 // Kotlin
                 implementation(kotlin("stdlib"))
-                // TODO add to version
-                implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.1")
+                implementation("org.jetbrains.kotlinx", "kotlinx-cli", Versions.KOTLINX_CLI)
 
                 // Library
                 implementation(project(":klibnotion"))
-                // implementation("org.jraf", "klibnotion", "1.0.0")
             }
         }
 

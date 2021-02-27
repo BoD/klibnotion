@@ -81,7 +81,7 @@ internal class NotionClientImpl(
 
     @OptIn(KtorExperimentalAPI::class)
     private val httpClient by lazy {
-        createHttpClient() {
+        createHttpClient(clientConfiguration.httpConfiguration.bypassSslChecks) {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(
                     Json {
@@ -210,6 +210,7 @@ internal class NotionClientImpl(
 }
 
 internal expect fun createHttpClient(
+    bypassSslChecks: Boolean,
     block: HttpClientConfig<*>.() -> Unit,
 ): HttpClient
 

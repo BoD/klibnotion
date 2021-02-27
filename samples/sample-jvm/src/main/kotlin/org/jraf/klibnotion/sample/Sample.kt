@@ -75,7 +75,9 @@ class Sample {
                     // loggingLevel = HttpLoggingLevel.BODY,
                     loggingLevel = HttpLoggingLevel.INFO,
                     // This is only needed to debug with, e.g., Charles Proxy
-                    httpProxy = HttpProxy("localhost", 8888)
+                    httpProxy = HttpProxy("localhost", 8888),
+                    // Can be useful in certain circumstances, but unwise to use in production
+                    bypassSslChecks = true
                 )
             )
         )

@@ -26,9 +26,37 @@ package org.jraf.klibnotion.internal.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.okhttp.OkHttp
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
+import javax.net.ssl.SSLContext
+import javax.net.ssl.X509TrustManager
 
 internal actual fun createHttpClient(
-    block: HttpClientConfig<*>.() -> Unit
+    bypassSslChecks: Boolean,
+    block: HttpClientConfig<*>.() -> Unit,
 ): HttpClient {
-    return HttpClient(block)
+    return HttpClient(OkHttp) {
+        apply(block)
+        if (bypassSslChecks) {
+            engine {
+                config {
+                    sslSocketFactory(trustAllCertsSslSocketFactory(), trustAllCerts()[0])
+                }
+            }
+        }
+    }
 }
+
+private fun trustAllCertsSslSocketFactory() = SSLContext.getInstance("SSL").apply {
+    init(null, trustAllCerts(), SecureRandom())
+}.socketFactory
+
+
+private fun trustAllCerts() = arrayOf<X509TrustManager>(
+    object : X509TrustManager {
+        override fun getAcceptedIssuers(): Array<X509Certificate?> = arrayOf()
+        override fun checkClientTrusted(certs: Array<X509Certificate?>?, authType: String?) {}
+        override fun checkServerTrusted(certs: Array<X509Certificate?>?, authType: String?) {}
+    }
+)

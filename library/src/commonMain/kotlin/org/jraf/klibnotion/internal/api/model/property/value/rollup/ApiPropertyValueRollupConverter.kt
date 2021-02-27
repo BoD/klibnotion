@@ -29,6 +29,8 @@ import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.base.ApiNumberConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateConverter
 import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValue
+import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValueConverter
+import org.jraf.klibnotion.internal.model.property.value.rollup.ArrayRollupPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.rollup.DateRollupPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.rollup.NumberRollupPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.rollup.UnknownTypeRollupPropertyValueImpl
@@ -51,6 +53,12 @@ internal object ApiPropertyValueRollupConverter :
                 name = name,
                 value = rollup.date!!.apiToModel(ApiDateConverter)
             )
+            "array" -> ArrayRollupPropertyValueImpl(
+                id = id,
+                name = name,
+                value = rollup.array!!.map { ("" to it).apiToModel(ApiPropertyValueConverter) }
+            )
+
             else -> UnknownTypeRollupPropertyValueImpl(
                 id = id,
                 name = name,

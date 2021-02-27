@@ -6,22 +6,23 @@ plugins {
     id("signing")
 }
 
-// Generate a Version.kt file with a constant for the version name
-tasks.register("generateVersionKt") {
-    val outputDir = layout.buildDirectory.dir("generated/source/kotlin").get().asFile
-    outputs.dir(outputDir)
-    doFirst {
-        val outputWithPackageDir = File(outputDir, "org/jraf/klibnotion/internal/client").apply { mkdirs() }
-        File(outputWithPackageDir, "Version.kt").writeText(
-            """
+tasks {
+    // Generate a Version.kt file with a constant for the version name
+    register("generateVersionKt") {
+        val outputDir = layout.buildDirectory.dir("generated/source/kotlin").get().asFile
+        outputs.dir(outputDir)
+        doFirst {
+            val outputWithPackageDir = File(outputDir, "org/jraf/klibnotion/internal/client").apply { mkdirs() }
+            File(outputWithPackageDir, "Version.kt").writeText(
+                """
                 package org.jraf.klibnotion.internal.client
                 internal const val VERSION = "${project.version}"
             """.trimIndent()
-        )
+            )
+        }
     }
-}
 
-tasks {
+    // Generate Javadoc (Dokka) Jar
     register<Jar>("dokkaHtmlJar") {
         archiveClassifier.set("javadoc")
         from("$buildDir/dokka")
@@ -155,4 +156,4 @@ signing {
 }
 
 // Run `./gradlew publishToMavenLocal` to publish to the local maven repo
-// Run `./gradlew publish` to publish to Maven Central
+// Run `./gradlew publish` to publish to Maven Central (then go to https://oss.sonatype.org/#stagingRepositories and "close", and "release")
