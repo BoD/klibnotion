@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.0 (2021-03-21)
+
+- Support for content in page create API
+
 ## v1.1.0 (2021-02-27)
 
 - Support for Array Rollup property type
