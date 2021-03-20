@@ -90,6 +90,72 @@ The APIs that are paginated all follow the same principle:
   a [`ResultPage<T>`](https://github.com/BoD/klibnotion/blob/master/library/src/commonMain/kotlin/org/jraf/klibnotion/model/pagination/ResultPage.kt)
   with the result list but also a reference to the next `Pagination` objects (handy when retrieving several pages).
 
+#### Content DSL
+
+A small DSL is available on the page creation API, here's an example usage:
+
+<table>
+<tr>
+<td>
+
+```kotlin
+heading1("First section")
+paragraph("Hello, World!")
+
+heading1("Second section")
+paragraph("This paragraph is bold", annotations = Annotations.BOLD) {
+  paragraph("Sub paragraph 1")
+  paragraph("Sub paragraph 2") {
+    paragraph("Sub sub paragraph") {
+
+    }
+  }
+}
+
+heading2("But then again")
+heading3("Actually")
+paragraph("That's the case")
+
+heading3("But really")
+paragraph(RichTextList().text("This ")
+  .text("word", Annotations(color = Color.RED))
+  .text(" is red"))
+
+bullet("There's this,")
+bullet("there's that,")
+bullet("then there's...") {
+  paragraph("Will this work?")
+}
+bullet("indentation?") {
+  bullet("indentation? 2") {
+    bullet("indentation? 3")
+  }
+}
+
+number("First")
+number("Second") {
+  number("Second second")
+}
+number("Third")
+
+toDo("This one is checked", true)
+toDo("This one is not checked", false)
+
+toggle("This is a toggle!") {
+  paragraph("This first paragraph is inside the toggle")
+  paragraph("This second paragraph is inside the toggle")
+  heading3("This too!")
+}
+```
+
+</td>
+
+<td>
+<img src="assets/content.png">
+</td>
+</tr>
+</table>
+
 #### Logging
 
 To log HTTP requests/response, pass

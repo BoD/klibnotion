@@ -24,6 +24,7 @@
 
 package org.jraf.klibnotion.sample;
 
+import kotlin.Unit;
 import org.jraf.klibnotion.client.*;
 import org.jraf.klibnotion.client.blocking.BlockingNotionClient;
 import org.jraf.klibnotion.client.blocking.BlockingNotionClientUtils;
@@ -73,7 +74,8 @@ class BlockingSample {
                                 HttpLoggingLevel.INFO,
                                 null,
                                 // This is only needed to debug with, e.g., Charles Proxy
-                                new HttpProxy("localhost", 8888)
+                                new HttpProxy("localhost", 8888),
+                                true
                         )
                 )
         );
@@ -188,7 +190,11 @@ class BlockingSample {
                         .checkbox("Is Greedo", random.nextBoolean())
                         .string("Email", "aaa@aaa.com")
                         .string("Phone", "+1 424 2424 266")
-                        .string("Url", "https://zgluteks.com")
+                        .string("Url", "https://zgluteks.com"),
+                contentValueList -> {
+                    contentValueList.paragraph("test");
+                    return Unit.INSTANCE;
+                }
         );
         System.out.println(createdPage);
 

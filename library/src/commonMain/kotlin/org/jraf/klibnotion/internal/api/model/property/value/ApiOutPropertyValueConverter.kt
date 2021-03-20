@@ -30,13 +30,11 @@ import kotlinx.serialization.json.addJsonObject
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import kotlinx.serialization.json.putJsonObject
 import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.api.model.color.ApiColorConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
+import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
 import org.jraf.klibnotion.internal.model.property.value.StringPropertyValueImpl
-import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.property.value.CheckboxPropertyValue
 import org.jraf.klibnotion.model.property.value.DatePropertyValue
 import org.jraf.klibnotion.model.property.value.MultiSelectPropertyValue
@@ -46,13 +44,6 @@ import org.jraf.klibnotion.model.property.value.PropertyValue
 import org.jraf.klibnotion.model.property.value.RelationPropertyValue
 import org.jraf.klibnotion.model.property.value.SelectPropertyValue
 import org.jraf.klibnotion.model.property.value.TextPropertyValue
-import org.jraf.klibnotion.model.richtext.Annotations
-import org.jraf.klibnotion.model.richtext.EquationRichText
-import org.jraf.klibnotion.model.richtext.TextRichText
-import org.jraf.klibnotion.model.richtext.mention.DatabaseMentionRichText
-import org.jraf.klibnotion.model.richtext.mention.DateMentionRichText
-import org.jraf.klibnotion.model.richtext.mention.PageMentionRichText
-import org.jraf.klibnotion.model.richtext.mention.UserMentionRichText
 
 internal object ApiOutPropertyValueConverter :
     ApiConverter<Pair<String, JsonElement>, PropertyValue<*>>() {
@@ -61,64 +52,7 @@ internal object ApiOutPropertyValueConverter :
         return model.name to when (model) {
             is NumberPropertyValue -> JsonPrimitive(model.value)
 
-            is TextPropertyValue -> buildJsonArray {
-                for (richText in model.value.richTextList) {
-                    addJsonObject {
-                        if (richText.annotations != Annotations.DEFAULT) {
-                            putJsonObject("annotations") {
-                                if (richText.annotations.bold) put("bold", true)
-                                if (richText.annotations.italic) put("italic", true)
-                                if (richText.annotations.strikethrough) put("strikethrough", true)
-                                if (richText.annotations.underline) put("underline", true)
-                                if (richText.annotations.code) put("code", true)
-                                if (richText.annotations.color != Color.DEFAULT) {
-                                    put("color", richText.annotations.color.modelToApi(ApiColorConverter))
-                                }
-                            }
-                        }
-
-                        when (richText) {
-                            is TextRichText -> putJsonObject("text") {
-                                put("content", richText.plainText)
-                                if (richText.linkUrl != null) putJsonObject("link") {
-                                    put("url", richText.linkUrl)
-                                }
-                            }
-
-                            is UserMentionRichText -> putJsonObject("mention") {
-                                putJsonObject("user") {
-                                    put("id", richText.user.id)
-                                }
-                            }
-
-                            is PageMentionRichText -> putJsonObject("mention") {
-                                putJsonObject("page") {
-                                    put("id", richText.pageId)
-                                }
-                            }
-
-                            is DatabaseMentionRichText -> putJsonObject("mention") {
-                                putJsonObject("database") {
-                                    put("id", richText.databaseId)
-                                }
-                            }
-
-                            is DateMentionRichText -> putJsonObject("mention") {
-                                putJsonObject("date") {
-                                    put("start", richText.dateOrDateRange.start.modelToApi(ApiDateStringConverter))
-                                    richText.dateOrDateRange.end?.let {
-                                        put("end", it.modelToApi(ApiDateStringConverter))
-                                    }
-                                }
-                            }
-
-                            is EquationRichText -> putJsonObject("equation") {
-                                put("expression", richText.expression)
-                            }
-                        }
-                    }
-                }
-            }
+            is TextPropertyValue -> model.value.modelToApi(ApiOutRichTextListConverter)
 
             is SelectPropertyValue -> buildJsonObject {
                 if (model.value.name.isNotEmpty()) {

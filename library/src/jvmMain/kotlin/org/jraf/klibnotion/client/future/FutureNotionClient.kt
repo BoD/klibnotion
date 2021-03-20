@@ -35,6 +35,8 @@ import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
+import org.jraf.klibnotion.model.property.content.ContentValueList
+import org.jraf.klibnotion.model.property.content.ContentValueListProducer
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
 import java.util.concurrent.Future
@@ -94,7 +96,20 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Pages.createPage].
          */
-        fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Future<Page>
+        fun createPage(
+            parentDatabaseId: UuidString,
+            properties: PropertyValueList = PropertyValueList(),
+            content: ContentValueList? = null,
+        ): Future<Page>
+
+        /**
+         * See [NotionClient.Pages.createPage].
+         */
+        fun createPage(
+            parentDatabaseId: UuidString,
+            properties: PropertyValueList = PropertyValueList(),
+            content: ContentValueListProducer,
+        ): Future<Page>
 
         /**
          * See [NotionClient.Pages.updatePage].

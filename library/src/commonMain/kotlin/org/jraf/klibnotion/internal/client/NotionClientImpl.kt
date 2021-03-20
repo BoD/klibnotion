@@ -65,6 +65,9 @@ import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
+import org.jraf.klibnotion.model.property.content.ContentValueList
+import org.jraf.klibnotion.model.property.content.ContentValueListProducer
+import org.jraf.klibnotion.model.property.content.invoke
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
 
@@ -192,11 +195,26 @@ internal class NotionClientImpl(
             .apiToModel(ApiPageConverter)
     }
 
-    override suspend fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Page {
-        return service.createPage((parentDatabaseId to properties.propertyValueList).modelToApi(
-            ApiCreateTableParametersConverter))
+    override suspend fun createPage(
+        parentDatabaseId: UuidString,
+        properties: PropertyValueList,
+        content: ContentValueList?,
+    ): Page {
+        return service.createPage(
+            Triple(
+                parentDatabaseId,
+                properties.propertyValueList,
+                content?.contentValueList
+            ).modelToApi(ApiCreateTableParametersConverter)
+        )
             .apiToModel(ApiPageConverter)
     }
+
+    override suspend fun createPage(
+        parentDatabaseId: UuidString,
+        properties: PropertyValueList,
+        content: ContentValueListProducer,
+    ): Page = createPage(parentDatabaseId, properties, content())
 
     override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
         return service.updatePage(id, properties.propertyValueList.modelToApi(ApiUpdateTableParametersConverter))

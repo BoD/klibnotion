@@ -22,17 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.page
-
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonElement
+package org.jraf.klibnotion.model.property.content
 
 /**
- * See [https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b].
+ * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
  */
-@Serializable
-internal data class ApiCreateTableParameters(
-    val parent: ApiPageParent,
-    val properties: Map<String, JsonElement>,
-    val content: List<JsonElement>?,
-)
+interface ToggleContentValue : ContentValue

@@ -25,19 +25,28 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.content.value.ApiOutContentValueConverter
+import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.property.value.ApiOutPropertyValueConverter
+import org.jraf.klibnotion.model.property.content.ContentValue
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
 internal object ApiCreateTableParametersConverter :
-    ApiConverter<ApiCreateTableParameters, Pair<String, List<PropertyValue<*>>>>() {
-    override fun modelToApi(model: Pair<String, List<PropertyValue<*>>>): ApiCreateTableParameters {
+    ApiConverter<
+            ApiCreateTableParameters,
+            Triple<String, List<PropertyValue<*>>, List<ContentValue>?>
+            >() {
+    override fun modelToApi(model: Triple<String, List<PropertyValue<*>>, List<ContentValue>?>): ApiCreateTableParameters {
         val parentDatabaseId = model.first
         val properties = model.second
+        val content = model.third
+
         return ApiCreateTableParameters(
             parent = ApiPageParent(
                 database_id = parentDatabaseId,
             ),
-            properties = properties.associate(ApiOutPropertyValueConverter::modelToApi)
+            properties = properties.associate(ApiOutPropertyValueConverter::modelToApi),
+            content = content?.modelToApi(ApiOutContentValueConverter),
         )
     }
 }

@@ -35,6 +35,8 @@ import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
+import org.jraf.klibnotion.model.property.content.ContentValueList
+import org.jraf.klibnotion.model.property.content.ContentValueListProducer
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
 import kotlin.jvm.JvmName
@@ -95,7 +97,20 @@ interface BlockingNotionClient {
         /**
          * See [NotionClient.Pages.createPage].
          */
-        fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList): Page
+        fun createPage(
+            parentDatabaseId: UuidString,
+            properties: PropertyValueList = PropertyValueList(),
+            content: ContentValueList? = null,
+        ): Page
+
+        /**
+         * See [NotionClient.Pages.createPage].
+         */
+        fun createPage(
+            parentDatabaseId: UuidString,
+            properties: PropertyValueList = PropertyValueList(),
+            content: ContentValueListProducer,
+        ): Page
 
         /**
          * See [NotionClient.Pages.updatePage].

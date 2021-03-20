@@ -32,6 +32,8 @@ import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.pagination.Pagination
+import org.jraf.klibnotion.model.property.content.ContentValueList
+import org.jraf.klibnotion.model.property.content.ContentValueListProducer
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 
 internal class FutureNotionClientImpl(
@@ -74,8 +76,20 @@ internal class FutureNotionClientImpl(
         notionClient.pages.getPage(id, isArchived)
     }
 
-    override fun createPage(parentDatabaseId: UuidString, properties: PropertyValueList) = GlobalScope.future {
-        notionClient.pages.createPage(parentDatabaseId, properties)
+    override fun createPage(
+        parentDatabaseId: UuidString,
+        properties: PropertyValueList,
+        content: ContentValueList?,
+    ) = GlobalScope.future {
+        notionClient.pages.createPage(parentDatabaseId, properties, content)
+    }
+
+    override fun createPage(
+        parentDatabaseId: UuidString,
+        properties: PropertyValueList,
+        content: ContentValueListProducer,
+    ) = GlobalScope.future {
+        notionClient.pages.createPage(parentDatabaseId, properties, content)
     }
 
     override fun updatePage(id: UuidString, properties: PropertyValueList) = GlobalScope.future {

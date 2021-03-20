@@ -149,7 +149,7 @@ class Sample {
             println("Created page:")
             val createdPage: Page = client.pages.createPage(
                 parentDatabaseId = DATABASE_ID,
-                PropertyValueList()
+                properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .text("Name", "Name ${Random.nextInt()}")
                     .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
@@ -187,7 +187,54 @@ class Sample {
                     .string("Email", "aaa@aaa.com")
                     .string("Phone", "+1 424 2424 266")
                     .string("Url", "https://zgluteks.com")
-            )
+            ) {
+                heading1("First section")
+                paragraph("Hello, World!")
+
+                heading1("Second section")
+                paragraph("This paragraph is bold", annotations = Annotations.BOLD) {
+                    paragraph("Sub paragraph 1")
+                    paragraph("Sub paragraph 2") {
+                        paragraph("Sub sub paragraph") {
+
+                        }
+                    }
+                }
+
+                heading2("But then again")
+                heading3("Actually")
+                paragraph("That's the case")
+
+                heading3("But really")
+                paragraph(RichTextList().text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
+
+                bullet("There's this,")
+                bullet("there's that,")
+                bullet("then there's...") {
+                    paragraph("Will this work?")
+                }
+                bullet("indentation?") {
+                    bullet("indentation? 2") {
+                        bullet("indentation? 3")
+                    }
+                }
+
+                number("First")
+                number("Second") {
+                    number("Second second")
+                }
+                number("Third")
+
+                toDo("This one is checked", true)
+                toDo("This one is not checked", false)
+
+                toggle("This is a toggle!") {
+                    paragraph("This first paragraph is inside the toggle")
+                    paragraph("This second paragraph is inside the toggle")
+                    heading3("This too!")
+                }
+            }
+
             println(createdPage)
 
             // Update page
