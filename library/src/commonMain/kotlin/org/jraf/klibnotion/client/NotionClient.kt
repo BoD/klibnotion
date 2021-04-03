@@ -73,6 +73,13 @@ interface NotionClient {
         suspend fun getDatabase(id: UuidString): Database
 
         /**
+         * List Databases.
+         * This lists all the databases that have been shared with your bot.
+         * @see <a href="https://www.notion.so/notiondevs/List-Databases-0670fd2cbc464d6e9b17f8ac80c0794d">List Databases</a>
+         */
+        suspend fun getDatabaseList(pagination: Pagination = Pagination()): ResultPage<Database>
+
+        /**
          * Query a database.
          * @see <a href="https://www.notion.so/Query-a-database-f150c8e10ead4afe9045d56bc8114855">Query a database</a>
          */

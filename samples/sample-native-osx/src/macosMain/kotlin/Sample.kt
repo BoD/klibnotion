@@ -100,6 +100,11 @@ class Sample {
             println(database)
             println("title=${database.title.plainText}")
 
+            // Get database list
+            println("Database list first page:")
+            val databasePage: ResultPage<Database> = client.databases.getDatabaseList()
+            println(databasePage)
+
             // Query database (simple)
             println("Simple query results:")
             val simpleQueryResultPage: ResultPage<Page> =

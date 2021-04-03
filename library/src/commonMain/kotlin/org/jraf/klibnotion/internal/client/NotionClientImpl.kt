@@ -52,6 +52,7 @@ import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryCon
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
+import org.jraf.klibnotion.internal.api.model.page.ApiPageResultDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
@@ -169,6 +170,11 @@ internal class NotionClientImpl(
     override suspend fun getDatabase(id: UuidString): Database {
         return service.getDatabase(id)
             .apiToModel(ApiDatabaseConverter)
+    }
+
+    override suspend fun getDatabaseList(pagination: Pagination): ResultPage<Database> {
+        return service.getDatabaseList(pagination.startCursor)
+            .apiToModel(ApiPageResultDatabaseConverter)
     }
 
     override suspend fun queryDatabase(

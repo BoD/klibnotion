@@ -57,6 +57,10 @@ internal class BlockingNotionClientImpl(
         notionClient.databases.getDatabase(id)
     }
 
+    override fun getDatabaseList(pagination: Pagination) = runBlocking {
+        notionClient.databases.getDatabaseList(pagination)
+    }
+
     override fun queryDatabase(
         id: UuidString,
         query: DatabaseQuery?,

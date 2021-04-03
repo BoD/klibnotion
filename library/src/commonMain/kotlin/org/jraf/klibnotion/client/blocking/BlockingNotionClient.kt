@@ -75,6 +75,11 @@ interface BlockingNotionClient {
         fun getDatabase(id: UuidString): Database
 
         /**
+         * See [NotionClient.Databases.getDatabaseList].
+         */
+        fun getDatabaseList(pagination: Pagination = Pagination()): ResultPage<Database>
+
+        /**
          * See [NotionClient.Databases.queryDatabase].
          */
         fun queryDatabase(
