@@ -91,7 +91,7 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Pages.getPage].
          */
-        fun getPage(id: UuidString, isArchived: Boolean = false): Future<Page>
+        fun getPage(id: UuidString): Future<Page>
 
         /**
          * See [NotionClient.Pages.createPage].

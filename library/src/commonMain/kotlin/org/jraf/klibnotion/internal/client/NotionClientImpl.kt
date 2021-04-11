@@ -196,8 +196,8 @@ internal class NotionClientImpl(
 
     // region Pages
 
-    override suspend fun getPage(id: UuidString, isArchived: Boolean): Page {
-        return service.getPage(id, isArchived)
+    override suspend fun getPage(id: UuidString): Page {
+        return service.getPage(id)
             .apiToModel(ApiPageConverter)
     }
 

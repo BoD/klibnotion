@@ -99,7 +99,7 @@ interface NotionClient {
          * Retrieve a page.
          * @see <a href="https://www.notion.so/Retrieve-a-page-dabcf81142514685a70b38c911e6d126">Retrieve a page</a>
          */
-        suspend fun getPage(id: UuidString, isArchived: Boolean = false): Page
+        suspend fun getPage(id: UuidString): Page
 
         /**
          * Create a page.

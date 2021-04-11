@@ -92,10 +92,8 @@ internal class NotionService(private val httpClient: HttpClient) {
 
     // region Pages
 
-    suspend fun getPage(id: UuidString, archived: Boolean): ApiPage {
-        return httpClient.get("$BASE_URL/$PAGES/$id") {
-            if (archived) parameter("archived", true)
-        }
+    suspend fun getPage(id: UuidString): ApiPage {
+        return httpClient.get("$BASE_URL/$PAGES/$id")
     }
 
     suspend fun createPage(parameters: ApiCreateTableParameters): ApiPage {

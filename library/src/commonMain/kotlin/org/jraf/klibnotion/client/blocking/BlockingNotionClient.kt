@@ -97,7 +97,7 @@ interface BlockingNotionClient {
         /**
          * See [NotionClient.Pages.getPage].
          */
-        fun getPage(id: UuidString, isArchived: Boolean = false): Page
+        fun getPage(id: UuidString): Page
 
         /**
          * See [NotionClient.Pages.createPage].

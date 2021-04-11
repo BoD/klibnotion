@@ -1,5 +1,9 @@
 # Changelog
 
+## Next (????-??-??)
+
+- Remove `isArchived` parameter from `getPage` following the Notion API change.
+
 ## v1.3.0 (2021-04-03)
 
 - Support for "get database list" API

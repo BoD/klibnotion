@@ -72,8 +72,8 @@ internal class FutureNotionClientImpl(
         )
     }
 
-    override fun getPage(id: UuidString, isArchived: Boolean) = GlobalScope.future {
-        notionClient.pages.getPage(id, isArchived)
+    override fun getPage(id: UuidString) = GlobalScope.future {
+        notionClient.pages.getPage(id)
     }
 
     override fun createPage(

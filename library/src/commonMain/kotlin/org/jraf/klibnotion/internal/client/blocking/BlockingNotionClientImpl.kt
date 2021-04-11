@@ -75,8 +75,8 @@ internal class BlockingNotionClientImpl(
         )
     }
 
-    override fun getPage(id: UuidString, isArchived: Boolean) = runBlocking {
-        notionClient.pages.getPage(id, isArchived)
+    override fun getPage(id: UuidString) = runBlocking {
+        notionClient.pages.getPage(id)
     }
 
     override fun createPage(
