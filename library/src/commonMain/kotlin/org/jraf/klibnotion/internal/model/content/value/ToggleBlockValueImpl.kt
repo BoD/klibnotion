@@ -24,12 +24,11 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.property.content.ContentValueList
-import org.jraf.klibnotion.model.property.content.Heading3ContentValue
+import org.jraf.klibnotion.model.block.value.BlockValueList
+import org.jraf.klibnotion.model.block.value.ToggleBlockValue
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class Heading3ContentValueImpl(
+internal data class ToggleBlockValueImpl(
     override val text: RichTextList,
-) : Heading3ContentValue {
-    override val content: ContentValueList? = null
-}
+    override val content: BlockValueList?,
+) : ToggleBlockValue

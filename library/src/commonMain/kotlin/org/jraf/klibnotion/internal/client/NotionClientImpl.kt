@@ -58,6 +58,9 @@ import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConve
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.value.BlockValueList
+import org.jraf.klibnotion.model.block.value.BlockValueListProducer
+import org.jraf.klibnotion.model.block.value.invoke
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
@@ -66,9 +69,6 @@ import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
-import org.jraf.klibnotion.model.property.content.ContentValueList
-import org.jraf.klibnotion.model.property.content.ContentValueListProducer
-import org.jraf.klibnotion.model.property.content.invoke
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
 
@@ -204,13 +204,13 @@ internal class NotionClientImpl(
     override suspend fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: ContentValueList?,
+        content: BlockValueList?,
     ): Page {
         return service.createPage(
             Triple(
                 parentDatabaseId,
                 properties.propertyValueList,
-                content?.contentValueList
+                content?.blockValueList
             ).modelToApi(ApiCreateTableParametersConverter)
         )
             .apiToModel(ApiPageConverter)
@@ -219,7 +219,7 @@ internal class NotionClientImpl(
     override suspend fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: ContentValueListProducer,
+        content: BlockValueListProducer,
     ): Page = createPage(parentDatabaseId, properties, content())
 
     override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {

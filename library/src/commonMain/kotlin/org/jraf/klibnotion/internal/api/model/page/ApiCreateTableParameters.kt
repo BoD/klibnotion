@@ -34,5 +34,5 @@ import kotlinx.serialization.json.JsonElement
 internal data class ApiCreateTableParameters(
     val parent: ApiPageParent,
     val properties: Map<String, JsonElement>,
-    val content: List<JsonElement>?,
+    val children: List<JsonElement>?,
 )

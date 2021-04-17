@@ -24,11 +24,12 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.property.content.ContentValueList
-import org.jraf.klibnotion.model.property.content.ParagraphContentValue
+import org.jraf.klibnotion.model.block.value.BlockValueList
+import org.jraf.klibnotion.model.block.value.ToDoBlockValue
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class ParagraphContentValueImpl(
+internal data class ToDoBlockValueImpl(
     override val text: RichTextList,
-    override val content: ContentValueList?,
-) : ParagraphContentValue
+    override val checked: Boolean,
+    override val content: BlockValueList?,
+) : ToDoBlockValue

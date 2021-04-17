@@ -22,9 +22,14 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.content
+package org.jraf.klibnotion.internal.model.content.value
 
-/**
- * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
- */
-interface Heading2ContentValue : ContentValue
+import org.jraf.klibnotion.model.block.value.BlockValueList
+import org.jraf.klibnotion.model.block.value.Heading1BlockValue
+import org.jraf.klibnotion.model.richtext.RichTextList
+
+internal data class Heading1BlockValueImpl(
+    override val text: RichTextList,
+) : Heading1BlockValue {
+    override val content: BlockValueList? = null
+}

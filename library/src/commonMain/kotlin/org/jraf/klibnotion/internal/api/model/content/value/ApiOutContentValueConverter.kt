@@ -33,32 +33,32 @@ import kotlinx.serialization.json.putJsonObject
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
-import org.jraf.klibnotion.model.property.content.BulletedListItemContentValue
-import org.jraf.klibnotion.model.property.content.ContentValue
-import org.jraf.klibnotion.model.property.content.Heading1ContentValue
-import org.jraf.klibnotion.model.property.content.Heading2ContentValue
-import org.jraf.klibnotion.model.property.content.Heading3ContentValue
-import org.jraf.klibnotion.model.property.content.NumberedListItemContentValue
-import org.jraf.klibnotion.model.property.content.ParagraphContentValue
-import org.jraf.klibnotion.model.property.content.ToDoContentValue
-import org.jraf.klibnotion.model.property.content.ToggleContentValue
+import org.jraf.klibnotion.model.block.value.BlockValue
+import org.jraf.klibnotion.model.block.value.BulletedListItemBlockValue
+import org.jraf.klibnotion.model.block.value.Heading1BlockValue
+import org.jraf.klibnotion.model.block.value.Heading2BlockValue
+import org.jraf.klibnotion.model.block.value.Heading3BlockValue
+import org.jraf.klibnotion.model.block.value.NumberedListItemBlockValue
+import org.jraf.klibnotion.model.block.value.ParagraphBlockValue
+import org.jraf.klibnotion.model.block.value.ToDoBlockValue
+import org.jraf.klibnotion.model.block.value.ToggleBlockValue
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal object ApiOutContentValueConverter : ApiConverter<JsonElement, ContentValue>() {
+internal object ApiOutContentValueConverter : ApiConverter<JsonElement, BlockValue>() {
 
-    override fun modelToApi(model: ContentValue): JsonElement {
+    override fun modelToApi(model: BlockValue): JsonElement {
         return buildJsonObject {
             put("object", "block")
 
             val type = when (model) {
-                is ParagraphContentValue -> "paragraph"
-                is Heading1ContentValue -> "heading_1"
-                is Heading2ContentValue -> "heading_2"
-                is Heading3ContentValue -> "heading_3"
-                is BulletedListItemContentValue -> "bulleted_list_item"
-                is NumberedListItemContentValue -> "numbered_list_item"
-                is ToDoContentValue -> "to_do"
-                is ToggleContentValue -> "toggle"
+                is ParagraphBlockValue -> "paragraph"
+                is Heading1BlockValue -> "heading_1"
+                is Heading2BlockValue -> "heading_2"
+                is Heading3BlockValue -> "heading_3"
+                is BulletedListItemBlockValue -> "bulleted_list_item"
+                is NumberedListItemBlockValue -> "numbered_list_item"
+                is ToDoBlockValue -> "to_do"
+                is ToggleBlockValue -> "toggle"
 
                 else -> throw IllegalStateException()
             }
@@ -66,10 +66,10 @@ internal object ApiOutContentValueConverter : ApiConverter<JsonElement, ContentV
             putJsonObject(type) {
                 text(model.text)
                 when (model) {
-                    is ToDoContentValue -> put("checked", model.checked)
+                    is ToDoBlockValue -> put("checked", model.checked)
                 }
                 model.content?.let {
-                    put("children", JsonArray(it.contentValueList.modelToApi(ApiOutContentValueConverter)))
+                    put("children", JsonArray(it.blockValueList.modelToApi(ApiOutContentValueConverter)))
                 }
             }
         }

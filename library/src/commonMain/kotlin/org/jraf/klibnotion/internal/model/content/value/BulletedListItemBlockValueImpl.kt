@@ -24,11 +24,11 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.property.content.BulletedListItemContentValue
-import org.jraf.klibnotion.model.property.content.ContentValueList
+import org.jraf.klibnotion.model.block.value.BlockValueList
+import org.jraf.klibnotion.model.block.value.BulletedListItemBlockValue
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class BulletedListItemContentValueImpl(
+internal data class BulletedListItemBlockValueImpl(
     override val text: RichTextList,
-    override val content: ContentValueList?,
-) : BulletedListItemContentValue
+    override val content: BlockValueList?,
+) : BulletedListItemBlockValue

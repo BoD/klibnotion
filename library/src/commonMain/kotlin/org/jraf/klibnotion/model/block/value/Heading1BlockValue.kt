@@ -22,9 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.content
+package org.jraf.klibnotion.model.block.value
 
 /**
  * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
  */
-interface ToggleContentValue : ContentValue
+interface Heading1BlockValue : BlockValue

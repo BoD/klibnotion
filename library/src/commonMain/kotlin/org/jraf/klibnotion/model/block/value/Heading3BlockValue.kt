@@ -22,14 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.content.value
+package org.jraf.klibnotion.model.block.value
 
-import org.jraf.klibnotion.model.property.content.ContentValueList
-import org.jraf.klibnotion.model.property.content.ToDoContentValue
-import org.jraf.klibnotion.model.richtext.RichTextList
-
-internal data class ToDoContentValueImpl(
-    override val text: RichTextList,
-    override val checked: Boolean,
-    override val content: ContentValueList?,
-) : ToDoContentValue
+/**
+ * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
+ */
+interface Heading3BlockValue : BlockValue

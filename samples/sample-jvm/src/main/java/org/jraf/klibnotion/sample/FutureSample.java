@@ -27,6 +27,7 @@ package org.jraf.klibnotion.sample;
 import org.jraf.klibnotion.client.*;
 import org.jraf.klibnotion.client.future.FutureNotionClient;
 import org.jraf.klibnotion.client.future.FutureNotionClientUtils;
+import org.jraf.klibnotion.model.block.value.BlockValueList;
 import org.jraf.klibnotion.model.color.Color;
 import org.jraf.klibnotion.model.database.Database;
 import org.jraf.klibnotion.model.database.query.DatabaseQuery;
@@ -39,7 +40,6 @@ import org.jraf.klibnotion.model.date.DateTime;
 import org.jraf.klibnotion.model.page.Page;
 import org.jraf.klibnotion.model.pagination.Pagination;
 import org.jraf.klibnotion.model.pagination.ResultPage;
-import org.jraf.klibnotion.model.property.content.ContentValueList;
 import org.jraf.klibnotion.model.property.value.PropertyValueList;
 import org.jraf.klibnotion.model.richtext.Annotations;
 import org.jraf.klibnotion.model.richtext.RichTextList;
@@ -190,7 +190,7 @@ class FutureSample {
                         .string("Email", "aaa@aaa.com")
                         .string("Phone", "+1 424 2424 266")
                         .string("Url", "https://zgluteks.com"),
-                (ContentValueList) null
+                (BlockValueList) null
         ).get();
         System.out.println(createdPage);
 

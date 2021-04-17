@@ -142,12 +142,12 @@ internal object ApiPropertyValueConverter :
             "last_edited_time" -> LastEditedTimePropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiDateStringConverter.apiToModel(apiPropertyValue.created_time!!)
+                value = ApiDateStringConverter.apiToModel(apiPropertyValue.last_edited_time!!)
             )
             "last_edited_by" -> LastEditedByPropertyValueImpl(
                 id = id,
                 name = name,
-                value = apiPropertyValue.created_by!!.apiToModel(ApiUserConverter)
+                value = apiPropertyValue.last_edited_by!!.apiToModel(ApiUserConverter)
             )
             else -> UnknownTypePropertyValueImpl(
                 id = id,

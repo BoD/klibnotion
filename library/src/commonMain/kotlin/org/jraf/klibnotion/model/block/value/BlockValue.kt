@@ -22,16 +22,16 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.content
+package org.jraf.klibnotion.model.block.value
 
-import org.jraf.klibnotion.internal.model.content.value.BulletedListItemContentValueImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading1ContentValueImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading2ContentValueImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading3ContentValueImpl
-import org.jraf.klibnotion.internal.model.content.value.NumberedListItemContentValueImpl
-import org.jraf.klibnotion.internal.model.content.value.ParagraphContentValueImpl
-import org.jraf.klibnotion.internal.model.content.value.ToDoContentValueImpl
-import org.jraf.klibnotion.internal.model.content.value.ToggleContentValueImpl
+import org.jraf.klibnotion.internal.model.content.value.BulletedListItemBlockValueImpl
+import org.jraf.klibnotion.internal.model.content.value.Heading1BlockValueImpl
+import org.jraf.klibnotion.internal.model.content.value.Heading2BlockValueImpl
+import org.jraf.klibnotion.internal.model.content.value.Heading3BlockValueImpl
+import org.jraf.klibnotion.internal.model.content.value.NumberedListItemBlockValueImpl
+import org.jraf.klibnotion.internal.model.content.value.ParagraphBlockValueImpl
+import org.jraf.klibnotion.internal.model.content.value.ToDoBlockValueImpl
+import org.jraf.klibnotion.internal.model.content.value.ToggleBlockValueImpl
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
 import kotlin.jvm.JvmOverloads
@@ -39,106 +39,106 @@ import kotlin.jvm.JvmOverloads
 /**
  * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
  */
-interface ContentValue {
+interface BlockValue {
     val text: RichTextList
-    val content: ContentValueList?
+    val content: BlockValueList?
 }
 
-class ContentValueList {
-    internal val contentValueList = mutableListOf<ContentValue>()
+class BlockValueList {
+    internal val blockValueList = mutableListOf<BlockValue>()
 
-    private fun add(propertyValue: ContentValue): ContentValueList {
-        contentValueList.add(propertyValue)
+    private fun add(blockValue: BlockValue): BlockValueList {
+        blockValueList.add(blockValue)
         return this
     }
 
-    fun paragraph(text: RichTextList, content: ContentValueListProducer? = null): ContentValueList =
-        add(ParagraphContentValueImpl(text, content()))
+    fun paragraph(text: RichTextList, content: BlockValueListProducer? = null): BlockValueList =
+        add(ParagraphBlockValueImpl(text, content()))
 
     @JvmOverloads
     fun paragraph(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-        content: ContentValueListProducer? = null,
-    ): ContentValueList = paragraph(
+        content: BlockValueListProducer? = null,
+    ): BlockValueList = paragraph(
         text = RichTextList().text(text, linkUrl, annotations),
         content = content,
     )
 
 
-    fun heading1(text: RichTextList): ContentValueList = add(Heading1ContentValueImpl(text))
+    fun heading1(text: RichTextList): BlockValueList = add(Heading1BlockValueImpl(text))
 
     @JvmOverloads
     fun heading1(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): ContentValueList = add(Heading1ContentValueImpl(
+    ): BlockValueList = add(Heading1BlockValueImpl(
         RichTextList().text(
             text,
             linkUrl,
             annotations)
     ))
 
-    fun heading2(text: RichTextList): ContentValueList = add(Heading1ContentValueImpl(text))
+    fun heading2(text: RichTextList): BlockValueList = add(Heading1BlockValueImpl(text))
 
     @JvmOverloads
     fun heading2(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): ContentValueList = add(Heading2ContentValueImpl(
+    ): BlockValueList = add(Heading2BlockValueImpl(
         RichTextList().text(
             text,
             linkUrl,
             annotations)
     ))
 
-    fun heading3(text: RichTextList): ContentValueList = add(Heading1ContentValueImpl(text))
+    fun heading3(text: RichTextList): BlockValueList = add(Heading1BlockValueImpl(text))
 
     @JvmOverloads
     fun heading3(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): ContentValueList = add(Heading3ContentValueImpl(
+    ): BlockValueList = add(Heading3BlockValueImpl(
         RichTextList().text(
             text,
             linkUrl,
             annotations)
     ))
 
-    fun bullet(text: RichTextList, content: ContentValueListProducer? = null): ContentValueList =
-        add(BulletedListItemContentValueImpl(text, content()))
+    fun bullet(text: RichTextList, content: BlockValueListProducer? = null): BlockValueList =
+        add(BulletedListItemBlockValueImpl(text, content()))
 
     @JvmOverloads
     fun bullet(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-        content: ContentValueListProducer? = null,
-    ): ContentValueList = bullet(
+        content: BlockValueListProducer? = null,
+    ): BlockValueList = bullet(
         text = RichTextList().text(text, linkUrl, annotations),
         content = content,
     )
 
-    fun number(text: RichTextList, content: ContentValueListProducer? = null): ContentValueList =
-        add(NumberedListItemContentValueImpl(text, content()))
+    fun number(text: RichTextList, content: BlockValueListProducer? = null): BlockValueList =
+        add(NumberedListItemBlockValueImpl(text, content()))
 
     @JvmOverloads
     fun number(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-        content: ContentValueListProducer? = null,
-    ): ContentValueList = number(
+        content: BlockValueListProducer? = null,
+    ): BlockValueList = number(
         text = RichTextList().text(text, linkUrl, annotations),
         content = content,
     )
 
-    fun toDo(text: RichTextList, checked: Boolean, content: ContentValueListProducer? = null): ContentValueList =
-        add(ToDoContentValueImpl(text, checked, content()))
+    fun toDo(text: RichTextList, checked: Boolean, content: BlockValueListProducer? = null): BlockValueList =
+        add(ToDoBlockValueImpl(text, checked, content()))
 
     @JvmOverloads
     fun toDo(
@@ -146,34 +146,34 @@ class ContentValueList {
         checked: Boolean,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-        content: ContentValueListProducer? = null,
-    ): ContentValueList = toDo(
+        content: BlockValueListProducer? = null,
+    ): BlockValueList = toDo(
         text = RichTextList().text(text, linkUrl, annotations),
         checked = checked,
         content = content,
     )
 
-    fun toggle(text: RichTextList, content: ContentValueListProducer? = null): ContentValueList =
-        add(ToggleContentValueImpl(text, content()))
+    fun toggle(text: RichTextList, content: BlockValueListProducer? = null): BlockValueList =
+        add(ToggleBlockValueImpl(text, content()))
 
     @JvmOverloads
     fun toggle(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-        content: ContentValueListProducer? = null,
-    ): ContentValueList = toggle(
+        content: BlockValueListProducer? = null,
+    ): BlockValueList = toggle(
         text = RichTextList().text(text, linkUrl, annotations),
         content = content,
     )
 
 }
 
-typealias ContentValueListProducer = ContentValueList.() -> Unit
+typealias BlockValueListProducer = BlockValueList.() -> Unit
 
-internal operator fun ContentValueListProducer?.invoke() = this?.let { producer ->
-    ContentValueList().apply { producer(this) }
+internal operator fun BlockValueListProducer?.invoke() = this?.let { producer ->
+    BlockValueList().apply { producer(this) }
 }
 
 
-fun content(content: ContentValueListProducer) = content()
+fun content(content: BlockValueListProducer) = content()
