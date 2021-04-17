@@ -29,8 +29,8 @@ package org.jraf.klibnotion.client.future
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.client.future.FutureNotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.BlockValueListProducer
+import org.jraf.klibnotion.model.block.BlockListProducer
+import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
@@ -99,7 +99,7 @@ interface FutureNotionClient {
         fun createPage(
             parentDatabaseId: UuidString,
             properties: PropertyValueList = PropertyValueList(),
-            content: BlockValueList? = null,
+            content: MutableBlockList? = null,
         ): Future<Page>
 
         /**
@@ -108,7 +108,7 @@ interface FutureNotionClient {
         fun createPage(
             parentDatabaseId: UuidString,
             properties: PropertyValueList = PropertyValueList(),
-            content: BlockValueListProducer,
+            content: BlockListProducer,
         ): Future<Page>
 
         /**

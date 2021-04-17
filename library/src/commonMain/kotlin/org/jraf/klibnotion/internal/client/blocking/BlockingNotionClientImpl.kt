@@ -28,8 +28,8 @@ import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.blocking.BlockingNotionClient
 import org.jraf.klibnotion.internal.runBlocking
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.BlockValueListProducer
+import org.jraf.klibnotion.model.block.BlockListProducer
+import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.pagination.Pagination
@@ -82,7 +82,7 @@ internal class BlockingNotionClientImpl(
     override fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: BlockValueList?,
+        content: MutableBlockList?,
     ) = runBlocking {
         notionClient.pages.createPage(parentDatabaseId, properties, content)
     }
@@ -90,7 +90,7 @@ internal class BlockingNotionClientImpl(
     override fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: BlockValueListProducer,
+        content: BlockListProducer,
     ) = runBlocking {
         notionClient.pages.createPage(parentDatabaseId, properties, content)
     }

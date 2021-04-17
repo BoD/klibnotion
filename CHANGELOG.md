@@ -4,6 +4,7 @@
 
 - Remove `isArchived` parameter from `getPage` following the Notion API change.
 - Fix write content API following the Notion API change.
+- Support for "Retrieve block children" API
 
 ## v1.3.0 (2021-04-03)
 

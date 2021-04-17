@@ -22,7 +22,7 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.content.value
+package org.jraf.klibnotion.internal.api.model.block
 
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -33,43 +33,43 @@ import kotlinx.serialization.json.putJsonObject
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
-import org.jraf.klibnotion.model.block.value.BlockValue
-import org.jraf.klibnotion.model.block.value.BulletedListItemBlockValue
-import org.jraf.klibnotion.model.block.value.Heading1BlockValue
-import org.jraf.klibnotion.model.block.value.Heading2BlockValue
-import org.jraf.klibnotion.model.block.value.Heading3BlockValue
-import org.jraf.klibnotion.model.block.value.NumberedListItemBlockValue
-import org.jraf.klibnotion.model.block.value.ParagraphBlockValue
-import org.jraf.klibnotion.model.block.value.ToDoBlockValue
-import org.jraf.klibnotion.model.block.value.ToggleBlockValue
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.BulletedListItemBlock
+import org.jraf.klibnotion.model.block.Heading1Block
+import org.jraf.klibnotion.model.block.Heading2Block
+import org.jraf.klibnotion.model.block.Heading3Block
+import org.jraf.klibnotion.model.block.NumberedListItemBlock
+import org.jraf.klibnotion.model.block.ParagraphBlock
+import org.jraf.klibnotion.model.block.ToDoBlock
+import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal object ApiOutContentValueConverter : ApiConverter<JsonElement, BlockValue>() {
+internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
 
-    override fun modelToApi(model: BlockValue): JsonElement {
+    override fun modelToApi(model: Block): JsonElement {
         return buildJsonObject {
             put("object", "block")
 
             val type = when (model) {
-                is ParagraphBlockValue -> "paragraph"
-                is Heading1BlockValue -> "heading_1"
-                is Heading2BlockValue -> "heading_2"
-                is Heading3BlockValue -> "heading_3"
-                is BulletedListItemBlockValue -> "bulleted_list_item"
-                is NumberedListItemBlockValue -> "numbered_list_item"
-                is ToDoBlockValue -> "to_do"
-                is ToggleBlockValue -> "toggle"
+                is ParagraphBlock -> "paragraph"
+                is Heading1Block -> "heading_1"
+                is Heading2Block -> "heading_2"
+                is Heading3Block -> "heading_3"
+                is BulletedListItemBlock -> "bulleted_list_item"
+                is NumberedListItemBlock -> "numbered_list_item"
+                is ToDoBlock -> "to_do"
+                is ToggleBlock -> "toggle"
 
                 else -> throw IllegalStateException()
             }
             put("type", type)
             putJsonObject(type) {
-                text(model.text)
+                model.text?.let { text(it) }
                 when (model) {
-                    is ToDoBlockValue -> put("checked", model.checked)
+                    is ToDoBlock -> put("checked", model.checked)
                 }
-                model.content?.let {
-                    put("children", JsonArray(it.blockValueList.modelToApi(ApiOutContentValueConverter)))
+                model.children?.let {
+                    put("children", JsonArray(it.modelToApi(ApiOutBlockConverter)))
                 }
             }
         }

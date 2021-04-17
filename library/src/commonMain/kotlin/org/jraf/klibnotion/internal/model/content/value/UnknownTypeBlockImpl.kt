@@ -24,11 +24,15 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.ToggleBlockValue
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.UnknownTypeBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class ToggleBlockValueImpl(
-    override val text: RichTextList,
-    override val content: BlockValueList?,
-) : ToggleBlockValue
+internal data class UnknownTypeBlockImpl(
+    override val id: UuidString,
+    val type: String,
+) : UnknownTypeBlock {
+    override val text: RichTextList? = null
+    override val children: List<Block>? = null
+}

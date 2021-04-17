@@ -47,6 +47,7 @@ import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
@@ -58,9 +59,10 @@ import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConve
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.BlockValueListProducer
-import org.jraf.klibnotion.model.block.value.invoke
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.BlockListProducer
+import org.jraf.klibnotion.model.block.MutableBlockList
+import org.jraf.klibnotion.model.block.invoke
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
@@ -77,11 +79,13 @@ internal class NotionClientImpl(
 ) : NotionClient,
     NotionClient.Users,
     NotionClient.Databases,
-    NotionClient.Pages {
+    NotionClient.Pages,
+    NotionClient.Blocks {
 
     override val users = this
     override val databases = this
     override val pages = this
+    override val blocks = this
 
     @OptIn(KtorExperimentalAPI::class)
     private val httpClient by lazy {
@@ -204,13 +208,13 @@ internal class NotionClientImpl(
     override suspend fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: BlockValueList?,
+        content: MutableBlockList?,
     ): Page {
         return service.createPage(
             Triple(
                 parentDatabaseId,
                 properties.propertyValueList,
-                content?.blockValueList
+                content
             ).modelToApi(ApiCreateTableParametersConverter)
         )
             .apiToModel(ApiPageConverter)
@@ -219,7 +223,7 @@ internal class NotionClientImpl(
     override suspend fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: BlockValueListProducer,
+        content: BlockListProducer,
     ): Page = createPage(parentDatabaseId, properties, content())
 
     override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
@@ -229,6 +233,15 @@ internal class NotionClientImpl(
 
     // endregion
 
+
+    // region Blocks
+
+    override suspend fun getBlockList(parentId: UuidString, pagination: Pagination): ResultPage<Block> {
+        return service.getBlockList(parentId, pagination.startCursor)
+            .apiToModel(ApiPageResultBlockConverter)
+    }
+
+    // endregion
 
     override fun close() = httpClient.close()
 }

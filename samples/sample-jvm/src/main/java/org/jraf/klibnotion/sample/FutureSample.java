@@ -27,7 +27,7 @@ package org.jraf.klibnotion.sample;
 import org.jraf.klibnotion.client.*;
 import org.jraf.klibnotion.client.future.FutureNotionClient;
 import org.jraf.klibnotion.client.future.FutureNotionClientUtils;
-import org.jraf.klibnotion.model.block.value.BlockValueList;
+import org.jraf.klibnotion.model.block.MutableBlockList;
 import org.jraf.klibnotion.model.color.Color;
 import org.jraf.klibnotion.model.database.Database;
 import org.jraf.klibnotion.model.database.query.DatabaseQuery;
@@ -190,7 +190,7 @@ class FutureSample {
                         .string("Email", "aaa@aaa.com")
                         .string("Phone", "+1 424 2424 266")
                         .string("Url", "https://zgluteks.com"),
-                (BlockValueList) null
+                (MutableBlockList) null
         ).get();
         System.out.println(createdPage);
 

@@ -26,8 +26,9 @@ package org.jraf.klibnotion.client
 
 import org.jraf.klibnotion.internal.client.NotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.BlockValueListProducer
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.BlockListProducer
+import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
@@ -108,7 +109,7 @@ interface NotionClient {
         suspend fun createPage(
             parentDatabaseId: UuidString,
             properties: PropertyValueList = PropertyValueList(),
-            content: BlockValueList? = null,
+            content: MutableBlockList? = null,
         ): Page
 
         /**
@@ -118,7 +119,7 @@ interface NotionClient {
         suspend fun createPage(
             parentDatabaseId: UuidString,
             properties: PropertyValueList = PropertyValueList(),
-            content: BlockValueListProducer,
+            content: BlockListProducer,
         ): Page
 
         /**
@@ -127,6 +128,16 @@ interface NotionClient {
          */
         suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page
     }
+
+    /**
+     * Blocks (content) related APIs.
+     */
+    interface Blocks {
+//        suspend fun appendBlocks(parentId: UuidString): Block
+
+        suspend fun getBlockList(parentId: UuidString, pagination: Pagination = Pagination()): ResultPage<Block>
+    }
+
 
     /**
      * User related APIs.
@@ -138,11 +149,16 @@ interface NotionClient {
      */
     val databases: Databases
 
-
     /**
      * Page related APIs.
      */
     val pages: Pages
+
+    /**
+     * Page related APIs.
+     */
+    val blocks: Blocks
+
 
     /**
      * Dispose of this client instance.

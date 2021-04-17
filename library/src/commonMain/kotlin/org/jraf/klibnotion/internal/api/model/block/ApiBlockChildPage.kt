@@ -22,9 +22,14 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.block.value
+package org.jraf.klibnotion.internal.api.model.block
+
+import kotlinx.serialization.Serializable
 
 /**
- * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
+ * See [https://www.notion.so/Block-object-4b5518a4156a42d781c0ae8278853939].
  */
-interface Heading2BlockValue : BlockValue
+@Serializable
+internal data class ApiBlockChildPage(
+    val title: String,
+)

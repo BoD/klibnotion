@@ -24,11 +24,13 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.NumberedListItemBlockValue
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class NumberedListItemBlockValueImpl(
+internal data class ToggleBlockImpl(
+    override val id: UuidString,
     override val text: RichTextList,
-    override val content: BlockValueList?,
-) : NumberedListItemBlockValue
+    override val children: List<Block>?,
+) : ToggleBlock

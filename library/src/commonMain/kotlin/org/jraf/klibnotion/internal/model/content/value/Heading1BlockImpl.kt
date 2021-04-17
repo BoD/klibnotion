@@ -22,9 +22,16 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.block.value
+package org.jraf.klibnotion.internal.model.content.value
 
-/**
- * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
- */
-interface NumberedListItemBlockValue : BlockValue
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.Heading1Block
+import org.jraf.klibnotion.model.richtext.RichTextList
+
+internal data class Heading1BlockImpl(
+    override val id: UuidString,
+    override val text: RichTextList,
+) : Heading1Block {
+    override val children: List<Block>? = null
+}

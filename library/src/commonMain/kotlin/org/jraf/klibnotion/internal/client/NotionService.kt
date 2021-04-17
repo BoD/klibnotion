@@ -31,6 +31,7 @@ import io.ktor.client.request.patch
 import io.ktor.client.request.post
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
+import org.jraf.klibnotion.internal.api.model.block.ApiBlock
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
 import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParameters
@@ -49,6 +50,7 @@ internal class NotionService(private val httpClient: HttpClient) {
         private const val USERS = "users"
         private const val DATABASES = "databases"
         private const val PAGES = "pages"
+        private const val BLOCKS = "blocks"
     }
 
     // region Users
@@ -107,6 +109,12 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
             body = parameters
+        }
+    }
+
+    suspend fun getBlockList(parentId: UuidString, startCursor: String?): ApiResultPage<ApiBlock> {
+        return httpClient.get("$BASE_URL/$BLOCKS/$parentId/children") {
+            if (startCursor != null) parameter(START_CURSOR, startCursor)
         }
     }
 

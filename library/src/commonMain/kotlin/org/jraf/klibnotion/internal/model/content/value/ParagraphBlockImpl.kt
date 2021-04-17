@@ -22,9 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.block.value
+package org.jraf.klibnotion.internal.model.content.value
 
-/**
- * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
- */
-interface ToggleBlockValue : BlockValue
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.ParagraphBlock
+import org.jraf.klibnotion.model.richtext.RichTextList
+
+internal data class ParagraphBlockImpl(
+    override val id: UuidString,
+    override val text: RichTextList,
+    override val children: List<Block>?,
+) : ParagraphBlock

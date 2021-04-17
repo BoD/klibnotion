@@ -29,8 +29,8 @@ import kotlinx.coroutines.future.future
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.future.FutureNotionClient
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.BlockValueListProducer
+import org.jraf.klibnotion.model.block.BlockListProducer
+import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.pagination.Pagination
@@ -79,7 +79,7 @@ internal class FutureNotionClientImpl(
     override fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: BlockValueList?,
+        content: MutableBlockList?,
     ) = GlobalScope.future {
         notionClient.pages.createPage(parentDatabaseId, properties, content)
     }
@@ -87,7 +87,7 @@ internal class FutureNotionClientImpl(
     override fun createPage(
         parentDatabaseId: UuidString,
         properties: PropertyValueList,
-        content: BlockValueListProducer,
+        content: BlockListProducer,
     ) = GlobalScope.future {
         notionClient.pages.createPage(parentDatabaseId, properties, content)
     }

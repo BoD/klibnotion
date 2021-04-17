@@ -22,13 +22,27 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.content.value
+package org.jraf.klibnotion.internal.api.model.block
 
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.ParagraphBlockValue
-import org.jraf.klibnotion.model.richtext.RichTextList
+import kotlinx.serialization.Serializable
 
-internal data class ParagraphBlockValueImpl(
-    override val text: RichTextList,
-    override val content: BlockValueList?,
-) : ParagraphBlockValue
+/**
+ * See [https://www.notion.so/Block-object-4b5518a4156a42d781c0ae8278853939].
+ */
+@Serializable
+internal data class ApiBlock(
+    val id: String,
+    val created_time: String,
+    val last_edited_time: String,
+    val has_children: Boolean,
+    val type: String,
+    val paragraph: ApiBlockText? = null,
+    val heading_1: ApiBlockText? = null,
+    val heading_2: ApiBlockText? = null,
+    val heading_3: ApiBlockText? = null,
+    val bulleted_list_item: ApiBlockText? = null,
+    val numbered_list_item: ApiBlockText? = null,
+    val toggle: ApiBlockText? = null,
+    val to_do: ApiBlockTodo? = null,
+    val child_page: ApiBlockChildPage? = null,
+)

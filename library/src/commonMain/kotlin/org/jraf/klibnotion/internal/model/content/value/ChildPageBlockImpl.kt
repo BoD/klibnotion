@@ -24,11 +24,15 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.BulletedListItemBlockValue
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.ChildPageBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class BulletedListItemBlockValueImpl(
-    override val text: RichTextList,
-    override val content: BlockValueList?,
-) : BulletedListItemBlockValue
+internal data class ChildPageBlockImpl(
+    override val id: UuidString,
+    val title: String,
+) : ChildPageBlock {
+    override val text: RichTextList? = null
+    override val children: List<Block>? = null
+}

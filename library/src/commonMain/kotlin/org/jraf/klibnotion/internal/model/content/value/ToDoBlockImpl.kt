@@ -24,12 +24,14 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.ToDoBlockValue
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class ToDoBlockValueImpl(
+internal data class ToDoBlockImpl(
+    override val id: UuidString,
     override val text: RichTextList,
     override val checked: Boolean,
-    override val content: BlockValueList?,
-) : ToDoBlockValue
+    override val children: List<Block>?,
+) : ToDoBlock

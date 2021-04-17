@@ -24,12 +24,13 @@
 
 package org.jraf.klibnotion.internal.model.content.value
 
-import org.jraf.klibnotion.model.block.value.BlockValueList
-import org.jraf.klibnotion.model.block.value.Heading2BlockValue
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class Heading2BlockValueImpl(
+internal data class NumberedListItemBlockImpl(
+    override val id: UuidString,
     override val text: RichTextList,
-) : Heading2BlockValue {
-    override val content: BlockValueList? = null
-}
+    override val children: List<Block>?,
+) : NumberedListItemBlock
