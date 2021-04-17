@@ -147,7 +147,7 @@ class BlockingSample {
 
         // Get page
         System.out.println("Page:");
-        Page page = client.getPages().getPage(PAGE_ID, false);
+        Page page = client.getPages().getPage(PAGE_ID);
         System.out.println(page);
 
         // Create page
