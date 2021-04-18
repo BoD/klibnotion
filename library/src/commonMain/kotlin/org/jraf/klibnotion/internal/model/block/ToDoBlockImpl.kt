@@ -22,17 +22,16 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.content.value
+package org.jraf.klibnotion.internal.model.block
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.ChildPageBlock
+import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class ChildPageBlockImpl(
+internal data class ToDoBlockImpl(
     override val id: UuidString,
-    val title: String,
-) : ChildPageBlock {
-    override val text: RichTextList? = null
-    override val children: List<Block>? = null
-}
+    override val text: RichTextList,
+    override val checked: Boolean,
+    override var children: List<Block>?,
+) : ToDoBlock, MutableBlock

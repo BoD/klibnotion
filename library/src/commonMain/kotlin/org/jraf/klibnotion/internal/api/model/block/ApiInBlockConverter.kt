@@ -27,28 +27,32 @@ package org.jraf.klibnotion.internal.api.model.block
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
-import org.jraf.klibnotion.internal.model.content.value.BulletedListItemBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.ChildPageBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading1BlockImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading2BlockImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading3BlockImpl
-import org.jraf.klibnotion.internal.model.content.value.NumberedListItemBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.ParagraphBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.ToDoBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.ToggleBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.UnknownTypeBlockImpl
+import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
+import org.jraf.klibnotion.internal.model.block.ChildPageBlockImpl
+import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
+import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
+import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
+import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
+import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
+import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
+import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
+import org.jraf.klibnotion.internal.model.block.UnknownTypeBlockImpl
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
     override fun apiToModel(apiModel: ApiBlock): Block {
         val id = apiModel.id
+        // HACK: we use empty list as a signal that there are children that need fetching
+        val children: List<Block>? = if (apiModel.has_children) emptyList() else null
         return when (val type = apiModel.type) {
-            "paragraph" -> ParagraphBlockImpl(
-                id = id,
-                text = apiModel.paragraph.toRichTextList(),
-                children = null
-            )
+            "paragraph" -> {
+                ParagraphBlockImpl(
+                    id = id,
+                    text = apiModel.paragraph.toRichTextList(),
+                    children = children
+                )
+            }
 
             "heading_1" -> Heading1BlockImpl(
                 id = id,
@@ -68,26 +72,26 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
             "bulleted_list_item" -> BulletedListItemBlockImpl(
                 id = id,
                 text = apiModel.bulleted_list_item.toRichTextList(),
-                children = null
+                children = children
             )
 
             "numbered_list_item" -> NumberedListItemBlockImpl(
                 id = id,
                 text = apiModel.numbered_list_item.toRichTextList(),
-                children = null
+                children = children
             )
 
             "to_do" -> ToDoBlockImpl(
                 id = id,
                 text = apiModel.to_do.toRichTextList(),
                 checked = apiModel.to_do!!.checked,
-                children = null
+                children = children
             )
 
             "toggle" -> ToggleBlockImpl(
                 id = id,
                 text = apiModel.toggle.toRichTextList(),
-                children = null
+                children = children
             )
 
             "child_page" -> ChildPageBlockImpl(

@@ -22,16 +22,10 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.content.value
+package org.jraf.klibnotion.internal.model.block
 
-import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.Heading2Block
-import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class Heading2BlockImpl(
-    override val id: UuidString,
-    override val text: RichTextList,
-) : Heading2Block {
-    override val children: List<Block>? = null
+internal interface MutableBlock : Block {
+    override var children: List<Block>?
 }

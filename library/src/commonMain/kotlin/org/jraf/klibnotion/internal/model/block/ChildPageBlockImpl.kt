@@ -22,6 +22,17 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal
+package org.jraf.klibnotion.internal.model.block
 
-internal actual fun <T> runBlocking(block: suspend () -> T) = kotlinx.coroutines.runBlocking { block() }
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.ChildPageBlock
+import org.jraf.klibnotion.model.richtext.RichTextList
+
+internal data class ChildPageBlockImpl(
+    override val id: UuidString,
+    val title: String,
+) : ChildPageBlock {
+    override val text: RichTextList? = null
+    override val children: List<Block>? = null
+}

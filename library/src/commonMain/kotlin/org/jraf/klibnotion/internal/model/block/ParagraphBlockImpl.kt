@@ -22,17 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.content.value
+package org.jraf.klibnotion.internal.model.block
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.UnknownTypeBlock
+import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class UnknownTypeBlockImpl(
+internal data class ParagraphBlockImpl(
     override val id: UuidString,
-    val type: String,
-) : UnknownTypeBlock {
-    override val text: RichTextList? = null
-    override val children: List<Block>? = null
-}
+    override val text: RichTextList,
+    override var children: List<Block>?,
+) : ParagraphBlock, MutableBlock

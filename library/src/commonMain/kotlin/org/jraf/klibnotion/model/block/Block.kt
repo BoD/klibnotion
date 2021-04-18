@@ -24,14 +24,14 @@
 
 package org.jraf.klibnotion.model.block
 
-import org.jraf.klibnotion.internal.model.content.value.BulletedListItemBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading1BlockImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading2BlockImpl
-import org.jraf.klibnotion.internal.model.content.value.Heading3BlockImpl
-import org.jraf.klibnotion.internal.model.content.value.NumberedListItemBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.ParagraphBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.ToDoBlockImpl
-import org.jraf.klibnotion.internal.model.content.value.ToggleBlockImpl
+import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
+import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
+import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
+import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
+import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
+import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
+import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
+import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList

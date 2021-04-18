@@ -22,15 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.content.value
+package org.jraf.klibnotion.internal.model.block
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.ParagraphBlock
+import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class ParagraphBlockImpl(
+internal data class NumberedListItemBlockImpl(
     override val id: UuidString,
     override val text: RichTextList,
-    override val children: List<Block>?,
-) : ParagraphBlock
+    override var children: List<Block>?,
+) : NumberedListItemBlock, MutableBlock

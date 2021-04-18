@@ -42,6 +42,8 @@ import io.ktor.client.request.header
 import io.ktor.client.statement.readText
 import io.ktor.http.URLBuilder
 import io.ktor.util.KtorExperimentalAPI
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.serialization.json.Json
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
@@ -58,9 +60,11 @@ import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
+import org.jraf.klibnotion.internal.klibNotionScope
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
+import org.jraf.klibnotion.model.block.MutableBlock
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.block.invoke
 import org.jraf.klibnotion.model.database.Database
@@ -73,6 +77,7 @@ import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.user.User
+import kotlin.coroutines.coroutineContext
 
 internal class NotionClientImpl(
     clientConfiguration: ClientConfiguration,
@@ -237,11 +242,28 @@ internal class NotionClientImpl(
     // region Blocks
 
     override suspend fun getBlockList(parentId: UuidString, pagination: Pagination): ResultPage<Block> {
-        return service.getBlockList(parentId, pagination.startCursor)
+        val blockResultPage = service.getBlockList(parentId, pagination.startCursor)
             .apiToModel(ApiPageResultBlockConverter)
+        getChildrenRecursively(blockResultPage)
+        return blockResultPage
+    }
+
+    private suspend fun getChildrenRecursively(blockResultPage: ResultPage<Block>) {
+        val job = Job()
+        for (block in blockResultPage.results) {
+            if (block is MutableBlock && block.children?.isEmpty() == true) {
+                @Suppress("DeferredResultUnused")
+                klibNotionScope.async(coroutineContext + job) {
+                    val childrenResultPage = getBlockList(block.id)
+                    block.children = childrenResultPage.results
+                }
+            }
+        }
+        job.children.forEach { it.join() }
     }
 
     // endregion
+
 
     override fun close() = httpClient.close()
 }

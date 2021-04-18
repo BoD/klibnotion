@@ -25,7 +25,8 @@
 package org.jraf.klibnotion.internal
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
 
-internal expect val klibNotionScope: CoroutineScope
+internal actual val klibNotionScope: CoroutineScope = GlobalScope
 
-internal expect fun <T> runBlocking(block: suspend () -> T): T
+internal actual fun <T> runBlocking(block: suspend () -> T) = kotlinx.coroutines.runBlocking { block() }
