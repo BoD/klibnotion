@@ -29,6 +29,7 @@ package org.jraf.klibnotion.client.future
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.client.future.FutureNotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
@@ -118,6 +119,27 @@ interface FutureNotionClient {
     }
 
     /**
+     * See [NotionClient.Blocks].
+     */
+    interface Blocks {
+        /**
+         * See [NotionClient.Blocks.getBlockList].
+         */
+        fun getBlockList(parentId: UuidString, pagination: Pagination = Pagination()): Future<ResultPage<Block>>
+
+        /**
+         * See [NotionClient.Blocks.appendBlockList].
+         */
+        fun appendBlockList(parentId: UuidString, blocks: MutableBlockList): Future<Void?>
+
+        /**
+         * See [NotionClient.Blocks.appendBlockList].
+         */
+        fun appendBlockList(parentId: UuidString, blocks: BlockListProducer): Future<Void?>
+    }
+
+
+    /**
      * See [NotionClient.users].
      */
     val users: Users
@@ -127,11 +149,16 @@ interface FutureNotionClient {
      */
     val databases: Databases
 
-
     /**
      * See [NotionClient.pages].
      */
     val pages: Pages
+
+    /**
+     * See [NotionClient.blocks].
+     */
+    val blocks: Blocks
+
 
     /**
      * See [NotionClient.close].

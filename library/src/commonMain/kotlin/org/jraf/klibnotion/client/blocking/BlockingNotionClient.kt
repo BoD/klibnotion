@@ -29,6 +29,7 @@ package org.jraf.klibnotion.client.blocking
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.client.blocking.BlockingNotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
@@ -124,6 +125,27 @@ interface BlockingNotionClient {
     }
 
     /**
+     * See [NotionClient.Blocks].
+     */
+    interface Blocks {
+        /**
+         * See [NotionClient.Blocks.getBlockList].
+         */
+        fun getBlockList(parentId: UuidString, pagination: Pagination = Pagination()): ResultPage<Block>
+
+        /**
+         * See [NotionClient.Blocks.appendBlockList].
+         */
+        fun appendBlockList(parentId: UuidString, blocks: MutableBlockList)
+
+        /**
+         * See [NotionClient.Blocks.appendBlockList].
+         */
+        fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
+    }
+
+
+    /**
      * See [NotionClient.users].
      */
     val users: Users
@@ -133,11 +155,16 @@ interface BlockingNotionClient {
      */
     val databases: Databases
 
-
     /**
      * See [NotionClient.pages].
      */
     val pages: Pages
+
+    /**
+     * See [NotionClient.blocks].
+     */
+    val blocks: Blocks
+
 
     /**
      * See [NotionClient.close].

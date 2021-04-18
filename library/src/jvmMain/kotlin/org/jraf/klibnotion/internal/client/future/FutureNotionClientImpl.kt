@@ -41,10 +41,12 @@ internal class FutureNotionClientImpl(
 ) : FutureNotionClient,
     FutureNotionClient.Users,
     FutureNotionClient.Databases,
-    FutureNotionClient.Pages {
+    FutureNotionClient.Pages,
+    FutureNotionClient.Blocks {
     override val users = this
     override val databases = this
     override val pages = this
+    override val blocks = this
 
     override fun getUser(id: UuidString) = GlobalScope.future {
         notionClient.users.getUser(id)
@@ -94,6 +96,20 @@ internal class FutureNotionClientImpl(
 
     override fun updatePage(id: UuidString, properties: PropertyValueList) = GlobalScope.future {
         notionClient.pages.updatePage(id, properties)
+    }
+
+    override fun getBlockList(parentId: UuidString, pagination: Pagination) = GlobalScope.future {
+        notionClient.blocks.getBlockList(parentId, pagination)
+    }
+
+    override fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) = GlobalScope.future<Void?> {
+        notionClient.blocks.appendBlockList(parentId, blocks)
+        null
+    }
+
+    override fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) = GlobalScope.future<Void?> {
+        notionClient.blocks.appendBlockList(parentId, blocks)
+        null
     }
 
     override fun close() = notionClient.close()

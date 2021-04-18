@@ -24,7 +24,7 @@ allprojects {
     }
 
     group = "org.jraf"
-    version = "1.3.0"
+    version = "1.4.0"
 
     // Show a report in the log when running tests
     tasks.withType<Test> {
@@ -51,7 +51,7 @@ tasks {
             componentSelection {
                 all {
                     if (
-                        setOf("alpha", /*"beta", "rc",*/ "preview", "eap", "m1", "m2").any {
+                        setOf("alpha", "beta", "rc", "preview", "eap", "m1", "m2").any {
                             candidate.version.contains(it, true)
                         }
                     ) {

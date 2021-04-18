@@ -40,10 +40,12 @@ internal class BlockingNotionClientImpl(
 ) : BlockingNotionClient,
     BlockingNotionClient.Users,
     BlockingNotionClient.Databases,
-    BlockingNotionClient.Pages {
+    BlockingNotionClient.Pages,
+    BlockingNotionClient.Blocks {
     override val users = this
     override val databases = this
     override val pages = this
+    override val blocks = this
 
     override fun getUser(id: UuidString) = runBlocking {
         notionClient.users.getUser(id)
@@ -97,6 +99,18 @@ internal class BlockingNotionClientImpl(
 
     override fun updatePage(id: UuidString, properties: PropertyValueList) = runBlocking {
         notionClient.pages.updatePage(id, properties)
+    }
+
+    override fun getBlockList(parentId: UuidString, pagination: Pagination) = runBlocking {
+        notionClient.blocks.getBlockList(parentId, pagination)
+    }
+
+    override fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) = runBlocking {
+        notionClient.blocks.appendBlockList(parentId, blocks)
+    }
+
+    override fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) = runBlocking {
+        notionClient.blocks.appendBlockList(parentId, blocks)
     }
 
     override fun close() = notionClient.close()
