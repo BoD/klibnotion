@@ -29,6 +29,16 @@ import org.jraf.klibnotion.client.HttpConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.HttpProxy
 import org.jraf.klibnotion.client.NotionClient
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.BulletedListItemBlock
+import org.jraf.klibnotion.model.block.ChildPageBlock
+import org.jraf.klibnotion.model.block.Heading1Block
+import org.jraf.klibnotion.model.block.Heading2Block
+import org.jraf.klibnotion.model.block.Heading3Block
+import org.jraf.klibnotion.model.block.NumberedListItemBlock
+import org.jraf.klibnotion.model.block.ParagraphBlock
+import org.jraf.klibnotion.model.block.ToDoBlock
+import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -153,7 +163,7 @@ class Sample {
             println("Created page:")
             val createdPage: Page = client.pages.createPage(
                 parentDatabaseId = DATABASE_ID,
-                PropertyValueList()
+                properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .text("Name", "Name ${Random.nextInt()}")
                     .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
@@ -191,7 +201,54 @@ class Sample {
                     .string("Email", "aaa@aaa.com")
                     .string("Phone", "+1 424 2424 266")
                     .string("Url", "https://zgluteks.com")
-            )
+            ) {
+                heading1("First section")
+                paragraph("Hello, World!")
+
+                heading1("Second section")
+                paragraph("This paragraph is bold", annotations = Annotations.BOLD) {
+                    paragraph("Sub paragraph 1")
+                    paragraph("Sub paragraph 2") {
+                        paragraph("Sub sub paragraph") {
+
+                        }
+                    }
+                }
+
+                heading2("But then again")
+                heading3("Actually")
+                paragraph("That's the case")
+
+                heading3("But really")
+                paragraph(RichTextList().text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
+
+                bullet("There's this,")
+                bullet("there's that,")
+                bullet("then there's...") {
+                    paragraph("Will this work?")
+                }
+                bullet("indentation?") {
+                    bullet("indentation? 2") {
+                        bullet("indentation? 3")
+                    }
+                }
+
+                number("First")
+                number("Second") {
+                    number("Second second")
+                }
+                number("Third")
+
+                toDo("This one is checked", true)
+                toDo("This one is not checked", false)
+
+                toggle("This is a toggle!") {
+                    paragraph("This first paragraph is inside the toggle")
+                    paragraph("This second paragraph is inside the toggle")
+                    heading3("This too!")
+                }
+            }
+
             println(createdPage)
 
             // Update page
@@ -217,6 +274,16 @@ class Sample {
                     .string("Url", "https://zgluteks.com")
             )
             println(updatedPage)
+
+            // Get page contents
+            println("Page contents:")
+            val pageContents = client.blocks.getBlockList(PAGE_ID)
+            println(pageContents.results.toFormattedString())
+
+
+            // Append contents to page
+            println("Appending contents")
+            client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${NSDate()}") }
         }
 
         // Close
@@ -241,6 +308,34 @@ class Sample {
             is SelectOption -> name
             else -> toString()
         }
+    }
+
+    private fun List<Block>.toFormattedString(level: Int = 0): String {
+        val res = StringBuilder()
+        val levelStr = "  ".repeat(level)
+        var numberedListIndex = 1
+        for (block in this) {
+            res.appendLine(levelStr + when (block) {
+                is BulletedListItemBlock -> "-"
+                is ChildPageBlock -> "->"
+                is Heading1Block -> "#"
+                is Heading2Block -> "##"
+                is Heading3Block -> "###"
+                is NumberedListItemBlock -> "${numberedListIndex}."
+                is ParagraphBlock -> "¶"
+                is ToDoBlock -> if (block.checked) "[X]" else "[ ]"
+                is ToggleBlock -> "▼"
+                else -> "?"
+            } + " " + block.text.toFormattedString())
+
+            // Recurse
+            if (!block.children.isNullOrEmpty()) {
+                res.append(block.children!!.toFormattedString(level + 1))
+            }
+
+            if (block is NumberedListItemBlock) numberedListIndex++ else numberedListIndex = 1
+        }
+        return res.toString()
     }
 }
 

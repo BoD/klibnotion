@@ -19,3 +19,5 @@ kotlin {
         }
     }
 }
+
+// ./gradlew :sample-native-osx:build

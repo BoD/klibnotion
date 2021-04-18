@@ -133,9 +133,23 @@ interface NotionClient {
      * Blocks (content) related APIs.
      */
     interface Blocks {
-//        suspend fun appendBlocks(parentId: UuidString): Block
-
+        /**
+         * Retrieve children blocks of the specified object.
+         * @see <a href="https://www.notion.so/Retrieve-block-children-7ad593137c6348e7be1e37a42ef29027">Retrieve block children</a>
+         */
         suspend fun getBlockList(parentId: UuidString, pagination: Pagination = Pagination()): ResultPage<Block>
+
+        /**
+         * Append blocks to the children of the specified object.
+         * @see <a href="https://www.notion.so/Append-block-children-6d9f2aa8efc14b06a8ddfae75364e74f">Append block children</a>
+         */
+        suspend fun appendBlockList(parentId: UuidString, blocks: MutableBlockList)
+
+        /**
+         * Append blocks to the children of the specified object.
+         * @see <a href="https://www.notion.so/Append-block-children-6d9f2aa8efc14b06a8ddfae75364e74f">Append block children</a>
+         */
+        suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
     }
 
 

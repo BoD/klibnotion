@@ -49,6 +49,7 @@ import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParametersConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
@@ -61,10 +62,10 @@ import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConve
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.internal.klibNotionScope
+import org.jraf.klibnotion.internal.model.block.MutableBlock
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
-import org.jraf.klibnotion.model.block.MutableBlock
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.block.invoke
 import org.jraf.klibnotion.model.database.Database
@@ -261,6 +262,13 @@ internal class NotionClientImpl(
         }
         job.children.forEach { it.join() }
     }
+
+    override suspend fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) {
+        service.appendBlockList(parentId, blocks.modelToApi(ApiAppendBlocksParametersConverter))
+    }
+
+    override suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) =
+        appendBlockList(parentId, blocks() ?: MutableBlockList())
 
     // endregion
 
