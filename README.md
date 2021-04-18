@@ -76,6 +76,7 @@ The client gives access to several API "areas":
 - `users`
 - `databases`
 - `pages`
+- `blocks`
 
 Each area exposes related APIs, for instance: `notionClient.pages.getPage`.
 
