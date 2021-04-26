@@ -105,6 +105,10 @@ internal class BlockingNotionClientImpl(
         notionClient.blocks.getBlockList(parentId, pagination)
     }
 
+    override fun getAllBlockListRecursively(parentId: UuidString) = runBlocking {
+        notionClient.blocks.getAllBlockListRecursively(parentId)
+    }
+
     override fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) = runBlocking {
         notionClient.blocks.appendBlockList(parentId, blocks)
     }

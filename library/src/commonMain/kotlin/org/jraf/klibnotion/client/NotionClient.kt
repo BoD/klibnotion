@@ -135,9 +135,24 @@ interface NotionClient {
     interface Blocks {
         /**
          * Retrieve children blocks of the specified object.
+         *
+         * Note: this will *not* retrieve the children blocks (if any). Blocks that don't have children will have their
+         * [Block.children] property set to `null`, whereas blocks that do have children will have it set to an empty list.
+         *
+         * If you need to retrieve the children blocks recursively refer to the [getAllBlockListRecursively] method instead.
+         *
          * @see <a href="https://www.notion.so/Retrieve-block-children-7ad593137c6348e7be1e37a42ef29027">Retrieve block children</a>
          */
         suspend fun getBlockList(parentId: UuidString, pagination: Pagination = Pagination()): ResultPage<Block>
+
+        /**
+         * Retrieve all children blocks (including all the pages) of the specified object, and including all their children,
+         * recursively.
+         *
+         * **Caution:** be aware that this will potentially make many network calls (depending on the size of the block list you
+         * are retrieving).
+         */
+        suspend fun getAllBlockListRecursively(parentId: UuidString): List<Block>
 
         /**
          * Append blocks to the children of the specified object.

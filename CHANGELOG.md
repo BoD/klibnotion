@@ -2,6 +2,8 @@
 
 ## Next (????-??-??)
 
+- Add a `getAllBlockListRecursively` API to easily retrieve a whole document.
+
 ## v1.4.0 (2021-04-18)
 
 - Remove `isArchived` parameter from `getPage` following the Notion API change.

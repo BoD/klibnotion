@@ -278,9 +278,8 @@ class Sample {
 
             // Get page contents
             println("Page contents:")
-            val pageContents = client.blocks.getBlockList(PAGE_ID)
-            println(pageContents.results.toFormattedString())
-
+            val pageContents = client.blocks.getAllBlockListRecursively(PAGE_ID)
+            println(pageContents.toFormattedString())
 
             // Append contents to page
             println("Appending contents")

@@ -243,10 +243,21 @@ internal class NotionClientImpl(
     // region Blocks
 
     override suspend fun getBlockList(parentId: UuidString, pagination: Pagination): ResultPage<Block> {
-        val blockResultPage = service.getBlockList(parentId, pagination.startCursor)
+        return service.getBlockList(parentId, pagination.startCursor)
             .apiToModel(ApiPageResultBlockConverter)
-        getChildrenRecursively(blockResultPage)
-        return blockResultPage
+    }
+
+    override suspend fun getAllBlockListRecursively(parentId: UuidString): List<Block> {
+        val results = mutableListOf<Block>()
+        var nextPagination: Pagination? = Pagination()
+        while (nextPagination != null) {
+            val blockResultPage = service.getBlockList(parentId, nextPagination.startCursor)
+                .apiToModel(ApiPageResultBlockConverter)
+            getChildrenRecursively(blockResultPage)
+            results += blockResultPage.results
+            nextPagination = blockResultPage.nextPagination
+        }
+        return results
     }
 
     private suspend fun getChildrenRecursively(blockResultPage: ResultPage<Block>) {
@@ -255,8 +266,8 @@ internal class NotionClientImpl(
             if (block is MutableBlock && block.children?.isEmpty() == true) {
                 @Suppress("DeferredResultUnused")
                 klibNotionScope.async(coroutineContext + job) {
-                    val childrenResultPage = getBlockList(block.id)
-                    block.children = childrenResultPage.results
+                    val childrenResultPage = getAllBlockListRecursively(block.id)
+                    block.children = childrenResultPage
                 }
             }
         }

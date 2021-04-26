@@ -102,6 +102,10 @@ internal class FutureNotionClientImpl(
         notionClient.blocks.getBlockList(parentId, pagination)
     }
 
+    override fun getAllBlockListRecursively(parentId: UuidString) = GlobalScope.future {
+        notionClient.blocks.getAllBlockListRecursively(parentId)
+    }
+
     override fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) = GlobalScope.future<Void?> {
         notionClient.blocks.appendBlockList(parentId, blocks)
         null

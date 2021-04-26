@@ -128,6 +128,11 @@ interface FutureNotionClient {
         fun getBlockList(parentId: UuidString, pagination: Pagination = Pagination()): Future<ResultPage<Block>>
 
         /**
+         * See [NotionClient.Blocks.getAllBlockListRecursively].
+         */
+        fun getAllBlockListRecursively(parentId: UuidString): Future<List<Block>>
+
+        /**
          * See [NotionClient.Blocks.appendBlockList].
          */
         fun appendBlockList(parentId: UuidString, blocks: MutableBlockList): Future<Void?>

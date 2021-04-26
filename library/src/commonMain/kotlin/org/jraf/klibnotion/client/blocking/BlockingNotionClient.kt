@@ -134,6 +134,11 @@ interface BlockingNotionClient {
         fun getBlockList(parentId: UuidString, pagination: Pagination = Pagination()): ResultPage<Block>
 
         /**
+         * See [NotionClient.Blocks.getAllBlockListRecursively].
+         */
+        fun getAllBlockListRecursively(parentId: UuidString): List<Block>
+
+        /**
          * See [NotionClient.Blocks.appendBlockList].
          */
         fun appendBlockList(parentId: UuidString, blocks: MutableBlockList)
