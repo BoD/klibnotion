@@ -22,7 +22,34 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.value.formula
+package org.jraf.klibnotion.model.property.value
+
+import org.jraf.klibnotion.model.date.DateOrDateRange
+
+/**
+ * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ */
+sealed interface FormulaPropertyValue<T : Any> : PropertyValue<T>
+
+/**
+ * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ */
+interface BooleanFormulaPropertyValue : FormulaPropertyValue<Boolean>
+
+/**
+ * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ */
+interface DateFormulaPropertyValue : FormulaPropertyValue<DateOrDateRange>
+
+/**
+ * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ */
+interface NumberFormulaPropertyValue : FormulaPropertyValue<Number>
+
+/**
+ * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ */
+interface StringFormulaPropertyValue : FormulaPropertyValue<String>
 
 /**
  * This type is returned when a Formula Property Value of a type unknown to this library is returned by the Notion API.

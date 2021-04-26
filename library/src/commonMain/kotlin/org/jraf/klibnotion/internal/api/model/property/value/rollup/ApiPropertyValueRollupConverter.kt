@@ -34,7 +34,7 @@ import org.jraf.klibnotion.internal.model.property.value.rollup.ArrayRollupPrope
 import org.jraf.klibnotion.internal.model.property.value.rollup.DateRollupPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.rollup.NumberRollupPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.rollup.UnknownTypeRollupPropertyValueImpl
-import org.jraf.klibnotion.model.property.value.rollup.RollupPropertyValue
+import org.jraf.klibnotion.model.property.value.RollupPropertyValue
 
 internal object ApiPropertyValueRollupConverter :
     ApiConverter<Pair<String, ApiPropertyValue>, RollupPropertyValue<*>>() {

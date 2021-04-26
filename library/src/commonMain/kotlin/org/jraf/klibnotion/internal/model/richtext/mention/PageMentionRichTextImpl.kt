@@ -26,7 +26,7 @@ package org.jraf.klibnotion.internal.model.richtext.mention
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.richtext.Annotations
-import org.jraf.klibnotion.model.richtext.mention.PageMentionRichText
+import org.jraf.klibnotion.model.richtext.PageMentionRichText
 
 internal data class PageMentionRichTextImpl(
     override val plainText: String,

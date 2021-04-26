@@ -26,7 +26,7 @@ package org.jraf.klibnotion.internal.model.richtext.mention
 
 import org.jraf.klibnotion.model.date.DateOrDateRange
 import org.jraf.klibnotion.model.richtext.Annotations
-import org.jraf.klibnotion.model.richtext.mention.DateMentionRichText
+import org.jraf.klibnotion.model.richtext.DateMentionRichText
 
 internal data class DateMentionRichTextImpl(
     override val plainText: String,

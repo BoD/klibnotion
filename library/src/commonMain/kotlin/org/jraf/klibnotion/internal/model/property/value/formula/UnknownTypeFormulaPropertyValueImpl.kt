@@ -24,7 +24,7 @@
 
 package org.jraf.klibnotion.internal.model.property.value.formula
 
-import org.jraf.klibnotion.model.property.value.formula.UnknownTypeFormulaPropertyValue
+import org.jraf.klibnotion.model.property.value.UnknownTypeFormulaPropertyValue
 
 internal data class UnknownTypeFormulaPropertyValueImpl(
     override val id: String,

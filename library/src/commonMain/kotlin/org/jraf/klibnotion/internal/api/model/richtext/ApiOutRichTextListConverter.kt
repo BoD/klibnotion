@@ -35,13 +35,13 @@ import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.richtext.Annotations
+import org.jraf.klibnotion.model.richtext.DatabaseMentionRichText
+import org.jraf.klibnotion.model.richtext.DateMentionRichText
 import org.jraf.klibnotion.model.richtext.EquationRichText
+import org.jraf.klibnotion.model.richtext.PageMentionRichText
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.richtext.TextRichText
-import org.jraf.klibnotion.model.richtext.mention.DatabaseMentionRichText
-import org.jraf.klibnotion.model.richtext.mention.DateMentionRichText
-import org.jraf.klibnotion.model.richtext.mention.PageMentionRichText
-import org.jraf.klibnotion.model.richtext.mention.UserMentionRichText
+import org.jraf.klibnotion.model.richtext.UserMentionRichText
 
 internal object ApiOutRichTextListConverter : ApiConverter<JsonArray, RichTextList>() {
     override fun modelToApi(model: RichTextList): JsonArray = buildJsonArray {

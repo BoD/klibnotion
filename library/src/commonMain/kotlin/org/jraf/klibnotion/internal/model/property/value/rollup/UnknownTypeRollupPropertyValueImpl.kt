@@ -24,7 +24,7 @@
 
 package org.jraf.klibnotion.internal.model.property.value.rollup
 
-import org.jraf.klibnotion.model.property.value.rollup.UnknownTypeRollupPropertyValue
+import org.jraf.klibnotion.model.property.value.UnknownTypeRollupPropertyValue
 
 internal data class UnknownTypeRollupPropertyValueImpl(
     override val id: String,

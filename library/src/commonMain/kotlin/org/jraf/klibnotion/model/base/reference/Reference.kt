@@ -29,6 +29,6 @@ import org.jraf.klibnotion.model.base.UuidString
 /**
  * A reference to another object.
  */
-interface Reference {
+sealed interface Reference {
     val id: UuidString
 }

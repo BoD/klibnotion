@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.internal.model.property.value.rollup
 
 import org.jraf.klibnotion.model.date.DateOrDateRange
-import org.jraf.klibnotion.model.property.value.rollup.DateRollupPropertyValue
+import org.jraf.klibnotion.model.property.value.DateRollupPropertyValue
 
 internal data class DateRollupPropertyValueImpl(
     override val id: String,

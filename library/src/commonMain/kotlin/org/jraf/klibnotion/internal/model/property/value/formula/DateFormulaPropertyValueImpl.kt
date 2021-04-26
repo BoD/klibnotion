@@ -22,14 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.value.rollup
+package org.jraf.klibnotion.internal.model.property.value.formula
 
-import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.model.date.DateOrDateRange
+import org.jraf.klibnotion.model.property.value.DateFormulaPropertyValue
 
-/**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
- *
- * Note: the [PropertyValue]s in the list will have empty string (`""`)
- * for the [PropertyValue.name] and [PropertyValue.id] fields.
- */
-interface ArrayRollupPropertyValue : RollupPropertyValue<List<PropertyValue<*>>>
+internal data class DateFormulaPropertyValueImpl(
+    override val id: String,
+    override val name: String,
+    override val value: DateOrDateRange,
+) : DateFormulaPropertyValue

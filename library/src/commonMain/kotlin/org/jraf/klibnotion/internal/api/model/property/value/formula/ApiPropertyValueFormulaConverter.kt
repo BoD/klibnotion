@@ -25,13 +25,16 @@
 package org.jraf.klibnotion.internal.api.model.property.value.formula
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.base.ApiNumberConverter
+import org.jraf.klibnotion.internal.api.model.date.ApiDateConverter
 import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValue
 import org.jraf.klibnotion.internal.model.property.value.formula.BooleanFormulaPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.formula.DateFormulaPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.formula.NumberFormulaPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.formula.StringFormulaPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.formula.UnknownTypeFormulaPropertyValueImpl
-import org.jraf.klibnotion.model.property.value.formula.FormulaPropertyValue
+import org.jraf.klibnotion.model.property.value.FormulaPropertyValue
 
 internal object ApiPropertyValueFormulaConverter :
     ApiConverter<Pair<String, ApiPropertyValue>, FormulaPropertyValue<*>>() {
@@ -48,12 +51,17 @@ internal object ApiPropertyValueFormulaConverter :
             "number" -> NumberFormulaPropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiNumberConverter.apiToModel(formula.number!!)
+                value = formula.number!!.apiToModel(ApiNumberConverter)
             )
             "boolean" -> BooleanFormulaPropertyValueImpl(
                 id = id,
                 name = name,
                 value = formula.boolean!!,
+            )
+            "date" -> DateFormulaPropertyValueImpl(
+                id = id,
+                name = name,
+                value = formula.date!!.apiToModel(ApiDateConverter),
             )
             else -> UnknownTypeFormulaPropertyValueImpl(
                 id = id,

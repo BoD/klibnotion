@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.internal.model.richtext.mention
 
 import org.jraf.klibnotion.model.richtext.Annotations
-import org.jraf.klibnotion.model.richtext.mention.UserMentionRichText
+import org.jraf.klibnotion.model.richtext.UserMentionRichText
 import org.jraf.klibnotion.model.user.User
 
 internal data class UserMentionRichTextImpl(

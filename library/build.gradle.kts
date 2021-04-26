@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
@@ -153,6 +155,11 @@ signing {
     // signing.password=<your password>
     // signing.secretKeyRingFile=<absolute path to the gpg private key>
     sign(publishing.publications)
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    // TODO Necessary until 1.5 has been released
+    kotlinOptions.languageVersion = "1.5"
 }
 
 // Run `./gradlew publishToMavenLocal` to publish to the local maven repo

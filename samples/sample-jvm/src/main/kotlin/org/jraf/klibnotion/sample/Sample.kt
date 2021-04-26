@@ -41,6 +41,7 @@ import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
+import org.jraf.klibnotion.model.block.UnknownTypeBlock
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -325,7 +326,7 @@ class Sample {
                 is ParagraphBlock -> "¶"
                 is ToDoBlock -> if (block.checked) "[X]" else "[ ]"
                 is ToggleBlock -> "▼"
-                else -> "?"
+                is UnknownTypeBlock -> "?"
             } + " " + block.text.toFormattedString())
 
             // Recurse

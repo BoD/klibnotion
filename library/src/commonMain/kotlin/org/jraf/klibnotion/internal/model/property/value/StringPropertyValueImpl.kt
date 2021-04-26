@@ -24,10 +24,10 @@
 
 package org.jraf.klibnotion.internal.model.property.value
 
-import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.model.property.value.StringPropertyValue
 
 internal data class StringPropertyValueImpl(
     override val id: String,
     override val name: String,
     override val value: String,
-) : PropertyValue<String>
+) : StringPropertyValue

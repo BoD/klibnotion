@@ -26,6 +26,6 @@ package org.jraf.klibnotion.internal.model.block
 
 import org.jraf.klibnotion.model.block.Block
 
-internal interface MutableBlock : Block {
-    override var children: List<Block>?
+internal interface MutableBlock {
+    var children: List<Block>?
 }

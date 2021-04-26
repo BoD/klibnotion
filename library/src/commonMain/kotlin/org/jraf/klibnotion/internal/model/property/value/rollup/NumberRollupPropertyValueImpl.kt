@@ -24,7 +24,7 @@
 
 package org.jraf.klibnotion.internal.model.property.value.rollup
 
-import org.jraf.klibnotion.model.property.value.rollup.NumberRollupPropertyValue
+import org.jraf.klibnotion.model.property.value.NumberRollupPropertyValue
 
 internal data class NumberRollupPropertyValueImpl(
     override val id: String,

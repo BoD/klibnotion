@@ -24,7 +24,7 @@
 
 package org.jraf.klibnotion.internal.model.property.value.formula
 
-import org.jraf.klibnotion.model.property.value.formula.NumberFormulaPropertyValue
+import org.jraf.klibnotion.model.property.value.NumberFormulaPropertyValue
 
 internal data class NumberFormulaPropertyValueImpl(
     override val id: String,

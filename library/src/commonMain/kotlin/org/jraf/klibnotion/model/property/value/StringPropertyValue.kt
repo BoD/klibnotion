@@ -22,13 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.richtext.mention
-
-import org.jraf.klibnotion.model.base.UuidString
+package org.jraf.klibnotion.model.property.value
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
  */
-interface DatabaseMentionRichText : MentionRichText {
-    val databaseId: UuidString
-}
+interface StringPropertyValue : PropertyValue<String>

@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.internal.model.richtext.mention
 
 import org.jraf.klibnotion.model.richtext.Annotations
-import org.jraf.klibnotion.model.richtext.mention.UnknownTypeMentionRichText
+import org.jraf.klibnotion.model.richtext.UnknownTypeMentionRichText
 
 internal data class UnknownTypeMentionRichTextImpl(
     override val plainText: String,
