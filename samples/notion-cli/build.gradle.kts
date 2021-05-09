@@ -17,7 +17,6 @@ kotlin {
         val main by compilations.getting {
             kotlinOptions {
                 jvmTarget = "1.8"
-                languageVersion = "1.4"
             }
         }
     }
@@ -31,7 +30,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Kotlin
-                implementation(kotlin("stdlib"))
                 implementation("org.jetbrains.kotlinx", "kotlinx-cli", Versions.KOTLINX_CLI)
 
                 // Library
@@ -41,13 +39,11 @@ kotlin {
 
         val macosMain by getting {
             dependencies {
-
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8", Versions.COROUTINES)
             }
         }
     }

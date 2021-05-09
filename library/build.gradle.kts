@@ -57,7 +57,6 @@ kotlin {
             kotlin.srcDir(tasks.getByName("generateVersionKt").outputs.files)
 
             dependencies {
-                implementation(kotlin("stdlib"))
                 implementation("io.ktor", "ktor-client-core", Versions.KTOR)
                 implementation("io.ktor", "ktor-client-json", Versions.KTOR)
                 implementation("io.ktor", "ktor-client-serialization", Versions.KTOR)

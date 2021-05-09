@@ -12,8 +12,7 @@ tasks.withType<KotlinCompile> {
 
 dependencies {
     // Kotlin
-    implementation(kotlin("stdlib-jdk8", Versions.KOTLIN))
-    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8", Versions.COROUTINES)
+    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", Versions.COROUTINES)
 
     // Library
     implementation(project(":klibnotion"))
