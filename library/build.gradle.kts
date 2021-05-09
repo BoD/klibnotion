@@ -1,7 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("multiplatform")
+    kotlin("multiplatform") version Versions.KOTLIN
     kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
     id("maven-publish")
     id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
@@ -37,7 +35,6 @@ kotlin {
         val main by compilations.getting {
             kotlinOptions {
                 jvmTarget = "1.8"
-                languageVersion = "1.4"
             }
         }
     }
@@ -155,11 +152,6 @@ signing {
     // signing.password=<your password>
     // signing.secretKeyRingFile=<absolute path to the gpg private key>
     sign(publishing.publications)
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    // TODO Necessary until 1.5 has been released
-    kotlinOptions.languageVersion = "1.5"
 }
 
 // Run `./gradlew publishToMavenLocal` to publish to the local maven repo

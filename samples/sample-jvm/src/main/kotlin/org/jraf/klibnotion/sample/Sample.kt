@@ -167,7 +167,7 @@ class Sample {
                 parentDatabaseId = DATABASE_ID,
                 properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
-                    .text("Name", "Name ${Random.nextInt()}")
+                    .title("Name", "Name ${Random.nextInt()}")
                     .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
                     .text("Oui", RichTextList()
                         .text("default ")
@@ -192,17 +192,19 @@ class Sample {
                     )
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
-                    .date("Some date",
+                    .date(
+                        "Some date",
                         DateOrDateRange(
                             start = DateTime(java.util.Date()),
-                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)))
+                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L))
+                        )
                     )
                     .relation("Android version", PAGE_ID)
                     .people("User", USER_ID)
                     .checkbox("Is Greedo", Random.nextBoolean())
-                    .string("Email", "aaa@aaa.com")
-                    .string("Phone", "+1 424 2424 266")
-                    .string("Url", "https://zgluteks.com")
+                    .email("Email", "aaa@aaa.com")
+                    .phoneNumber("Phone", "+1 424 2424 266")
+                    .url("Url", "https://zgluteks.com")
             ) {
                 heading1("First section")
                 paragraph("Hello, World!")
@@ -259,21 +261,23 @@ class Sample {
                 id = PAGE_ID,
                 PropertyValueList()
                     .number("Legs", Random.nextInt())
-                    .text("Name", "Updated page ${Random.nextInt()}")
+                    .title("Name", "Updated page ${Random.nextInt()}")
                     .text("title", "Updated page ${Random.nextInt()}")
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
-                    .date("Some date",
+                    .date(
+                        "Some date",
                         DateOrDateRange(
                             start = DateTime(java.util.Date()),
-                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)))
+                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L))
+                        )
                     )
                     .relation("Android version", PAGE_ID)
                     .people("User", USER_ID)
                     .checkbox("Is Greedo", Random.nextBoolean())
-                    .string("Email", "aaa@aaa.com")
-                    .string("Phone", "+1 424 2424 266")
-                    .string("Url", "https://zgluteks.com")
+                    .email("Email", "aaa@aaa.com")
+                    .phoneNumber("Phone", "+1 424 2424 266")
+                    .url("Url", "https://zgluteks.com")
             )
             println(updatedPage)
 

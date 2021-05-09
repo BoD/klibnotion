@@ -41,6 +41,8 @@ import org.jraf.klibnotion.model.richtext.EquationRichText
 import org.jraf.klibnotion.model.richtext.PageMentionRichText
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.richtext.TextRichText
+import org.jraf.klibnotion.model.richtext.UnknownTypeMentionRichText
+import org.jraf.klibnotion.model.richtext.UnknownTypeRichText
 import org.jraf.klibnotion.model.richtext.UserMentionRichText
 
 internal object ApiOutRichTextListConverter : ApiConverter<JsonArray, RichTextList>() {
@@ -60,7 +62,7 @@ internal object ApiOutRichTextListConverter : ApiConverter<JsonArray, RichTextLi
                     }
                 }
 
-                when (richText) {
+                val ignored = when (richText) {
                     is TextRichText -> putJsonObject("text") {
                         put("content", richText.plainText)
                         if (richText.linkUrl != null) putJsonObject("link") {
@@ -98,6 +100,10 @@ internal object ApiOutRichTextListConverter : ApiConverter<JsonArray, RichTextLi
                     is EquationRichText -> putJsonObject("equation") {
                         put("expression", richText.expression)
                     }
+
+                    is UnknownTypeMentionRichText,
+                    is UnknownTypeRichText,
+                    -> throw IllegalStateException()
                 }
             }
         }

@@ -10,10 +10,6 @@ buildscript {
         mavenCentral()
         maven(url = "https://dl.bintray.com/kotlin/kotlinx/")
     }
-
-    dependencies {
-        classpath(kotlin("gradle-plugin", Versions.KOTLIN))
-    }
 }
 
 allprojects {

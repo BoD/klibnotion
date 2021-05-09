@@ -188,9 +188,9 @@ class BlockingSample {
                         .relation("Android version", PAGE_ID)
                         .people("User", USER_ID)
                         .checkbox("Is Greedo", random.nextBoolean())
-                        .string("Email", "aaa@aaa.com")
-                        .string("Phone", "+1 424 2424 266")
-                        .string("Url", "https://zgluteks.com"),
+                        .email("Email", "aaa@aaa.com")
+                        .phoneNumber("Phone", "+1 424 2424 266")
+                        .url("Url", "https://zgluteks.com"),
                 contentValueList -> {
                     contentValueList.paragraph("test");
                     return Unit.INSTANCE;
@@ -204,7 +204,7 @@ class BlockingSample {
                 PAGE_ID,
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
-                        .text("Name", "Updated page " + random.nextInt())
+                        .title("Name", "Updated page " + random.nextInt())
                         .text("title", "Updated page " + random.nextInt())
                         .selectByName("Species", "Alien")
                         .multiSelectByNames("Planets", "Tatooine", "Bespin")
@@ -216,9 +216,9 @@ class BlockingSample {
                         .relation("Android version", PAGE_ID)
                         .people("User", USER_ID)
                         .checkbox("Is Greedo", random.nextBoolean())
-                        .string("Email", "aaa@aaa.com")
-                        .string("Phone", "+1 424 2424 266")
-                        .string("Url", "https://zgluteks.com")
+                        .email("Email", "aaa@aaa.com")
+                        .phoneNumber("Phone", "+1 424 2424 266")
+                        .url("Url", "https://zgluteks.com")
         );
         System.out.println(updatedPage);
 

@@ -156,7 +156,7 @@ class FutureSample {
                 DATABASE_ID,
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
-                        .text("Name", "Name " + random.nextInt())
+                        .title("Name", "Name " + random.nextInt())
                         .text("title", "Title " + random.nextInt(), null, new Annotations(Color.BLUE))
                         .text("Oui", new RichTextList()
                                 .text("default ", Annotations.DEFAULT)
@@ -187,9 +187,9 @@ class FutureSample {
                         .relation("Android version", PAGE_ID)
                         .people("User", USER_ID)
                         .checkbox("Is Greedo", random.nextBoolean())
-                        .string("Email", "aaa@aaa.com")
-                        .string("Phone", "+1 424 2424 266")
-                        .string("Url", "https://zgluteks.com"),
+                        .email("Email", "aaa@aaa.com")
+                        .phoneNumber("Phone", "+1 424 2424 266")
+                        .url("Url", "https://zgluteks.com"),
                 (MutableBlockList) null
         ).get();
         System.out.println(createdPage);
@@ -200,7 +200,7 @@ class FutureSample {
                 PAGE_ID,
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
-                        .text("Name", "Updated page " + random.nextInt())
+                        .title("Name", "Updated page " + random.nextInt())
                         .text("title", "Updated page " + random.nextInt())
                         .selectByName("Species", "Alien")
                         .multiSelectByNames("Planets", "Tatooine", "Bespin")
@@ -212,9 +212,9 @@ class FutureSample {
                         .relation("Android version", PAGE_ID)
                         .people("User", USER_ID)
                         .checkbox("Is Greedo", random.nextBoolean())
-                        .string("Email", "aaa@aaa.com")
-                        .string("Phone", "+1 424 2424 266")
-                        .string("Url", "https://zgluteks.com")
+                        .email("Email", "aaa@aaa.com")
+                        .phoneNumber("Phone", "+1 424 2424 266")
+                        .url("Url", "https://zgluteks.com")
         ).get();
         System.out.println(updatedPage);
 

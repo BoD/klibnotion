@@ -4,6 +4,7 @@
 
 - Add a `getAllBlockListRecursively` API to easily retrieve a whole document.
 - (Breaking change) use of Sealed Interfaces - a few interfaces were moved to their parent package due to this change
+- Use the new syntax for writing property values
 
 ## v1.4.0 (2021-04-18)
 

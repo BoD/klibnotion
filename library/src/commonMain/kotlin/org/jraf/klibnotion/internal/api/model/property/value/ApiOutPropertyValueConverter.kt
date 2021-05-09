@@ -25,7 +25,6 @@
 package org.jraf.klibnotion.internal.api.model.property.value
 
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.addJsonObject
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
@@ -34,69 +33,119 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
-import org.jraf.klibnotion.internal.model.property.value.StringPropertyValueImpl
 import org.jraf.klibnotion.model.property.value.CheckboxPropertyValue
+import org.jraf.klibnotion.model.property.value.CreatedByPropertyValue
+import org.jraf.klibnotion.model.property.value.CreatedTimePropertyValue
 import org.jraf.klibnotion.model.property.value.DatePropertyValue
+import org.jraf.klibnotion.model.property.value.EmailPropertyValue
+import org.jraf.klibnotion.model.property.value.FilesPropertyValue
+import org.jraf.klibnotion.model.property.value.FormulaPropertyValue
+import org.jraf.klibnotion.model.property.value.LastEditedByPropertyValue
+import org.jraf.klibnotion.model.property.value.LastEditedTimePropertyValue
 import org.jraf.klibnotion.model.property.value.MultiSelectPropertyValue
 import org.jraf.klibnotion.model.property.value.NumberPropertyValue
 import org.jraf.klibnotion.model.property.value.PeoplePropertyValue
+import org.jraf.klibnotion.model.property.value.PhoneNumberPropertyValue
 import org.jraf.klibnotion.model.property.value.PropertyValue
 import org.jraf.klibnotion.model.property.value.RelationPropertyValue
+import org.jraf.klibnotion.model.property.value.RollupPropertyValue
 import org.jraf.klibnotion.model.property.value.SelectPropertyValue
 import org.jraf.klibnotion.model.property.value.TextPropertyValue
+import org.jraf.klibnotion.model.property.value.TitlePropertyValue
+import org.jraf.klibnotion.model.property.value.UnknownTypePropertyValue
+import org.jraf.klibnotion.model.property.value.UrlPropertyValue
 
 internal object ApiOutPropertyValueConverter :
     ApiConverter<Pair<String, JsonElement>, PropertyValue<*>>() {
 
     override fun modelToApi(model: PropertyValue<*>): Pair<String, JsonElement> {
         return model.name to when (model) {
-            is NumberPropertyValue -> JsonPrimitive(model.value)
-
-            is TextPropertyValue -> model.value.modelToApi(ApiOutRichTextListConverter)
-
-            is SelectPropertyValue -> buildJsonObject {
-                if (model.value.name.isNotEmpty()) {
-                    put("name", model.value.name)
-                } else {
-                    put("id", model.value.id)
-                }
+            is NumberPropertyValue -> buildJsonObject {
+                put("number", model.value)
             }
 
-            is MultiSelectPropertyValue -> buildJsonArray {
-                for (option in model.value)
-                    addJsonObject {
-                        if (option.name.isNotEmpty()) {
-                            put("name", option.name)
-                        } else {
-                            put("id", option.id)
-                        }
+            is TextPropertyValue -> buildJsonObject {
+                put("text", model.value.modelToApi(ApiOutRichTextListConverter))
+            }
+
+            is TitlePropertyValue -> buildJsonObject {
+                put("title", model.value.modelToApi(ApiOutRichTextListConverter))
+            }
+
+            is SelectPropertyValue -> buildJsonObject {
+                put("select", buildJsonObject {
+                    if (model.value.name.isNotEmpty()) {
+                        put("name", model.value.name)
+                    } else {
+                        put("id", model.value.id)
                     }
+                })
+            }
+
+            is MultiSelectPropertyValue -> buildJsonObject {
+                put("multi_select", buildJsonArray {
+                    for (option in model.value)
+                        addJsonObject {
+                            if (option.name.isNotEmpty()) {
+                                put("name", option.name)
+                            } else {
+                                put("id", option.id)
+                            }
+                        }
+                })
             }
 
             is DatePropertyValue -> buildJsonObject {
-                put("start", model.value.start.modelToApi(ApiDateStringConverter))
-                model.value.end?.let { put("end", it.modelToApi(ApiDateStringConverter)) }
+                put("date", buildJsonObject {
+                    put("start", model.value.start.modelToApi(ApiDateStringConverter))
+                    model.value.end?.let { put("end", it.modelToApi(ApiDateStringConverter)) }
+                })
             }
 
-            is RelationPropertyValue -> buildJsonArray {
-                for (id in model.value)
-                    addJsonObject {
-                        put("id", id)
-                    }
+            is RelationPropertyValue -> buildJsonObject {
+                put("relation", buildJsonArray {
+                    for (id in model.value)
+                        addJsonObject {
+                            put("id", id)
+                        }
+                })
             }
 
-            is PeoplePropertyValue -> buildJsonArray {
-                for (user in model.value)
-                    addJsonObject {
-                        put("id", user.id)
-                    }
+            is PeoplePropertyValue -> buildJsonObject {
+                put("people", buildJsonArray {
+                    for (user in model.value)
+                        addJsonObject {
+                            put("id", user.id)
+                        }
+                })
             }
 
-            is CheckboxPropertyValue -> JsonPrimitive(model.value)
+            is CheckboxPropertyValue -> buildJsonObject {
+                put("checkbox", model.value)
+            }
 
-            is StringPropertyValueImpl -> JsonPrimitive(model.value)
+            is UrlPropertyValue -> buildJsonObject {
+                put("url", model.value)
+            }
 
-            else -> throw IllegalStateException()
+            is PhoneNumberPropertyValue -> buildJsonObject {
+                put("phone_number", model.value)
+            }
+
+            is EmailPropertyValue -> buildJsonObject {
+                put("email", model.value)
+            }
+
+            // These are all read only
+            is FormulaPropertyValue,
+            is CreatedByPropertyValue,
+            is RollupPropertyValue,
+            is LastEditedTimePropertyValue,
+            is CreatedTimePropertyValue,
+            is LastEditedByPropertyValue,
+            is FilesPropertyValue,
+            is UnknownTypePropertyValue,
+            -> throw IllegalStateException()
         }
     }
 }

@@ -27,13 +27,16 @@ package org.jraf.klibnotion.model.property.value
 import org.jraf.klibnotion.internal.model.property.SelectOptionImpl
 import org.jraf.klibnotion.internal.model.property.value.CheckboxPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.DatePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.EmailPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.MultiSelectPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.NumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.PeoplePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.PhoneNumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
-import org.jraf.klibnotion.internal.model.property.value.StringPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.TitlePropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.UrlPropertyValueImpl
 import org.jraf.klibnotion.internal.model.user.PersonImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.color.Color
@@ -71,19 +74,39 @@ class PropertyValueList {
         value: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): PropertyValueList = text(idOrName = idOrName, value = RichTextList().text(value, linkUrl, annotations))
+    ): PropertyValueList = text(idOrName = idOrName, text = RichTextList().text(value, linkUrl, annotations))
 
-    fun text(idOrName: String, value: RichTextList): PropertyValueList = add(TextPropertyValueImpl(
-        id = idOrName,
-        name = idOrName,
-        value = value,
-    ))
+    fun text(idOrName: String, text: RichTextList): PropertyValueList = add(
+        TextPropertyValueImpl(
+            id = idOrName,
+            name = idOrName,
+            value = text,
+        )
+    )
 
-    fun selectByName(idOrName: String, selectName: String): PropertyValueList = add(SelectPropertyValueImpl(
-        id = idOrName,
-        name = idOrName,
-        value = SelectOptionImpl(id = "", name = selectName, color = Color.DEFAULT)
-    ))
+    @JvmOverloads
+    fun title(
+        idOrName: String,
+        value: String,
+        linkUrl: String? = null,
+        annotations: Annotations = Annotations.DEFAULT,
+    ): PropertyValueList = title(idOrName = idOrName, text = RichTextList().text(value, linkUrl, annotations))
+
+    fun title(idOrName: String, text: RichTextList): PropertyValueList = add(
+        TitlePropertyValueImpl(
+            id = idOrName,
+            name = idOrName,
+            value = text,
+        )
+    )
+
+    fun selectByName(idOrName: String, selectName: String): PropertyValueList = add(
+        SelectPropertyValueImpl(
+            id = idOrName,
+            name = idOrName,
+            value = SelectOptionImpl(id = "", name = selectName, color = Color.DEFAULT)
+        )
+    )
 
     // Actually not supported by the Notion API for now. Keeping it commented out for now because it may be supported
     // in a future version.
@@ -124,18 +147,35 @@ class PropertyValueList {
         value = peopleIds.map { PersonImpl(it, "", null, "") },
     ))
 
-    fun checkbox(idOrName: String, value: Boolean): PropertyValueList = add(CheckboxPropertyValueImpl(
-        id = idOrName,
-        name = idOrName,
-        value = value,
-    ))
+    fun checkbox(idOrName: String, checked: Boolean): PropertyValueList = add(
+        CheckboxPropertyValueImpl(
+            id = idOrName,
+            name = idOrName,
+            value = checked,
+        )
+    )
 
-    /**
-     * Can be used for Url, Email and Phone number properties.
-     */
-    fun string(idOrName: String, value: String): PropertyValueList = add(StringPropertyValueImpl(
-        id = idOrName,
-        name = idOrName,
-        value = value,
-    ))
+    fun url(idOrName: String, url: String): PropertyValueList = add(
+        UrlPropertyValueImpl(
+            id = idOrName,
+            name = idOrName,
+            value = url,
+        )
+    )
+
+    fun email(idOrName: String, email: String): PropertyValueList = add(
+        EmailPropertyValueImpl(
+            id = idOrName,
+            name = idOrName,
+            value = email,
+        )
+    )
+
+    fun phoneNumber(idOrName: String, phoneNumber: String): PropertyValueList = add(
+        PhoneNumberPropertyValueImpl(
+            id = idOrName,
+            name = idOrName,
+            value = phoneNumber,
+        )
+    )
 }

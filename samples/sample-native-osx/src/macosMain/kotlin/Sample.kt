@@ -190,17 +190,19 @@ class Sample {
                     )
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
-                    .date("Some date",
+                    .date(
+                        "Some date",
                         DateOrDateRange(
                             start = DateTime(NSDate()),
-                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L)))
+                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L))
+                        )
                     )
                     .relation("Android version", PAGE_ID)
                     .people("User", USER_ID)
                     .checkbox("Is Greedo", Random.nextBoolean())
-                    .string("Email", "aaa@aaa.com")
-                    .string("Phone", "+1 424 2424 266")
-                    .string("Url", "https://zgluteks.com")
+                    .email("Email", "aaa@aaa.com")
+                    .phoneNumber("Phone", "+1 424 2424 266")
+                    .url("Url", "https://zgluteks.com")
             ) {
                 heading1("First section")
                 paragraph("Hello, World!")
@@ -261,17 +263,19 @@ class Sample {
                     .text("title", "Updated page ${Random.nextInt()}")
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
-                    .date("Some date",
+                    .date(
+                        "Some date",
                         DateOrDateRange(
                             start = DateTime(NSDate()),
-                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L)))
+                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L))
+                        )
                     )
                     .relation("Android version", PAGE_ID)
                     .people("User", USER_ID)
                     .checkbox("Is Greedo", Random.nextBoolean())
-                    .string("Email", "aaa@aaa.com")
-                    .string("Phone", "+1 424 2424 266")
-                    .string("Url", "https://zgluteks.com")
+                    .email("Email", "aaa@aaa.com")
+                    .phoneNumber("Phone", "+1 424 2424 266")
+                    .url("Url", "https://zgluteks.com")
             )
             println(updatedPage)
 
