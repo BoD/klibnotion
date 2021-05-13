@@ -1,11 +1,10 @@
 # klibnotion
 
-A [Notion API (currently private beta)](https://www.notion.so/Notion-API-spec-c29dd39d851543b49a24e1571f63c488) client
-library for Kotlin, Java and more.
+A [Notion API (currently beta)](https://developers.notion.com/) client library for Kotlin, Java and more.
 
 This library is written in [Kotlin Multiplatform](https://kotlinlang.org/docs/reference/multiplatform.html)
-so _in theory_ it can be used from the JVM, Android, iOS, Linux, MacOS, Windows, Javascript and more. In practice this
-library has been tested and has samples for the JVM (Kotlin and Java), and MacOS (Kotlin).
+so in theory it can be used from the JVM, Android, iOS, Linux, MacOS, Windows, Javascript and more. In practice it has
+been tested and has samples for the JVM (Kotlin and Java), and MacOS (Kotlin).
 
 Several flavors of the client are available to match your needs:
 
@@ -48,18 +47,15 @@ The easiest way to see how to use it is to look at the samples:
 
 #### Get your API key
 
-**Note:** currently the Notion API is in a **private beta**, and only accessible to certain users. Please contact Notion
-directly to get more information about the beta. The author of this library is not affiliated with Notion.
-
-You will find your **API key** by following the
-instructions [here](https://www.notion.so/Getting-started-da32a6fc1bcc4403a6126ee735710d89).
+You will find your **Internal Integration Token** by following the
+instructions [here](https://developers.notion.com/docs/getting-started).
 
 #### Instantiate a `NotionClient`
 
 ```kotlin
 val notionClient = NotionClient.newInstance(
     ClientConfiguration(
-        Authentication(API_KEY)
+        Authentication(TOKEN)
     )
 )
 ```
