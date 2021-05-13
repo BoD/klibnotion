@@ -60,9 +60,9 @@ import kotlin.random.Random
 import kotlin.system.exitProcess
 
 // !!!!! DO THIS FIRST !!!!!
-// Replace this constant with your API key
-// that you will find by following the instructions here: https://www.notion.so/Getting-started-da32a6fc1bcc4403a6126ee735710d89
-private const val API_KEY = "secret_XXX"
+// Replace this constant with your Internal Integration Token
+// that you will find by following the instructions here: https://developers.notion.com/docs/getting-started
+private const val TOKEN = "secret_XXX"
 
 // Replace this constant with a user id that exists
 private const val USER_ID = "00000000-0000-0000-0000-000000000000"
@@ -78,7 +78,7 @@ class Sample {
         // Create the client
         NotionClient.newInstance(
             ClientConfiguration(
-                Authentication(API_KEY),
+                Authentication(TOKEN),
                 HttpConfiguration(
                     // Uncomment to see more logs
                     // loggingLevel = HttpLoggingLevel.BODY,

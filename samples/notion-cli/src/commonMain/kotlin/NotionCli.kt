@@ -32,7 +32,8 @@ import org.jraf.klibnotion.model.user.User
 class NotionCli(av: Array<String>) {
     private val arguments = Arguments(av)
 
-    private val client = NotionClient.newInstance(ClientConfiguration(Authentication(arguments.apiKey)))
+    private val client =
+        NotionClient.newInstance(ClientConfiguration(Authentication(arguments.internalIntegrationToken)))
 
     suspend fun main() {
         for ((index, userId) in arguments.user.userIds.withIndex()) {

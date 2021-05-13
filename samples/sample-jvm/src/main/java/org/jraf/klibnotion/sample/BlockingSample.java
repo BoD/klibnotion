@@ -49,9 +49,9 @@ import java.util.Random;
 
 class BlockingSample {
     // !!!!! DO THIS FIRST !!!!!
-    // Replace this constant with your API key
-    // that you will find by following the instructions here: https://www.notion.so/Getting-started-da32a6fc1bcc4403a6126ee735710d89
-    private static final String API_KEY = "secret_XXX";
+    // Replace this constant with your Internal Integration Token
+    // that you will find by following the instructions here: https://developers.notion.com/docs/getting-started
+    private static final String TOKEN = "secret_XXX";
 
     // Replace this constant with a user id that exists
     private static final String USER_ID = "00000000-0000-0000-0000-000000000000";
@@ -67,7 +67,7 @@ class BlockingSample {
     private void initClient() {
         NotionClient notionClient = NotionClient.newInstance(
                 new ClientConfiguration(
-                        new Authentication(API_KEY),
+                        new Authentication(TOKEN),
                         new HttpConfiguration(
                                 // Uncomment to see more logs
                                 // loggingLevel = HttpLoggingLevel.BODY,

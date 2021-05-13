@@ -110,7 +110,7 @@ internal class NotionClientImpl(
             defaultRequest {
                 header(
                     "Authorization",
-                    "Bearer ${clientConfiguration.authentication.apiToken}"
+                    "Bearer ${clientConfiguration.authentication.internalIntegrationToken}"
                 )
             }
             install(UserAgent) {

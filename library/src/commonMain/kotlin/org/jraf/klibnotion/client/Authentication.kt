@@ -25,5 +25,5 @@
 package org.jraf.klibnotion.client
 
 data class Authentication(
-    val apiToken: String
+    val internalIntegrationToken: String
 )

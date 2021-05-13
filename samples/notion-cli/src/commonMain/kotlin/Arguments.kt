@@ -35,8 +35,12 @@ import kotlinx.cli.vararg
 class Arguments(av: Array<String>) {
     private val parser = ArgParser("notion-cli")
 
-    private val `api-key`: String by parser.option(ArgType.String, shortName = "k", description = "API key").required()
-    val apiKey get() = `api-key`
+    val internalIntegrationToken: String by parser.option(
+        type = ArgType.String,
+        fullName = "token",
+        shortName = "t",
+        description = "Internal Integration Token"
+    ).required()
 
     class User : Subcommand("user", "Get user information") {
         val userIds: List<String> by argument(ArgType.String, "User id(s)", description = "Id(s) of the user").vararg()
