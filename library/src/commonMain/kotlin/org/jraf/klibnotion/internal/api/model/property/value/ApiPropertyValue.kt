@@ -42,7 +42,7 @@ internal data class ApiPropertyValue(
     val id: String = "",
 
     val type: String,
-    val text: List<ApiRichText>? = null,
+    val rich_text: List<ApiRichText>? = null,
     val number: String? = null,
     val select: ApiSelectOption? = null,
     val multi_select: List<ApiSelectOption>? = null,

@@ -22,11 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.value
+package org.jraf.klibnotion.internal.model.property.value
 
+import org.jraf.klibnotion.model.property.value.RichTextPropertyValue
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-/**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
- */
-interface TextPropertyValue : PropertyValue<RichTextList>
+internal data class RichTextPropertyValueImpl(
+    override val id: String,
+    override val name: String,
+    override val value: RichTextList,
+) : RichTextPropertyValue

@@ -48,9 +48,9 @@ import org.jraf.klibnotion.model.property.value.PeoplePropertyValue
 import org.jraf.klibnotion.model.property.value.PhoneNumberPropertyValue
 import org.jraf.klibnotion.model.property.value.PropertyValue
 import org.jraf.klibnotion.model.property.value.RelationPropertyValue
+import org.jraf.klibnotion.model.property.value.RichTextPropertyValue
 import org.jraf.klibnotion.model.property.value.RollupPropertyValue
 import org.jraf.klibnotion.model.property.value.SelectPropertyValue
-import org.jraf.klibnotion.model.property.value.TextPropertyValue
 import org.jraf.klibnotion.model.property.value.TitlePropertyValue
 import org.jraf.klibnotion.model.property.value.UnknownTypePropertyValue
 import org.jraf.klibnotion.model.property.value.UrlPropertyValue
@@ -64,8 +64,8 @@ internal object ApiOutPropertyValueConverter :
                 put("number", model.value)
             }
 
-            is TextPropertyValue -> buildJsonObject {
-                put("text", model.value.modelToApi(ApiOutRichTextListConverter))
+            is RichTextPropertyValue -> buildJsonObject {
+                put("rich_text", model.value.modelToApi(ApiOutRichTextListConverter))
             }
 
             is TitlePropertyValue -> buildJsonObject {

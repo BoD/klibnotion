@@ -33,8 +33,8 @@ import org.jraf.klibnotion.internal.model.property.value.NumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.PeoplePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.PhoneNumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.RichTextPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
-import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TitlePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.UrlPropertyValueImpl
 import org.jraf.klibnotion.internal.model.user.PersonImpl
@@ -62,41 +62,41 @@ class PropertyValueList {
         return this
     }
 
-    fun number(idOrName: String, value: Number): PropertyValueList = add(NumberPropertyValueImpl(
+    fun number(idOrName: String, number: Number): PropertyValueList = add(NumberPropertyValueImpl(
         id = idOrName,
         name = idOrName,
-        value = value
+        value = number
     ))
 
     @JvmOverloads
     fun text(
         idOrName: String,
-        value: String,
+        text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): PropertyValueList = text(idOrName = idOrName, text = RichTextList().text(value, linkUrl, annotations))
+    ): PropertyValueList = text(idOrName = idOrName, richTextList = RichTextList().text(text, linkUrl, annotations))
 
-    fun text(idOrName: String, text: RichTextList): PropertyValueList = add(
-        TextPropertyValueImpl(
+    fun text(idOrName: String, richTextList: RichTextList): PropertyValueList = add(
+        RichTextPropertyValueImpl(
             id = idOrName,
             name = idOrName,
-            value = text,
+            value = richTextList,
         )
     )
 
     @JvmOverloads
     fun title(
         idOrName: String,
-        value: String,
+        text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): PropertyValueList = title(idOrName = idOrName, text = RichTextList().text(value, linkUrl, annotations))
+    ): PropertyValueList = title(idOrName = idOrName, richTextList = RichTextList().text(text, linkUrl, annotations))
 
-    fun title(idOrName: String, text: RichTextList): PropertyValueList = add(
+    fun title(idOrName: String, richTextList: RichTextList): PropertyValueList = add(
         TitlePropertyValueImpl(
             id = idOrName,
             name = idOrName,
-            value = text,
+            value = richTextList,
         )
     )
 

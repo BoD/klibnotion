@@ -40,6 +40,7 @@ import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.client.statement.readText
+import io.ktor.http.HttpHeaders
 import io.ktor.http.URLBuilder
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.Job
@@ -109,9 +110,10 @@ internal class NotionClientImpl(
             }
             defaultRequest {
                 header(
-                    "Authorization",
+                    HttpHeaders.Authorization,
                     "Bearer ${clientConfiguration.authentication.internalIntegrationToken}"
                 )
+                header(HEADER_NOTION_VERSION, NOTION_API_VERSION)
             }
             install(UserAgent) {
                 agent = clientConfiguration.userAgent
@@ -285,6 +287,11 @@ internal class NotionClientImpl(
 
 
     override fun close() = httpClient.close()
+
+    companion object {
+        private const val HEADER_NOTION_VERSION = "Notion-Version"
+        private const val NOTION_API_VERSION = "2021-05-13"
+    }
 }
 
 internal expect fun createHttpClient(

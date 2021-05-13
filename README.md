@@ -172,6 +172,10 @@ to `NotionClient.newInstance()`.
 In theory Kotlin Multiplatform projects can also target Javascript but as of today the author couldn't understand how to
 make that work. Please [contact the author](mailto:BoD@JRAF.org) if you want to help :)
 
+## Status
+
+As of v1.4.0 of this library, 100% of the `2021-05-13` version of the Notion API is covered.
+
 ## Author and License
 
 *Note: this project is not officially related to or endorsed by Notion.*

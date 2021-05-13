@@ -48,8 +48,8 @@ import org.jraf.klibnotion.internal.model.property.value.NumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.PeoplePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.PhoneNumberPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.RelationPropertyValueImpl
+import org.jraf.klibnotion.internal.model.property.value.RichTextPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.SelectPropertyValueImpl
-import org.jraf.klibnotion.internal.model.property.value.TextPropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.TitlePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.UnknownTypePropertyValueImpl
 import org.jraf.klibnotion.internal.model.property.value.UrlPropertyValueImpl
@@ -62,10 +62,10 @@ internal object ApiPropertyValueConverter :
         val (name, apiPropertyValue) = apiModel
         val id = apiPropertyValue.id
         return when (val type = apiPropertyValue.type) {
-            "text" -> TextPropertyValueImpl(
+            "rich_text" -> RichTextPropertyValueImpl(
                 id = id,
                 name = name,
-                value = RichTextList(apiPropertyValue.text!!.apiToModel(ApiRichTextConverter))
+                value = RichTextList(apiPropertyValue.rich_text!!.apiToModel(ApiRichTextConverter))
             )
             "number" -> NumberPropertyValueImpl(
                 id = id,

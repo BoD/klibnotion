@@ -55,8 +55,8 @@ class MutableBlockList(
         return this
     }
 
-    fun paragraph(text: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(ParagraphBlockImpl(id = "", text, children()))
+    fun paragraph(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
+        add(ParagraphBlockImpl(id = "", richTextList, children()))
 
     @JvmOverloads
     fun paragraph(
@@ -65,12 +65,12 @@ class MutableBlockList(
         annotations: Annotations = Annotations.DEFAULT,
         children: BlockListProducer? = null,
     ): MutableBlockList = paragraph(
-        text = RichTextList().text(text, linkUrl, annotations),
+        richTextList = RichTextList().text(text, linkUrl, annotations),
         children = children,
     )
 
 
-    fun heading1(text: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", text))
+    fun heading1(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", richTextList))
 
     @JvmOverloads
     fun heading1(
@@ -84,7 +84,7 @@ class MutableBlockList(
             annotations)
     ))
 
-    fun heading2(text: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", text))
+    fun heading2(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", richTextList))
 
     @JvmOverloads
     fun heading2(
@@ -98,7 +98,7 @@ class MutableBlockList(
             annotations)
     ))
 
-    fun heading3(text: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", text))
+    fun heading3(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", richTextList))
 
     @JvmOverloads
     fun heading3(
@@ -112,8 +112,8 @@ class MutableBlockList(
             annotations)
     ))
 
-    fun bullet(text: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(BulletedListItemBlockImpl(id = "", text, children()))
+    fun bullet(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
+        add(BulletedListItemBlockImpl(id = "", richTextList, children()))
 
     @JvmOverloads
     fun bullet(
@@ -122,12 +122,12 @@ class MutableBlockList(
         annotations: Annotations = Annotations.DEFAULT,
         children: BlockListProducer? = null,
     ): MutableBlockList = bullet(
-        text = RichTextList().text(text, linkUrl, annotations),
+        richTextList = RichTextList().text(text, linkUrl, annotations),
         children = children,
     )
 
-    fun number(text: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(NumberedListItemBlockImpl(id = "", text, children()))
+    fun number(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
+        add(NumberedListItemBlockImpl(id = "", richTextList, children()))
 
     @JvmOverloads
     fun number(
@@ -136,12 +136,12 @@ class MutableBlockList(
         annotations: Annotations = Annotations.DEFAULT,
         children: BlockListProducer? = null,
     ): MutableBlockList = number(
-        text = RichTextList().text(text, linkUrl, annotations),
+        richTextList = RichTextList().text(text, linkUrl, annotations),
         children = children,
     )
 
-    fun toDo(text: RichTextList, checked: Boolean, children: BlockListProducer? = null): MutableBlockList =
-        add(ToDoBlockImpl(id = "", text, checked, children()))
+    fun toDo(richTextList: RichTextList, checked: Boolean, children: BlockListProducer? = null): MutableBlockList =
+        add(ToDoBlockImpl(id = "", richTextList, checked, children()))
 
     @JvmOverloads
     fun toDo(
@@ -151,13 +151,13 @@ class MutableBlockList(
         annotations: Annotations = Annotations.DEFAULT,
         children: BlockListProducer? = null,
     ): MutableBlockList = toDo(
-        text = RichTextList().text(text, linkUrl, annotations),
+        richTextList = RichTextList().text(text, linkUrl, annotations),
         checked = checked,
         children = children,
     )
 
-    fun toggle(text: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(ToggleBlockImpl(id = "", text, children()))
+    fun toggle(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
+        add(ToggleBlockImpl(id = "", richTextList, children()))
 
     @JvmOverloads
     fun toggle(
@@ -166,7 +166,7 @@ class MutableBlockList(
         annotations: Annotations = Annotations.DEFAULT,
         children: BlockListProducer? = null,
     ): MutableBlockList = toggle(
-        text = RichTextList().text(text, linkUrl, annotations),
+        richTextList = RichTextList().text(text, linkUrl, annotations),
         children = children,
     )
 

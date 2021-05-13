@@ -24,7 +24,7 @@
 
 package org.jraf.klibnotion.internal.model.property.spec
 
-import org.jraf.klibnotion.model.property.spec.TextPropertySpec
+import org.jraf.klibnotion.model.property.spec.RichTextPropertySpec
 
-internal data class TextPropertySpecImpl(override val name: String, override val id: String) :
-    TextPropertySpec
+internal data class RichTextPropertySpecImpl(override val name: String, override val id: String) :
+    RichTextPropertySpec

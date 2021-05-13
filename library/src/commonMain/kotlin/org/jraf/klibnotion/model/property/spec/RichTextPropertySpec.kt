@@ -22,13 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.property.value
+package org.jraf.klibnotion.model.property.spec
 
-import org.jraf.klibnotion.model.property.value.TextPropertyValue
-import org.jraf.klibnotion.model.richtext.RichTextList
-
-internal data class TextPropertyValueImpl(
-    override val id: String,
-    override val name: String,
-    override val value: RichTextList,
-) : TextPropertyValue
+/**
+ * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ */
+interface RichTextPropertySpec : PropertySpec

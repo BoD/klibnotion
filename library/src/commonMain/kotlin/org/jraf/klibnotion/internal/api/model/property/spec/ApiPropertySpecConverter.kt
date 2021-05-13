@@ -41,9 +41,9 @@ import org.jraf.klibnotion.internal.model.property.spec.NumberPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.PeoplePropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.PhoneNumberPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.RelationPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.RichTextPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.RollupPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.SelectPropertySpecImpl
-import org.jraf.klibnotion.internal.model.property.spec.TextPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.TitlePropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.UnknownTypePropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.UrlPropertySpecImpl
@@ -57,7 +57,7 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
         val id = apiPropertySpec.id
         return when (apiPropertySpec.type) {
             "title" -> TitlePropertySpecImpl(name = name, id = id)
-            "text" -> TextPropertySpecImpl(name = name, id = id)
+            "rich_text" -> RichTextPropertySpecImpl(name = name, id = id)
             "number" -> NumberPropertySpecImpl(
                 name = name,
                 id = id,
