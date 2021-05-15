@@ -33,7 +33,7 @@ repositories {
 ```groovy
 dependencies {
   /* ... */
-  implementation 'org.jraf:klibnotion:1.4.0'
+  implementation 'org.jraf:klibnotion:1.5.0'
 }
 ```
 
@@ -174,7 +174,7 @@ make that work. Please [contact the author](mailto:BoD@JRAF.org) if you want to 
 
 ## Status
 
-As of v1.4.0 of this library, 100% of the `2021-05-13` version of the Notion API is covered.
+As of v1.5.0 of this library, 100% of the `2021-05-13` version of the Notion API is covered.
 
 ## Author and License
 

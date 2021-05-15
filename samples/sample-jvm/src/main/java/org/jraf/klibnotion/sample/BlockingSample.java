@@ -28,6 +28,7 @@ import kotlin.Unit;
 import org.jraf.klibnotion.client.*;
 import org.jraf.klibnotion.client.blocking.BlockingNotionClient;
 import org.jraf.klibnotion.client.blocking.BlockingNotionClientUtils;
+import org.jraf.klibnotion.model.base.reference.DatabaseReference;
 import org.jraf.klibnotion.model.color.Color;
 import org.jraf.klibnotion.model.database.Database;
 import org.jraf.klibnotion.model.database.query.DatabaseQuery;
@@ -152,9 +153,9 @@ class BlockingSample {
 
         // Create page
         Random random = new Random();
-        System.out.println("Created page:");
-        Page createdPage = client.getPages().createPage(
-                DATABASE_ID,
+        System.out.println("Created page in database:");
+        Page createdPageInDatabase = client.getPages().createPage(
+                new DatabaseReference(DATABASE_ID),
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
                         .text("Name", "Name " + random.nextInt())
@@ -196,7 +197,7 @@ class BlockingSample {
                     return Unit.INSTANCE;
                 }
         );
-        System.out.println(createdPage);
+        System.out.println(createdPageInDatabase);
 
         // Update page
         System.out.println("Updated page:");

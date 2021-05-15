@@ -28,12 +28,15 @@ import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.blocking.BlockingNotionClient
 import org.jraf.klibnotion.internal.runBlocking
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.base.reference.DatabaseReference
+import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.property.value.PropertyValueList
+import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal class BlockingNotionClientImpl(
     private val notionClient: NotionClient,
@@ -82,19 +85,35 @@ internal class BlockingNotionClientImpl(
     }
 
     override fun createPage(
-        parentDatabaseId: UuidString,
+        parentDatabase: DatabaseReference,
         properties: PropertyValueList,
         content: MutableBlockList?,
     ) = runBlocking {
-        notionClient.pages.createPage(parentDatabaseId, properties, content)
+        notionClient.pages.createPage(parentDatabase, properties, content)
     }
 
     override fun createPage(
-        parentDatabaseId: UuidString,
+        parentDatabase: DatabaseReference,
         properties: PropertyValueList,
         content: BlockListProducer,
     ) = runBlocking {
-        notionClient.pages.createPage(parentDatabaseId, properties, content)
+        notionClient.pages.createPage(parentDatabase, properties, content)
+    }
+
+    override fun createPage(
+        parentPage: PageReference,
+        title: RichTextList,
+        content: MutableBlockList?,
+    ) = runBlocking {
+        notionClient.pages.createPage(parentPage, title, content)
+    }
+
+    override fun createPage(
+        parentPage: PageReference,
+        title: RichTextList,
+        content: BlockListProducer,
+    ) = runBlocking {
+        notionClient.pages.createPage(parentPage, title, content)
     }
 
     override fun updatePage(id: UuidString, properties: PropertyValueList) = runBlocking {

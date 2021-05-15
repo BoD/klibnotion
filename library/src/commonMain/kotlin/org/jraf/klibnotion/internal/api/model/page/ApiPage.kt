@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.base.ApiReference
 import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValue
 
 /**
@@ -33,7 +34,7 @@ import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValue
 @Serializable
 internal data class ApiPage(
     val id: String,
-    val parent: ApiPageParent,
+    val parent: ApiReference,
     val properties: Map<String, ApiPropertyValue>,
     val archived: Boolean,
 )

@@ -26,6 +26,8 @@ package org.jraf.klibnotion.client
 
 import org.jraf.klibnotion.internal.client.NotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.base.reference.DatabaseReference
+import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
@@ -36,6 +38,7 @@ import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.value.PropertyValueList
+import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
 import kotlin.jvm.JvmStatic
 
@@ -103,22 +106,42 @@ interface NotionClient {
         suspend fun getPage(id: UuidString): Page
 
         /**
-         * Create a page.
+         * Create a page in a database.
          * @see <a href="https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b">Create a page</a>
          */
         suspend fun createPage(
-            parentDatabaseId: UuidString,
+            parentDatabase: DatabaseReference,
             properties: PropertyValueList = PropertyValueList(),
             content: MutableBlockList? = null,
         ): Page
 
         /**
-         * Create a page.
+         * Create a page in a database.
          * @see <a href="https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b">Create a page</a>
          */
         suspend fun createPage(
-            parentDatabaseId: UuidString,
+            parentDatabase: DatabaseReference,
             properties: PropertyValueList = PropertyValueList(),
+            content: BlockListProducer,
+        ): Page
+
+        /**
+         * Create a page in a page.
+         * @see <a href="https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b">Create a page</a>
+         */
+        suspend fun createPage(
+            parentPage: PageReference,
+            title: RichTextList = RichTextList(),
+            content: MutableBlockList? = null,
+        ): Page
+
+        /**
+         * Create a page in a page.
+         * @see <a href="https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b">Create a page</a>
+         */
+        suspend fun createPage(
+            parentPage: PageReference,
+            title: RichTextList = RichTextList(),
             content: BlockListProducer,
         ): Page
 

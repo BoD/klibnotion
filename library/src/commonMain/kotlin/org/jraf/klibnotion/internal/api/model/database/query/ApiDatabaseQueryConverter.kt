@@ -117,7 +117,7 @@ internal object ApiTextDatabaseQueryFilterConverter :
             is DatabaseQueryPredicate.Text.EndsWith -> ApiTextDatabaseQueryFilter(ends_with = model.value)
             is DatabaseQueryPredicate.Text.IsEmpty -> ApiTextDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Text.IsNotEmpty -> ApiTextDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -142,7 +142,7 @@ internal object ApiNumberDatabaseQueryFilterConverter :
                 ApiNumberDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Number.IsNotEmpty ->
                 ApiNumberDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -166,7 +166,7 @@ internal object ApiSelectDatabaseQueryFilterConverter :
             is DatabaseQueryPredicate.Select.DoesNotEqual -> ApiSelectDatabaseQueryFilter(does_not_equal = model.value)
             is DatabaseQueryPredicate.Select.IsEmpty -> ApiSelectDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Select.IsNotEmpty -> ApiSelectDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -179,7 +179,7 @@ internal object ApiMultiSelectDatabaseQueryFilterConverter :
             is DatabaseQueryPredicate.MultiSelect.DoesNotContain -> ApiMultiSelectDatabaseQueryFilter(does_not_contain = model.value)
             is DatabaseQueryPredicate.MultiSelect.IsEmpty -> ApiMultiSelectDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.MultiSelect.IsNotEmpty -> ApiMultiSelectDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -214,7 +214,7 @@ internal object ApiDateDatabaseQueryFilterConverter :
                 ApiDateDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Date.IsNotEmpty ->
                 ApiDateDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -227,7 +227,7 @@ internal object ApiPeopleDatabaseQueryFilterConverter :
             is DatabaseQueryPredicate.People.DoesNotContain -> ApiPeopleDatabaseQueryFilter(does_not_contain = model.value)
             is DatabaseQueryPredicate.People.IsEmpty -> ApiPeopleDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.People.IsNotEmpty -> ApiPeopleDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -238,7 +238,7 @@ internal object ApiFilesDatabaseQueryFilterConverter :
         return when (model) {
             is DatabaseQueryPredicate.Files.IsEmpty -> ApiFilesDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Files.IsNotEmpty -> ApiFilesDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -251,7 +251,7 @@ internal object ApiRelationDatabaseQueryFilterConverter :
             is DatabaseQueryPredicate.Relation.DoesNotContain -> ApiRelationDatabaseQueryFilter(does_not_contain = model.value)
             is DatabaseQueryPredicate.Relation.IsEmpty -> ApiRelationDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Relation.IsNotEmpty -> ApiRelationDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -268,7 +268,7 @@ internal object ApiFormulaDatabaseQueryFilterConverter :
                 ApiFormulaDatabaseQueryFilter(number = model.modelToApi(ApiFormulaNumberDatabaseQueryFilterConverter))
             is DatabaseQueryPredicate.Formula.Date ->
                 ApiFormulaDatabaseQueryFilter(date = model.modelToApi(ApiFormulaDateDatabaseQueryFilterConverter))
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -293,7 +293,7 @@ internal object ApiFormulaTextDatabaseQueryFilterConverter :
                 ApiTextDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Formula.Text.IsNotEmpty ->
                 ApiTextDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -329,7 +329,7 @@ internal object ApiFormulaNumberDatabaseQueryFilterConverter :
                 ApiNumberDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Formula.Number.IsNotEmpty ->
                 ApiNumberDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }
@@ -364,7 +364,7 @@ internal object ApiFormulaDateDatabaseQueryFilterConverter :
                 ApiDateDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Formula.Date.IsNotEmpty ->
                 ApiDateDatabaseQueryFilter(is_not_empty = true)
-            else -> throw AssertionError()
+            else -> throw IllegalStateException()
         }
     }
 }

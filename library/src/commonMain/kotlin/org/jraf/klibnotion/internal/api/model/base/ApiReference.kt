@@ -22,9 +22,16 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.base.reference
+package org.jraf.klibnotion.internal.api.model.base
+
+import kotlinx.serialization.Serializable
 
 /**
- * A reference to a [org.jraf.klibnotion.model.database.Database].
+ * See [https://developers.notion.com/reference/page#page-parent].
  */
-interface DatabaseReference : Reference
+@Serializable
+internal data class ApiReference(
+    val type: String,
+    val database_id: String? = null,
+    val page_id: String? = null,
+)

@@ -29,6 +29,8 @@ package org.jraf.klibnotion.client.future
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.client.future.FutureNotionClientImpl
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.base.reference.DatabaseReference
+import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
@@ -39,6 +41,7 @@ import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.value.PropertyValueList
+import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
 import java.util.concurrent.Future
 
@@ -98,7 +101,7 @@ interface FutureNotionClient {
          * See [NotionClient.Pages.createPage].
          */
         fun createPage(
-            parentDatabaseId: UuidString,
+            parentDatabase: DatabaseReference,
             properties: PropertyValueList = PropertyValueList(),
             content: MutableBlockList? = null,
         ): Future<Page>
@@ -107,8 +110,26 @@ interface FutureNotionClient {
          * See [NotionClient.Pages.createPage].
          */
         fun createPage(
-            parentDatabaseId: UuidString,
+            parentDatabase: DatabaseReference,
             properties: PropertyValueList = PropertyValueList(),
+            content: BlockListProducer,
+        ): Future<Page>
+
+        /**
+         * See [NotionClient.Pages.createPage].
+         */
+        fun createPage(
+            parentPage: PageReference,
+            title: RichTextList = RichTextList(),
+            content: MutableBlockList? = null,
+        ): Future<Page>
+
+        /**
+         * See [NotionClient.Pages.createPage].
+         */
+        fun createPage(
+            parentPage: PageReference,
+            title: RichTextList = RichTextList(),
             content: BlockListProducer,
         ): Future<Page>
 

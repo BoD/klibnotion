@@ -5,6 +5,8 @@
 - Add a `getAllBlockListRecursively` API to easily retrieve a whole document.
 - (Breaking change) use of Sealed Interfaces - a few interfaces were moved to their parent package due to this change
 - Use the new syntax for writing property values
+- Add ability to create a page inside a page (but currently doesn't work on the Notion API side)
+- Add `Notion-Version` header to all calls
 
 ## v1.4.0 (2021-04-18)
 

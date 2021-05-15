@@ -29,6 +29,7 @@ import org.jraf.klibnotion.client.HttpConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.HttpProxy
 import org.jraf.klibnotion.client.NotionClient
+import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BulletedListItemBlock
 import org.jraf.klibnotion.model.block.ChildPageBlock
@@ -39,6 +40,7 @@ import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
+import org.jraf.klibnotion.model.block.UnknownTypeBlock
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -159,13 +161,13 @@ class Sample {
             val page: Page = client.pages.getPage(PAGE_ID)
             println(page)
 
-            // Create page
-            println("Created page:")
-            val createdPage: Page = client.pages.createPage(
-                parentDatabaseId = DATABASE_ID,
+            // Create page in database
+            println("Created page in database:")
+            val createdPageInDb: Page = client.pages.createPage(
+                parentDatabase = DatabaseReference(DATABASE_ID),
                 properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
-                    .text("Name", "Name ${Random.nextInt()}")
+                    .title("Name", "Name ${Random.nextInt()}")
                     .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
                     .text("Oui", RichTextList()
                         .text("default ")
@@ -251,7 +253,7 @@ class Sample {
                 }
             }
 
-            println(createdPage)
+            println(createdPageInDb)
 
             // Update page
             println("Updated page:")
@@ -259,7 +261,7 @@ class Sample {
                 id = PAGE_ID,
                 PropertyValueList()
                     .number("Legs", Random.nextInt())
-                    .text("Name", "Updated page ${Random.nextInt()}")
+                    .title("Name", "Updated page ${Random.nextInt()}")
                     .text("title", "Updated page ${Random.nextInt()}")
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
@@ -281,9 +283,8 @@ class Sample {
 
             // Get page contents
             println("Page contents:")
-            val pageContents = client.blocks.getBlockList(PAGE_ID)
-            println(pageContents.results.toFormattedString())
-
+            val pageContents = client.blocks.getAllBlockListRecursively(PAGE_ID)
+            println(pageContents.toFormattedString())
 
             // Append contents to page
             println("Appending contents")
@@ -329,7 +330,7 @@ class Sample {
                 is ParagraphBlock -> "¶"
                 is ToDoBlock -> if (block.checked) "[X]" else "[ ]"
                 is ToggleBlock -> "▼"
-                else -> "?"
+                is UnknownTypeBlock -> "?"
             } + " " + block.text.toFormattedString())
 
             // Recurse

@@ -27,6 +27,7 @@ package org.jraf.klibnotion.sample;
 import org.jraf.klibnotion.client.*;
 import org.jraf.klibnotion.client.future.FutureNotionClient;
 import org.jraf.klibnotion.client.future.FutureNotionClientUtils;
+import org.jraf.klibnotion.model.base.reference.DatabaseReference;
 import org.jraf.klibnotion.model.block.MutableBlockList;
 import org.jraf.klibnotion.model.color.Color;
 import org.jraf.klibnotion.model.database.Database;
@@ -151,9 +152,9 @@ class FutureSample {
 
         // Create page
         Random random = new Random();
-        System.out.println("Created page:");
-        Page createdPage = client.getPages().createPage(
-                DATABASE_ID,
+        System.out.println("Created page in database:");
+        Page createdPageInDatabase = client.getPages().createPage(
+                new DatabaseReference(DATABASE_ID),
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
                         .title("Name", "Name " + random.nextInt())
@@ -192,7 +193,7 @@ class FutureSample {
                         .url("Url", "https://zgluteks.com"),
                 (MutableBlockList) null
         ).get();
-        System.out.println(createdPage);
+        System.out.println(createdPageInDatabase);
 
         // Update page
         System.out.println("Updated page:");

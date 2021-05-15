@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version Versions.KOTLIN
+    kotlin("multiplatform")
     kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
     id("maven-publish")
     id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN

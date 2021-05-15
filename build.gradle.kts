@@ -2,6 +2,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
     id("com.github.ben-manes.versions") version Versions.BEN_MANES_VERSIONS_PLUGIN
+    kotlin("multiplatform") version Versions.KOTLIN apply false
 }
 
 buildscript {
@@ -20,7 +21,7 @@ allprojects {
     }
 
     group = "org.jraf"
-    version = "1.4.0"
+    version = "1.5.0"
 
     // Show a report in the log when running tests
     tasks.withType<Test> {

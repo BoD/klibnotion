@@ -65,6 +65,8 @@ import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.internal.klibNotionScope
 import org.jraf.klibnotion.internal.model.block.MutableBlock
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.base.reference.DatabaseReference
+import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
@@ -78,6 +80,7 @@ import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.value.PropertyValueList
+import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
 import kotlin.coroutines.coroutineContext
 
@@ -214,13 +217,13 @@ internal class NotionClientImpl(
     }
 
     override suspend fun createPage(
-        parentDatabaseId: UuidString,
+        parentDatabase: DatabaseReference,
         properties: PropertyValueList,
         content: MutableBlockList?,
     ): Page {
         return service.createPage(
             Triple(
-                parentDatabaseId,
+                parentDatabase,
                 properties.propertyValueList,
                 content
             ).modelToApi(ApiCreateTableParametersConverter)
@@ -229,10 +232,31 @@ internal class NotionClientImpl(
     }
 
     override suspend fun createPage(
-        parentDatabaseId: UuidString,
+        parentDatabase: DatabaseReference,
         properties: PropertyValueList,
         content: BlockListProducer,
-    ): Page = createPage(parentDatabaseId, properties, content())
+    ): Page = createPage(parentDatabase, properties, content())
+
+    override suspend fun createPage(
+        parentPage: PageReference,
+        title: RichTextList,
+        content: MutableBlockList?,
+    ): Page {
+        return service.createPage(
+            Triple(
+                parentPage,
+                PropertyValueList().text("title", title).propertyValueList,
+                content
+            ).modelToApi(ApiCreateTableParametersConverter)
+        )
+            .apiToModel(ApiPageConverter)
+    }
+
+    override suspend fun createPage(
+        parentPage: PageReference,
+        title: RichTextList,
+        content: BlockListProducer,
+    ): Page = createPage(parentPage, title, content())
 
     override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
         return service.updatePage(id, properties.propertyValueList.modelToApi(ApiUpdateTableParametersConverter))
