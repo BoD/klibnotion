@@ -29,7 +29,7 @@ import org.jraf.klibnotion.internal.api.model.base.ApiReference
 import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValue
 
 /**
- * See [https://www.notion.so/Page-object-2a08cb77f9c14c25bece5c3408fe7762].
+ * See [https://developers.notion.com/reference/page].
  */
 @Serializable
 internal data class ApiPage(

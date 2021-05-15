@@ -27,7 +27,7 @@ package org.jraf.klibnotion.model.property.spec
 /**
  * This type is returned when a Property Spec of a type unknown to this library is returned by the Notion API.
  *
- * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ * See [https://developers.notion.com/reference/database].
  */
 interface UnknownTypePropertySpec : PropertySpec {
     val type: String

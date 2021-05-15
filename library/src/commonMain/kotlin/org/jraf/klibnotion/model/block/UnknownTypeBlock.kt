@@ -27,6 +27,6 @@ package org.jraf.klibnotion.model.block
 /**
  * This type is returned when a Block of a type unknown to this library is returned by the Notion API.
  *
- * See [https://www.notion.so/notiondevs/fa3660a1844b451aa99e9aac965438c1?v=9b36837a440f448cbd2dd39f12edcfba].
+ * See [https://developers.notion.com/reference/block].
  */
 interface UnknownTypeBlock : Block

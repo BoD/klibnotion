@@ -27,7 +27,7 @@ package org.jraf.klibnotion.model.property.spec
 import org.jraf.klibnotion.model.property.SelectOption
 
 /**
- * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ * See [https://developers.notion.com/reference/database].
  */
 interface MultiSelectPropertySpec : PropertySpec {
     val options: List<SelectOption>

@@ -29,7 +29,7 @@ import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
 /**
- * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ * See [https://developers.notion.com/reference/database].
  */
 @Serializable
 internal data class ApiDatabase(

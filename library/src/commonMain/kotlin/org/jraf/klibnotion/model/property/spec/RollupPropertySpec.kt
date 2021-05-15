@@ -28,7 +28,7 @@ package org.jraf.klibnotion.model.property.spec
  * A rollup uses a relation property that exists on the current database and extracts a property of
  * the related pages as an input to a chosen function.
  *
- * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ * See [https://developers.notion.com/reference/database].
  */
 interface RollupPropertySpec : PropertySpec {
     /**

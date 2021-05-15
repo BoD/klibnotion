@@ -29,26 +29,26 @@ import org.jraf.klibnotion.model.date.DateOrDateRange
 import org.jraf.klibnotion.model.user.User
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://developers.notion.com/reference/rich-text].
  */
 sealed interface MentionRichText : RichText
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://developers.notion.com/reference/rich-text].
  */
 interface DatabaseMentionRichText : MentionRichText {
     val databaseId: UuidString
 }
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://developers.notion.com/reference/rich-text].
  */
 interface DateMentionRichText : MentionRichText {
     val dateOrDateRange: DateOrDateRange
 }
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://developers.notion.com/reference/rich-text].
  */
 interface PageMentionRichText : MentionRichText {
     val pageId: UuidString
@@ -57,14 +57,14 @@ interface PageMentionRichText : MentionRichText {
 /**
  * This type is returned when a Mention Rich Text of a type unknown to this library is returned by the Notion API.
  *
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://developers.notion.com/reference/rich-text].
  */
 interface UnknownTypeMentionRichText : MentionRichText {
     val type: String
 }
 
 /**
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://developers.notion.com/reference/rich-text].
  */
 interface UserMentionRichText : MentionRichText {
     val user: User

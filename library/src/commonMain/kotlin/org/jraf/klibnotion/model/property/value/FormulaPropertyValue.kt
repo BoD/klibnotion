@@ -27,34 +27,34 @@ package org.jraf.klibnotion.model.property.value
 import org.jraf.klibnotion.model.date.DateOrDateRange
 
 /**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ * See [https://developers.notion.com/reference/page#all-property-values].
  */
 sealed interface FormulaPropertyValue<T : Any> : PropertyValue<T>
 
 /**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ * See [https://developers.notion.com/reference/page#all-property-values].
  */
 interface BooleanFormulaPropertyValue : FormulaPropertyValue<Boolean>
 
 /**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ * See [https://developers.notion.com/reference/page#all-property-values].
  */
 interface DateFormulaPropertyValue : FormulaPropertyValue<DateOrDateRange>
 
 /**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ * See [https://developers.notion.com/reference/page#all-property-values].
  */
 interface NumberFormulaPropertyValue : FormulaPropertyValue<Number>
 
 /**
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ * See [https://developers.notion.com/reference/page#all-property-values].
  */
 interface StringFormulaPropertyValue : FormulaPropertyValue<String>
 
 /**
  * This type is returned when a Formula Property Value of a type unknown to this library is returned by the Notion API.
  *
- * See [https://www.notion.so/5a48631ae00c4d48adee859475a25956?v=5dfe884a62304ae08f1fb7d0e89c5743].
+ * See [https://developers.notion.com/reference/page#all-property-values].
  */
 interface UnknownTypeFormulaPropertyValue : FormulaPropertyValue<Unit> {
     val type: String

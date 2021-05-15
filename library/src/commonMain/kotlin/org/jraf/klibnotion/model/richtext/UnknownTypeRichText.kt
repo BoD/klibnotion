@@ -27,7 +27,7 @@ package org.jraf.klibnotion.model.richtext
 /**
  * This type is returned when a Rich Text of a type unknown to this library is returned by the Notion API.
  *
- * See [https://www.notion.so/768be31f7e404aa1aa8642954dc58ef0?v=16ac63885e0d46f5ab3ba81eaefa042e].
+ * See [https://developers.notion.com/reference/rich-text].
  */
 interface UnknownTypeRichText : RichText {
     val type: String

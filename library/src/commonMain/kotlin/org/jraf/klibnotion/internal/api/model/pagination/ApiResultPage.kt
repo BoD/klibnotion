@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.pagination
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://www.notion.so/Notion-data-model-6bb5636d791d49568e291b619608827e#bfc81d1e24f644399637ce305eb16365].
+ * See [https://developers.notion.com/reference/pagination].
  */
 @Serializable
 internal data class ApiResultPage<T : Any>(

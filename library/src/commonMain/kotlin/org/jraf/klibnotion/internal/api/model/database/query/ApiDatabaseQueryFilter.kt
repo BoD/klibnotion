@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.database.query
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://www.notion.so/Query-a-database-f150c8e10ead4afe9045d56bc8114855].
+ * See [https://developers.notion.com/reference/post-database-query].
  */
 @Serializable
 internal data class ApiDatabaseQueryFilters(
@@ -37,7 +37,7 @@ internal data class ApiDatabaseQueryFilters(
 
 
 /**
- * See [https://www.notion.so/Query-a-database-f150c8e10ead4afe9045d56bc8114855].
+ * See [https://developers.notion.com/reference/post-database-query].
  */
 @Serializable
 internal data class ApiDatabaseQueryFilter(

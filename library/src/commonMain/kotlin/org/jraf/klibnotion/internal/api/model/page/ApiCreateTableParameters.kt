@@ -29,7 +29,7 @@ import kotlinx.serialization.json.JsonElement
 import org.jraf.klibnotion.internal.api.model.base.ApiReference
 
 /**
- * See [https://www.notion.so/Create-a-page-9bd15f8d8082429b82dbe6c4ea88413b].
+ * See [https://developers.notion.com/reference/post-page].
  */
 @Serializable
 internal data class ApiCreateTableParameters(

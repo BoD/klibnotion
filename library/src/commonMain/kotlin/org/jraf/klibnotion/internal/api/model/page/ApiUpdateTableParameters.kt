@@ -28,7 +28,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 
 /**
- * See [https://www.notion.so/Update-page-properties-70ef58bea0034d21b5fec686cb5bf980].
+ * See [https://developers.notion.com/reference/patch-page].
  */
 @Serializable
 internal data class ApiUpdateTableParameters(

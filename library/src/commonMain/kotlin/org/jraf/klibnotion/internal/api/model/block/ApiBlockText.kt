@@ -28,7 +28,7 @@ import kotlinx.serialization.Serializable
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
 /**
- * See [https://www.notion.so/Block-object-4b5518a4156a42d781c0ae8278853939].
+ * See [https://developers.notion.com/reference/block].
  */
 @Serializable
 internal data class ApiBlockText(
