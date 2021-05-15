@@ -27,6 +27,7 @@ package org.jraf.klibnotion.internal.api.model.page
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.base.ApiReferenceConverter
+import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValueConverter
 import org.jraf.klibnotion.internal.model.page.PageImpl
 import org.jraf.klibnotion.model.page.Page
@@ -36,6 +37,8 @@ internal object ApiPageConverter : ApiConverter<ApiPage, Page>() {
         id = apiModel.id,
         parent = apiModel.parent.apiToModel(ApiReferenceConverter),
         propertyValues = ApiPropertyValueConverter.apiToModel(apiModel.properties.map { it.key to it.value }),
-        archived = apiModel.archived
+        archived = apiModel.archived,
+        created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp,
+        lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp
     )
 }

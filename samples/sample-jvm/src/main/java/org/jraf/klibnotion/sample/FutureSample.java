@@ -32,7 +32,6 @@ import org.jraf.klibnotion.model.block.MutableBlockList;
 import org.jraf.klibnotion.model.color.Color;
 import org.jraf.klibnotion.model.database.Database;
 import org.jraf.klibnotion.model.database.query.DatabaseQuery;
-import org.jraf.klibnotion.model.database.query.DatabaseQuerySort;
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate;
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter;
 import org.jraf.klibnotion.model.date.Date;
@@ -41,6 +40,7 @@ import org.jraf.klibnotion.model.date.DateTime;
 import org.jraf.klibnotion.model.page.Page;
 import org.jraf.klibnotion.model.pagination.Pagination;
 import org.jraf.klibnotion.model.pagination.ResultPage;
+import org.jraf.klibnotion.model.property.sort.PropertySort;
 import org.jraf.klibnotion.model.property.value.PropertyValueList;
 import org.jraf.klibnotion.model.richtext.Annotations;
 import org.jraf.klibnotion.model.richtext.RichTextList;
@@ -138,7 +138,7 @@ class FutureSample {
                                         new DatabaseQueryPredicate.Checkbox(true)
                                 )
                         ),
-                new DatabaseQuerySort()
+                new PropertySort()
                         .ascending("Created time")
                         .descending("title"),
                 new Pagination()

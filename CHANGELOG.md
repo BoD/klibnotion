@@ -7,6 +7,7 @@
 - Use the new syntax for writing property values
 - Add ability to create a page inside a page (but currently doesn't work on the Notion API side)
 - Add `Notion-Version` header to all calls
+- Support for search APIs
 
 ## v1.4.0 (2021-04-18)
 

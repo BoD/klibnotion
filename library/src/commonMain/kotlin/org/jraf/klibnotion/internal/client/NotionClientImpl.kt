@@ -60,6 +60,7 @@ import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConverter
+import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.internal.klibNotionScope
@@ -73,12 +74,12 @@ import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.block.invoke
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
-import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.exceptions.NotionClientException
 import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
+import org.jraf.klibnotion.model.property.sort.PropertySort
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
@@ -90,12 +91,14 @@ internal class NotionClientImpl(
     NotionClient.Users,
     NotionClient.Databases,
     NotionClient.Pages,
-    NotionClient.Blocks {
+    NotionClient.Blocks,
+    NotionClient.Search {
 
     override val users = this
     override val databases = this
     override val pages = this
     override val blocks = this
+    override val search = this
 
     @OptIn(KtorExperimentalAPI::class)
     private val httpClient by lazy {
@@ -195,7 +198,7 @@ internal class NotionClientImpl(
     override suspend fun queryDatabase(
         id: UuidString,
         query: DatabaseQuery?,
-        sort: DatabaseQuerySort?,
+        sort: PropertySort?,
         pagination: Pagination,
     ): ResultPage<Page> {
         return service.queryDatabase(
@@ -306,6 +309,35 @@ internal class NotionClientImpl(
 
     override suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) =
         appendBlockList(parentId, blocks() ?: MutableBlockList())
+
+    // endregion
+
+
+    // region Search
+
+    override suspend fun searchPages(
+        query: String?,
+        sort: PropertySort?,
+        pagination: Pagination,
+    ): ResultPage<Page> {
+        return service.searchPages(
+            parameters = Triple(query, sort, "page").modelToApi(ApiSearchParametersConverter),
+            startCursor = pagination.startCursor
+        )
+            .apiToModel(ApiPageResultPageConverter)
+    }
+
+    override suspend fun searchDatabases(
+        query: String?,
+        sort: PropertySort?,
+        pagination: Pagination,
+    ): ResultPage<Database> {
+        return service.searchDatabases(
+            parameters = Triple(query, sort, "database").modelToApi(ApiSearchParametersConverter),
+            startCursor = pagination.startCursor
+        )
+            .apiToModel(ApiPageResultDatabaseConverter)
+    }
 
     // endregion
 

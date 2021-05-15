@@ -26,6 +26,7 @@ package org.jraf.klibnotion.internal.model.database
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.database.Database
+import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -33,4 +34,6 @@ internal data class DatabaseImpl(
     override val id: UuidString,
     override val title: RichTextList,
     override val propertySpecs: List<PropertySpec>,
+    override val created: Timestamp,
+    override val lastEdited: Timestamp,
 ) : Database

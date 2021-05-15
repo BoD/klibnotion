@@ -28,13 +28,13 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
-import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
+import org.jraf.klibnotion.model.property.sort.PropertySort
 
 internal object ApiDatabaseQueryConverter :
-    ApiConverter<ApiDatabaseQuery, Pair<DatabaseQuery?, DatabaseQuerySort?>>() {
-    override fun modelToApi(model: Pair<DatabaseQuery?, DatabaseQuerySort?>): ApiDatabaseQuery {
+    ApiConverter<ApiDatabaseQuery, Pair<DatabaseQuery?, PropertySort?>>() {
+    override fun modelToApi(model: Pair<DatabaseQuery?, PropertySort?>): ApiDatabaseQuery {
         val query = model.first
         val sort = model.second
         return ApiDatabaseQuery(
@@ -51,8 +51,8 @@ internal object ApiDatabaseQueryConverter :
                     ApiDatabaseQuerySort(
                         property = propertyName,
                         direction = when (direction) {
-                            DatabaseQuerySort.Direction.ASCENDING -> "ascending"
-                            DatabaseQuerySort.Direction.DESCENDING -> "descending"
+                            PropertySort.Direction.ASCENDING -> "ascending"
+                            PropertySort.Direction.DESCENDING -> "descending"
                         }
                     )
                 }

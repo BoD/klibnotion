@@ -22,20 +22,15 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.database
+package org.jraf.klibnotion.internal.api.model.search
 
 import kotlinx.serialization.Serializable
-import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
-import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
 /**
- * See [https://www.notion.so/Database-object-9c9a6ab536bd43c58e87b52c4594116f].
+ * See [https://developers.notion.com/reference/post-search].
  */
 @Serializable
-internal data class ApiDatabase(
-    val id: String,
-    val title: List<ApiRichText>,
-    val properties: Map<String, ApiPropertySpec>,
-    val created_time: String,
-    val last_edited_time: String,
+internal data class ApiSearchSort(
+    val direction: String,
+    val timestamp: String,
 )

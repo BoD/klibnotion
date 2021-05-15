@@ -33,10 +33,10 @@ import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
-import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
+import org.jraf.klibnotion.model.property.sort.PropertySort
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
@@ -90,7 +90,7 @@ interface NotionClient {
         suspend fun queryDatabase(
             id: UuidString,
             query: DatabaseQuery? = null,
-            sort: DatabaseQuerySort? = null,
+            sort: PropertySort? = null,
             pagination: Pagination = Pagination(),
         ): ResultPage<Page>
     }
@@ -192,6 +192,35 @@ interface NotionClient {
 
 
     /**
+     * Search related APIs.
+     */
+    interface Search {
+        /**
+         * Search pages.
+         *
+         * The [query] is optional, when `null` this will return all pages.
+         * @see <a href="https://developers.notion.com/reference/post-search">Search</a>
+         */
+        suspend fun searchPages(
+            query: String? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): ResultPage<Page>
+
+        /**
+         * Search databases.
+         *
+         * The [query] is optional, when `null` this will return all databases.
+         * @see <a href="https://developers.notion.com/reference/post-search">Search</a>
+         */
+        suspend fun searchDatabases(
+            query: String? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): ResultPage<Database>
+    }
+
+    /**
      * User related APIs.
      */
     val users: Users
@@ -207,10 +236,14 @@ interface NotionClient {
     val pages: Pages
 
     /**
-     * Page related APIs.
+     * Block related APIs.
      */
     val blocks: Blocks
 
+    /**
+     * Search related APIs.
+     */
+    val search: Search
 
     /**
      * Dispose of this client instance.

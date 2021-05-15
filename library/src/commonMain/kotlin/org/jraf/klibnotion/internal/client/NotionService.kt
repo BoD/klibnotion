@@ -39,6 +39,7 @@ import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParameters
 import org.jraf.klibnotion.internal.api.model.page.ApiPage
 import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParameters
 import org.jraf.klibnotion.internal.api.model.pagination.ApiResultPage
+import org.jraf.klibnotion.internal.api.model.search.ApiSearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
 import org.jraf.klibnotion.model.base.UuidString
 
@@ -52,6 +53,7 @@ internal class NotionService(private val httpClient: HttpClient) {
         private const val DATABASES = "databases"
         private const val PAGES = "pages"
         private const val BLOCKS = "blocks"
+        private const val SEARCH = "search"
     }
 
     // region Users
@@ -126,6 +128,27 @@ internal class NotionService(private val httpClient: HttpClient) {
 
     suspend fun appendBlockList(parentId: UuidString, parameters: ApiAppendBlocksParameters) {
         httpClient.patch<Unit>("$BASE_URL/$BLOCKS/$parentId/children") {
+            contentType(ContentType.Application.Json)
+            body = parameters
+        }
+    }
+
+    // endregion
+
+
+    // region Search
+
+    suspend fun searchPages(parameters: ApiSearchParameters, startCursor: String?): ApiResultPage<ApiPage> {
+        return httpClient.post("$BASE_URL/$SEARCH") {
+            if (startCursor != null) parameter(START_CURSOR, startCursor)
+            contentType(ContentType.Application.Json)
+            body = parameters
+        }
+    }
+
+    suspend fun searchDatabases(parameters: ApiSearchParameters, startCursor: String?): ApiResultPage<ApiDatabase> {
+        return httpClient.post("$BASE_URL/$SEARCH") {
+            if (startCursor != null) parameter(START_CURSOR, startCursor)
             contentType(ContentType.Application.Json)
             body = parameters
         }

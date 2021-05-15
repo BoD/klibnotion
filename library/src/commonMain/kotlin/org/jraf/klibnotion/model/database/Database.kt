@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.model.database
 
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -35,4 +36,6 @@ interface Database {
     val id: UuidString
     val title: RichTextList
     val propertySpecs: List<PropertySpec>
+    val created: Timestamp
+    val lastEdited: Timestamp
 }

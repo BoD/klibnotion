@@ -29,15 +29,15 @@ import org.jraf.klibnotion.model.base.UuidString
 /**
  * A reference to another object.
  */
-sealed class Reference(
-    val id: UuidString,
-)
+sealed interface Reference {
+    val id: UuidString
+}
 
-class DatabaseReference(id: UuidString) : Reference(id)
+data class DatabaseReference(override val id: UuidString) : Reference
 
-class PageReference(id: UuidString) : Reference(id)
+data class PageReference(override val id: UuidString) : Reference
 
 /**
  * This type is returned when a reference of a type unknown to this library is returned by the Notion API.
  */
-class UnknownTypeReference(id: UuidString, val type: String) : Reference(id)
+data class UnknownTypeReference(override val id: UuidString, val type: String) : Reference

@@ -26,6 +26,7 @@ package org.jraf.klibnotion.model.page
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.Reference
+import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
 /**
@@ -36,4 +37,6 @@ interface Page {
     val parent: Reference
     val propertyValues: List<PropertyValue<*>>
     val archived: Boolean
+    val created: Timestamp
+    val lastEdited: Timestamp
 }

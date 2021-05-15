@@ -34,8 +34,8 @@ import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
-import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.pagination.Pagination
+import org.jraf.klibnotion.model.property.sort.PropertySort
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -45,11 +45,13 @@ internal class FutureNotionClientImpl(
     FutureNotionClient.Users,
     FutureNotionClient.Databases,
     FutureNotionClient.Pages,
-    FutureNotionClient.Blocks {
+    FutureNotionClient.Blocks,
+    FutureNotionClient.Search {
     override val users = this
     override val databases = this
     override val pages = this
     override val blocks = this
+    override val search = this
 
     override fun getUser(id: UuidString) = GlobalScope.future {
         notionClient.users.getUser(id)
@@ -66,7 +68,7 @@ internal class FutureNotionClientImpl(
     override fun queryDatabase(
         id: UuidString,
         query: DatabaseQuery?,
-        sort: DatabaseQuerySort?,
+        sort: PropertySort?,
         pagination: Pagination,
     ) = GlobalScope.future {
         notionClient.databases.queryDatabase(
@@ -133,6 +135,14 @@ internal class FutureNotionClientImpl(
     override fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) = GlobalScope.future<Void?> {
         notionClient.blocks.appendBlockList(parentId, blocks)
         null
+    }
+
+    override fun searchPages(query: String?, sort: PropertySort?, pagination: Pagination) = GlobalScope.future {
+        notionClient.search.searchPages(query, sort, pagination)
+    }
+
+    override fun searchDatabases(query: String?, sort: PropertySort?, pagination: Pagination) = GlobalScope.future {
+        notionClient.search.searchDatabases(query, sort, pagination)
     }
 
     override fun close() = notionClient.close()

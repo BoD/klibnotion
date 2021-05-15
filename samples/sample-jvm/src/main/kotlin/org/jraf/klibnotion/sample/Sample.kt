@@ -46,7 +46,6 @@ import org.jraf.klibnotion.model.block.UnknownTypeBlock
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
-import org.jraf.klibnotion.model.database.query.DatabaseQuerySort
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
 import org.jraf.klibnotion.model.date.Date
@@ -55,6 +54,7 @@ import org.jraf.klibnotion.model.date.DateTime
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
+import org.jraf.klibnotion.model.property.sort.PropertySort
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
@@ -151,7 +151,7 @@ class Sample {
                             predicate = DatabaseQueryPredicate.Checkbox(true)
                         ),
                     ),
-                sort = DatabaseQuerySort()
+                sort = PropertySort()
                     .ascending("Created time")
                     .descending("title")
             )
@@ -346,6 +346,34 @@ class Sample {
             // Append contents to page
             println("Appending contents")
             client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${java.util.Date()}") }
+
+            // Search pages (simple)
+            println("Page search results (simple):")
+            val simplePageSearchResults = client.search.searchPages()
+            println(simplePageSearchResults)
+
+            // Search pages (query and sort)
+            println("Page search results (query):")
+            val queryPageSearchResults =
+                client.search.searchPages(
+                    query = "smith",
+                    sort = PropertySort().descending("last_edited_time")
+                )
+            println(queryPageSearchResults)
+
+            // Search databases (simple)
+            println("Databases search results (simple):")
+            val simpleDatabasesSearchResults = client.search.searchDatabases()
+            println(simpleDatabasesSearchResults)
+
+            // Search databases (query and sort)
+            println("Databases search results (query):")
+            val queryDatabasesSearchResults =
+                client.search.searchDatabases(
+                    query = "test",
+                    sort = PropertySort().descending("last_edited_time")
+                )
+            println(queryDatabasesSearchResults)
         }
 
         // Close
