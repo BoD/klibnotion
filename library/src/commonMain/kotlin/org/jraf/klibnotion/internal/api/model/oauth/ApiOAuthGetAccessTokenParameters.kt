@@ -22,14 +22,16 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.internal.api.model.oauth
+
+import kotlinx.serialization.Serializable
 
 /**
- * This type is returned when a User of a type unknown to this library is returned by the Notion API.
- *
- * See [https://developers.notion.com/reference/user].
+ * See [https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token].
  */
-interface UnknownTypeUser : User {
-    val name: String?
-    val type: String?
-}
+@Serializable
+internal data class ApiOAuthGetAccessTokenParameters(
+    val grant_type: String,
+    val code: String,
+    val redirect_uri: String,
+)

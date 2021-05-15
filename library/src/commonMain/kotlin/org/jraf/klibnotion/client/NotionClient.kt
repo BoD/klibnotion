@@ -33,6 +33,9 @@ import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.oauth.OAuthCodeAndState
+import org.jraf.klibnotion.model.oauth.OAuthCredentials
+import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
@@ -48,6 +51,35 @@ interface NotionClient {
         fun newInstance(configuration: ClientConfiguration): NotionClient =
             NotionClientImpl(configuration)
     }
+
+    /**
+     * OAuth related APIs.
+     */
+    interface OAuth {
+        /**
+         * Get the URL used to prompt users to add an integration.
+         * @see <a href="https://developers.notion.com/docs/authorization#prompting-users-to-add-an-integration">Prompting users to add an integration</a>
+         */
+        fun getUserPromptUri(
+            oAuthCredentials: OAuthCredentials,
+            uniqueState: String,
+        ): String
+
+        /**
+         * Extract the code and state from the URI that the user was redirected to after login.
+         * @see <a href="https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token">Exchanging the grant for an access token</a>
+         *
+         * @return The code and state, or `null` if extraction failed.
+         */
+        fun extractCodeAndStateFromRedirectUri(redirectUri: String): OAuthCodeAndState?
+
+        /**
+         * Retrieve the OAuth access token from a code obtained via [getUserPromptUri] and [extractCodeAndStateFromRedirectUri].
+         * @see <a href="https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token">Exchanging the grant for an access token</a>
+         */
+        suspend fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String): OAuthGetAccessTokenResult
+    }
+
 
     /**
      * User related APIs.
@@ -219,6 +251,11 @@ interface NotionClient {
             pagination: Pagination = Pagination(),
         ): ResultPage<Database>
     }
+
+    /**
+     * OAuth related APIs.
+     */
+    val oAuth: OAuth
 
     /**
      * User related APIs.

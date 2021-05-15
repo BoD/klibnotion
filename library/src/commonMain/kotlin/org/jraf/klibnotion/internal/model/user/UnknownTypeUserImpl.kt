@@ -30,7 +30,7 @@ import org.jraf.klibnotion.model.user.UnknownTypeUser
 
 internal data class UnknownTypeUserImpl(
     override val id: UuidString,
-    override val name: String,
+    override val name: String?,
     override val avatarUrl: UrlString?,
     override val type: String,
 ) : UnknownTypeUser

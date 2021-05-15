@@ -22,14 +22,12 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.model.oauth
 
-/**
- * This type is returned when a User of a type unknown to this library is returned by the Notion API.
- *
- * See [https://developers.notion.com/reference/user].
- */
-interface UnknownTypeUser : User {
-    val name: String?
-    val type: String?
-}
+// TODO should be an interface
+data class OAuthGetAccessTokenResult(
+    val accessToken: String,
+    val workspaceName: String,
+    val workspaceIcon: String,
+    val botId: String,
+)

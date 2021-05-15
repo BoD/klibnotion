@@ -69,6 +69,7 @@ To get other flavors of the client:
 
 The client gives access to several API "areas":
 
+- `oAuth`
 - `users`
 - `databases`
 - `pages`
@@ -153,6 +154,17 @@ toggle("This is a toggle!") {
 </tr>
 </table>
 
+#### OAuth support
+
+1. Use `oAuth.getUserPromptUri` to get a URI that will prompt users to agree to add your integration to their workspace
+2. After agreeing and upon success, they will be redirected to a specific URI containing a code.
+   Use `oAuth.extractCodeAndStateFromRedirectUri` to extract the code from this URI.
+3. Exchange the code for an access token using `oAuth.getAccessToken`
+4. Save this token. You can now use it by setting the `accessToken` property of the `Authentication`
+   object you used when building your `NotionClient`.
+
+See [the sample](samples/sample-jvm/src/main/kotlin/org/jraf/klibnotion/sample/Sample.kt) for a working example.
+
 #### Logging
 
 To log HTTP requests/response, pass
@@ -167,14 +179,14 @@ A proxy can be configured by passing
 a [`HttpConfiguration`](https://github.com/BoD/klibnotion/blob/master/library/src/commonMain/kotlin/org/jraf/klibnotion/client/HttpConfiguration.kt)
 to `NotionClient.newInstance()`.
 
+## Status
+
+As of v1.5.0 of this library, 100% of the `2021-05-13` version of the Notion API is covered.
+
 ## Javascript support
 
 In theory Kotlin Multiplatform projects can also target Javascript but as of today the author couldn't understand how to
 make that work. Please [contact the author](mailto:BoD@JRAF.org) if you want to help :)
-
-## Status
-
-As of v1.5.0 of this library, 100% of the `2021-05-13` version of the Notion API is covered.
 
 ## Author and License
 

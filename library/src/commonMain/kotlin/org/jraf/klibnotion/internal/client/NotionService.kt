@@ -26,15 +26,21 @@ package org.jraf.klibnotion.internal.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.client.request.patch
 import io.ktor.client.request.post
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
+import io.ktor.util.InternalAPI
+import io.ktor.util.encodeBase64
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParameters
 import org.jraf.klibnotion.internal.api.model.block.ApiBlock
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
+import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
+import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResult
 import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParameters
 import org.jraf.klibnotion.internal.api.model.page.ApiPage
 import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParameters
@@ -49,12 +55,45 @@ internal class NotionService(private val httpClient: HttpClient) {
 
         private const val START_CURSOR = "start_cursor"
 
+        private const val OAUTH = "oauth"
         private const val USERS = "users"
         private const val DATABASES = "databases"
         private const val PAGES = "pages"
         private const val BLOCKS = "blocks"
         private const val SEARCH = "search"
+
+        const val OAUTH_URL_SCHEME = "https"
+        const val OAUTH_URL_HOST = "api.notion.com"
+        const val OAUTH_URL_PATH = "/v1/$OAUTH/authorize"
     }
+
+    // region OAuth
+
+    @OptIn(InternalAPI::class)
+    suspend fun getOAuthAccessToken(
+        clientId: String,
+        clientSecret: String,
+        parameters: ApiOAuthGetAccessTokenParameters,
+    ): ApiOAuthGetAccessTokenResult {
+        return httpClient.post("$BASE_URL/$OAUTH/token") {
+            header(
+                HttpHeaders.Authorization,
+                getClientSecretBase64(clientId, clientSecret)
+            )
+            contentType(ContentType.Application.Json)
+            body = parameters
+        }
+    }
+
+    @OptIn(InternalAPI::class)
+    private fun getClientSecretBase64(clientId: String, clientSecret: String): String {
+        // TODO Don't depend on private encodeBase64 KTOR API
+        val clientSecretBase64 = "$clientId:$clientSecret".encodeBase64()
+        return "Basic $clientSecretBase64"
+    }
+
+    // endregion
+
 
     // region Users
 

@@ -51,6 +51,7 @@ import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilt
 import org.jraf.klibnotion.model.date.Date
 import org.jraf.klibnotion.model.date.DateOrDateRange
 import org.jraf.klibnotion.model.date.DateTime
+import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
@@ -67,6 +68,17 @@ import kotlin.system.exitProcess
 // that you will find by following the instructions here: https://developers.notion.com/docs/getting-started
 private const val TOKEN = "secret_XXX"
 
+// Or, alternatively, if you have registered your app integration to be public, use OAuth.
+// More information about OAuth here:
+// https://developers.notion.com/docs/authorization#authorizing-public-integrations
+private const val OAUTH_CLIENT_ID = "00000000-0000-0000-0000-000000000000"
+private const val OAUTH_CLIENT_SECRET = "secret_XXX"
+private const val OAUTH_REDIRECT_URI = "https://example.com"
+
+// Set to false to use the TOKEN above, true to setup and use OAuth
+private const val USE_OAUTH = false
+
+
 // Replace this constant with a user id that exists
 private const val USER_ID = "00000000-0000-0000-0000-000000000000"
 
@@ -77,11 +89,13 @@ private const val DATABASE_ID = "00000000-0000-0000-0000-000000000000"
 private const val PAGE_ID = "00000000-0000-0000-0000-000000000000"
 
 class Sample {
+    private val authentication = Authentication()
+
     private val client: NotionClient by lazy {
         // Create the client
         NotionClient.newInstance(
             ClientConfiguration(
-                Authentication(TOKEN),
+                authentication,
                 HttpConfiguration(
                     // Uncomment to see more logs
                     // loggingLevel = HttpLoggingLevel.BODY,
@@ -97,15 +111,50 @@ class Sample {
 
     fun main() {
         runBlocking {
-            // Get user
-            println("User:")
-            val user: User = client.users.getUser(USER_ID)
-            println(user)
+            if (USE_OAUTH) {
+                val oAuthCredentials = OAuthCredentials(
+                    clientId = OAUTH_CLIENT_ID,
+                    clientSecret = OAUTH_CLIENT_SECRET,
+                    redirectUri = OAUTH_REDIRECT_URI
+                )
+
+                // 1/ Authenticate the user / integration
+                val uniqueState = Random.nextLong().toString()
+                println("Navigate to this URL in a browser:")
+                println(client.oAuth.getUserPromptUri(oAuthCredentials = oAuthCredentials, uniqueState = uniqueState))
+
+                // 2/ Extract code
+                println("After successful authentication please paste the URL in the browser's bar, and press enter:")
+                val redirectUri = readLine()!!
+                val codeAndUniqueState = client.oAuth.extractCodeAndStateFromRedirectUri(redirectUri)
+                println(codeAndUniqueState)
+                if (codeAndUniqueState == null || codeAndUniqueState.state != uniqueState) {
+                    println("Something is wrong! Giving up.")
+                    return@runBlocking
+                }
+
+                // 3/ Exchange code for an access token
+                val getAccessTokenResult = client.oAuth.getAccessToken(
+                    oAuthCredentials = oAuthCredentials,
+                    code = codeAndUniqueState.code
+                )
+                println(getAccessTokenResult)
+
+                // 4/ Use obtained access token for subsequent API calls
+                authentication.accessToken = getAccessTokenResult.accessToken
+            } else {
+                authentication.accessToken = TOKEN
+            }
 
             // Get user list
             println("User list first page:")
             val userResultPage: ResultPage<User> = client.users.getUserList()
             println(userResultPage)
+
+            // Get user
+            println("User:")
+            val user: User = client.users.getUser(USER_ID)
+            println(user)
 
             // Get database
             println("Database:")

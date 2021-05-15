@@ -27,4 +27,6 @@ package org.jraf.klibnotion.model.user
 /**
  * See [https://developers.notion.com/reference/user].
  */
-interface Bot : User
+interface Bot : User {
+    val name: String
+}

@@ -41,7 +41,10 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.client.statement.readText
 import io.ktor.http.HttpHeaders
+import io.ktor.http.ParametersBuilder
 import io.ktor.http.URLBuilder
+import io.ktor.http.URLProtocol
+import io.ktor.http.Url
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
@@ -55,6 +58,8 @@ import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
+import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
+import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResultConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultDatabaseConverter
@@ -76,6 +81,9 @@ import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.exceptions.NotionClientException
 import org.jraf.klibnotion.model.exceptions.NotionClientRequestException
+import org.jraf.klibnotion.model.oauth.OAuthCodeAndState
+import org.jraf.klibnotion.model.oauth.OAuthCredentials
+import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
@@ -88,12 +96,14 @@ import kotlin.coroutines.coroutineContext
 internal class NotionClientImpl(
     clientConfiguration: ClientConfiguration,
 ) : NotionClient,
+    NotionClient.OAuth,
     NotionClient.Users,
     NotionClient.Databases,
     NotionClient.Pages,
     NotionClient.Blocks,
     NotionClient.Search {
 
+    override val oAuth = this
     override val users = this
     override val databases = this
     override val pages = this
@@ -115,10 +125,14 @@ internal class NotionClientImpl(
                 )
             }
             defaultRequest {
-                header(
-                    HttpHeaders.Authorization,
-                    "Bearer ${clientConfiguration.authentication.internalIntegrationToken}"
-                )
+                if (headers[HttpHeaders.Authorization] == null) {
+                    val authentication = clientConfiguration.authentication
+                    if (!authentication.isSet) throw IllegalStateException("You must set the Authentication accessToken before making this call")
+                    header(
+                        HttpHeaders.Authorization,
+                        "Bearer ${authentication.accessToken}"
+                    )
+                }
                 header(HEADER_NOTION_VERSION, NOTION_API_VERSION)
             }
             install(UserAgent) {
@@ -167,6 +181,49 @@ internal class NotionClientImpl(
     private val service: NotionService by lazy {
         NotionService(httpClient)
     }
+
+    // region OAuth
+
+    override fun getUserPromptUri(oAuthCredentials: OAuthCredentials, uniqueState: String): String {
+        return URLBuilder(protocol = URLProtocol.createOrDefault(NotionService.OAUTH_URL_SCHEME),
+            host = NotionService.OAUTH_URL_HOST,
+            encodedPath = NotionService.OAUTH_URL_PATH,
+            parameters = ParametersBuilder().apply {
+                append("client_id", oAuthCredentials.clientId)
+                append("redirect_uri", oAuthCredentials.redirectUri)
+                append("response_type", "code")
+                // XXX Adding a _ to ensure it's not interpreted as a number
+                append("state", "_$uniqueState")
+            }
+        ).buildString()
+    }
+
+    override fun extractCodeAndStateFromRedirectUri(redirectUri: String): OAuthCodeAndState? {
+        return try {
+            val url = Url(redirectUri)
+            // XXX Removing the _ added in getLoginUri
+            val state = url.parameters["state"]!!.removePrefix("_")
+            OAuthCodeAndState(code = url.parameters["code"]!!, state = state)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    override suspend fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String): OAuthGetAccessTokenResult {
+        return service.getOAuthAccessToken(
+            clientId = oAuthCredentials.clientId,
+            clientSecret = oAuthCredentials.clientSecret,
+            parameters = ApiOAuthGetAccessTokenParameters(
+                grant_type = "authorization_code",
+                redirect_uri = oAuthCredentials.redirectUri,
+                code = code,
+            )
+        )
+            .apiToModel(ApiOAuthGetAccessTokenResultConverter)
+    }
+
+    // endregion
+
 
     // region Users
 

@@ -22,14 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.user
+package org.jraf.klibnotion.internal.model.user
 
-/**
- * This type is returned when a User of a type unknown to this library is returned by the Notion API.
- *
- * See [https://developers.notion.com/reference/user].
- */
-interface UnknownTypeUser : User {
-    val name: String?
-    val type: String?
-}
+import org.jraf.klibnotion.model.base.UrlString
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.user.AnonymousUser
+
+internal data class AnonymousUserImpl(
+    override val id: UuidString,
+    override val avatarUrl: UrlString?,
+) : AnonymousUser

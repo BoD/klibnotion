@@ -28,3 +28,18 @@ package org.jraf.klibnotion.model.base
  * A String representing an UUID.
  */
 typealias UuidString = String
+
+/**
+ * Get a version of this UuidString that is formatted with hyphens.
+ * If this string already contains hyphens, it is returned as is.
+ */
+fun UuidString.hyphened() = if (contains('-')) {
+    this
+} else {
+    StringBuilder(this)
+        .insert(8, '-')
+        .insert(13, '-')
+        .insert(18, '-')
+        .insert(23, '-')
+        .toString()
+}

@@ -32,6 +32,5 @@ import org.jraf.klibnotion.model.base.UuidString
  */
 sealed interface User {
     val id: UuidString
-    val name: String
     val avatarUrl: UrlString?
 }

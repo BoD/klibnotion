@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.internal.api.model.user
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.model.user.AnonymousUserImpl
 import org.jraf.klibnotion.internal.model.user.BotImpl
 import org.jraf.klibnotion.internal.model.user.PersonImpl
 import org.jraf.klibnotion.internal.model.user.UnknownTypeUserImpl
@@ -34,14 +35,18 @@ internal object ApiUserConverter : ApiConverter<ApiUser, User>() {
     override fun apiToModel(apiModel: ApiUser) = when (apiModel.type) {
         "person" -> PersonImpl(
             id = apiModel.id,
-            name = apiModel.name,
+            name = apiModel.name!!,
             avatarUrl = apiModel.avatar_url,
             email = apiModel.person!!.email,
         )
         "bot" -> BotImpl(
             id = apiModel.id,
-            name = apiModel.name,
+            name = apiModel.name!!,
             avatarUrl = apiModel.avatar_url,
+        )
+        null -> AnonymousUserImpl(
+            id = apiModel.id,
+            avatarUrl = apiModel.avatar_url
         )
         else -> UnknownTypeUserImpl(
             id = apiModel.id,

@@ -33,6 +33,7 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.color.ApiColorConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
+import org.jraf.klibnotion.model.base.hyphened
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.DatabaseMentionRichText
@@ -72,19 +73,19 @@ internal object ApiOutRichTextListConverter : ApiConverter<JsonArray, RichTextLi
 
                     is UserMentionRichText -> putJsonObject("mention") {
                         putJsonObject("user") {
-                            put("id", richText.user.id)
+                            put("id", richText.user.id.hyphened())
                         }
                     }
 
                     is PageMentionRichText -> putJsonObject("mention") {
                         putJsonObject("page") {
-                            put("id", richText.pageId)
+                            put("id", richText.pageId.hyphened())
                         }
                     }
 
                     is DatabaseMentionRichText -> putJsonObject("mention") {
                         putJsonObject("database") {
-                            put("id", richText.databaseId)
+                            put("id", richText.databaseId.hyphened())
                         }
                     }
 

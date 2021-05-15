@@ -25,11 +25,9 @@
 package org.jraf.klibnotion.model.user
 
 /**
- * This type is returned when a User of a type unknown to this library is returned by the Notion API.
+ * This type can be returned when a page referencing a user from another workspace has been
+ * imported.
  *
  * See [https://developers.notion.com/reference/user].
  */
-interface UnknownTypeUser : User {
-    val name: String?
-    val type: String?
-}
+interface AnonymousUser : User

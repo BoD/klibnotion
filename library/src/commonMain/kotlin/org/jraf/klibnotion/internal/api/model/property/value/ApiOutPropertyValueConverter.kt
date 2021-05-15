@@ -33,6 +33,7 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
+import org.jraf.klibnotion.model.base.hyphened
 import org.jraf.klibnotion.model.property.value.CheckboxPropertyValue
 import org.jraf.klibnotion.model.property.value.CreatedByPropertyValue
 import org.jraf.klibnotion.model.property.value.CreatedTimePropertyValue
@@ -106,7 +107,7 @@ internal object ApiOutPropertyValueConverter :
                 put("relation", buildJsonArray {
                     for (id in model.value)
                         addJsonObject {
-                            put("id", id)
+                            put("id", id.hyphened())
                         }
                 })
             }
@@ -115,7 +116,7 @@ internal object ApiOutPropertyValueConverter :
                 put("people", buildJsonArray {
                     for (user in model.value)
                         addJsonObject {
-                            put("id", user.id)
+                            put("id", user.id.hyphened())
                         }
                 })
             }

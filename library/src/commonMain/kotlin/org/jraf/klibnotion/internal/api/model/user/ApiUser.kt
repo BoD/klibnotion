@@ -32,9 +32,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class ApiUser(
     val id: String,
-    val type: String,
+    val type: String? = null,
     val person: ApiPerson? = null,
     val bot: ApiBot? = null,
-    val name: String,
-    val avatar_url: String?,
+    val name: String? = null,
+    val avatar_url: String? = null,
 )

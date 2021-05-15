@@ -25,8 +25,10 @@
 import org.jraf.klibnotion.client.Authentication
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.NotionClient
+import org.jraf.klibnotion.model.user.AnonymousUser
 import org.jraf.klibnotion.model.user.Bot
 import org.jraf.klibnotion.model.user.Person
+import org.jraf.klibnotion.model.user.UnknownTypeUser
 import org.jraf.klibnotion.model.user.User
 
 class NotionCli(av: Array<String>) {
@@ -56,10 +58,19 @@ private fun User.toNiceString(): String {
         when (this) {
             is Person -> "Person"
             is Bot -> "Bot"
-            else -> "Unknown"
+            is AnonymousUser -> "Anonymous"
+            is UnknownTypeUser -> "Unknown"
         }
     }
-    Name: $name
+    Name: ${
+        when (this) {
+            is Person -> name
+            is Bot -> name
+            is AnonymousUser -> ""
+            is UnknownTypeUser -> ""
+        }
+    }
+
     Avatar url: $avatarUrl
     """.trimIndent() +
             if (this is Person) "\nEmail: $email" else ""

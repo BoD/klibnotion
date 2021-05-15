@@ -40,14 +40,20 @@ class NotionClientRequestException(
     val code: String = notionError?.code ?: "unexpected"
     override val message: String = notionError?.message ?: "Unexpected error: ${cause.message}"
     val detailsJson: String = notionError?.details?.toString() ?: "{}"
+    val status: Int? = notionError?.status
 
     override fun toString(): String {
-        return "NotionClientRequestException(code='$code', message='$message', detailsJson='$detailsJson')"
+        return "NotionClientRequestException(status=$status, code='$code', message='$message', detailsJson='$detailsJson')"
     }
 }
 
 @Serializable
-private data class NotionError(val code: String, val message: String, val details: JsonObject) {
+private data class NotionError(
+    val code: String,
+    val message: String,
+    val status: Int? = null,
+    val details: JsonObject? = null,
+) {
     companion object {
         fun fromJsonString(jsonString: String): NotionError? =
             try {

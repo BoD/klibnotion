@@ -33,6 +33,7 @@ import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.property.sort.PropertySort
 import org.jraf.klibnotion.model.property.value.PropertyValueList
@@ -41,16 +42,28 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 internal class BlockingNotionClientImpl(
     private val notionClient: NotionClient,
 ) : BlockingNotionClient,
+    BlockingNotionClient.OAuth,
     BlockingNotionClient.Users,
     BlockingNotionClient.Databases,
     BlockingNotionClient.Pages,
     BlockingNotionClient.Blocks,
     BlockingNotionClient.Search {
+    override val oAuth = this
     override val users = this
     override val databases = this
     override val pages = this
     override val blocks = this
     override val search = this
+
+    override fun getUserPromptUri(oAuthCredentials: OAuthCredentials, uniqueState: String) =
+        notionClient.oAuth.getUserPromptUri(oAuthCredentials, uniqueState)
+
+    override fun extractCodeAndStateFromRedirectUri(redirectUri: String) =
+        notionClient.oAuth.extractCodeAndStateFromRedirectUri(redirectUri)
+
+    override fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String) = runBlocking {
+        notionClient.oAuth.getAccessToken(oAuthCredentials, code)
+    }
 
     override fun getUser(id: UuidString) = runBlocking {
         notionClient.users.getUser(id)

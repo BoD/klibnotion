@@ -36,6 +36,9 @@ import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.oauth.OAuthCodeAndState
+import org.jraf.klibnotion.model.oauth.OAuthCredentials
+import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
@@ -53,6 +56,29 @@ import java.util.concurrent.Future
  * This is useful from Java, which doesn't have a notion of `suspend` functions.
  */
 interface FutureNotionClient {
+    /**
+     * See [NotionClient.OAuth].
+     */
+    interface OAuth {
+        /**
+         * See [NotionClient.OAuth.getUserPromptUri].
+         */
+        fun getUserPromptUri(
+            oAuthCredentials: OAuthCredentials,
+            uniqueState: String,
+        ): String
+
+        /**
+         * See [NotionClient.OAuth.extractCodeAndStateFromRedirectUri].
+         */
+        fun extractCodeAndStateFromRedirectUri(redirectUri: String): OAuthCodeAndState?
+
+        /**
+         * See [NotionClient.OAuth.getAccessToken].
+         */
+        fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String): Future<OAuthGetAccessTokenResult>
+    }
+
     /**
      * See [NotionClient.Users].
      */
@@ -166,14 +192,11 @@ interface FutureNotionClient {
 
 
     /**
-     * Search related APIs.
+     * See [NotionClient.Search].
      */
     interface Search {
         /**
-         * Search pages.
-         *
-         * The [query] is optional, when `null` this will return all pages.
-         * @see <a href="https://developers.notion.com/reference/post-search">Search</a>
+         * See [NotionClient.Search.searchPages].
          */
         fun searchPages(
             query: String? = null,
@@ -182,10 +205,7 @@ interface FutureNotionClient {
         ): Future<ResultPage<Page>>
 
         /**
-         * Search databases.
-         *
-         * The [query] is optional, when `null` this will return all databases.
-         * @see <a href="https://developers.notion.com/reference/post-search">Search</a>
+         * See [NotionClient.Search.searchDatabases].
          */
         fun searchDatabases(
             query: String? = null,
@@ -194,6 +214,11 @@ interface FutureNotionClient {
         ): Future<ResultPage<Database>>
     }
 
+
+    /**
+     * See [NotionClient.oAuth].
+     */
+    val oAuth: OAuth
 
     /**
      * See [NotionClient.users].
