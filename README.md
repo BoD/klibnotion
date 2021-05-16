@@ -32,8 +32,8 @@ repositories {
 
 ```groovy
 dependencies {
-  /* ... */
-  implementation 'org.jraf:klibnotion:1.5.0'
+    /* ... */
+    implementation 'org.jraf:klibnotion:1.5.0'
 }
 ```
 
@@ -106,12 +106,12 @@ paragraph("Hello, World!")
 
 heading1("Second section")
 paragraph("This paragraph is bold", annotations = Annotations.BOLD) {
-  paragraph("Sub paragraph 1")
-  paragraph("Sub paragraph 2") {
-    paragraph("Sub sub paragraph") {
+    paragraph("Sub paragraph 1")
+    paragraph("Sub paragraph 2") {
+        paragraph("Sub sub paragraph") {
 
+        }
     }
-  }
 }
 
 heading2("But then again")
@@ -120,23 +120,23 @@ paragraph("That's the case")
 
 heading3("But really")
 paragraph(RichTextList().text("This ")
-  .text("word", Annotations(color = Color.RED))
-  .text(" is red"))
+    .text("word", Annotations(color = Color.RED))
+    .text(" is red"))
 
 bullet("There's this,")
 bullet("there's that,")
 bullet("then there's...") {
-  paragraph("Will this work?")
+    paragraph("Will this work?")
 }
 bullet("indentation?") {
-  bullet("indentation? 2") {
-    bullet("indentation? 3")
-  }
+    bullet("indentation? 2") {
+        bullet("indentation? 3")
+    }
 }
 
 number("First")
 number("Second") {
-  number("Second second")
+    number("Second second")
 }
 number("Third")
 
@@ -144,9 +144,9 @@ toDo("This one is checked", true)
 toDo("This one is not checked", false)
 
 toggle("This is a toggle!") {
-  paragraph("This first paragraph is inside the toggle")
-  paragraph("This second paragraph is inside the toggle")
-  heading3("This too!")
+    paragraph("This first paragraph is inside the toggle")
+    paragraph("This second paragraph is inside the toggle")
+    heading3("This too!")
 }
 ```
 
@@ -160,9 +160,8 @@ toggle("This is a toggle!") {
 
 #### OAuth support
 
-1.
-Use [`oAuth.getUserPromptUri`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/get-user-prompt-uri.html)
-to get a URI that will prompt users to agree to add your integration to their workspace
+1. Use [`oAuth.getUserPromptUri`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/get-user-prompt-uri.html)
+   to get a URI that will prompt users to agree to add your integration to their workspace
 2. After agreeing and upon success, they will be redirected to a specific URI containing a code.
    Use [`oAuth.extractCodeAndStateFromRedirectUri`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/extract-code-and-state-from-redirect-uri.html)
    to extract the code from this URI.
@@ -173,8 +172,7 @@ to get a URI that will prompt users to agree to add your integration to their wo
    property of
    the [`Authentication`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-authentication/index.html)
    object you used when building
-   your [`NotionClient`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/index.html)
-   .
+   your [`NotionClient`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/index.html).
 
 See [the sample](samples/sample-jvm/src/main/kotlin/org/jraf/klibnotion/sample/Sample.kt) for a working example.
 
