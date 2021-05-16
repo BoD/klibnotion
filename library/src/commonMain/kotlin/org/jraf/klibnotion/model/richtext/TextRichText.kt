@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.model.richtext
 
 /**
- * See [https://developers.notion.com/reference/rich-text].
+ * See [Reference](https://developers.notion.com/reference/rich-text).
  */
 interface TextRichText : RichText {
     val linkUrl: String?

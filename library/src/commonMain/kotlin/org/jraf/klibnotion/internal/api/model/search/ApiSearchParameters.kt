@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.search
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/post-search].
+ * See [Reference](https://developers.notion.com/reference/post-search).
  */
 @Serializable
 internal data class ApiSearchParameters(

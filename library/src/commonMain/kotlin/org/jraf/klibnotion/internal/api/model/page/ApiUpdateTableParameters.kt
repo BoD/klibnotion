@@ -28,7 +28,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 
 /**
- * See [https://developers.notion.com/reference/patch-page].
+ * See [Reference](https://developers.notion.com/reference/patch-page).
  */
 @Serializable
 internal data class ApiUpdateTableParameters(

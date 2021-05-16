@@ -28,7 +28,7 @@ import kotlinx.serialization.Serializable
 import org.jraf.klibnotion.internal.api.model.date.ApiDate
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 @Serializable
 internal data class ApiPropertyValueRollup(

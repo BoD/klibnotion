@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.richtext
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/rich-text].
+ * See [Reference](https://developers.notion.com/reference/rich-text).
  */
 @Serializable
 internal data class ApiRichTextEquation(

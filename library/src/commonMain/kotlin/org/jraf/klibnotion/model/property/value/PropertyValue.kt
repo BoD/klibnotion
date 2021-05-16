@@ -46,7 +46,7 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 import kotlin.jvm.JvmOverloads
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 sealed interface PropertyValue<T : Any> {
     val id: String

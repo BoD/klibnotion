@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.oauth
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token].
+ * See [Reference](https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token).
  */
 @Serializable
 internal data class ApiOAuthGetAccessTokenResult(

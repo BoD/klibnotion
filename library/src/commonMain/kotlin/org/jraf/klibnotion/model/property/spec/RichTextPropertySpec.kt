@@ -25,6 +25,6 @@
 package org.jraf.klibnotion.model.property.spec
 
 /**
- * See [https://developers.notion.com/reference/database].
+ * See [Reference](https://developers.notion.com/reference/database).
  */
 interface RichTextPropertySpec : PropertySpec

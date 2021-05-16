@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.property.spec
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/database].
+ * See [Reference](https://developers.notion.com/reference/database).
  */
 @Serializable
 internal data class ApiPropertySpecNumber(

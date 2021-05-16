@@ -28,7 +28,7 @@ import org.jraf.klibnotion.model.base.UrlString
 import org.jraf.klibnotion.model.base.UuidString
 
 /**
- * See [https://developers.notion.com/reference/user].
+ * See [Reference](https://developers.notion.com/reference/user).
  */
 sealed interface User {
     val id: UuidString

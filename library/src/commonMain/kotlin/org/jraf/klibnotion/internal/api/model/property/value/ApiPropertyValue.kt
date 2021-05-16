@@ -32,7 +32,7 @@ import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 @Serializable
 internal data class ApiPropertyValue(

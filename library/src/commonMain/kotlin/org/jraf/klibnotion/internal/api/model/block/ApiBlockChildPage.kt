@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.block
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/block].
+ * See [Reference](https://developers.notion.com/reference/block).
  */
 @Serializable
 internal data class ApiBlockChildPage(

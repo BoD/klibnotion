@@ -45,6 +45,8 @@ The easiest way to see how to use it is to look at the samples:
 - [Blocking (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/BlockingSample.java)
 - [Future (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/FutureSample.java)
 
+You can also explore [the docs](docs).
+
 #### Get your API key
 
 You will find your **Internal Integration Token** by following the

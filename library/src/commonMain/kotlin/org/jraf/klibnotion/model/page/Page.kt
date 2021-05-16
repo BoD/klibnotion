@@ -30,7 +30,7 @@ import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
 /**
- * See [https://developers.notion.com/reference/page].
+ * See [Reference](https://developers.notion.com/reference/page).
  */
 interface Page {
     val id: UuidString

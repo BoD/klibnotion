@@ -28,6 +28,6 @@ package org.jraf.klibnotion.model.user
  * This type can be returned when a page referencing a user from another workspace has been
  * imported.
  *
- * See [https://developers.notion.com/reference/user].
+ * See [Reference](https://developers.notion.com/reference/user).
  */
 interface AnonymousUser : User

@@ -27,12 +27,12 @@ package org.jraf.klibnotion.model.property.value
 import org.jraf.klibnotion.model.date.DateOrDateRange
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 sealed interface RollupPropertyValue<T : Any> : PropertyValue<T>
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  *
  * Note: the [PropertyValue]s in the list will have empty string (`""`)
  * for the [PropertyValue.name] and [PropertyValue.id] fields.
@@ -40,19 +40,19 @@ sealed interface RollupPropertyValue<T : Any> : PropertyValue<T>
 interface ArrayRollupPropertyValue : RollupPropertyValue<List<PropertyValue<*>>>
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface DateRollupPropertyValue : RollupPropertyValue<DateOrDateRange>
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface NumberRollupPropertyValue : RollupPropertyValue<Number>
 
 /**
  * This type is returned when a Rollup Property Value of a type unknown to this library is returned by the Notion API.
  *
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface UnknownTypeRollupPropertyValue : RollupPropertyValue<Unit> {
     val type: String

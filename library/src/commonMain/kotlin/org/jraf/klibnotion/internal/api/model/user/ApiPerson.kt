@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.user
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/user].
+ * See [Reference](https://developers.notion.com/reference/user).
  */
 @Serializable
 internal data class ApiPerson(

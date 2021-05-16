@@ -34,6 +34,7 @@ allprojects {
 tasks {
     register<Delete>("clean") {
         delete(rootProject.buildDir)
+        delete(rootProject.file("docs"))
     }
 
     wrapper {

@@ -27,7 +27,7 @@ package org.jraf.klibnotion.model.property.value
 /**
  * This type is returned when a Property Value of a type unknown to this library is returned by the Notion API.
  *
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface UnknownTypePropertyValue : PropertyValue<Unit> {
     val type: String

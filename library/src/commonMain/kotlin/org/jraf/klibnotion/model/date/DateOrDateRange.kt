@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.model.date
 
 /**
- * See [https://developers.notion.com/reference/page#date-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#date-property-values).
  */
 data class DateOrDateRange(
     val start: DateOrDateTime,

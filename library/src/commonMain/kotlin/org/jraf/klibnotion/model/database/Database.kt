@@ -30,7 +30,7 @@ import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 /**
- * See [https://developers.notion.com/reference/database].
+ * See [Reference](https://developers.notion.com/reference/database).
  */
 interface Database {
     val id: UuidString

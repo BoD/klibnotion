@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.date
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/page#date-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#date-property-values).
  */
 @Serializable
 internal data class ApiDate(

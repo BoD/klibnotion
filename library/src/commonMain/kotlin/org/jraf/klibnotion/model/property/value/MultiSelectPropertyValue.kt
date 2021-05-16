@@ -27,6 +27,6 @@ package org.jraf.klibnotion.model.property.value
 import org.jraf.klibnotion.model.property.SelectOption
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface MultiSelectPropertyValue : PropertyValue<List<SelectOption>>

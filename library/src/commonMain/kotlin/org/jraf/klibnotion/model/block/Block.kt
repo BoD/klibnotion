@@ -38,7 +38,7 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 import kotlin.jvm.JvmOverloads
 
 /**
- * See [https://developers.notion.com/reference/block].
+ * See [Reference](https://developers.notion.com/reference/block).
  */
 sealed interface Block {
     val id: UuidString

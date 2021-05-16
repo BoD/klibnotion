@@ -27,7 +27,7 @@ package org.jraf.klibnotion.model.property.spec
 import org.jraf.klibnotion.model.base.UuidString
 
 /**
- * See [https://developers.notion.com/reference/database].
+ * See [Reference](https://developers.notion.com/reference/database).
  */
 interface RelationPropertySpec : PropertySpec {
     /**

@@ -29,7 +29,7 @@ import org.jraf.klibnotion.internal.api.model.date.ApiDate
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
 
 /**
- * See [https://developers.notion.com/reference/rich-text].
+ * See [Reference](https://developers.notion.com/reference/rich-text).
  */
 @Serializable
 internal data class ApiRichTextMention(

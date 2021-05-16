@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.model.block
 
 /**
- * See [https://developers.notion.com/reference/block].
+ * See [Reference](https://developers.notion.com/reference/block).
  */
 interface ToDoBlock : Block {
     val checked: Boolean

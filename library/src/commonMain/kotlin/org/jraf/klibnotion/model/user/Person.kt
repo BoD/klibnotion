@@ -25,7 +25,7 @@
 package org.jraf.klibnotion.model.user
 
 /**
- * See [https://developers.notion.com/reference/user].
+ * See [Reference](https://developers.notion.com/reference/user).
  */
 interface Person : User {
     val name: String

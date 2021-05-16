@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.base
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/page#page-parent].
+ * See [Reference](https://developers.notion.com/reference/page#page-parent).
  */
 @Serializable
 internal data class ApiReference(

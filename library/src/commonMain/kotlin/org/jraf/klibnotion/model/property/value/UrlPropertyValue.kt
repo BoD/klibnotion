@@ -25,6 +25,6 @@
 package org.jraf.klibnotion.model.property.value
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface UrlPropertyValue : PropertyValue<String>

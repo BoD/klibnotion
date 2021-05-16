@@ -27,7 +27,7 @@ package org.jraf.klibnotion.internal.api.model.database.query
 import kotlinx.serialization.Serializable
 
 /**
- * See [https://developers.notion.com/reference/post-database-query].
+ * See [Reference](https://developers.notion.com/reference/post-database-query).
  */
 @Serializable
 internal data class ApiRelationDatabaseQueryFilter(

@@ -27,34 +27,34 @@ package org.jraf.klibnotion.model.property.value
 import org.jraf.klibnotion.model.date.DateOrDateRange
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 sealed interface FormulaPropertyValue<T : Any> : PropertyValue<T>
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface BooleanFormulaPropertyValue : FormulaPropertyValue<Boolean>
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface DateFormulaPropertyValue : FormulaPropertyValue<DateOrDateRange>
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface NumberFormulaPropertyValue : FormulaPropertyValue<Number>
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface StringFormulaPropertyValue : FormulaPropertyValue<String>
 
 /**
  * This type is returned when a Formula Property Value of a type unknown to this library is returned by the Notion API.
  *
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface UnknownTypeFormulaPropertyValue : FormulaPropertyValue<Unit> {
     val type: String

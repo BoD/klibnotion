@@ -27,6 +27,6 @@ package org.jraf.klibnotion.model.property.value
 import org.jraf.klibnotion.model.base.UuidString
 
 /**
- * See [https://developers.notion.com/reference/page#all-property-values].
+ * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
 interface RelationPropertyValue : PropertyValue<List<UuidString>>

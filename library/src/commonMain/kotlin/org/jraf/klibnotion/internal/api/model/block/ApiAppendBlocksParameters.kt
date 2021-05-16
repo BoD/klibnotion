@@ -28,7 +28,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 
 /**
- * See [https://developers.notion.com/reference/patch-block-children].
+ * See [Reference](https://developers.notion.com/reference/patch-block-children).
  */
 @Serializable
 internal data class ApiAppendBlocksParameters(

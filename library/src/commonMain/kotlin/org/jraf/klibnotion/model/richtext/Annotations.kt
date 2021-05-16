@@ -28,7 +28,7 @@ import org.jraf.klibnotion.model.color.Color
 import kotlin.jvm.JvmField
 
 /**
- * See [https://developers.notion.com/reference/rich-text].
+ * See [Reference](https://developers.notion.com/reference/rich-text).
  */
 data class Annotations(
     val bold: Boolean = false,

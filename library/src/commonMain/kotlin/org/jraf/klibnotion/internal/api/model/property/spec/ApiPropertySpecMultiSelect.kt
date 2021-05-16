@@ -28,7 +28,7 @@ import kotlinx.serialization.Serializable
 import org.jraf.klibnotion.internal.api.model.property.ApiSelectOption
 
 /**
- * See [https://developers.notion.com/reference/database].
+ * See [Reference](https://developers.notion.com/reference/database).
  */
 @Serializable
 internal data class ApiPropertySpecMultiSelect(
