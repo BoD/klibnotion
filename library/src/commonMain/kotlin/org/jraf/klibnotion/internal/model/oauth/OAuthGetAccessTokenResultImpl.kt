@@ -22,17 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.oauth
+package org.jraf.klibnotion.internal.model.oauth
 
-import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
 
-/**
- * See [Reference](https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token).
- */
-@Serializable
-internal data class ApiOAuthGetAccessTokenResult(
-    val access_token: String,
-    val workspace_name: String,
-    val workspace_icon: String?,
-    val bot_id: String,
-)
+internal data class OAuthGetAccessTokenResultImpl(
+    override val accessToken: String,
+    override val workspaceName: String,
+    override val workspaceIcon: String?,
+    override val botId: String,
+) : OAuthGetAccessTokenResult

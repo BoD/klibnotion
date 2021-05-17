@@ -25,11 +25,12 @@
 package org.jraf.klibnotion.internal.api.model.oauth
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.model.oauth.OAuthGetAccessTokenResultImpl
 import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
 
 internal object ApiOAuthGetAccessTokenResultConverter :
     ApiConverter<ApiOAuthGetAccessTokenResult, OAuthGetAccessTokenResult>() {
-    override fun apiToModel(apiModel: ApiOAuthGetAccessTokenResult) = OAuthGetAccessTokenResult(
+    override fun apiToModel(apiModel: ApiOAuthGetAccessTokenResult) = OAuthGetAccessTokenResultImpl(
         accessToken = apiModel.access_token,
         workspaceName = apiModel.workspace_name,
         workspaceIcon = apiModel.workspace_icon,

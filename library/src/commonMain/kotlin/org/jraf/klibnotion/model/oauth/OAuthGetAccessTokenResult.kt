@@ -24,10 +24,9 @@
 
 package org.jraf.klibnotion.model.oauth
 
-// TODO should be an interface
-data class OAuthGetAccessTokenResult(
-    val accessToken: String,
-    val workspaceName: String,
-    val workspaceIcon: String,
-    val botId: String,
-)
+interface OAuthGetAccessTokenResult {
+    val accessToken: String
+    val workspaceName: String
+    val workspaceIcon: String?
+    val botId: String
+}

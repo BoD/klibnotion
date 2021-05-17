@@ -70,6 +70,7 @@ import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.internal.klibNotionScope
 import org.jraf.klibnotion.internal.model.block.MutableBlock
+import org.jraf.klibnotion.internal.model.oauth.OAuthCodeAndStateImpl
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
@@ -203,7 +204,7 @@ internal class NotionClientImpl(
             val url = Url(redirectUri)
             // XXX Removing the _ added in getLoginUri
             val state = url.parameters["state"]!!.removePrefix("_")
-            OAuthCodeAndState(code = url.parameters["code"]!!, state = state)
+            OAuthCodeAndStateImpl(code = url.parameters["code"]!!, state = state)
         } catch (e: Exception) {
             null
         }

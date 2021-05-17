@@ -2,6 +2,9 @@
 
 ## Next (????-??-??)
 
+- Make `OAuthGetAccessTokenResult.workspaceIcon` nullable (
+  resolves [issue #1](https://github.com/BoD/klibnotion/issues/1))
+
 ## v1.5.0 (2021-05-16)
 
 - Add a `getAllBlockListRecursively` API to easily retrieve a whole document.

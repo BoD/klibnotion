@@ -24,8 +24,7 @@
 
 package org.jraf.klibnotion.model.oauth
 
-// TODO should be an interface
-data class OAuthCodeAndState(
-    val code: String,
-    val state: String,
-)
+interface OAuthCodeAndState {
+    val code: String
+    val state: String
+}
