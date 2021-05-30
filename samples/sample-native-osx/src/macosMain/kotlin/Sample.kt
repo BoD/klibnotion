@@ -30,6 +30,7 @@ import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.HttpProxy
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
+import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BulletedListItemBlock
 import org.jraf.klibnotion.model.block.ChildPageBlock
@@ -218,26 +219,30 @@ class Sample {
                     .number("Legs", Random.nextInt())
                     .title("Name", "Name ${Random.nextInt()}")
                     .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
-                    .text("Oui", RichTextList()
-                        .text("default ")
-                        .text("red ", Annotations(color = Color.RED))
-                        .text("pink background ", Annotations(color = Color.PINK_BACKGROUND))
-                        .text("bold ", Annotations.BOLD)
-                        .text("italic ", Annotations.ITALIC)
-                        .text("strikethrough ", Annotations.STRIKETHROUGH)
-                        .text("underline ", Annotations.UNDERLINE)
-                        .text("code ", Annotations.CODE)
-                        .text("mixed", Annotations(bold = true, italic = true, color = Color.PURPLE))
+                    .text(
+                        "Oui", RichTextList()
+                            .text("default ")
+                            .text("red ", Annotations(color = Color.RED))
+                            .text("pink background ", Annotations(color = Color.PINK_BACKGROUND))
+                            .text("bold ", Annotations.BOLD)
+                            .text("italic ", Annotations.ITALIC)
+                            .text("strikethrough ", Annotations.STRIKETHROUGH)
+                            .text("underline ", Annotations.UNDERLINE)
+                            .text("code ", Annotations.CODE)
+                            .text("mixed", Annotations(bold = true, italic = true, color = Color.PURPLE))
                     )
-                    .text("Non", RichTextList()
-                        .text("some url", linkUrl = "https://JRAF.org").text("\n")
-                        .userMention(USER_ID).text("\n")
-                        .databaseMention(DATABASE_ID).text("\n")
-                        .pageMention(PAGE_ID).text("\n")
-                        .dateMention(DateTime(NSDate()), annotations = Annotations(color = Color.GREEN))
-                        .text("\n")
-                        .equation("f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi",
-                            Annotations(color = Color.YELLOW))
+                    .text(
+                        "Non", RichTextList()
+                            .text("some url", linkUrl = "https://JRAF.org").text("\n")
+                            .userMention(USER_ID).text("\n")
+                            .databaseMention(DATABASE_ID).text("\n")
+                            .pageMention(PAGE_ID).text("\n")
+                            .dateMention(DateTime(NSDate()), annotations = Annotations(color = Color.GREEN))
+                            .text("\n")
+                            .equation(
+                                "f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi",
+                                Annotations(color = Color.YELLOW)
+                            )
                     )
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
@@ -304,61 +309,69 @@ class Sample {
 
             println(createdPageInDb)
 
-            // Commented for now (a bug in Notion's API prevents this to work)
-//            // Create page in page
-//            println("Created page in page:")
-//            val createdPageInPage: Page = client.pages.createPage(
-//                parentPage = PageReference(PAGE_ID),
-//                title = RichTextList().text("The title of my new page! ${Random.nextInt()}")
-//            ) {
-//                heading1("First section")
-//                paragraph("Hello, World!")
-//
-//                heading1("Second section")
-//                paragraph("This paragraph is bold", annotations = Annotations.BOLD) {
-//                    paragraph("Sub paragraph 1")
-//                    paragraph("Sub paragraph 2") {
-//                        paragraph("Sub sub paragraph") {
-//
-//                        }
-//                    }
-//                }
-//
-//                heading2("But then again")
-//                heading3("Actually")
-//                paragraph("That's the case")
-//
-//                heading3("But really")
-//                paragraph(RichTextList().text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
-//
-//                bullet("There's this,")
-//                bullet("there's that,")
-//                bullet("then there's...") {
-//                    paragraph("Will this work?")
-//                }
-//                bullet("indentation?") {
-//                    bullet("indentation? 2") {
-//                        bullet("indentation? 3")
-//                    }
-//                }
-//
-//                number("First")
-//                number("Second") {
-//                    number("Second second")
-//                }
-//                number("Third")
-//
-//                toDo("This one is checked", true)
-//                toDo("This one is not checked", false)
-//
-//                toggle("This is a toggle!") {
-//                    paragraph("This first paragraph is inside the toggle")
-//                    paragraph("This second paragraph is inside the toggle")
-//                    heading3("This too!")
-//                }
-//            }
-//
-//            println(createdPageInPage)
+            // Create page in page (without content)
+            println("Created page in page (no content):")
+            var createdPageInPage: Page = client.pages.createPage(
+                parentPage = PageReference(PAGE_ID),
+                title = RichTextList().text("The title of my new page! ${Random.nextInt()}")
+            )
+            println(createdPageInPage)
+
+            // Create page in page (with content)
+            println("Created page in page (with content):")
+            createdPageInPage = client.pages.createPage(
+                parentPage = PageReference(PAGE_ID),
+                title = RichTextList().text("The title of my new page! ${Random.nextInt()}")
+            )
+            {
+                heading1("First section")
+                paragraph("Hello, World!")
+
+                heading1("Second section")
+                paragraph("This paragraph is bold", annotations = Annotations.BOLD) {
+                    paragraph("Sub paragraph 1")
+                    paragraph("Sub paragraph 2") {
+                        paragraph("Sub sub paragraph") {
+
+                        }
+                    }
+                }
+
+                heading2("But then again")
+                heading3("Actually")
+                paragraph("That's the case")
+
+                heading3("But really")
+                paragraph(RichTextList().text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
+
+                bullet("There's this,")
+                bullet("there's that,")
+                bullet("then there's...") {
+                    paragraph("Will this work?")
+                }
+                bullet("indentation?") {
+                    bullet("indentation? 2") {
+                        bullet("indentation? 3")
+                    }
+                }
+
+                number("First")
+                number("Second") {
+                    number("Second second")
+                }
+                number("Third")
+
+                toDo("This one is checked", true)
+                toDo("This one is not checked", false)
+
+                toggle("This is a toggle!") {
+                    paragraph("This first paragraph is inside the toggle")
+                    paragraph("This second paragraph is inside the toggle")
+                    heading3("This too!")
+                }
+            }
+
+            println(createdPageInPage)
 
             // Update page
             println("Updated page:")
@@ -453,18 +466,20 @@ class Sample {
         val levelStr = "  ".repeat(level)
         var numberedListIndex = 1
         for (block in this) {
-            res.appendLine(levelStr + when (block) {
-                is BulletedListItemBlock -> "-"
-                is ChildPageBlock -> "->"
-                is Heading1Block -> "#"
-                is Heading2Block -> "##"
-                is Heading3Block -> "###"
-                is NumberedListItemBlock -> "${numberedListIndex}."
-                is ParagraphBlock -> "¶"
-                is ToDoBlock -> if (block.checked) "[X]" else "[ ]"
-                is ToggleBlock -> "▼"
-                is UnknownTypeBlock -> "?"
-            } + " " + block.text.toFormattedString())
+            res.appendLine(
+                levelStr + when (block) {
+                    is BulletedListItemBlock -> "-"
+                    is ChildPageBlock -> "->"
+                    is Heading1Block -> "#"
+                    is Heading2Block -> "##"
+                    is Heading3Block -> "###"
+                    is NumberedListItemBlock -> "${numberedListIndex}."
+                    is ParagraphBlock -> "¶"
+                    is ToDoBlock -> if (block.checked) "[X]" else "[ ]"
+                    is ToggleBlock -> "▼"
+                    is UnknownTypeBlock -> "?"
+                } + " " + block.text.toFormattedString()
+            )
 
             // Recurse
             if (!block.children.isNullOrEmpty()) {

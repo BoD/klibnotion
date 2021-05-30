@@ -35,5 +35,5 @@ import org.jraf.klibnotion.internal.api.model.base.ApiReference
 internal data class ApiCreateTableParameters(
     val parent: ApiReference,
     val properties: Map<String, JsonElement>,
-    val children: List<JsonElement>?,
+    val children: List<JsonElement>? = null,
 )

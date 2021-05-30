@@ -1,9 +1,11 @@
 # Changelog
 
-## Next (????-??-??)
+## v1.5.1 (2021-06-30)
 
-- Make `OAuthGetAccessTokenResult.workspaceIcon` nullable (
-  resolves [issue #1](https://github.com/BoD/klibnotion/issues/1))
+- Make `OAuthGetAccessTokenResult.workspaceIcon` nullable
+  (resolves [issue #1](https://github.com/BoD/klibnotion/issues/1))
+- Don't send `null` for empty children when creating a page
+  (resolves [issue #2](https://github.com/BoD/klibnotion/issues/2))
 
 ## v1.5.0 (2021-05-16)
 
