@@ -63,6 +63,7 @@ internal object ApiOutRichTextListConverter : ApiConverter<JsonArray, RichTextLi
                     }
                 }
 
+                @Suppress("UNUSED_VARIABLE")
                 val ignored = when (richText) {
                     is TextRichText -> putJsonObject("text") {
                         put("content", richText.plainText)
