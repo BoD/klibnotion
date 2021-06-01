@@ -306,7 +306,7 @@ internal class NotionClientImpl(
         return service.createPage(
             Triple(
                 parentPage,
-                PropertyValueList().text("title", title).propertyValueList,
+                PropertyValueList().title("title", title).propertyValueList,
                 content
             ).modelToApi(ApiCreateTableParametersConverter)
         )
