@@ -60,12 +60,10 @@ import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryCon
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResultConverter
-import org.jraf.klibnotion.internal.api.model.page.*
 import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
-import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParameters
 import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParametersConverter
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
@@ -322,7 +320,7 @@ internal class NotionClientImpl(
     ): Page = createPage(parentPage, title, content())
 
     override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
-        return service.updatePage(id, ApiUpdateTableParametersConverter.modelToApi(properties.propertyValueList))
+        return service.updatePage(id, properties.propertyValueList.modelToApi(ApiUpdateTableParametersConverter))
             .apiToModel(ApiPageConverter)
     }
 
