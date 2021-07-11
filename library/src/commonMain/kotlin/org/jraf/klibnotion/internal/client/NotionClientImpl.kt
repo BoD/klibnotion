@@ -321,7 +321,7 @@ internal class NotionClientImpl(
         content: BlockListProducer,
     ): Page = createPage(parentPage, title, content())
 
-    override suspend fun updatePage(id: UuidString, properties: PropertyValueList, archived: Boolean): Page {
+    override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
         return service.updatePage(id, ApiUpdateTableParametersConverter.modelToApi(properties.propertyValueList))
             .apiToModel(ApiPageConverter)
     }
