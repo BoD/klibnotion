@@ -154,6 +154,13 @@ internal class NotionService(private val httpClient: HttpClient) {
         }
     }
 
+    suspend fun archivePage(id: UuidString, archive: Boolean): ApiPage {
+        return httpClient.patch("$BASE_URL/$PAGES/$id") {
+            contentType(ContentType.Application.Json)
+            body = mapOf("archived" to archive)
+        }
+    }
+
     // endregion
 
 
