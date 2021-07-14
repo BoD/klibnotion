@@ -400,6 +400,22 @@ class Sample {
             )
             println(updatedPage)
 
+            // Archive page
+            println("Archived page:")
+            val archivedPage: Page = client.pages.setPageArchived(
+                id = PAGE_ID,
+                archived = true,
+            )
+            println(archivedPage)
+
+            // Unarchive page
+            println("Unarchived page:")
+            val unarchivedPage: Page = client.pages.setPageArchived(
+                id = PAGE_ID,
+                archived = false,
+            )
+            println(unarchivedPage)
+
             // Get page contents
             println("Page contents:")
             val pageContents = client.blocks.getAllBlockListRecursively(PAGE_ID)

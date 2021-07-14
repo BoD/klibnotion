@@ -1,1 +1,0 @@
-sourceset_dependencies='{":klibnotion:dokkaHtml/commonMain":[],":klibnotion:dokkaHtml/jvmMain":[":klibnotion:dokkaHtml/commonMain"],":klibnotion:dokkaHtml/macosMain":[":klibnotion:dokkaHtml/commonMain"]}'
