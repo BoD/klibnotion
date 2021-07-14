@@ -182,6 +182,11 @@ interface NotionClient {
          * @see <a href="https://developers.notion.com/reference/patch-page">Update page properties</a>
          */
         suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page
+
+        suspend fun archivePage(id: UuidString)
+
+        suspend fun unarchivePage(id: UuidString)
+
     }
 
     /**
