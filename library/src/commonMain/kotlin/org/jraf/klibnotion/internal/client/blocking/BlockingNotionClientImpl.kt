@@ -135,6 +135,10 @@ internal class BlockingNotionClientImpl(
         notionClient.pages.updatePage(id, properties)
     }
 
+    override fun setPageArchived(id: UuidString, archived: Boolean) = runBlocking {
+        notionClient.pages.setPageArchived(id, archived)
+    }
+
     override fun getBlockList(parentId: UuidString, pagination: Pagination) = runBlocking {
         notionClient.blocks.getBlockList(parentId, pagination)
     }

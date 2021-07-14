@@ -132,6 +132,10 @@ internal class FutureNotionClientImpl(
         notionClient.pages.updatePage(id, properties)
     }
 
+    override fun setPageArchived(id: UuidString, archived: Boolean) = GlobalScope.future {
+        notionClient.pages.setPageArchived(id, archived)
+    }
+
     override fun getBlockList(parentId: UuidString, pagination: Pagination) = GlobalScope.future {
         notionClient.blocks.getBlockList(parentId, pagination)
     }

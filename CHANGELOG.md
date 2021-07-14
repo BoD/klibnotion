@@ -1,13 +1,17 @@
 # Changelog
 
+## v1.6.0 (2021-07-14)
+
+- Add a `Page.setPageArchived(Boolean)` API (thanks [@MaaxGr](https://github.com/MaaxGr))
+
 ## v1.5.2 (2021-06-01)
-- Fix title property type (title instead of rich text) when 
-creating a page with a page parent.
+
+- Fix title property type (title instead of rich text) when creating a page with a page parent.
 
 ## v1.5.1 (2021-05-30)
 
 - Make `OAuthGetAccessTokenResult.workspaceIcon` nullable
-(resolves [issue #1](https://github.com/BoD/klibnotion/issues/1))
+  (resolves [issue #1](https://github.com/BoD/klibnotion/issues/1))
 - Don't send `null` for empty children when creating a page
 (resolves [issue #2](https://github.com/BoD/klibnotion/issues/2))
 

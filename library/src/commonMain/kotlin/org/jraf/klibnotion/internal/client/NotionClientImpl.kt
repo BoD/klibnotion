@@ -324,12 +324,9 @@ internal class NotionClientImpl(
             .apiToModel(ApiPageConverter)
     }
 
-    override suspend fun archivePage(id: UuidString) {
-        service.archivePage(id, true)
-    }
-
-    override suspend fun unarchivePage(id: UuidString) {
-        service.archivePage(id, false)
+    override suspend fun setPageArchived(id: UuidString, archived: Boolean): Page {
+        return service.archivePage(id, archived)
+            .apiToModel(ApiPageConverter)
     }
 
     // endregion

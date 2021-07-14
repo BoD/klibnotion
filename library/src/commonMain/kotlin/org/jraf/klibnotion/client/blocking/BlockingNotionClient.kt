@@ -169,6 +169,11 @@ interface BlockingNotionClient {
          * See [NotionClient.Pages.updatePage].
          */
         fun updatePage(id: UuidString, properties: PropertyValueList): Page
+
+        /**
+         * See [NotionClient.Pages.setPageArchived].
+         */
+        fun setPageArchived(id: UuidString, archived: Boolean): Page
     }
 
     /**

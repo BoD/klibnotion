@@ -183,10 +183,11 @@ interface NotionClient {
          */
         suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page
 
-        suspend fun archivePage(id: UuidString)
-
-        suspend fun unarchivePage(id: UuidString)
-
+        /**
+         * Mark the page as archived or not.
+         * @see <a href="https://developers.notion.com/reference/patch-page#archive-delete-a-page">Archive a page</a>
+         */
+        suspend fun setPageArchived(id: UuidString, archived: Boolean): Page
     }
 
     /**

@@ -150,7 +150,7 @@ signing {
     // signing.keyId=<8 character key>
     // signing.password=<your password>
     // signing.secretKeyRingFile=<absolute path to the gpg private key>
-    //sign(publishing.publications)
+    sign(publishing.publications)
 }
 
 tasks.dokkaHtml.configure {
