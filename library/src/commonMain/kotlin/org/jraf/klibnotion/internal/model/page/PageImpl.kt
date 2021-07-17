@@ -37,4 +37,5 @@ internal data class PageImpl(
     override val archived: Boolean,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
+    override val url: String,
 ) : Page

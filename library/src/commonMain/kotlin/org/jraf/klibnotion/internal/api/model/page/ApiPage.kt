@@ -39,4 +39,5 @@ internal data class ApiPage(
     val archived: Boolean,
     val created_time: String,
     val last_edited_time: String,
+    val url: String,
 )
