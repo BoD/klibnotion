@@ -27,10 +27,13 @@ package org.jraf.klibnotion.internal.model.block
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.Heading2Block
+import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal data class Heading2BlockImpl(
     override val id: UuidString,
+    override val created: Timestamp,
+    override val lastEdited: Timestamp,
     override val text: RichTextList,
 ) : Heading2Block {
     override val children: List<Block>? = null

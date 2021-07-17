@@ -57,3 +57,5 @@ internal actual class TimestampParser actual constructor(format: String) {
         return nsDateFormatter.dateFromString(formattedDate)!!
     }
 }
+
+internal actual val IRRELEVANT_TIMESTAMP = NSDate()

@@ -41,3 +41,5 @@ internal class TimeZoneIdParser {
     // The time zone offset start at index 23
     fun parse(formattedDate: String): String = formattedDate.substring(23)
 }
+
+internal expect val IRRELEVANT_TIMESTAMP: Timestamp

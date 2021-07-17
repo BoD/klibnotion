@@ -54,3 +54,4 @@ internal actual class TimestampParser actual constructor(format: String) {
     }
 }
 
+internal actual val IRRELEVANT_TIMESTAMP = Date()

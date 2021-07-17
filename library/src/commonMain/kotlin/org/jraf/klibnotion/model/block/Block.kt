@@ -24,6 +24,7 @@
 
 package org.jraf.klibnotion.model.block
 
+import org.jraf.klibnotion.internal.IRRELEVANT_TIMESTAMP
 import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
@@ -33,6 +34,7 @@ import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
 import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
 import kotlin.jvm.JvmOverloads
@@ -43,6 +45,8 @@ import kotlin.jvm.JvmOverloads
 sealed interface Block {
     val id: UuidString
     val text: RichTextList?
+    val created: Timestamp
+    val lastEdited: Timestamp
     val children: List<Block>?
 }
 
@@ -56,7 +60,13 @@ class MutableBlockList(
     }
 
     fun paragraph(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(ParagraphBlockImpl(id = "", richTextList, children()))
+        add(ParagraphBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            richTextList,
+            children()
+        ))
 
     @JvmOverloads
     fun paragraph(
@@ -70,50 +80,77 @@ class MutableBlockList(
     )
 
 
-    fun heading1(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", richTextList))
+    fun heading1(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        richTextList
+    ))
 
     @JvmOverloads
     fun heading1(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): MutableBlockList = add(Heading1BlockImpl(id = "",
+    ): MutableBlockList = add(Heading1BlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
         RichTextList().text(
             text,
             linkUrl,
             annotations)
     ))
 
-    fun heading2(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", richTextList))
+    fun heading2(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        richTextList))
 
     @JvmOverloads
     fun heading2(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): MutableBlockList = add(Heading2BlockImpl(id = "",
+    ): MutableBlockList = add(Heading2BlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
         RichTextList().text(
             text,
             linkUrl,
             annotations)
     ))
 
-    fun heading3(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(id = "", richTextList))
+    fun heading3(richTextList: RichTextList): MutableBlockList = add(Heading1BlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        richTextList))
 
     @JvmOverloads
     fun heading3(
         text: String,
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
-    ): MutableBlockList = add(Heading3BlockImpl(id = "",
-        RichTextList().text(
+    ): MutableBlockList = add(Heading3BlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        text = RichTextList().text(
             text,
             linkUrl,
             annotations)
     ))
 
     fun bullet(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(BulletedListItemBlockImpl(id = "", richTextList, children()))
+        add(BulletedListItemBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            richTextList,
+            children()))
 
     @JvmOverloads
     fun bullet(
@@ -127,7 +164,13 @@ class MutableBlockList(
     )
 
     fun number(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(NumberedListItemBlockImpl(id = "", richTextList, children()))
+        add(NumberedListItemBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            richTextList,
+            children()
+        ))
 
     @JvmOverloads
     fun number(
@@ -141,7 +184,14 @@ class MutableBlockList(
     )
 
     fun toDo(richTextList: RichTextList, checked: Boolean, children: BlockListProducer? = null): MutableBlockList =
-        add(ToDoBlockImpl(id = "", richTextList, checked, children()))
+        add(ToDoBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            richTextList,
+            checked,
+            children()
+        ))
 
     @JvmOverloads
     fun toDo(
@@ -157,7 +207,13 @@ class MutableBlockList(
     )
 
     fun toggle(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(ToggleBlockImpl(id = "", richTextList, children()))
+        add(ToggleBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            richTextList,
+            children()
+        ))
 
     @JvmOverloads
     fun toggle(

@@ -9,6 +9,7 @@
   following [Notion's API evolution](https://developers.notion.com/changelog/page-objects-now-return-url)
 - Add `parent` field to Database
   following [Notion's API evolution](https://developers.notion.com/changelog/database-objects-now-return-parent)
+- Add missing `created` and `lastEdited` fields to Block
 
 ## v1.5.2 (2021-06-01)
 
