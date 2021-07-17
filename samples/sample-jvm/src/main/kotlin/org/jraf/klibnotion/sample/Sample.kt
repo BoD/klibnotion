@@ -219,7 +219,7 @@ class Sample {
                 properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Name ${Random.nextInt()}")
-                    .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
+                    .text("Something", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
                     .text(
                         "Oui", RichTextList()
                             .text("default ")
@@ -238,7 +238,7 @@ class Sample {
                             .userMention(USER_ID).text("\n")
                             .databaseMention(DATABASE_ID).text("\n")
                             .pageMention(PAGE_ID).text("\n")
-                            .dateMention(DateTime(java.util.Date()), annotations = Annotations(color = Color.GREEN))
+                            .dateMention(DateTime(newDateNow()), annotations = Annotations(color = Color.GREEN))
                             .text("\n")
                             .equation(
                                 "f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi",
@@ -250,8 +250,8 @@ class Sample {
                     .date(
                         "Some date",
                         DateOrDateRange(
-                            start = DateTime(java.util.Date()),
-                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L))
+                            start = DateTime(newDateNow()),
+                            end = Date(newDateTomorrow())
                         )
                     )
                     .relation("Android version", PAGE_ID)
@@ -381,14 +381,14 @@ class Sample {
                 PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Updated page ${Random.nextInt()}")
-                    .text("title", "Updated page ${Random.nextInt()}")
+                    .text("Something", "Updated page ${Random.nextInt()}")
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
                     .date(
                         "Some date",
                         DateOrDateRange(
-                            start = DateTime(java.util.Date()),
-                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L))
+                            start = DateTime(newDateNow()),
+                            end = Date(newDateTomorrow())
                         )
                     )
                     .relation("Android version", PAGE_ID)
@@ -423,7 +423,7 @@ class Sample {
 
             // Append contents to page
             println("Appending contents")
-            client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${java.util.Date()}") }
+            client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${newDateNow()}") }
 
             // Search pages (simple)
             println("Page search results (simple):")
@@ -460,6 +460,10 @@ class Sample {
         // Exit process
         exitProcess(0)
     }
+
+    private fun newDateNow() = java.util.Date()
+
+    private fun newDateTomorrow() = java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)
 
     private fun Page.toFormattedString(): String {
         val res = StringBuilder("-----------\n")

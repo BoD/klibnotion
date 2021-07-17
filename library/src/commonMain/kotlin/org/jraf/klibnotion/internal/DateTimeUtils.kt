@@ -37,7 +37,7 @@ internal expect class TimestampParser(format: String) {
 }
 
 internal class TimeZoneIdParser {
-    // Example value: 2021-07-17T00:00:00.000-05:00.
+    // Example value: 2021-07-17T00:00:00.000-05:00
     // The time zone offset start at index 23
     fun parse(formattedDate: String): String = formattedDate.substring(23)
 }

@@ -120,6 +120,12 @@ internal class NotionClientImpl(
 
                         // This is needed to accept JSON Numbers to be deserialized as Strings
                         isLenient = true
+
+                        // This may improve performance
+                        // PLUS is a workaround for these issues:
+                        // - https://youtrack.jetbrains.com/issue/KTOR-2740
+                        // - https://github.com/Kotlin/kotlinx.serialization/issues/1450
+                        useAlternativeNames = false
                     }
                 )
             }

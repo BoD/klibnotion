@@ -206,6 +206,7 @@ class Sample {
             )
             println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
 
+
             // Get page
             println("Page:")
             val page: Page = client.pages.getPage(PAGE_ID)
@@ -218,7 +219,7 @@ class Sample {
                 properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Name ${Random.nextInt()}")
-                    .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
+                    .text("Something", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
                     .text(
                         "Oui", RichTextList()
                             .text("default ")
@@ -237,7 +238,7 @@ class Sample {
                             .userMention(USER_ID).text("\n")
                             .databaseMention(DATABASE_ID).text("\n")
                             .pageMention(PAGE_ID).text("\n")
-                            .dateMention(DateTime(NSDate()), annotations = Annotations(color = Color.GREEN))
+                            .dateMention(DateTime(newDateNow()), annotations = Annotations(color = Color.GREEN))
                             .text("\n")
                             .equation(
                                 "f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi",
@@ -249,8 +250,8 @@ class Sample {
                     .date(
                         "Some date",
                         DateOrDateRange(
-                            start = DateTime(NSDate()),
-                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L))
+                            start = DateTime(newDateNow()),
+                            end = Date(newDateTomorrow())
                         )
                     )
                     .relation("Android version", PAGE_ID)
@@ -380,14 +381,14 @@ class Sample {
                 PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Updated page ${Random.nextInt()}")
-                    .text("title", "Updated page ${Random.nextInt()}")
+                    .text("Something", "Updated page ${Random.nextInt()}")
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
                     .date(
                         "Some date",
                         DateOrDateRange(
-                            start = DateTime(NSDate()),
-                            end = Date(NSDate(NSDate().timeIntervalSinceReferenceDate + 24L * 3600L))
+                            start = DateTime(newDateNow()),
+                            end = Date(newDateTomorrow())
                         )
                     )
                     .relation("Android version", PAGE_ID)
@@ -399,6 +400,22 @@ class Sample {
             )
             println(updatedPage)
 
+            // Archive page
+            println("Archived page:")
+            val archivedPage: Page = client.pages.setPageArchived(
+                id = PAGE_ID,
+                archived = true,
+            )
+            println(archivedPage)
+
+            // Unarchive page
+            println("Unarchived page:")
+            val unarchivedPage: Page = client.pages.setPageArchived(
+                id = PAGE_ID,
+                archived = false,
+            )
+            println(unarchivedPage)
+
             // Get page contents
             println("Page contents:")
             val pageContents = client.blocks.getAllBlockListRecursively(PAGE_ID)
@@ -406,7 +423,7 @@ class Sample {
 
             // Append contents to page
             println("Appending contents")
-            client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${NSDate()}") }
+            client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${newDateNow()}") }
 
             // Search pages (simple)
             println("Page search results (simple):")
@@ -443,6 +460,10 @@ class Sample {
         // Exit process
         exitProcess(0)
     }
+
+    private fun newDateNow() = NSDate()
+
+    private fun newDateTomorrow() = NSDate(newDateNow().timeIntervalSinceReferenceDate + 24L * 3600L)
 
     private fun Page.toFormattedString(): String {
         val res = StringBuilder("-----------\n")

@@ -6,9 +6,9 @@ plugins {
 repositories {
     // The org.jetbrains.kotlin.jvm plugin requires a repository
     // where to download the Kotlin compiler dependencies from.
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.4.21-2")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.5.21")
 }
