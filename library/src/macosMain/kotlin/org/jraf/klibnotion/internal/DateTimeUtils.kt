@@ -22,14 +22,30 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.date
+package org.jraf.klibnotion.internal
 
-import org.jraf.klibnotion.model.date.Timestamp
+import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
 import platform.Foundation.NSTimeZone
+import platform.Foundation.defaultTimeZone
 import platform.Foundation.timeZoneWithName
 
-internal actual class TimestampFormatter actual constructor(format: String) {
+internal actual fun getLocalTimeZoneId(): String {
+    return NSTimeZone.defaultTimeZone.name
+}
+
+internal actual class TimestampFormatter actual constructor(format: String, timeZoneId: String?) {
+    private val nsDateFormatter = NSDateFormatter().apply {
+        dateFormat = format
+        if (timeZoneId != null) timeZone = NSTimeZone.timeZoneWithName(timeZoneId)!!
+    }
+
+    actual fun format(timestampToFormat: NSDate): String {
+        return nsDateFormatter.stringFromDate(timestampToFormat)
+    }
+}
+
+internal actual class TimestampParser actual constructor(format: String) {
     private val nsDateFormatter = NSDateFormatter().apply {
         dateFormat = format
         // Set the default timezone to GMT for the case where it's not present in the date to parse
@@ -37,11 +53,7 @@ internal actual class TimestampFormatter actual constructor(format: String) {
         timeZone = NSTimeZone.timeZoneWithName("GMT")!!
     }
 
-    actual fun parse(formattedDate: String): Timestamp {
+    actual fun parse(formattedDate: String): NSDate {
         return nsDateFormatter.dateFromString(formattedDate)!!
-    }
-
-    actual fun format(timestampToFormat: Timestamp): String {
-        return nsDateFormatter.stringFromDate(timestampToFormat)
     }
 }

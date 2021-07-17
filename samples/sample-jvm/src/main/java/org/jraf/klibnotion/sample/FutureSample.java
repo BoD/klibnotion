@@ -175,14 +175,14 @@ class FutureSample {
                                 .userMention(USER_ID, Annotations.DEFAULT).text("\n", Annotations.DEFAULT)
                                 .databaseMention(DATABASE_ID, Annotations.DEFAULT).text("\n", Annotations.DEFAULT)
                                 .pageMention(PAGE_ID, Annotations.DEFAULT).text("\n", Annotations.DEFAULT)
-                                .dateMention(new DateTime(new java.util.Date()), null, new Annotations(Color.GREEN)).text("\n", Annotations.DEFAULT)
+                                .dateMention(new DateTime(new java.util.Date(), "GMT"), null, new Annotations(Color.GREEN)).text("\n", Annotations.DEFAULT)
                                 .equation("f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi", new Annotations(Color.YELLOW))
                         )
                         .selectByName("Species", "Alien")
                         .multiSelectByNames("Planets", "Tatooine", "Bespin")
                         .date("Some date",
                                 new DateOrDateRange(
-                                        new DateTime(new java.util.Date()),
+                                        new DateTime(new java.util.Date(), "GMT"),
                                         new Date(new java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)))
                         )
                         .relation("Android version", PAGE_ID)
@@ -207,7 +207,7 @@ class FutureSample {
                         .multiSelectByNames("Planets", "Tatooine", "Bespin")
                         .date("Some date",
                                 new DateOrDateRange(
-                                        new DateTime(new java.util.Date()),
+                                        new DateTime(new java.util.Date(), "GMT"),
                                         new Date(new java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)))
                         )
                         .relation("Android version", PAGE_ID)

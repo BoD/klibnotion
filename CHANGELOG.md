@@ -1,8 +1,10 @@
 # Changelog
 
-## v1.6.0 (2021-07-14)
+## v1.6.0 (????)
 
 - Add a `Page.setPageArchived(Boolean)` API (thanks [@MaaxGr](https://github.com/MaaxGr))
+- `DateTime`s now contain a TimeZone (defaults to the system's), which is correctly sent to / parsed from the API (
+  resolves [issue #4](https://github.com/BoD/klibnotion/issues/4))
 
 ## v1.5.2 (2021-06-01)
 

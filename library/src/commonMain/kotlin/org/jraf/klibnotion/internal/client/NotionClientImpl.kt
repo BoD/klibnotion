@@ -45,7 +45,6 @@ import io.ktor.http.ParametersBuilder
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.Url
-import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.serialization.json.Json
@@ -111,7 +110,6 @@ internal class NotionClientImpl(
     override val blocks = this
     override val search = this
 
-    @OptIn(KtorExperimentalAPI::class)
     private val httpClient by lazy {
         createHttpClient(clientConfiguration.httpConfiguration.bypassSslChecks) {
             install(JsonFeature) {

@@ -22,15 +22,22 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.date
+package org.jraf.klibnotion.internal
 
-import org.jraf.klibnotion.internal.getLocalTimeZoneId
+import org.jraf.klibnotion.model.date.Timestamp
 
-sealed class DateOrDateTime(open val timestamp: Timestamp)
+internal expect fun getLocalTimeZoneId(): String
 
-data class Date(override val timestamp: Timestamp) : DateOrDateTime(timestamp)
+internal expect class TimestampFormatter(format: String, timeZoneId: String? = null) {
+    fun format(timestampToFormat: Timestamp): String
+}
 
-data class DateTime(
-    override val timestamp: Timestamp,
-    val timeZoneId: String = getLocalTimeZoneId(),
-) : DateOrDateTime(timestamp)
+internal expect class TimestampParser(format: String) {
+    fun parse(formattedDate: String): Timestamp
+}
+
+internal class TimeZoneIdParser {
+    // Example value: 2021-07-17T00:00:00.000-05:00.
+    // The time zone offset start at index 23
+    fun parse(formattedDate: String): String = formattedDate.substring(23)
+}

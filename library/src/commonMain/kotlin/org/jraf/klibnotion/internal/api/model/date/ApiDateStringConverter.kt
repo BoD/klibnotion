@@ -24,11 +24,13 @@
 
 package org.jraf.klibnotion.internal.api.model.date
 
+import org.jraf.klibnotion.internal.TimeZoneIdParser
+import org.jraf.klibnotion.internal.TimestampFormatter
+import org.jraf.klibnotion.internal.TimestampParser
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.model.date.Date
 import org.jraf.klibnotion.model.date.DateOrDateTime
 import org.jraf.klibnotion.model.date.DateTime
-import org.jraf.klibnotion.model.date.Timestamp
 
 internal object ApiDateStringConverter : ApiConverter<String, DateOrDateTime>() {
     private const val DATE_FORMAT = "yyyy-MM-dd"
@@ -37,21 +39,18 @@ internal object ApiDateStringConverter : ApiConverter<String, DateOrDateTime>() 
     override fun apiToModel(apiModel: String): DateOrDateTime {
         // Try date + time first, fallback to date only
         return try {
-            DateTime(TimestampFormatter(DATE_TIME_FORMAT).parse(apiModel))
+            val timestamp = TimestampParser(DATE_TIME_FORMAT).parse(apiModel)
+            val timeZoneId = TimeZoneIdParser().parse(apiModel)
+            DateTime(timestamp = timestamp, timeZoneId = timeZoneId)
         } catch (e: Exception) {
-            Date(TimestampFormatter(DATE_FORMAT).parse(apiModel))
+            Date(TimestampParser(DATE_FORMAT).parse(apiModel))
         }
     }
 
     override fun modelToApi(model: DateOrDateTime): String {
         return when (model) {
-            is DateTime -> TimestampFormatter(DATE_TIME_FORMAT).format(model.timestamp)
+            is DateTime -> TimestampFormatter(DATE_TIME_FORMAT, model.timeZoneId).format(model.timestamp)
             is Date -> TimestampFormatter(DATE_FORMAT).format(model.timestamp)
         }
     }
-}
-
-internal expect class TimestampFormatter(format: String) {
-    fun parse(formattedDate: String): Timestamp
-    fun format(timestampToFormat: Timestamp): String
 }
