@@ -26,6 +26,7 @@ package org.jraf.klibnotion.internal.api.model.database
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.base.ApiReferenceConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
@@ -36,6 +37,7 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 internal object ApiDatabaseConverter : ApiConverter<ApiDatabase, Database>() {
     override fun apiToModel(apiModel: ApiDatabase): DatabaseImpl = DatabaseImpl(
         id = apiModel.id,
+        parent = apiModel.parent.apiToModel(ApiReferenceConverter),
         title = RichTextList(ApiRichTextConverter.apiToModel(apiModel.title)),
         propertySpecs = ApiPropertySpecConverter.apiToModel(
             apiModel.properties.map { it.key to it.value }
