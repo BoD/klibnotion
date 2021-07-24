@@ -24,7 +24,7 @@
 
 package org.jraf.klibnotion.internal.model.property.spec
 
-import org.jraf.klibnotion.model.property.spec.FilePropertySpec
+import org.jraf.klibnotion.model.property.spec.FilesPropertySpec
 
-internal data class FilePropertySpecImpl(override val name: String, override val id: String) :
-    FilePropertySpec
+internal data class FilesPropertySpecImpl(override val name: String, override val id: String) :
+    FilesPropertySpec

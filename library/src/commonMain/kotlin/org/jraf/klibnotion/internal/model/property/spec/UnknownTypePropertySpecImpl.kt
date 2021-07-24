@@ -30,5 +30,5 @@ import org.jraf.klibnotion.model.property.spec.UnknownTypePropertySpec
 internal data class UnknownTypePropertySpecImpl(
     override val id: UuidString,
     override val name: String,
-    override val type: String,
+    override val type: String?,
 ) : UnknownTypePropertySpec

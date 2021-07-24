@@ -24,6 +24,7 @@
 
 package org.jraf.klibnotion.model.property
 
+import org.jraf.klibnotion.internal.model.property.SelectOptionImpl
 import org.jraf.klibnotion.model.color.Color
 
 interface SelectOption {
@@ -41,4 +42,15 @@ interface SelectOption {
      * Color of the option.
      */
     val color: Color
+}
+
+class SelectOptionList {
+    internal val selectOptionList = mutableListOf<SelectOption>()
+
+    private fun add(selectOption: SelectOption): SelectOptionList {
+        selectOptionList.add(selectOption)
+        return this
+    }
+
+    fun option(name: String, color: Color) = add(SelectOptionImpl(name = name, id = name, color = color))
 }

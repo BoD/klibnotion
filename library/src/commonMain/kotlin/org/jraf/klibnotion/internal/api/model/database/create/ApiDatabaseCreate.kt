@@ -22,9 +22,19 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.property.spec
+package org.jraf.klibnotion.internal.api.model.database.create
+
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonArray
+import org.jraf.klibnotion.internal.api.model.base.ApiReference
+import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
 
 /**
- * See [Reference](https://developers.notion.com/reference/database).
+ * See [Reference](https://developers.notion.com/reference/create-a-database).
  */
-interface FilePropertySpec : PropertySpec
+@Serializable
+internal data class ApiDatabaseCreate(
+    val parent: ApiReference,
+    val title: JsonArray,
+    val properties: Map<String, ApiPropertySpec>,
+)

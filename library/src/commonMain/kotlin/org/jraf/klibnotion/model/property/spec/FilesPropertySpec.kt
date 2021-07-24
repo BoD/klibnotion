@@ -22,16 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.property
-
-import kotlinx.serialization.Serializable
+package org.jraf.klibnotion.model.property.spec
 
 /**
  * See [Reference](https://developers.notion.com/reference/database).
  */
-@Serializable
-internal data class ApiSelectOption(
-    val name: String,
-    val id: String? = null,
-    val color: String,
-)
+interface FilesPropertySpec : PropertySpec
