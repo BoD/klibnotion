@@ -56,7 +56,10 @@ import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
+import org.jraf.klibnotion.model.property.SelectOptionList
 import org.jraf.klibnotion.model.property.sort.PropertySort
+import org.jraf.klibnotion.model.property.spec.NumberPropertySpec
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
@@ -206,6 +209,7 @@ class Sample {
                     .descending("title")
             )
             println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
+
 
             // Get page
             println("Page:")
@@ -452,6 +456,39 @@ class Sample {
                     sort = PropertySort().descending("last_edited_time")
                 )
             println(queryDatabasesSearchResults)
+
+            // Create a database
+            println("Created database:")
+            val createdDatabase = client.databases.createDatabase(
+                parentPageId = PAGE_ID,
+                title = RichTextList().text("A database in a page ${newDateNow()}"),
+                properties = PropertySpecList()
+                    .title("The title")
+                    .checkbox("Is checked")
+                    .createdBy("Created by")
+                    .createdTime("Created time")
+                    .date("Some date")
+                    .email("Email")
+                    .file("File")
+                    .lastEditedBy("Last edited by")
+                    .lastEditedTime("Last edited time")
+                    .multiSelect("Multi", SelectOptionList()
+                        .option("Red", Color.RED)
+                        .option("Green", Color.GREEN)
+                        .option("Blue", Color.BLUE)
+                    )
+                    .number("Number", NumberPropertySpec.NumberFormat.REAL)
+                    .people("People")
+                    .phoneNumber("Phone")
+                    .select("Select", SelectOptionList()
+                        .option("First", Color.RED)
+                        .option("Second", Color.GREEN)
+                        .option("Third", Color.BLUE)
+                    )
+                    .text("Text")
+                    .url("Url")
+            )
+            println(createdDatabase)
         }
 
         // Close

@@ -1,14 +1,13 @@
 # Changelog
 
-## v1.6.0 (????)
+## v1.6.0 (2021-07-25)
 
+- Support for create database API
 - Add a `Page.setPageArchived(Boolean)` API (thanks [@MaaxGr](https://github.com/MaaxGr))
 - `DateTime`s now contain a TimeZone (defaults to the system's), which is correctly sent to / parsed from the API (
   resolves [issue #4](https://github.com/BoD/klibnotion/issues/4))
-- Add `url` field to Page
-  following [Notion's API evolution](https://developers.notion.com/changelog/page-objects-now-return-url)
-- Add `parent` field to Database
-  following [Notion's API evolution](https://developers.notion.com/changelog/database-objects-now-return-parent)
+- Add `url` field to Page following [Notion's API evolution](https://developers.notion.com/changelog/page-objects-now-return-url)
+- Add `parent` field to Database following [Notion's API evolution](https://developers.notion.com/changelog/database-objects-now-return-parent)
 - Add missing `created` and `lastEdited` fields to Block
 
 ## v1.5.2 (2021-06-01)

@@ -43,6 +43,7 @@ import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.sort.PropertySort
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
@@ -103,6 +104,12 @@ interface FutureNotionClient {
          */
         fun getDatabase(id: UuidString): Future<Database>
 
+
+        /**
+         * See [NotionClient.Databases.getDatabaseList].
+         */
+        fun getDatabaseList(pagination: Pagination = Pagination()): Future<ResultPage<Database>>
+
         /**
          * See [NotionClient.Databases.queryDatabase].
          */
@@ -112,6 +119,15 @@ interface FutureNotionClient {
             sort: PropertySort? = null,
             pagination: Pagination = Pagination(),
         ): Future<ResultPage<Page>>
+
+        /**
+         * See [NotionClient.Databases.createDatabase].
+         */
+        fun createDatabase(
+            parentPageId: UuidString,
+            title: RichTextList = RichTextList(),
+            properties: PropertySpecList = PropertySpecList(),
+        ): Future<Database>
     }
 
     /**

@@ -37,6 +37,7 @@ import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.property.sort.PropertySort
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -68,6 +69,10 @@ internal class FutureNotionClientImpl(
         notionClient.databases.getDatabase(id)
     }
 
+    override fun getDatabaseList(pagination: Pagination) = GlobalScope.future {
+        notionClient.databases.getDatabaseList(pagination)
+    }
+
     override fun queryDatabase(
         id: UuidString,
         query: DatabaseQuery?,
@@ -79,6 +84,18 @@ internal class FutureNotionClientImpl(
             query,
             sort,
             pagination
+        )
+    }
+
+    override fun createDatabase(
+        parentPageId: UuidString,
+        title: RichTextList,
+        properties: PropertySpecList,
+    ) = GlobalScope.future {
+        notionClient.databases.createDatabase(
+            parentPageId,
+            title,
+            properties,
         )
     }
 
