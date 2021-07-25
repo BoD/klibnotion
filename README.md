@@ -33,7 +33,7 @@ repositories {
 ```groovy
 dependencies {
     /* ... */
-    implementation 'org.jraf:klibnotion:1.5.2'
+    implementation 'org.jraf:klibnotion:1.6.0'
 }
 ```
 
@@ -195,7 +195,7 @@ to [`NotionClient.newInstance()`](https://bod.github.io/klibnotion/klibnotion/or
 
 ## Status
 
-As of v1.5.2 of this library, 100% of the `2021-05-13` version of the Notion API is covered.
+As of v1.6.0 of this library, 100% of the `2021-05-13` version of the Notion API is covered.
 
 ## Javascript support
 
