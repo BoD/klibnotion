@@ -36,6 +36,7 @@ import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.property.sort.PropertySort
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -95,6 +96,18 @@ internal class BlockingNotionClientImpl(
         )
     }
 
+    override fun createDatabase(
+        parentPageId: UuidString,
+        title: RichTextList,
+        properties: PropertySpecList,
+    ) = runBlocking {
+        notionClient.databases.createDatabase(
+            parentPageId,
+            title,
+            properties
+        )
+    }
+
     override fun getPage(id: UuidString) = runBlocking {
         notionClient.pages.getPage(id)
     }
@@ -133,6 +146,10 @@ internal class BlockingNotionClientImpl(
 
     override fun updatePage(id: UuidString, properties: PropertyValueList) = runBlocking {
         notionClient.pages.updatePage(id, properties)
+    }
+
+    override fun setPageArchived(id: UuidString, archived: Boolean) = runBlocking {
+        notionClient.pages.setPageArchived(id, archived)
     }
 
     override fun getBlockList(parentId: UuidString, pagination: Pagination) = runBlocking {

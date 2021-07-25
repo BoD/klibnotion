@@ -39,6 +39,7 @@ internal object ApiPageConverter : ApiConverter<ApiPage, Page>() {
         propertyValues = ApiPropertyValueConverter.apiToModel(apiModel.properties.map { it.key to it.value }),
         archived = apiModel.archived,
         created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp,
-        lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp
+        lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp,
+        url = apiModel.url,
     )
 }

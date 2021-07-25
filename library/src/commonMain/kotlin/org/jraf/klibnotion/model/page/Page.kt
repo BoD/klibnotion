@@ -39,4 +39,5 @@ interface Page {
     val archived: Boolean
     val created: Timestamp
     val lastEdited: Timestamp
+    val url: String
 }

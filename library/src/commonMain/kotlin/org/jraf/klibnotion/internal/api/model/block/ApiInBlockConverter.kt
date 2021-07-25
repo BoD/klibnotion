@@ -26,6 +26,7 @@ package org.jraf.klibnotion.internal.api.model.block
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
 import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ChildPageBlockImpl
@@ -43,12 +44,16 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
     override fun apiToModel(apiModel: ApiBlock): Block {
         val id = apiModel.id
+        val created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp
+        val lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp
         // HACK: we use empty list as a signal that there are children that need fetching
         val children: List<Block>? = if (apiModel.has_children) emptyList() else null
         return when (val type = apiModel.type) {
             "paragraph" -> {
                 ParagraphBlockImpl(
                     id = id,
+                    created = created,
+                    lastEdited = lastEdited,
                     text = apiModel.paragraph.toRichTextList(),
                     children = children
                 )
@@ -56,33 +61,45 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
 
             "heading_1" -> Heading1BlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 text = apiModel.heading_1.toRichTextList()
             )
 
             "heading_2" -> Heading2BlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 text = apiModel.heading_2.toRichTextList()
             )
 
             "heading_3" -> Heading3BlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 text = apiModel.heading_3.toRichTextList()
             )
 
             "bulleted_list_item" -> BulletedListItemBlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 text = apiModel.bulleted_list_item.toRichTextList(),
                 children = children
             )
 
             "numbered_list_item" -> NumberedListItemBlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 text = apiModel.numbered_list_item.toRichTextList(),
                 children = children
             )
 
             "to_do" -> ToDoBlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 text = apiModel.to_do.toRichTextList(),
                 checked = apiModel.to_do!!.checked,
                 children = children
@@ -90,17 +107,23 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
 
             "toggle" -> ToggleBlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 text = apiModel.toggle.toRichTextList(),
                 children = children
             )
 
             "child_page" -> ChildPageBlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 title = apiModel.child_page!!.title
             )
 
             else -> UnknownTypeBlockImpl(
                 id = id,
+                created = created,
+                lastEdited = lastEdited,
                 type = type,
             )
         }

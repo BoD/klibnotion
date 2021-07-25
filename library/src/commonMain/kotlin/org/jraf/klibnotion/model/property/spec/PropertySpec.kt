@@ -24,6 +24,24 @@
 
 package org.jraf.klibnotion.model.property.spec
 
+import org.jraf.klibnotion.internal.model.property.spec.CheckboxPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.CreatedByPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.CreatedTimePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.DatePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.EmailPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.FilesPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.LastEditedByPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.LastEditedTimePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.MultiSelectPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.NumberPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.PeoplePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.PhoneNumberPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.RichTextPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.SelectPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.TitlePropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.UrlPropertySpecImpl
+import org.jraf.klibnotion.model.property.SelectOptionList
+
 /**
  * See [Reference](https://developers.notion.com/reference/database).
  */
@@ -39,4 +57,173 @@ sealed interface PropertySpec {
      * For example, all Title properties have an ID of `title`.
      */
     val id: String
+}
+
+class PropertySpecList {
+    internal val propertySpecList = mutableListOf<PropertySpec>()
+
+    private fun add(propertySpec: PropertySpec): PropertySpecList {
+        propertySpecList.add(propertySpec)
+        return this
+    }
+
+    fun number(name: String, format: NumberPropertySpec.NumberFormat): PropertySpecList = add(
+        NumberPropertySpecImpl(
+            id = name,
+            name = name,
+            format = format,
+        )
+    )
+
+    fun text(name: String): PropertySpecList = add(
+        RichTextPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun title(name: String): PropertySpecList = add(
+        TitlePropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun select(name: String, options: SelectOptionList): PropertySpecList = add(
+        SelectPropertySpecImpl(
+            id = name,
+            name = name,
+            options = options.selectOptionList,
+        )
+    )
+
+    fun multiSelect(name: String, options: SelectOptionList): PropertySpecList = add(
+        MultiSelectPropertySpecImpl(
+            id = name,
+            name = name,
+            options = options.selectOptionList,
+        )
+    )
+
+    fun date(name: String): PropertySpecList = add(
+        DatePropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    // Commented for now because for some reason this is not supported by the API at the moment
+//    fun relation(
+//        name: String,
+//        databaseId: UuidString,
+//        syncedPropertyName: String,
+//        syncedPropertyId: String,
+//    ): PropertySpecList = add(
+//        RelationPropertySpecImpl(
+//            id = name,
+//            name = name,
+//            databaseId = databaseId,
+//            syncedPropertyName = syncedPropertyName,
+//            syncedPropertyId = syncedPropertyId,
+//        )
+//    )
+
+    fun people(name: String): PropertySpecList = add(
+        PeoplePropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun checkbox(name: String): PropertySpecList = add(
+        CheckboxPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun url(name: String): PropertySpecList = add(
+        UrlPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun email(name: String): PropertySpecList = add(
+        EmailPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun phoneNumber(name: String): PropertySpecList = add(
+        PhoneNumberPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun file(name: String): PropertySpecList = add(
+        FilesPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    // Commented for now because for some reason this is not supported by the API at the moment
+//    fun formula(name: String, expression: String): PropertySpecList = add(
+//        FormulaPropertySpecImpl(
+//            id = name,
+//            name = name,
+//            expression = expression,
+//        )
+//    )
+
+    fun createdTime(name: String): PropertySpecList = add(
+        CreatedTimePropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun createdBy(name: String): PropertySpecList = add(
+        CreatedByPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun lastEditedTime(name: String): PropertySpecList = add(
+        LastEditedTimePropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    fun lastEditedBy(name: String): PropertySpecList = add(
+        LastEditedByPropertySpecImpl(
+            id = name,
+            name = name,
+        )
+    )
+
+    // Commented for now because for some reason this is not supported by the API at the moment
+//    fun rollup(
+//        name: String,
+//        relationPropertyName: String,
+//        relationPropertyId: String,
+//        rollupPropertyName: String,
+//        rollupPropertyId: String,
+//        function: RollupPropertySpec.RollupFunction,
+//    ): PropertySpecList = add(
+//        RollupPropertySpecImpl(
+//            id = name,
+//            name = name,
+//            relationPropertyName = relationPropertyName,
+//            relationPropertyId = relationPropertyId,
+//            rollupPropertyName = rollupPropertyName,
+//            rollupPropertyId = rollupPropertyId,
+//            function = function,
+//        )
+//    )
 }

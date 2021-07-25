@@ -32,6 +32,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class ApiSelectOption(
     val name: String,
-    val id: String,
+    val id: String? = null,
     val color: String,
 )

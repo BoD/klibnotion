@@ -29,17 +29,22 @@ import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.base.reference.Reference
 import org.jraf.klibnotion.model.base.reference.UnknownTypeReference
+import org.jraf.klibnotion.model.base.reference.WorkspaceReference
 
 internal object ApiReferenceConverter : ApiConverter<ApiReference, Reference>() {
     override fun apiToModel(apiModel: ApiReference) = when (val type = apiModel.type) {
         "database_id" -> DatabaseReference(apiModel.database_id!!)
         "page_id" -> PageReference(apiModel.page_id!!)
-        else -> UnknownTypeReference(type = type, id = "(unknown)")
+        "workspace" -> WorkspaceReference
+        else -> UnknownTypeReference(type = type)
     }
 
     override fun modelToApi(model: Reference) = when (model) {
         is DatabaseReference -> ApiReference(type = "database_id", database_id = model.id)
         is PageReference -> ApiReference(type = "page_id", page_id = model.id)
+        // It is currently not possible to create a page or a database with the workspace as the parent, but
+        // allowing this for when it will be possible
+        WorkspaceReference -> ApiReference(type = "workspace")
         is UnknownTypeReference -> throw IllegalStateException()
     }
 }

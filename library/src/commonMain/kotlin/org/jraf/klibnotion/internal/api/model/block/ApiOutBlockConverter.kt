@@ -67,6 +67,8 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 model.text?.let { text(it) }
                 when (model) {
                     is ToDoBlock -> put("checked", model.checked)
+                    else -> {
+                    }
                 }
                 model.children?.let {
                     put("children", JsonArray(it.modelToApi(ApiOutBlockConverter)))

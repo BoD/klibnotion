@@ -30,5 +30,5 @@ package org.jraf.klibnotion.model.property.spec
  * See [Reference](https://developers.notion.com/reference/database).
  */
 interface UnknownTypePropertySpec : PropertySpec {
-    val type: String
+    val type: String?
 }

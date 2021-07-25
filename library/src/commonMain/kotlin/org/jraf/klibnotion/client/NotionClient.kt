@@ -40,6 +40,7 @@ import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.sort.PropertySort
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
@@ -125,6 +126,18 @@ interface NotionClient {
             sort: PropertySort? = null,
             pagination: Pagination = Pagination(),
         ): ResultPage<Page>
+
+        /**
+         * Create a database inside a page.
+         *
+         * Note: [properties] must contain exactly one title property.
+         * @see <a href="https://developers.notion.com/reference/create-a-database">Create a database</a>
+         */
+        suspend fun createDatabase(
+            parentPageId: UuidString,
+            title: RichTextList = RichTextList(),
+            properties: PropertySpecList = PropertySpecList(),
+        ): Database
     }
 
     /**
@@ -182,6 +195,12 @@ interface NotionClient {
          * @see <a href="https://developers.notion.com/reference/patch-page">Update page properties</a>
          */
         suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page
+
+        /**
+         * Mark the page as archived or not.
+         * @see <a href="https://developers.notion.com/reference/patch-page#archive-delete-a-page">Archive a page</a>
+         */
+        suspend fun setPageArchived(id: UuidString, archived: Boolean): Page
     }
 
     /**

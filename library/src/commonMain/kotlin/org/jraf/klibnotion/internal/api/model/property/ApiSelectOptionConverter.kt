@@ -27,6 +27,7 @@ package org.jraf.klibnotion.internal.api.model.property
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.color.ApiColorConverter
+import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.model.property.SelectOptionImpl
 import org.jraf.klibnotion.model.property.SelectOption
 
@@ -34,7 +35,14 @@ internal object ApiSelectOptionConverter : ApiConverter<ApiSelectOption, SelectO
     override fun apiToModel(apiModel: ApiSelectOption) =
         SelectOptionImpl(
             name = apiModel.name,
-            id = apiModel.id,
+            id = apiModel.id!!,
             color = apiModel.color.apiToModel(ApiColorConverter)
         )
+
+    override fun modelToApi(model: SelectOption): ApiSelectOption {
+        return ApiSelectOption(
+            name = model.name,
+            color = model.color.modelToApi(ApiColorConverter)
+        )
+    }
 }

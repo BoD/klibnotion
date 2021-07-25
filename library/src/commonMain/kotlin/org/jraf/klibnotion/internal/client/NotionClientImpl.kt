@@ -45,7 +45,6 @@ import io.ktor.http.ParametersBuilder
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.Url
-import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.serialization.json.Json
@@ -56,6 +55,7 @@ import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParametersConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
+import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateConverter
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
@@ -89,6 +89,7 @@ import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.sort.PropertySort
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
@@ -111,7 +112,6 @@ internal class NotionClientImpl(
     override val blocks = this
     override val search = this
 
-    @OptIn(KtorExperimentalAPI::class)
     private val httpClient by lazy {
         createHttpClient(clientConfiguration.httpConfiguration.bypassSslChecks) {
             install(JsonFeature) {
@@ -122,6 +122,12 @@ internal class NotionClientImpl(
 
                         // This is needed to accept JSON Numbers to be deserialized as Strings
                         isLenient = true
+
+                        // This may improve performance
+                        // PLUS is a workaround for these issues:
+                        // - https://youtrack.jetbrains.com/issue/KTOR-2740
+                        // - https://github.com/Kotlin/kotlinx.serialization/issues/1450
+                        useAlternativeNames = false
                     }
                 )
             }
@@ -267,6 +273,17 @@ internal class NotionClientImpl(
             .apiToModel(ApiPageResultPageConverter)
     }
 
+    override suspend fun createDatabase(
+        parentPageId: UuidString,
+        title: RichTextList,
+        properties: PropertySpecList,
+    ): Database {
+        return service.createDatabase(
+            Triple(parentPageId, title, properties).modelToApi(ApiDatabaseCreateConverter)
+        )
+            .apiToModel(ApiDatabaseConverter)
+    }
+
     // endregion
 
 
@@ -321,6 +338,11 @@ internal class NotionClientImpl(
 
     override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
         return service.updatePage(id, properties.propertyValueList.modelToApi(ApiUpdateTableParametersConverter))
+            .apiToModel(ApiPageConverter)
+    }
+
+    override suspend fun setPageArchived(id: UuidString, archived: Boolean): Page {
+        return service.archivePage(id, archived)
             .apiToModel(ApiPageConverter)
     }
 

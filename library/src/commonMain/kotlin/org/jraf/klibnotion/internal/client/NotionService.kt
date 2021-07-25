@@ -38,6 +38,7 @@ import io.ktor.util.encodeBase64
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParameters
 import org.jraf.klibnotion.internal.api.model.block.ApiBlock
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
+import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreate
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResult
@@ -131,6 +132,15 @@ internal class NotionService(private val httpClient: HttpClient) {
         }
     }
 
+    suspend fun createDatabase(
+        createTable: ApiDatabaseCreate,
+    ): ApiDatabase {
+        return httpClient.post("$BASE_URL/$DATABASES") {
+            contentType(ContentType.Application.Json)
+            body = createTable
+        }
+    }
+
     // endregion
 
 
@@ -151,6 +161,13 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
             body = parameters
+        }
+    }
+
+    suspend fun archivePage(id: UuidString, archive: Boolean): ApiPage {
+        return httpClient.patch("$BASE_URL/$PAGES/$id") {
+            contentType(ContentType.Application.Json)
+            body = mapOf("archived" to archive)
         }
     }
 

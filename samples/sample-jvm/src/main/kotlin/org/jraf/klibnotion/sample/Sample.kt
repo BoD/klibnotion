@@ -56,7 +56,10 @@ import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
+import org.jraf.klibnotion.model.property.SelectOptionList
 import org.jraf.klibnotion.model.property.sort.PropertySort
+import org.jraf.klibnotion.model.property.spec.NumberPropertySpec
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
@@ -207,6 +210,7 @@ class Sample {
             )
             println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
 
+
             // Get page
             println("Page:")
             val page: Page = client.pages.getPage(PAGE_ID)
@@ -219,7 +223,7 @@ class Sample {
                 properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Name ${Random.nextInt()}")
-                    .text("title", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
+                    .text("Something", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
                     .text(
                         "Oui", RichTextList()
                             .text("default ")
@@ -238,7 +242,7 @@ class Sample {
                             .userMention(USER_ID).text("\n")
                             .databaseMention(DATABASE_ID).text("\n")
                             .pageMention(PAGE_ID).text("\n")
-                            .dateMention(DateTime(java.util.Date()), annotations = Annotations(color = Color.GREEN))
+                            .dateMention(DateTime(newDateNow()), annotations = Annotations(color = Color.GREEN))
                             .text("\n")
                             .equation(
                                 "f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi",
@@ -250,8 +254,8 @@ class Sample {
                     .date(
                         "Some date",
                         DateOrDateRange(
-                            start = DateTime(java.util.Date()),
-                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L))
+                            start = DateTime(newDateNow()),
+                            end = Date(newDateTomorrow())
                         )
                     )
                     .relation("Android version", PAGE_ID)
@@ -381,14 +385,14 @@ class Sample {
                 PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Updated page ${Random.nextInt()}")
-                    .text("title", "Updated page ${Random.nextInt()}")
+                    .text("Something", "Updated page ${Random.nextInt()}")
                     .selectByName("Species", "Alien")
                     .multiSelectByNames("Planets", "Tatooine", "Bespin")
                     .date(
                         "Some date",
                         DateOrDateRange(
-                            start = DateTime(java.util.Date()),
-                            end = Date(java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L))
+                            start = DateTime(newDateNow()),
+                            end = Date(newDateTomorrow())
                         )
                     )
                     .relation("Android version", PAGE_ID)
@@ -400,6 +404,22 @@ class Sample {
             )
             println(updatedPage)
 
+            // Archive page
+            println("Archived page:")
+            val archivedPage: Page = client.pages.setPageArchived(
+                id = PAGE_ID,
+                archived = true,
+            )
+            println(archivedPage)
+
+            // Unarchive page
+            println("Unarchived page:")
+            val unarchivedPage: Page = client.pages.setPageArchived(
+                id = PAGE_ID,
+                archived = false,
+            )
+            println(unarchivedPage)
+
             // Get page contents
             println("Page contents:")
             val pageContents = client.blocks.getAllBlockListRecursively(PAGE_ID)
@@ -407,7 +427,7 @@ class Sample {
 
             // Append contents to page
             println("Appending contents")
-            client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${java.util.Date()}") }
+            client.blocks.appendBlockList(PAGE_ID) { paragraph("This paragraph was added on ${newDateNow()}") }
 
             // Search pages (simple)
             println("Page search results (simple):")
@@ -436,6 +456,39 @@ class Sample {
                     sort = PropertySort().descending("last_edited_time")
                 )
             println(queryDatabasesSearchResults)
+
+            // Create a database
+            println("Created database:")
+            val createdDatabase = client.databases.createDatabase(
+                parentPageId = PAGE_ID,
+                title = RichTextList().text("A database in a page ${newDateNow()}"),
+                properties = PropertySpecList()
+                    .title("The title")
+                    .checkbox("Is checked")
+                    .createdBy("Created by")
+                    .createdTime("Created time")
+                    .date("Some date")
+                    .email("Email")
+                    .file("File")
+                    .lastEditedBy("Last edited by")
+                    .lastEditedTime("Last edited time")
+                    .multiSelect("Multi", SelectOptionList()
+                        .option("Red", Color.RED)
+                        .option("Green", Color.GREEN)
+                        .option("Blue", Color.BLUE)
+                    )
+                    .number("Number", NumberPropertySpec.NumberFormat.REAL)
+                    .people("People")
+                    .phoneNumber("Phone")
+                    .select("Select", SelectOptionList()
+                        .option("First", Color.RED)
+                        .option("Second", Color.GREEN)
+                        .option("Third", Color.BLUE)
+                    )
+                    .text("Text")
+                    .url("Url")
+            )
+            println(createdDatabase)
         }
 
         // Close
@@ -444,6 +497,10 @@ class Sample {
         // Exit process
         exitProcess(0)
     }
+
+    private fun newDateNow() = java.util.Date()
+
+    private fun newDateTomorrow() = java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)
 
     private fun Page.toFormattedString(): String {
         val res = StringBuilder("-----------\n")
