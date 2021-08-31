@@ -168,6 +168,10 @@ internal class BlockingNotionClientImpl(
         notionClient.blocks.appendBlockList(parentId, blocks)
     }
 
+    override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = runBlocking {
+        notionClient.blocks.getBlock(id, retrieveChildrenRecursively)
+    }
+
     override fun searchPages(query: String?, sort: PropertySort?, pagination: Pagination) = runBlocking {
         notionClient.search.searchPages(query, sort, pagination)
     }

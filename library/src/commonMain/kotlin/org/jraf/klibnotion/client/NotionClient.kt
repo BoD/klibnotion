@@ -239,6 +239,21 @@ interface NotionClient {
          * @see <a href="https://developers.notion.com/reference/patch-block-children">Append block children</a>
          */
         suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
+
+        /**
+         * Retrieve a block.
+         *
+         * Note:
+         * - when [retrieveChildrenRecursively] is set to `false`, this will *not* retrieve the children blocks (if any).
+         * Blocks that don't have children will have their [Block.children] property set to `null`,
+         * whereas blocks that do have children will have it set to an empty list.
+         *- when [retrieveChildrenRecursively] is set to `true`, all the block's children, will be retrieved, recursively.
+         * **Caution:** be aware that this will potentially make many network calls (depending on the size of the children list you
+         * are retrieving).
+         *
+         * @see <a href="https://developers.notion.com/reference/retrieve-a-block">Retrieve a block</a>
+         */
+        suspend fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean = false): Block
     }
 
 

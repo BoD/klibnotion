@@ -209,8 +209,12 @@ interface BlockingNotionClient {
          * See [NotionClient.Blocks.appendBlockList].
          */
         fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
-    }
 
+        /**
+         * See [NotionClient.Blocks.getBlock].
+         */
+        fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean): Block
+    }
 
     /**
      * See [NotionClient.Search].

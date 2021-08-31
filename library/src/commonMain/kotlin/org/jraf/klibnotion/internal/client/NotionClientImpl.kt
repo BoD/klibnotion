@@ -53,6 +53,7 @@ import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParametersConverter
+import org.jraf.klibnotion.internal.api.model.block.ApiInBlockConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateConverter
@@ -389,6 +390,16 @@ internal class NotionClientImpl(
 
     override suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) =
         appendBlockList(parentId, blocks() ?: MutableBlockList())
+
+    override suspend fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean): Block {
+        val block = service.getBlock(id)
+            .apiToModel(ApiInBlockConverter)
+        if (retrieveChildrenRecursively && block.children != null) {
+            val children = getAllBlockListRecursively(id)
+            (block as MutableBlock).children = children
+        }
+        return block
+    }
 
     // endregion
 

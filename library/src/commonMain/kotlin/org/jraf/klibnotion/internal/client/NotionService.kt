@@ -189,6 +189,11 @@ internal class NotionService(private val httpClient: HttpClient) {
         }
     }
 
+    suspend fun getBlock(id: UuidString): ApiBlock {
+        return httpClient.get("$BASE_URL/$BLOCKS/$id")
+    }
+
+
     // endregion
 
 

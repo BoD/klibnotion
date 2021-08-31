@@ -171,6 +171,10 @@ internal class FutureNotionClientImpl(
         null
     }
 
+    override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = GlobalScope.future {
+        notionClient.blocks.getBlock(id, retrieveChildrenRecursively)
+    }
+
     override fun searchPages(query: String?, sort: PropertySort?, pagination: Pagination) = GlobalScope.future {
         notionClient.search.searchPages(query, sort, pagination)
     }

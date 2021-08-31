@@ -209,6 +209,11 @@ interface FutureNotionClient {
          * See [NotionClient.Blocks.appendBlockList].
          */
         fun appendBlockList(parentId: UuidString, blocks: BlockListProducer): Future<Void?>
+
+        /**
+         * See [NotionClient.Blocks.getBlock].
+         */
+        fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean): Future<Block>
     }
 
 

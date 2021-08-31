@@ -91,6 +91,9 @@ private const val DATABASE_ID = "00000000-0000-0000-0000-000000000000"
 // Replace this constant with a page id that exists
 private const val PAGE_ID = "00000000-0000-0000-0000-000000000000"
 
+// Replace this constant with a block id that exists
+private const val BLOCK_ID = "00000000-0000-0000-0000-000000000000"
+
 class Sample {
     private val authentication = Authentication()
 
@@ -321,13 +324,22 @@ class Sample {
             )
             println(createdPageInPage)
 
+            // Get specific block
+            println("Get specific block:")
+            var block = client.blocks.getBlock(BLOCK_ID)
+            println(block)
+
+            // Get specific block, with children
+            println("Get specific block, with children:")
+            block = client.blocks.getBlock(BLOCK_ID, retrieveChildrenRecursively = true)
+            println(block)
+
             // Create page in page (with content)
             println("Created page in page (with content):")
             createdPageInPage = client.pages.createPage(
                 parentPage = PageReference(PAGE_ID),
                 title = RichTextList().text("The title of my new page! ${Random.nextInt()}")
-            )
-            {
+            ) {
                 heading1("First section")
                 paragraph("Hello, World!")
 
