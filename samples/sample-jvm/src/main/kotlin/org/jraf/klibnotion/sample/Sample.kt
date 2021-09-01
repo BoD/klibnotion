@@ -506,6 +506,7 @@ class Sample {
                     )
                     .text("Text")
                     .url("Url")
+                    .formula("Url or no url", """if (empty(prop("Url")), "No URL", prop("Url"))""")
             )
             println(createdDatabase)
 

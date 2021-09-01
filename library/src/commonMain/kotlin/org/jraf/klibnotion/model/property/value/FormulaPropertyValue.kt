@@ -27,29 +27,32 @@ package org.jraf.klibnotion.model.property.value
 import org.jraf.klibnotion.model.date.DateOrDateRange
 
 /**
+ * Note: unlike [PropertyValue], the value of a [FormulaPropertyValue] *can* be `null`, because
+ * a formula can for instance reference another property, which is unset.
+ *
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-sealed interface FormulaPropertyValue<T : Any> : PropertyValue<T>
+sealed interface FormulaPropertyValue<T> : PropertyValue<T>
 
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface BooleanFormulaPropertyValue : FormulaPropertyValue<Boolean>
+interface BooleanFormulaPropertyValue : FormulaPropertyValue<Boolean?>
 
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface DateFormulaPropertyValue : FormulaPropertyValue<DateOrDateRange>
+interface DateFormulaPropertyValue : FormulaPropertyValue<DateOrDateRange?>
 
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface NumberFormulaPropertyValue : FormulaPropertyValue<Number>
+interface NumberFormulaPropertyValue : FormulaPropertyValue<Number?>
 
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface StringFormulaPropertyValue : FormulaPropertyValue<String>
+interface StringFormulaPropertyValue : FormulaPropertyValue<String?>
 
 /**
  * This type is returned when a Formula Property Value of a type unknown to this library is returned by the Notion API.

@@ -30,6 +30,7 @@ import org.jraf.klibnotion.internal.model.property.spec.CreatedTimePropertySpecI
 import org.jraf.klibnotion.internal.model.property.spec.DatePropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.EmailPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.FilesPropertySpecImpl
+import org.jraf.klibnotion.internal.model.property.spec.FormulaPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.LastEditedByPropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.LastEditedTimePropertySpecImpl
 import org.jraf.klibnotion.internal.model.property.spec.MultiSelectPropertySpecImpl
@@ -170,14 +171,13 @@ class PropertySpecList {
         )
     )
 
-    // Commented for now because for some reason this is not supported by the API at the moment
-//    fun formula(name: String, expression: String): PropertySpecList = add(
-//        FormulaPropertySpecImpl(
-//            id = name,
-//            name = name,
-//            expression = expression,
-//        )
-//    )
+    fun formula(name: String, expression: String): PropertySpecList = add(
+        FormulaPropertySpecImpl(
+            id = name,
+            name = name,
+            expression = expression,
+        )
+    )
 
     fun createdTime(name: String): PropertySpecList = add(
         CreatedTimePropertySpecImpl(

@@ -29,5 +29,5 @@ import org.jraf.klibnotion.model.property.value.NumberFormulaPropertyValue
 internal data class NumberFormulaPropertyValueImpl(
     override val id: String,
     override val name: String,
-    override val value: Number,
+    override val value: Number?,
 ) : NumberFormulaPropertyValue

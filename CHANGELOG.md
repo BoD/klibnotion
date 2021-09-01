@@ -7,6 +7,8 @@
 - Add support for [update database API](https://developers.notion.com/reference/update-a-database).
 - Add `WorkspaceId` field to `OAuthGetAccessTokenResult`
   following [Notion's API evolution](https://developers.notion.com/changelog/oauth-token-response-now-includes-more-info-about-the-workspace)
+- Allow formula properties when creating/updating databases
+  following [Notion's API evolution](https://developers.notion.com/changelog/formula-properties-can-now-be-created-in-databases)
 
 ## v1.6.0 (2021-07-25)
 

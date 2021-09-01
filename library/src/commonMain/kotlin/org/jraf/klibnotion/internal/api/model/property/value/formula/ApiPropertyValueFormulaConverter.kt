@@ -46,22 +46,22 @@ internal object ApiPropertyValueFormulaConverter :
             "string" -> StringFormulaPropertyValueImpl(
                 id = id,
                 name = name,
-                value = formula.string!!
+                value = formula.string
             )
             "number" -> NumberFormulaPropertyValueImpl(
                 id = id,
                 name = name,
-                value = formula.number!!.apiToModel(ApiNumberConverter)
+                value = formula.number?.apiToModel(ApiNumberConverter)
             )
             "boolean" -> BooleanFormulaPropertyValueImpl(
                 id = id,
                 name = name,
-                value = formula.boolean!!,
+                value = formula.boolean,
             )
             "date" -> DateFormulaPropertyValueImpl(
                 id = id,
                 name = name,
-                value = formula.date!!.apiToModel(ApiDateConverter),
+                value = formula.date?.apiToModel(ApiDateConverter),
             )
             else -> UnknownTypeFormulaPropertyValueImpl(
                 id = id,

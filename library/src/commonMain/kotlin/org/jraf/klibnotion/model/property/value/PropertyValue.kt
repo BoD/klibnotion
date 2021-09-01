@@ -48,7 +48,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-sealed interface PropertyValue<T : Any> {
+sealed interface PropertyValue<T> {
     val id: String
     val name: String
     val value: T
