@@ -24,10 +24,12 @@
 
 package org.jraf.klibnotion.internal.model.oauth
 
+import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
 
 internal data class OAuthGetAccessTokenResultImpl(
     override val accessToken: String,
+    override val workspaceId: UuidString,
     override val workspaceName: String,
     override val workspaceIcon: String?,
     override val botId: String,

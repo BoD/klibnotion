@@ -5,6 +5,8 @@
 - Add support for [retrieve block API](https://developers.notion.com/reference/retrieve-a-block).
 - Add support for [update block API](https://developers.notion.com/reference/update-a-block).
 - Add support for [update database API](https://developers.notion.com/reference/update-a-database).
+- Add `WorkspaceId` field to `OAuthGetAccessTokenResult`
+  following [Notion's API evolution](https://developers.notion.com/changelog/oauth-token-response-now-includes-more-info-about-the-workspace)
 
 ## v1.6.0 (2021-07-25)
 

@@ -32,6 +32,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class ApiOAuthGetAccessTokenResult(
     val access_token: String,
+    val workspace_id: String,
     val workspace_name: String,
     val workspace_icon: String?,
     val bot_id: String,

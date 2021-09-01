@@ -32,6 +32,7 @@ internal object ApiOAuthGetAccessTokenResultConverter :
     ApiConverter<ApiOAuthGetAccessTokenResult, OAuthGetAccessTokenResult>() {
     override fun apiToModel(apiModel: ApiOAuthGetAccessTokenResult) = OAuthGetAccessTokenResultImpl(
         accessToken = apiModel.access_token,
+        workspaceId = apiModel.workspace_id,
         workspaceName = apiModel.workspace_name,
         workspaceIcon = apiModel.workspace_icon,
         botId = apiModel.bot_id,
