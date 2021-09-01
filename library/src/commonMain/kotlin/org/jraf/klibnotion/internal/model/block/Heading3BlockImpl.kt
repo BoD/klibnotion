@@ -32,9 +32,9 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal data class Heading3BlockImpl(
     override val id: UuidString,
-    override val text: RichTextList,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
+    override val text: RichTextList,
 ) : Heading3Block {
     override val children: List<Block>? = null
 }

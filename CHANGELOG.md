@@ -3,6 +3,7 @@
 ## Next version (????-??-??)
 
 - Add support for [retrieve block API](https://developers.notion.com/reference/retrieve-a-block).
+- Add support for [update block API](https://developers.notion.com/reference/update-a-block).
 
 ## v1.6.0 (2021-07-25)
 

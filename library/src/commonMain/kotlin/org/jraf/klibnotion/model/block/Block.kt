@@ -236,3 +236,158 @@ internal operator fun BlockListProducer?.invoke() = this?.let { producer ->
 
 
 fun content(content: BlockListProducer) = content()
+
+
+fun paragraph(richTextList: RichTextList): Block = ParagraphBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList,
+    null,
+)
+
+@JvmOverloads
+fun paragraph(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = paragraph(
+    richTextList = RichTextList().text(text, linkUrl, annotations),
+)
+
+fun heading1(richTextList: RichTextList): Block = Heading1BlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList
+)
+
+@JvmOverloads
+fun heading1(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = Heading1BlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    RichTextList().text(
+        text,
+        linkUrl,
+        annotations)
+)
+
+fun heading2(richTextList: RichTextList): Block = Heading2BlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList
+)
+
+@JvmOverloads
+fun heading2(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = Heading2BlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    RichTextList().text(
+        text,
+        linkUrl,
+        annotations)
+)
+
+fun heading3(richTextList: RichTextList): Block = Heading3BlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList
+)
+
+@JvmOverloads
+fun heading3(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = Heading3BlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    RichTextList().text(
+        text,
+        linkUrl,
+        annotations)
+)
+
+fun bulletedListItem(richTextList: RichTextList): Block = BulletedListItemBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList,
+    null,
+)
+
+@JvmOverloads
+fun bulletedListItem(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = bulletedListItem(
+    richTextList = RichTextList().text(text, linkUrl, annotations),
+)
+
+fun numberedListItem(richTextList: RichTextList): Block = NumberedListItemBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList,
+    null
+)
+
+@JvmOverloads
+fun numberedListItem(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = numberedListItem(
+    richTextList = RichTextList().text(text, linkUrl, annotations),
+)
+
+fun toDo(richTextList: RichTextList, checked: Boolean): Block = ToDoBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList,
+    checked,
+    null
+)
+
+@JvmOverloads
+fun toDo(
+    text: String,
+    checked: Boolean,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = toDo(
+    richTextList = RichTextList().text(text, linkUrl, annotations),
+    checked = checked,
+)
+
+fun toggle(richTextList: RichTextList): Block = ToggleBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    richTextList,
+    null,
+)
+
+@JvmOverloads
+fun toggle(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = toggle(
+    richTextList = RichTextList().text(text, linkUrl, annotations),
+)

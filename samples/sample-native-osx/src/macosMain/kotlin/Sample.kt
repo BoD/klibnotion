@@ -42,6 +42,7 @@ import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.block.UnknownTypeBlock
+import org.jraf.klibnotion.model.block.paragraph
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -332,6 +333,11 @@ class Sample {
             // Get specific block, with children
             println("Get specific block, with children:")
             block = client.blocks.getBlock(BLOCK_ID, retrieveChildrenRecursively = true)
+            println(block)
+
+            // Update block
+            println("Updated block:")
+            block = client.blocks.updateBlock(BLOCK_ID, paragraph("A random number: ${Random.nextInt()}"))
             println(block)
 
             // Create page in page (with content)

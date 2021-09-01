@@ -254,6 +254,20 @@ interface NotionClient {
          * @see <a href="https://developers.notion.com/reference/retrieve-a-block">Retrieve a block</a>
          */
         suspend fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean = false): Block
+
+        /**
+         * Update the contents of a block.
+         *
+         * Note:
+         * - you cannot change a block's type, but only its contents.
+         * This method will throw an exception if a [block] of a different type is passed.
+         * - this will *not* retrieve the children blocks (if any).
+         * Blocks that don't have children will have their [Block.children] property set to `null`,
+         * whereas blocks that do have children will have it set to an empty list.
+         *
+         * @see <a href="https://developers.notion.com/reference/update-a-block">Update a block</a>
+         */
+        suspend fun updateBlock(id: UuidString, block: Block): Block
     }
 
 

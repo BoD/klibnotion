@@ -31,6 +31,7 @@ import org.jraf.klibnotion.client.future.FutureNotionClient
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
+import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -173,6 +174,10 @@ internal class FutureNotionClientImpl(
 
     override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = GlobalScope.future {
         notionClient.blocks.getBlock(id, retrieveChildrenRecursively)
+    }
+
+    override fun updateBlock(id: UuidString, block: Block) = GlobalScope.future {
+        notionClient.blocks.updateBlock(id, block)
     }
 
     override fun searchPages(query: String?, sort: PropertySort?, pagination: Pagination) = GlobalScope.future {

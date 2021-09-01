@@ -214,6 +214,11 @@ interface FutureNotionClient {
          * See [NotionClient.Blocks.getBlock].
          */
         fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean): Future<Block>
+
+        /**
+         * See [NotionClient.Blocks.updateBlock].
+         */
+        fun updateBlock(id: UuidString, block: Block): Future<Block>
     }
 
 

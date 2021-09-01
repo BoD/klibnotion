@@ -35,6 +35,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
 import io.ktor.util.InternalAPI
 import io.ktor.util.encodeBase64
+import kotlinx.serialization.json.JsonElement
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParameters
 import org.jraf.klibnotion.internal.api.model.block.ApiBlock
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
@@ -193,6 +194,12 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.get("$BASE_URL/$BLOCKS/$id")
     }
 
+    suspend fun updateBlock(id: UuidString, block: JsonElement): ApiBlock {
+        return httpClient.patch("$BASE_URL/$BLOCKS/$id") {
+            contentType(ContentType.Application.Json)
+            body = block
+        }
+    }
 
     // endregion
 

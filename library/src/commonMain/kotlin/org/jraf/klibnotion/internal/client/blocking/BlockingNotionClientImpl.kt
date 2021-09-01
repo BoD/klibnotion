@@ -30,6 +30,7 @@ import org.jraf.klibnotion.internal.runBlocking
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
+import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
@@ -170,6 +171,10 @@ internal class BlockingNotionClientImpl(
 
     override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = runBlocking {
         notionClient.blocks.getBlock(id, retrieveChildrenRecursively)
+    }
+
+    override fun updateBlock(id: UuidString, block: Block) = runBlocking {
+        notionClient.blocks.updateBlock(id, block)
     }
 
     override fun searchPages(query: String?, sort: PropertySort?, pagination: Pagination) = runBlocking {

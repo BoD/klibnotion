@@ -214,6 +214,11 @@ interface BlockingNotionClient {
          * See [NotionClient.Blocks.getBlock].
          */
         fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean): Block
+
+        /**
+         * See [NotionClient.Blocks.updateBlock].
+         */
+        fun updateBlock(id: UuidString, block: Block): Block
     }
 
     /**

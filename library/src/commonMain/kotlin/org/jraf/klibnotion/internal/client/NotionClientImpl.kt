@@ -54,6 +54,7 @@ import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParametersConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiInBlockConverter
+import org.jraf.klibnotion.internal.api.model.block.ApiOutBlockConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateConverter
@@ -399,6 +400,11 @@ internal class NotionClientImpl(
             (block as MutableBlock).children = children
         }
         return block
+    }
+
+    override suspend fun updateBlock(id: UuidString, block: Block): Block {
+        return service.updateBlock(id, block.modelToApi(ApiOutBlockConverter))
+            .apiToModel(ApiInBlockConverter)
     }
 
     // endregion
