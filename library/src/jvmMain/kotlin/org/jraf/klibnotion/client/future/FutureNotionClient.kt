@@ -104,7 +104,6 @@ interface FutureNotionClient {
          */
         fun getDatabase(id: UuidString): Future<Database>
 
-
         /**
          * See [NotionClient.Databases.getDatabaseList].
          */
@@ -127,6 +126,15 @@ interface FutureNotionClient {
             parentPageId: UuidString,
             title: RichTextList = RichTextList(),
             properties: PropertySpecList = PropertySpecList(),
+        ): Future<Database>
+
+        /**
+         * See [NotionClient.Databases.updateDatabase].
+         */
+        fun updateDatabase(
+            id: UuidString,
+            title: RichTextList? = null,
+            properties: PropertySpecList? = null,
         ): Future<Database>
     }
 

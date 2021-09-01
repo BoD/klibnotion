@@ -64,6 +64,7 @@ import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
+import org.jraf.klibnotion.model.richtext.text
 import org.jraf.klibnotion.model.user.User
 import kotlin.random.Random
 import kotlin.system.exitProcess
@@ -287,7 +288,7 @@ class Sample {
                 paragraph("That's the case")
 
                 heading3("But really")
-                paragraph(RichTextList().text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
+                paragraph(text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
 
                 bullet("There's this,")
                 bullet("there's that,")
@@ -322,7 +323,7 @@ class Sample {
             println("Created page in page (no content):")
             var createdPageInPage: Page = client.pages.createPage(
                 parentPage = PageReference(PAGE_ID),
-                title = RichTextList().text("The title of my new page! ${Random.nextInt()}")
+                title = text("The title of my new page! ${Random.nextInt()}")
             )
             println(createdPageInPage)
 
@@ -345,7 +346,7 @@ class Sample {
             println("Created page in page (with content):")
             createdPageInPage = client.pages.createPage(
                 parentPage = PageReference(PAGE_ID),
-                title = RichTextList().text("The title of my new page! ${Random.nextInt()}")
+                title = text("The title of my new page! ${Random.nextInt()}")
             ) {
                 heading1("First section")
                 paragraph("Hello, World!")
@@ -365,7 +366,7 @@ class Sample {
                 paragraph("That's the case")
 
                 heading3("But really")
-                paragraph(RichTextList().text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
+                paragraph(text("This ").text("word", Annotations(color = Color.RED)).text(" is red"))
 
                 bullet("There's this,")
                 bullet("there's that,")
@@ -479,7 +480,7 @@ class Sample {
             println("Created database:")
             val createdDatabase = client.databases.createDatabase(
                 parentPageId = PAGE_ID,
-                title = RichTextList().text("A database in a page ${newDateNow()}"),
+                title = text("A database in a page ${newDateNow()}"),
                 properties = PropertySpecList()
                     .title("The title")
                     .checkbox("Is checked")
@@ -507,6 +508,24 @@ class Sample {
                     .url("Url")
             )
             println(createdDatabase)
+
+            // Update a database's title
+            println("Updated database:")
+            var updatedDatabase =
+                client.databases.updateDatabase(createdDatabase.id, title = text("The new title ${newDateNow()}"))
+            println(updatedDatabase)
+
+            // Update a database's property
+            println("Updated database:")
+            updatedDatabase =
+                client.databases.updateDatabase(createdDatabase.id, properties = PropertySpecList().select("Select",
+                    SelectOptionList()
+                        .option("First 2", Color.PURPLE)
+                        .option("Second 2", Color.GREEN)
+                        .option("Third 2", Color.BLUE)
+                        .option("Fourth", Color.ORANGE)
+                ))
+            println(updatedDatabase)
         }
 
         // Close

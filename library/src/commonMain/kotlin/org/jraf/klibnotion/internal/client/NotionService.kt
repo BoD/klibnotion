@@ -41,6 +41,7 @@ import org.jraf.klibnotion.internal.api.model.block.ApiBlock
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
 import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreate
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
+import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdate
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResult
 import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParameters
@@ -134,11 +135,21 @@ internal class NotionService(private val httpClient: HttpClient) {
     }
 
     suspend fun createDatabase(
-        createTable: ApiDatabaseCreate,
+        databaseCreate: ApiDatabaseCreate,
     ): ApiDatabase {
         return httpClient.post("$BASE_URL/$DATABASES") {
             contentType(ContentType.Application.Json)
-            body = createTable
+            body = databaseCreate
+        }
+    }
+
+    suspend fun updateDatabase(
+        id: UuidString,
+        updateDatabase: ApiDatabaseUpdate,
+    ): ApiDatabase {
+        return httpClient.patch("$BASE_URL/$DATABASES/$id") {
+            contentType(ContentType.Application.Json)
+            body = updateDatabase
         }
     }
 

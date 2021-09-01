@@ -100,6 +100,15 @@ internal class FutureNotionClientImpl(
         )
     }
 
+    override fun updateDatabase(id: UuidString, title: RichTextList?, properties: PropertySpecList?) =
+        GlobalScope.future {
+            notionClient.databases.updateDatabase(
+                id,
+                title,
+                properties,
+            )
+        }
+
     override fun getPage(id: UuidString) = GlobalScope.future {
         notionClient.pages.getPage(id)
     }

@@ -137,3 +137,5 @@ class RichTextList(
         return "RichTextList(richTextList=$richTextList, plainText=$plainText)"
     }
 }
+
+fun text(text: String) = RichTextList().text(text)

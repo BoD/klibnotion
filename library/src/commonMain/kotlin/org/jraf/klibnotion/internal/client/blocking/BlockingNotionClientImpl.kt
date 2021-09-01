@@ -109,6 +109,14 @@ internal class BlockingNotionClientImpl(
         )
     }
 
+    override fun updateDatabase(id: UuidString, title: RichTextList?, properties: PropertySpecList?) = runBlocking {
+        notionClient.databases.updateDatabase(
+            id,
+            title,
+            properties
+        )
+    }
+
     override fun getPage(id: UuidString) = runBlocking {
         notionClient.pages.getPage(id)
     }

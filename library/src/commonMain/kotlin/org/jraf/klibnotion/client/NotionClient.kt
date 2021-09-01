@@ -138,6 +138,20 @@ interface NotionClient {
             title: RichTextList = RichTextList(),
             properties: PropertySpecList = PropertySpecList(),
         ): Database
+
+        /**
+         * Update a database.
+         *
+         * @param title The title to update, or `null` to keep the current title.
+         * @param properties The properties to update, or `null` to keep the properties as is.
+         *
+         * @see <a href="https://developers.notion.com/reference/update-a-database">Update a database</a>
+         */
+        suspend fun updateDatabase(
+            id: UuidString,
+            title: RichTextList? = null,
+            properties: PropertySpecList? = null,
+        ): Database
     }
 
     /**

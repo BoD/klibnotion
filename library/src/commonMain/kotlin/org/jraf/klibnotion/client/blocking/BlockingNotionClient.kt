@@ -128,6 +128,15 @@ interface BlockingNotionClient {
             title: RichTextList = RichTextList(),
             properties: PropertySpecList = PropertySpecList(),
         ): Database
+
+        /**
+         * See [NotionClient.Databases.updateDatabase].
+         */
+        fun updateDatabase(
+            id: UuidString,
+            title: RichTextList? = null,
+            properties: PropertySpecList? = null,
+        ): Database
     }
 
     /**

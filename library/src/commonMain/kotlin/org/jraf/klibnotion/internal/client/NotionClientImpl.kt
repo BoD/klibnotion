@@ -59,6 +59,7 @@ import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateConverter
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
+import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdateConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResultConverter
@@ -282,6 +283,14 @@ internal class NotionClientImpl(
     ): Database {
         return service.createDatabase(
             Triple(parentPageId, title, properties).modelToApi(ApiDatabaseCreateConverter)
+        )
+            .apiToModel(ApiDatabaseConverter)
+    }
+
+    override suspend fun updateDatabase(id: UuidString, title: RichTextList?, properties: PropertySpecList?): Database {
+        return service.updateDatabase(
+            id,
+            Pair(title, properties).modelToApi(ApiDatabaseUpdateConverter)
         )
             .apiToModel(ApiDatabaseConverter)
     }
