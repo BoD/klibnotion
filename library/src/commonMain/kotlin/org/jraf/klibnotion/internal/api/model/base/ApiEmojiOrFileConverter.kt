@@ -34,7 +34,8 @@ internal object ApiEmojiOrFileConverter : ApiConverter<ApiEmojiOrFile?, EmojiOrF
         if (apiModel == null) return null
         return when (apiModel.type) {
             "emoji" -> EmojiImpl(value = apiModel.emoji!![0])
-            "file", "external" -> FileImpl(name = null, url = apiModel.url!!)
+            "file" -> FileImpl(name = null, url = apiModel.file!!.url)
+            "external" -> FileImpl(name = null, url = apiModel.external!!.url)
             else -> null
         }
     }

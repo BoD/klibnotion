@@ -42,4 +42,6 @@ internal data class ApiPage(
     val last_edited_time: String,
     val url: String,
     val icon: ApiEmojiOrFile?,
+    // Technically this can only be "file" or "external", never "emoji"
+    val cover: ApiEmojiOrFile?,
 )

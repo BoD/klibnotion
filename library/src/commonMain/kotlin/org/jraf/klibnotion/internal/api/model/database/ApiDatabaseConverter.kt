@@ -26,12 +26,14 @@ package org.jraf.klibnotion.internal.api.model.database
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.base.ApiEmojiOrFileConverter
 import org.jraf.klibnotion.internal.api.model.base.ApiReferenceConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
 import org.jraf.klibnotion.internal.model.database.DatabaseImpl
 import org.jraf.klibnotion.model.database.Database
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal object ApiDatabaseConverter : ApiConverter<ApiDatabase, Database>() {
@@ -44,5 +46,7 @@ internal object ApiDatabaseConverter : ApiConverter<ApiDatabase, Database>() {
         ),
         created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp,
         lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp,
+        icon = apiModel.icon.apiToModel(ApiEmojiOrFileConverter),
+        cover = apiModel.cover.apiToModel(ApiEmojiOrFileConverter) as? File,
     )
 }

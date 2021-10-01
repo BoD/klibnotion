@@ -24,9 +24,11 @@
 
 package org.jraf.klibnotion.model.database
 
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.Reference
 import org.jraf.klibnotion.model.date.Timestamp
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -40,4 +42,6 @@ interface Database {
     val propertySpecs: List<PropertySpec>
     val created: Timestamp
     val lastEdited: Timestamp
+    val icon: EmojiOrFile?
+    val cover: File?
 }

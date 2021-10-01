@@ -25,10 +25,12 @@
 package org.jraf.klibnotion.internal.api.model.base
 
 import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.file.ApiFile
 
 @Serializable
 internal data class ApiEmojiOrFile(
     val type: String,
     val emoji: String? = null,
-    val url: String? = null,
+    val file: ApiFile? = null,
+    val external: ApiFile? = null,
 )
