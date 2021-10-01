@@ -29,5 +29,5 @@ import org.jraf.klibnotion.internal.model.file.FileImpl
 import org.jraf.klibnotion.model.file.File
 
 internal object ApiFileConverter : ApiConverter<ApiFile, File>() {
-    override fun apiToModel(apiModel: ApiFile) = FileImpl(name = apiModel.name)
+    override fun apiToModel(apiModel: ApiFile) = FileImpl(name = null, url = apiModel.url)
 }

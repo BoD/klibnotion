@@ -22,22 +22,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.page
+package org.jraf.klibnotion.internal.api.model.emoji
 
-import org.jraf.klibnotion.model.base.EmojiOrFile
-import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.base.reference.Reference
-import org.jraf.klibnotion.model.date.Timestamp
-import org.jraf.klibnotion.model.page.Page
-import org.jraf.klibnotion.model.property.value.PropertyValue
+import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.model.emoji.EmojiImpl
+import org.jraf.klibnotion.model.emoji.Emoji
 
-internal data class PageImpl(
-    override val id: UuidString,
-    override val parent: Reference,
-    override val propertyValues: List<PropertyValue<*>>,
-    override val archived: Boolean,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
-    override val url: String,
-    override val icon: EmojiOrFile?,
-) : Page
+internal object ApiEmojiConverter : ApiConverter<ApiEmoji, Emoji>() {
+    override fun apiToModel(apiModel: ApiEmoji): Emoji {
+        return EmojiImpl(value = apiModel.emoji[0])
+    }
+
+    override fun modelToApi(model: Emoji): ApiEmoji {
+        return ApiEmoji(emoji = model.value.toString())
+    }
+}

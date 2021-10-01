@@ -22,22 +22,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.page
+package org.jraf.klibnotion.internal.api.model.base
 
-import org.jraf.klibnotion.model.base.EmojiOrFile
-import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.base.reference.Reference
-import org.jraf.klibnotion.model.date.Timestamp
-import org.jraf.klibnotion.model.page.Page
-import org.jraf.klibnotion.model.property.value.PropertyValue
+import kotlinx.serialization.Serializable
 
-internal data class PageImpl(
-    override val id: UuidString,
-    override val parent: Reference,
-    override val propertyValues: List<PropertyValue<*>>,
-    override val archived: Boolean,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
-    override val url: String,
-    override val icon: EmojiOrFile?,
-) : Page
+@Serializable
+internal data class ApiEmojiOrFile(
+    val type: String,
+    val emoji: String? = null,
+    val url: String? = null,
+)

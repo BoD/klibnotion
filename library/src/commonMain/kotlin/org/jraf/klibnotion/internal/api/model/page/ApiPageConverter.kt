@@ -26,6 +26,7 @@ package org.jraf.klibnotion.internal.api.model.page
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.base.ApiEmojiOrFileConverter
 import org.jraf.klibnotion.internal.api.model.base.ApiReferenceConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValueConverter
@@ -41,5 +42,6 @@ internal object ApiPageConverter : ApiConverter<ApiPage, Page>() {
         created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp,
         lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp,
         url = apiModel.url,
+        icon = apiModel.icon.apiToModel(ApiEmojiOrFileConverter),
     )
 }

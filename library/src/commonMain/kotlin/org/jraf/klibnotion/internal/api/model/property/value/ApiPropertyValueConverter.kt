@@ -29,7 +29,6 @@ import org.jraf.klibnotion.internal.api.model.apiToModel
 import org.jraf.klibnotion.internal.api.model.base.ApiNumberConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
-import org.jraf.klibnotion.internal.api.model.file.ApiFileConverter
 import org.jraf.klibnotion.internal.api.model.property.ApiSelectOptionConverter
 import org.jraf.klibnotion.internal.api.model.property.value.formula.ApiPropertyValueFormulaConverter
 import org.jraf.klibnotion.internal.api.model.property.value.rollup.ApiPropertyValueRollupConverter
@@ -107,7 +106,7 @@ internal object ApiPropertyValueConverter :
             "files" -> FilesPropertyValueImpl(
                 id = id,
                 name = name,
-                value = apiPropertyValue.files!!.apiToModel(ApiFileConverter)
+                value = apiPropertyValue.files!!.apiToModel(ApiPropertyValueFileConverter)
             )
             "checkbox" -> CheckboxPropertyValueImpl(
                 id = id,
