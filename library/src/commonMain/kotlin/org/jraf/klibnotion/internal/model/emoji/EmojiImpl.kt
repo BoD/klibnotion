@@ -27,5 +27,5 @@ package org.jraf.klibnotion.internal.model.emoji
 import org.jraf.klibnotion.model.emoji.Emoji
 
 internal data class EmojiImpl(
-    override val value: Char,
+    override val value: String,
 ) : Emoji

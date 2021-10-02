@@ -24,11 +24,14 @@
 
 package org.jraf.klibnotion.model.emoji
 
+import org.jraf.klibnotion.internal.model.emoji.EmojiImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
 
 /**
  * See [Reference](https://developers.notion.com/reference/emoji-object).
  */
 interface Emoji : EmojiOrFile {
-    val value: Char
+    val value: String
 }
+
+fun Emoji(value: String): Emoji = EmojiImpl(value)

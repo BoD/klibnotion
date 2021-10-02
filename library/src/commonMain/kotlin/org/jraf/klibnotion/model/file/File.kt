@@ -24,9 +24,12 @@
 
 package org.jraf.klibnotion.model.file
 
+import org.jraf.klibnotion.internal.model.file.FileImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
 
 interface File : EmojiOrFile {
     val name: String?
     val url: String
 }
+
+fun File(url: String): File = FileImpl(name = null, url = url)

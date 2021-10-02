@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.client
 
 import org.jraf.klibnotion.internal.client.NotionClientImpl
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
@@ -33,6 +34,7 @@ import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.oauth.OAuthCodeAndState
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
@@ -170,6 +172,8 @@ interface NotionClient {
          */
         suspend fun createPage(
             parentDatabase: DatabaseReference,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertyValueList = PropertyValueList(),
             content: MutableBlockList? = null,
         ): Page
@@ -180,6 +184,8 @@ interface NotionClient {
          */
         suspend fun createPage(
             parentDatabase: DatabaseReference,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertyValueList = PropertyValueList(),
             content: BlockListProducer,
         ): Page
@@ -191,6 +197,8 @@ interface NotionClient {
         suspend fun createPage(
             parentPage: PageReference,
             title: RichTextList = RichTextList(),
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             content: MutableBlockList? = null,
         ): Page
 
@@ -201,6 +209,8 @@ interface NotionClient {
         suspend fun createPage(
             parentPage: PageReference,
             title: RichTextList = RichTextList(),
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             content: BlockListProducer,
         ): Page
 

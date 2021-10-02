@@ -22,21 +22,20 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.base
+package org.jraf.klibnotion.internal.api.model.page
 
-import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.model.emoji.EmojiImpl
-import org.jraf.klibnotion.internal.model.file.FileImpl
-import org.jraf.klibnotion.model.base.EmojiOrFile
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
+import org.jraf.klibnotion.internal.api.model.base.ApiReference
 
-internal object ApiEmojiOrFileConverter : ApiConverter<ApiEmojiOrFile?, EmojiOrFile?>() {
-    override fun apiToModel(apiModel: ApiEmojiOrFile?): EmojiOrFile? {
-        if (apiModel == null) return null
-        return when (apiModel.type) {
-            "emoji" -> EmojiImpl(value = apiModel.emoji!!)
-            "file" -> FileImpl(name = null, url = apiModel.file!!.url)
-            "external" -> FileImpl(name = null, url = apiModel.external!!.url)
-            else -> null
-        }
-    }
-}
+/**
+ * See [Reference](https://developers.notion.com/reference/post-page).
+ */
+@Serializable
+internal data class ApiCreatePageParameters(
+    val parent: ApiReference,
+    val properties: Map<String, JsonElement>,
+    val children: List<JsonElement>? = null,
+    val icon: JsonElement? = null,
+    val cover: JsonElement? = null,
+)

@@ -22,18 +22,22 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.page
+package org.jraf.klibnotion.internal.api.model.file
 
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
-import org.jraf.klibnotion.internal.api.model.base.ApiReference
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
+import kotlinx.serialization.json.putJsonObject
+import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.model.file.File
 
-/**
- * See [Reference](https://developers.notion.com/reference/post-page).
- */
-@Serializable
-internal data class ApiCreateTableParameters(
-    val parent: ApiReference,
-    val properties: Map<String, JsonElement>,
-    val children: List<JsonElement>? = null,
-)
+internal object ApiOutFileConverter : ApiConverter<JsonElement, File>() {
+    override fun modelToApi(model: File): JsonElement {
+        return buildJsonObject {
+            put("type", "external")
+            putJsonObject("external") {
+                put("url", model.url)
+            }
+        }
+    }
+}

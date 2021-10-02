@@ -31,6 +31,6 @@ import kotlinx.serialization.json.JsonElement
  * See [Reference](https://developers.notion.com/reference/patch-page).
  */
 @Serializable
-internal data class ApiUpdateTableParameters(
+internal data class ApiUpdatePageParameters(
     val properties: Map<String, JsonElement>,
 )

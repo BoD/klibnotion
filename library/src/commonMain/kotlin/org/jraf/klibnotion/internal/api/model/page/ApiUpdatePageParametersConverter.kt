@@ -28,10 +28,10 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.property.value.ApiOutPropertyValueConverter
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
-internal object ApiUpdateTableParametersConverter :
-    ApiConverter<ApiUpdateTableParameters, List<PropertyValue<*>>>() {
-    override fun modelToApi(model: List<PropertyValue<*>>): ApiUpdateTableParameters {
-        return ApiUpdateTableParameters(
+internal object ApiUpdatePageParametersConverter :
+    ApiConverter<ApiUpdatePageParameters, List<PropertyValue<*>>>() {
+    override fun modelToApi(model: List<PropertyValue<*>>): ApiUpdatePageParameters {
+        return ApiUpdatePageParameters(
             properties = model.associate(ApiOutPropertyValueConverter::modelToApi)
         )
     }

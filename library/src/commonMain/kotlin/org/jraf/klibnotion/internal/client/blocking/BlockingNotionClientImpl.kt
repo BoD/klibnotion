@@ -27,6 +27,7 @@ package org.jraf.klibnotion.internal.client.blocking
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.blocking.BlockingNotionClient
 import org.jraf.klibnotion.internal.runBlocking
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
@@ -34,6 +35,7 @@ import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.property.sort.PropertySort
@@ -123,34 +125,66 @@ internal class BlockingNotionClientImpl(
 
     override fun createPage(
         parentDatabase: DatabaseReference,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertyValueList,
         content: MutableBlockList?,
     ) = runBlocking {
-        notionClient.pages.createPage(parentDatabase, properties, content)
+        notionClient.pages.createPage(
+            parentDatabase = parentDatabase,
+            properties = properties,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun createPage(
         parentDatabase: DatabaseReference,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertyValueList,
         content: BlockListProducer,
     ) = runBlocking {
-        notionClient.pages.createPage(parentDatabase, properties, content)
+        notionClient.pages.createPage(
+            parentDatabase = parentDatabase,
+            properties = properties,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun createPage(
         parentPage: PageReference,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         content: MutableBlockList?,
     ) = runBlocking {
-        notionClient.pages.createPage(parentPage, title, content)
+        notionClient.pages.createPage(
+            parentPage = parentPage,
+            title = title,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun createPage(
         parentPage: PageReference,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         content: BlockListProducer,
     ) = runBlocking {
-        notionClient.pages.createPage(parentPage, title, content)
+        notionClient.pages.createPage(
+            parentPage = parentPage,
+            title = title,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun updatePage(id: UuidString, properties: PropertyValueList) = runBlocking {

@@ -24,19 +24,31 @@
 
 package org.jraf.klibnotion.internal.api.model.base
 
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
+import kotlinx.serialization.json.putJsonObject
 import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.model.emoji.EmojiImpl
-import org.jraf.klibnotion.internal.model.file.FileImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
+import org.jraf.klibnotion.model.emoji.Emoji
+import org.jraf.klibnotion.model.file.File
 
-internal object ApiEmojiOrFileConverter : ApiConverter<ApiEmojiOrFile?, EmojiOrFile?>() {
-    override fun apiToModel(apiModel: ApiEmojiOrFile?): EmojiOrFile? {
-        if (apiModel == null) return null
-        return when (apiModel.type) {
-            "emoji" -> EmojiImpl(value = apiModel.emoji!!)
-            "file" -> FileImpl(name = null, url = apiModel.file!!.url)
-            "external" -> FileImpl(name = null, url = apiModel.external!!.url)
-            else -> null
+internal object ApiOutEmojiOrFileConverter : ApiConverter<JsonElement, EmojiOrFile>() {
+    override fun modelToApi(model: EmojiOrFile): JsonElement {
+        return buildJsonObject {
+            when (model) {
+                is Emoji -> {
+                    put("type", "emoji")
+                    put("emoji", model.value)
+                }
+                is File -> {
+                    put("type", "external")
+                    putJsonObject("external") {
+                        put("url", model.url)
+                    }
+                }
+                else -> throw AssertionError("Should never happen")
+            }
         }
     }
 }

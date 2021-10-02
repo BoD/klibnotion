@@ -25,28 +25,22 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.base.ApiOutEmojiOrFileConverter
 import org.jraf.klibnotion.internal.api.model.base.ApiReferenceConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiOutBlockConverter
+import org.jraf.klibnotion.internal.api.model.file.ApiOutFileConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.property.value.ApiOutPropertyValueConverter
-import org.jraf.klibnotion.model.base.reference.Reference
-import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.property.value.PropertyValue
 
-internal object ApiCreateTableParametersConverter :
-    ApiConverter<
-            ApiCreateTableParameters,
-            Triple<Reference, List<PropertyValue<*>>, List<Block>?>
-            >() {
-    override fun modelToApi(model: Triple<Reference, List<PropertyValue<*>>, List<Block>?>): ApiCreateTableParameters {
-        val reference = model.first
-        val properties = model.second
-        val children = model.third
-
-        return ApiCreateTableParameters(
-            parent = reference.modelToApi(ApiReferenceConverter),
-            properties = properties.associate(ApiOutPropertyValueConverter::modelToApi),
-            children = children?.modelToApi(ApiOutBlockConverter),
+internal object ApiCreatePageParametersConverter :
+    ApiConverter<ApiCreatePageParameters, CreatePageParameters>() {
+    override fun modelToApi(model: CreatePageParameters): ApiCreatePageParameters {
+        return ApiCreatePageParameters(
+            parent = model.reference.modelToApi(ApiReferenceConverter),
+            properties = model.properties.associate(ApiOutPropertyValueConverter::modelToApi),
+            children = model.children?.modelToApi(ApiOutBlockConverter),
+            icon = model.icon?.modelToApi(ApiOutEmojiOrFileConverter),
+            cover = model.cover?.modelToApi(ApiOutFileConverter),
         )
     }
 }

@@ -30,10 +30,10 @@ import org.jraf.klibnotion.model.emoji.Emoji
 
 internal object ApiEmojiConverter : ApiConverter<ApiEmoji, Emoji>() {
     override fun apiToModel(apiModel: ApiEmoji): Emoji {
-        return EmojiImpl(value = apiModel.emoji[0])
+        return EmojiImpl(value = apiModel.emoji)
     }
 
     override fun modelToApi(model: Emoji): ApiEmoji {
-        return ApiEmoji(emoji = model.value.toString())
+        return ApiEmoji(emoji = model.value)
     }
 }

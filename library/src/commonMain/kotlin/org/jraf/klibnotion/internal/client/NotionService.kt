@@ -44,9 +44,9 @@ import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
 import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdate
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResult
-import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParameters
+import org.jraf.klibnotion.internal.api.model.page.ApiCreatePageParameters
 import org.jraf.klibnotion.internal.api.model.page.ApiPage
-import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParameters
+import org.jraf.klibnotion.internal.api.model.page.ApiUpdatePageParameters
 import org.jraf.klibnotion.internal.api.model.pagination.ApiResultPage
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
@@ -162,14 +162,14 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.get("$BASE_URL/$PAGES/$id")
     }
 
-    suspend fun createPage(parameters: ApiCreateTableParameters): ApiPage {
+    suspend fun createPage(parameters: ApiCreatePageParameters): ApiPage {
         return httpClient.post("$BASE_URL/$PAGES") {
             contentType(ContentType.Application.Json)
             body = parameters
         }
     }
 
-    suspend fun updatePage(id: UuidString, parameters: ApiUpdateTableParameters): ApiPage {
+    suspend fun updatePage(id: UuidString, parameters: ApiUpdatePageParameters): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
             body = parameters

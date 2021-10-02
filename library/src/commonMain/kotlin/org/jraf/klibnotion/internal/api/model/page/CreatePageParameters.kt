@@ -22,21 +22,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.base
+package org.jraf.klibnotion.internal.api.model.page
 
-import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.model.emoji.EmojiImpl
-import org.jraf.klibnotion.internal.model.file.FileImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
+import org.jraf.klibnotion.model.base.reference.Reference
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.file.File
+import org.jraf.klibnotion.model.property.value.PropertyValue
 
-internal object ApiEmojiOrFileConverter : ApiConverter<ApiEmojiOrFile?, EmojiOrFile?>() {
-    override fun apiToModel(apiModel: ApiEmojiOrFile?): EmojiOrFile? {
-        if (apiModel == null) return null
-        return when (apiModel.type) {
-            "emoji" -> EmojiImpl(value = apiModel.emoji!!)
-            "file" -> FileImpl(name = null, url = apiModel.file!!.url)
-            "external" -> FileImpl(name = null, url = apiModel.external!!.url)
-            else -> null
-        }
-    }
-}
+internal data class CreatePageParameters(
+    val reference: Reference,
+    val properties: List<PropertyValue<*>>,
+    val children: List<Block>?,
+    val icon: EmojiOrFile?,
+    val cover: File?,
+)

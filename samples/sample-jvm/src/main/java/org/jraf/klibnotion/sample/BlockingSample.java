@@ -48,6 +48,9 @@ import org.jraf.klibnotion.model.user.User;
 
 import java.util.Random;
 
+import static org.jraf.klibnotion.model.emoji.EmojiKt.Emoji;
+import static org.jraf.klibnotion.model.file.FileKt.File;
+
 class BlockingSample {
     // !!!!! DO THIS FIRST !!!!!
     // Replace this constant with your Internal Integration Token
@@ -156,6 +159,8 @@ class BlockingSample {
         System.out.println("Created page in database:");
         Page createdPageInDatabase = client.getPages().createPage(
                 new DatabaseReference(DATABASE_ID),
+                Emoji("⚙️"),
+                File("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg️"),
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
                         .text("Name", "Name " + random.nextInt())
