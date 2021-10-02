@@ -69,6 +69,7 @@ import org.jraf.klibnotion.internal.api.model.page.ApiPageResultDatabaseConverte
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiUpdatePageParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.CreatePageParameters
+import org.jraf.klibnotion.internal.api.model.page.UpdatePageParameters
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
@@ -374,8 +375,20 @@ internal class NotionClientImpl(
         content = content(),
     )
 
-    override suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page {
-        return service.updatePage(id, properties.propertyValueList.modelToApi(ApiUpdatePageParametersConverter))
+    override suspend fun updatePage(
+        id: UuidString,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertyValueList,
+    ): Page {
+        return service.updatePage(
+            id = id,
+            parameters = UpdatePageParameters(
+                properties = properties.propertyValueList,
+                icon = icon,
+                cover = cover,
+            ).modelToApi(ApiUpdatePageParametersConverter)
+        )
             .apiToModel(ApiPageConverter)
     }
 

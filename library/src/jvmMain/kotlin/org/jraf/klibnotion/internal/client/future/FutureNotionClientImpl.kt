@@ -189,8 +189,13 @@ internal class FutureNotionClientImpl(
         notionClient.oAuth.getAccessToken(oAuthCredentials, code)
     }
 
-    override fun updatePage(id: UuidString, properties: PropertyValueList) = GlobalScope.future {
-        notionClient.pages.updatePage(id, properties)
+    override fun updatePage(
+        id: UuidString,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertyValueList,
+    ) = GlobalScope.future {
+        notionClient.pages.updatePage(id, icon, cover, properties)
     }
 
     override fun setPageArchived(id: UuidString, archived: Boolean) = GlobalScope.future {

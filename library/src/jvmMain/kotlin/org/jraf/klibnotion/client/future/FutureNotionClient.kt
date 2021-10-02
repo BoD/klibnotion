@@ -196,7 +196,12 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Pages.updatePage].
          */
-        fun updatePage(id: UuidString, properties: PropertyValueList): Future<Page>
+        fun updatePage(
+            id: UuidString,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
+            properties: PropertyValueList,
+        ): Future<Page>
 
         /**
          * See [NotionClient.Pages.setPageArchived].

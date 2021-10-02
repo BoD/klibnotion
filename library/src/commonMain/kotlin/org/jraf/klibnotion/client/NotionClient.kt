@@ -218,7 +218,12 @@ interface NotionClient {
          * Update a page.
          * @see <a href="https://developers.notion.com/reference/patch-page">Update page properties</a>
          */
-        suspend fun updatePage(id: UuidString, properties: PropertyValueList): Page
+        suspend fun updatePage(
+            id: UuidString,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
+            properties: PropertyValueList,
+        ): Page
 
         /**
          * Mark the page as archived or not.

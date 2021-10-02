@@ -204,6 +204,8 @@ class FutureSample {
         System.out.println("Updated page:");
         Page updatedPage = client.getPages().updatePage(
                 PAGE_ID,
+                Emoji("❤️"),
+                null,
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
                         .title("Name", "Updated page " + random.nextInt())

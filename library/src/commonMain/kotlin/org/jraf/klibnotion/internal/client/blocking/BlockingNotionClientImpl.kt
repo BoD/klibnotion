@@ -187,8 +187,13 @@ internal class BlockingNotionClientImpl(
         )
     }
 
-    override fun updatePage(id: UuidString, properties: PropertyValueList) = runBlocking {
-        notionClient.pages.updatePage(id, properties)
+    override fun updatePage(
+        id: UuidString,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertyValueList,
+    ) = runBlocking {
+        notionClient.pages.updatePage(id, icon, cover, properties)
     }
 
     override fun setPageArchived(id: UuidString, archived: Boolean) = runBlocking {

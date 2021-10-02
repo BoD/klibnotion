@@ -197,7 +197,12 @@ interface BlockingNotionClient {
         /**
          * See [NotionClient.Pages.updatePage].
          */
-        fun updatePage(id: UuidString, properties: PropertyValueList): Page
+        fun updatePage(
+            id: UuidString,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
+            properties: PropertyValueList,
+        ): Page
 
         /**
          * See [NotionClient.Pages.setPageArchived].

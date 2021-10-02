@@ -25,14 +25,18 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.base.ApiOutEmojiOrFileConverter
+import org.jraf.klibnotion.internal.api.model.file.ApiOutFileConverter
+import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.property.value.ApiOutPropertyValueConverter
-import org.jraf.klibnotion.model.property.value.PropertyValue
 
 internal object ApiUpdatePageParametersConverter :
-    ApiConverter<ApiUpdatePageParameters, List<PropertyValue<*>>>() {
-    override fun modelToApi(model: List<PropertyValue<*>>): ApiUpdatePageParameters {
+    ApiConverter<ApiUpdatePageParameters, UpdatePageParameters>() {
+    override fun modelToApi(model: UpdatePageParameters): ApiUpdatePageParameters {
         return ApiUpdatePageParameters(
-            properties = model.associate(ApiOutPropertyValueConverter::modelToApi)
+            properties = model.properties.associate(ApiOutPropertyValueConverter::modelToApi),
+            icon = model.icon?.modelToApi(ApiOutEmojiOrFileConverter),
+            cover = model.cover?.modelToApi(ApiOutFileConverter),
         )
     }
 }
