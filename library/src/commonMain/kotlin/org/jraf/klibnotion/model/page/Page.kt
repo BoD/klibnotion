@@ -24,9 +24,11 @@
 
 package org.jraf.klibnotion.model.page
 
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.Reference
 import org.jraf.klibnotion.model.date.Timestamp
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
 /**
@@ -40,4 +42,6 @@ interface Page {
     val created: Timestamp
     val lastEdited: Timestamp
     val url: String
+    val icon: EmojiOrFile?
+    val cover: File?
 }

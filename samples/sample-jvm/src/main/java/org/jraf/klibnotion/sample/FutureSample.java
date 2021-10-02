@@ -48,6 +48,9 @@ import org.jraf.klibnotion.model.user.User;
 
 import java.util.Random;
 
+import static org.jraf.klibnotion.model.emoji.EmojiKt.Emoji;
+import static org.jraf.klibnotion.model.file.FileKt.File;
+
 class FutureSample {
     // !!!!! DO THIS FIRST !!!!!
     // Replace this constant with your Internal Integration Token
@@ -155,6 +158,8 @@ class FutureSample {
         System.out.println("Created page in database:");
         Page createdPageInDatabase = client.getPages().createPage(
                 new DatabaseReference(DATABASE_ID),
+                Emoji("⚙️"),
+                File("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg️"),
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
                         .title("Name", "Name " + random.nextInt())
@@ -199,6 +204,8 @@ class FutureSample {
         System.out.println("Updated page:");
         Page updatedPage = client.getPages().updatePage(
                 PAGE_ID,
+                Emoji("❤️"),
+                null,
                 new PropertyValueList()
                         .number("Legs", random.nextInt())
                         .title("Name", "Updated page " + random.nextInt())

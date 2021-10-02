@@ -24,9 +24,11 @@
 
 package org.jraf.klibnotion.internal.model.page
 
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.Reference
 import org.jraf.klibnotion.model.date.Timestamp
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
@@ -38,4 +40,6 @@ internal data class PageImpl(
     override val created: Timestamp,
     override val lastEdited: Timestamp,
     override val url: String,
+    override val icon: EmojiOrFile?,
+    override val cover: File?,
 ) : Page

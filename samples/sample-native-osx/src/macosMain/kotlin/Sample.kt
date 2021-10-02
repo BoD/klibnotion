@@ -51,6 +51,8 @@ import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilt
 import org.jraf.klibnotion.model.date.Date
 import org.jraf.klibnotion.model.date.DateOrDateRange
 import org.jraf.klibnotion.model.date.DateTime
+import org.jraf.klibnotion.model.emoji.Emoji
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.pagination.ResultPage
@@ -224,6 +226,8 @@ class Sample {
             println("Created page in database:")
             val createdPageInDb: Page = client.pages.createPage(
                 parentDatabase = DatabaseReference(DATABASE_ID),
+                icon = Emoji("⚙️"),
+                cover = File("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg️"),
                 properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Name ${Random.nextInt()}")
@@ -322,7 +326,9 @@ class Sample {
             println("Created page in page (no content):")
             var createdPageInPage: Page = client.pages.createPage(
                 parentPage = PageReference(PAGE_ID),
-                title = text("The title of my new page! ${Random.nextInt()}")
+                title = text("The title of my new page! ${Random.nextInt()}"),
+                icon = Emoji("⚙️"),
+                cover = File("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg️"),
             )
             println(createdPageInPage)
 
@@ -400,7 +406,8 @@ class Sample {
             println("Updated page:")
             val updatedPage: Page = client.pages.updatePage(
                 id = PAGE_ID,
-                PropertyValueList()
+                icon = Emoji("❤️"),
+                properties = PropertyValueList()
                     .number("Legs", Random.nextInt())
                     .title("Name", "Updated page ${Random.nextInt()}")
                     .text("Something", "Updated page ${Random.nextInt()}")
@@ -480,6 +487,8 @@ class Sample {
             val createdDatabase = client.databases.createDatabase(
                 parentPageId = PAGE_ID,
                 title = text("A database in a page ${newDateNow()}"),
+                icon = Emoji("1️⃣"),
+                cover = File("https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"),
                 properties = PropertySpecList()
                     .title("The title")
                     .checkbox("Is checked")
@@ -505,13 +514,18 @@ class Sample {
                     )
                     .text("Text")
                     .url("Url")
+                    .formula("Url or no url", """if (empty(prop("Url")), "No URL", prop("Url"))""")
             )
             println(createdDatabase)
 
-            // Update a database's title
+            // Update a database's title and icon
             println("Updated database:")
             var updatedDatabase =
-                client.databases.updateDatabase(createdDatabase.id, title = text("The new title ${newDateNow()}"))
+                client.databases.updateDatabase(
+                    createdDatabase.id,
+                    title = text("The new title ${newDateNow()}"),
+                    icon = Emoji("2️⃣"),
+                )
             println(updatedDatabase)
 
             // Update a database's property

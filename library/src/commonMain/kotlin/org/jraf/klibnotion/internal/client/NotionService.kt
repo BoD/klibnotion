@@ -39,14 +39,14 @@ import kotlinx.serialization.json.JsonElement
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParameters
 import org.jraf.klibnotion.internal.api.model.block.ApiBlock
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
-import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreate
+import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateParameters
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
-import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdate
+import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdateParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResult
-import org.jraf.klibnotion.internal.api.model.page.ApiCreateTableParameters
 import org.jraf.klibnotion.internal.api.model.page.ApiPage
-import org.jraf.klibnotion.internal.api.model.page.ApiUpdateTableParameters
+import org.jraf.klibnotion.internal.api.model.page.ApiPageCreateParameters
+import org.jraf.klibnotion.internal.api.model.page.ApiPageUpdateParameters
 import org.jraf.klibnotion.internal.api.model.pagination.ApiResultPage
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
@@ -135,7 +135,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     }
 
     suspend fun createDatabase(
-        databaseCreate: ApiDatabaseCreate,
+        databaseCreate: ApiDatabaseCreateParameters,
     ): ApiDatabase {
         return httpClient.post("$BASE_URL/$DATABASES") {
             contentType(ContentType.Application.Json)
@@ -145,7 +145,7 @@ internal class NotionService(private val httpClient: HttpClient) {
 
     suspend fun updateDatabase(
         id: UuidString,
-        updateDatabase: ApiDatabaseUpdate,
+        updateDatabase: ApiDatabaseUpdateParameters,
     ): ApiDatabase {
         return httpClient.patch("$BASE_URL/$DATABASES/$id") {
             contentType(ContentType.Application.Json)
@@ -162,14 +162,14 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.get("$BASE_URL/$PAGES/$id")
     }
 
-    suspend fun createPage(parameters: ApiCreateTableParameters): ApiPage {
+    suspend fun createPage(parameters: ApiPageCreateParameters): ApiPage {
         return httpClient.post("$BASE_URL/$PAGES") {
             contentType(ContentType.Application.Json)
             body = parameters
         }
     }
 
-    suspend fun updatePage(id: UuidString, parameters: ApiUpdateTableParameters): ApiPage {
+    suspend fun updatePage(id: UuidString, parameters: ApiPageUpdateParameters): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
             body = parameters

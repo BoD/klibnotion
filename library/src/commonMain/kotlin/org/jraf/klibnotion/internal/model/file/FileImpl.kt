@@ -27,5 +27,6 @@ package org.jraf.klibnotion.internal.model.file
 import org.jraf.klibnotion.model.file.File
 
 internal data class FileImpl(
-    override val name: String,
+    override val name: String?,
+    override val url: String,
 ) : File

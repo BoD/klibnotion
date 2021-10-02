@@ -27,9 +27,10 @@ package org.jraf.klibnotion.internal.api.model.file
 import kotlinx.serialization.Serializable
 
 /**
- * See [Reference](https://developers.notion.com/reference/page#all-property-values).
+ * See
+ * - [Reference](https://developers.notion.com/reference/file-object)
  */
 @Serializable
 internal data class ApiFile(
-    val name: String,
+    val url: String,
 )

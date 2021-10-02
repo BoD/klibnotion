@@ -28,6 +28,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.future.FutureNotionClient
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
@@ -35,6 +36,7 @@ import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.property.sort.PropertySort
@@ -91,21 +93,33 @@ internal class FutureNotionClientImpl(
     override fun createDatabase(
         parentPageId: UuidString,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertySpecList,
     ) = GlobalScope.future {
         notionClient.databases.createDatabase(
-            parentPageId,
-            title,
-            properties,
+            parentPageId = parentPageId,
+            title = title,
+            icon = icon,
+            cover = cover,
+            properties = properties,
         )
     }
 
-    override fun updateDatabase(id: UuidString, title: RichTextList?, properties: PropertySpecList?) =
+    override fun updateDatabase(
+        id: UuidString,
+        title: RichTextList?,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertySpecList?,
+    ) =
         GlobalScope.future {
             notionClient.databases.updateDatabase(
-                id,
-                title,
-                properties,
+                id = id,
+                title = title,
+                icon = icon,
+                cover = cover,
+                properties = properties,
             )
         }
 
@@ -115,34 +129,66 @@ internal class FutureNotionClientImpl(
 
     override fun createPage(
         parentDatabase: DatabaseReference,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertyValueList,
         content: MutableBlockList?,
     ) = GlobalScope.future {
-        notionClient.pages.createPage(parentDatabase, properties, content)
+        notionClient.pages.createPage(
+            parentDatabase = parentDatabase,
+            properties = properties,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun createPage(
         parentDatabase: DatabaseReference,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertyValueList,
         content: BlockListProducer,
     ) = GlobalScope.future {
-        notionClient.pages.createPage(parentDatabase, properties, content)
+        notionClient.pages.createPage(
+            parentDatabase = parentDatabase,
+            properties = properties,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun createPage(
         parentPage: PageReference,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         content: MutableBlockList?,
     ) = GlobalScope.future {
-        notionClient.pages.createPage(parentPage, title, content)
+        notionClient.pages.createPage(
+            parentPage = parentPage,
+            title = title,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun createPage(
         parentPage: PageReference,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         content: BlockListProducer,
     ) = GlobalScope.future {
-        notionClient.pages.createPage(parentPage, title, content)
+        notionClient.pages.createPage(
+            parentPage = parentPage,
+            title = title,
+            content = content,
+            icon = icon,
+            cover = cover,
+        )
     }
 
     override fun getUserPromptUri(oAuthCredentials: OAuthCredentials, uniqueState: String) =
@@ -155,8 +201,13 @@ internal class FutureNotionClientImpl(
         notionClient.oAuth.getAccessToken(oAuthCredentials, code)
     }
 
-    override fun updatePage(id: UuidString, properties: PropertyValueList) = GlobalScope.future {
-        notionClient.pages.updatePage(id, properties)
+    override fun updatePage(
+        id: UuidString,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertyValueList,
+    ) = GlobalScope.future {
+        notionClient.pages.updatePage(id, icon, cover, properties)
     }
 
     override fun setPageArchived(id: UuidString, archived: Boolean) = GlobalScope.future {

@@ -26,7 +26,6 @@ package org.jraf.klibnotion.internal.api.model.property.value
 
 import kotlinx.serialization.Serializable
 import org.jraf.klibnotion.internal.api.model.date.ApiDate
-import org.jraf.klibnotion.internal.api.model.file.ApiFile
 import org.jraf.klibnotion.internal.api.model.property.ApiSelectOption
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
@@ -52,7 +51,7 @@ internal data class ApiPropertyValue(
     val rollup: ApiPropertyValueRollup? = null,
     val title: List<ApiRichText>? = null,
     val people: List<ApiUser>? = null,
-    val files: List<ApiFile>? = null,
+    val files: List<ApiPropertyValueFile>? = null,
     val checkbox: Boolean? = null,
     val url: String? = null,
     val email: String? = null,

@@ -71,7 +71,7 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                     }
                 }
                 model.children?.let {
-                    put("children", JsonArray(it.modelToApi(ApiOutBlockConverter)))
+                    if (it.isNotEmpty()) put("children", JsonArray(it.modelToApi(ApiOutBlockConverter)))
                 }
             }
         }

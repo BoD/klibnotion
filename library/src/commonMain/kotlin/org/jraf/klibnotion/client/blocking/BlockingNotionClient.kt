@@ -28,6 +28,7 @@ package org.jraf.klibnotion.client.blocking
 
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.internal.client.blocking.BlockingNotionClientImpl
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
@@ -36,6 +37,7 @@ import org.jraf.klibnotion.model.block.BlockListProducer
 import org.jraf.klibnotion.model.block.MutableBlockList
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.oauth.OAuthCodeAndState
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.oauth.OAuthGetAccessTokenResult
@@ -126,6 +128,8 @@ interface BlockingNotionClient {
         fun createDatabase(
             parentPageId: UuidString,
             title: RichTextList = RichTextList(),
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertySpecList = PropertySpecList(),
         ): Database
 
@@ -135,6 +139,8 @@ interface BlockingNotionClient {
         fun updateDatabase(
             id: UuidString,
             title: RichTextList? = null,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertySpecList? = null,
         ): Database
     }
@@ -153,6 +159,8 @@ interface BlockingNotionClient {
          */
         fun createPage(
             parentDatabase: DatabaseReference,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertyValueList = PropertyValueList(),
             content: MutableBlockList? = null,
         ): Page
@@ -162,6 +170,8 @@ interface BlockingNotionClient {
          */
         fun createPage(
             parentDatabase: DatabaseReference,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertyValueList = PropertyValueList(),
             content: BlockListProducer,
         ): Page
@@ -172,6 +182,8 @@ interface BlockingNotionClient {
         fun createPage(
             parentPage: PageReference,
             title: RichTextList = RichTextList(),
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             content: MutableBlockList? = null,
         ): Page
 
@@ -181,13 +193,20 @@ interface BlockingNotionClient {
         fun createPage(
             parentPage: PageReference,
             title: RichTextList = RichTextList(),
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             content: BlockListProducer,
         ): Page
 
         /**
          * See [NotionClient.Pages.updatePage].
          */
-        fun updatePage(id: UuidString, properties: PropertyValueList): Page
+        fun updatePage(
+            id: UuidString,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
+            properties: PropertyValueList,
+        ): Page
 
         /**
          * See [NotionClient.Pages.setPageArchived].

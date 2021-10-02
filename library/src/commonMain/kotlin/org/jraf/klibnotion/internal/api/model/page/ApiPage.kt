@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.base.ApiEmojiOrFile
 import org.jraf.klibnotion.internal.api.model.base.ApiReference
 import org.jraf.klibnotion.internal.api.model.property.value.ApiPropertyValue
 
@@ -40,4 +41,7 @@ internal data class ApiPage(
     val created_time: String,
     val last_edited_time: String,
     val url: String,
+    val icon: ApiEmojiOrFile?,
+    // Technically this can only be "file" or "external", never "emoji"
+    val cover: ApiEmojiOrFile?,
 )
