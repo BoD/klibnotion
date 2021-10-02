@@ -22,21 +22,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.database.update
+package org.jraf.klibnotion.internal.api.model.database.create
 
-import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.api.model.modelToApi
-import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
-import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
+import org.jraf.klibnotion.model.base.EmojiOrFile
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal object ApiDatabaseUpdateConverter :
-    ApiConverter<ApiDatabaseUpdate, Pair<RichTextList?, PropertySpecList?>>() {
-    override fun modelToApi(model: Pair<RichTextList?, PropertySpecList?>): ApiDatabaseUpdate {
-        return ApiDatabaseUpdate(
-            title = model.first?.modelToApi(ApiOutRichTextListConverter),
-            properties = model.second?.propertySpecList?.modelToApi(ApiPropertySpecConverter)?.toMap()
-        )
-    }
-}
+internal data class DatabaseCreateParameters(
+    val parentPageId: UuidString,
+    val title: RichTextList,
+    val icon: EmojiOrFile?,
+    val cover: File?,
+    val properties: PropertySpecList,
+)

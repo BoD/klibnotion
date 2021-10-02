@@ -22,19 +22,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.database.create
+package org.jraf.klibnotion.internal.api.model.page
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonArray
-import org.jraf.klibnotion.internal.api.model.base.ApiReference
-import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
+import org.jraf.klibnotion.model.base.EmojiOrFile
+import org.jraf.klibnotion.model.base.reference.Reference
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.file.File
+import org.jraf.klibnotion.model.property.value.PropertyValue
 
-/**
- * See [Reference](https://developers.notion.com/reference/create-a-database).
- */
-@Serializable
-internal data class ApiDatabaseCreate(
-    val parent: ApiReference,
-    val title: JsonArray,
-    val properties: Map<String, ApiPropertySpec>,
+internal data class PageCreateParameters(
+    val reference: Reference,
+    val properties: List<PropertyValue<*>>,
+    val children: List<Block>?,
+    val icon: EmojiOrFile?,
+    val cover: File?,
 )

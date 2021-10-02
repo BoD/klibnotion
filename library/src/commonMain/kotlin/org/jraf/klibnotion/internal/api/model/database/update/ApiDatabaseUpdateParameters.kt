@@ -22,20 +22,20 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.page
+package org.jraf.klibnotion.internal.api.model.database.update
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
-import org.jraf.klibnotion.internal.api.model.base.ApiReference
+import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
 
 /**
- * See [Reference](https://developers.notion.com/reference/post-page).
+ * See [Reference](https://developers.notion.com/reference/update-a-database).
  */
 @Serializable
-internal data class ApiCreatePageParameters(
-    val parent: ApiReference,
-    val properties: Map<String, JsonElement>,
-    val children: List<JsonElement>? = null,
+internal data class ApiDatabaseUpdateParameters(
+    val title: JsonArray? = null,
     val icon: JsonElement? = null,
     val cover: JsonElement? = null,
+    val properties: Map<String, ApiPropertySpec>? = null,
 )

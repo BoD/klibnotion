@@ -128,6 +128,8 @@ interface BlockingNotionClient {
         fun createDatabase(
             parentPageId: UuidString,
             title: RichTextList = RichTextList(),
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertySpecList = PropertySpecList(),
         ): Database
 
@@ -137,6 +139,8 @@ interface BlockingNotionClient {
         fun updateDatabase(
             id: UuidString,
             title: RichTextList? = null,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertySpecList? = null,
         ): Database
     }

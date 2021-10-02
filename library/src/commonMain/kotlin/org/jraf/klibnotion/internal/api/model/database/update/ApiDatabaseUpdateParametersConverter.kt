@@ -22,22 +22,23 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.page
+package org.jraf.klibnotion.internal.api.model.database.update
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.base.ApiOutEmojiOrFileConverter
 import org.jraf.klibnotion.internal.api.model.file.ApiOutFileConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
-import org.jraf.klibnotion.internal.api.model.property.value.ApiOutPropertyValueConverter
+import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
+import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
 
-internal object ApiUpdatePageParametersConverter :
-    ApiConverter<ApiUpdatePageParameters, UpdatePageParameters>() {
-    override fun modelToApi(model: UpdatePageParameters): ApiUpdatePageParameters {
-        return ApiUpdatePageParameters(
-            properties = model.properties.associate(ApiOutPropertyValueConverter::modelToApi),
+internal object ApiDatabaseUpdateParametersConverter :
+    ApiConverter<ApiDatabaseUpdateParameters, DatabaseUpdateParameters>() {
+    override fun modelToApi(model: DatabaseUpdateParameters): ApiDatabaseUpdateParameters {
+        return ApiDatabaseUpdateParameters(
+            title = model.title?.modelToApi(ApiOutRichTextListConverter),
+            properties = model.properties?.propertySpecList?.modelToApi(ApiPropertySpecConverter)?.toMap(),
             icon = model.icon?.modelToApi(ApiOutEmojiOrFileConverter),
             cover = model.cover?.modelToApi(ApiOutFileConverter),
         )
     }
 }
-

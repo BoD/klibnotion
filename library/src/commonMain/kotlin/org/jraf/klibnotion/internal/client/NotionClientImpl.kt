@@ -57,19 +57,21 @@ import org.jraf.klibnotion.internal.api.model.block.ApiInBlockConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiOutBlockConverter
 import org.jraf.klibnotion.internal.api.model.block.ApiPageResultBlockConverter
 import org.jraf.klibnotion.internal.api.model.database.ApiDatabaseConverter
-import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateConverter
+import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateParametersConverter
+import org.jraf.klibnotion.internal.api.model.database.create.DatabaseCreateParameters
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
-import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdateConverter
+import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdateParametersConverter
+import org.jraf.klibnotion.internal.api.model.database.update.DatabaseUpdateParameters
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResultConverter
-import org.jraf.klibnotion.internal.api.model.page.ApiCreatePageParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageConverter
+import org.jraf.klibnotion.internal.api.model.page.ApiPageCreateParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultDatabaseConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
-import org.jraf.klibnotion.internal.api.model.page.ApiUpdatePageParametersConverter
-import org.jraf.klibnotion.internal.api.model.page.CreatePageParameters
-import org.jraf.klibnotion.internal.api.model.page.UpdatePageParameters
+import org.jraf.klibnotion.internal.api.model.page.ApiPageUpdateParametersConverter
+import org.jraf.klibnotion.internal.api.model.page.PageCreateParameters
+import org.jraf.klibnotion.internal.api.model.page.PageUpdateParameters
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
@@ -283,18 +285,37 @@ internal class NotionClientImpl(
     override suspend fun createDatabase(
         parentPageId: UuidString,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertySpecList,
     ): Database {
         return service.createDatabase(
-            Triple(parentPageId, title, properties).modelToApi(ApiDatabaseCreateConverter)
+            DatabaseCreateParameters(
+                parentPageId = parentPageId,
+                title = title,
+                icon = icon,
+                cover = cover,
+                properties = properties,
+            ).modelToApi(ApiDatabaseCreateParametersConverter)
         )
             .apiToModel(ApiDatabaseConverter)
     }
 
-    override suspend fun updateDatabase(id: UuidString, title: RichTextList?, properties: PropertySpecList?): Database {
+    override suspend fun updateDatabase(
+        id: UuidString,
+        title: RichTextList?,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertySpecList?,
+    ): Database {
         return service.updateDatabase(
             id,
-            Pair(title, properties).modelToApi(ApiDatabaseUpdateConverter)
+            DatabaseUpdateParameters(
+                title = title,
+                icon = icon,
+                cover = cover,
+                properties = properties,
+            ).modelToApi(ApiDatabaseUpdateParametersConverter)
         )
             .apiToModel(ApiDatabaseConverter)
     }
@@ -317,13 +338,13 @@ internal class NotionClientImpl(
         content: MutableBlockList?,
     ): Page {
         return service.createPage(
-            CreatePageParameters(
+            PageCreateParameters(
                 reference = parentDatabase,
                 properties = properties.propertyValueList,
                 children = content,
                 icon = icon,
                 cover = cover,
-            ).modelToApi(ApiCreatePageParametersConverter)
+            ).modelToApi(ApiPageCreateParametersConverter)
         )
             .apiToModel(ApiPageConverter)
     }
@@ -350,13 +371,13 @@ internal class NotionClientImpl(
         content: MutableBlockList?,
     ): Page {
         return service.createPage(
-            CreatePageParameters(
+            PageCreateParameters(
                 reference = parentPage,
                 properties = PropertyValueList().title("title", title).propertyValueList,
                 children = content,
                 icon = icon,
                 cover = cover
-            ).modelToApi(ApiCreatePageParametersConverter)
+            ).modelToApi(ApiPageCreateParametersConverter)
         )
             .apiToModel(ApiPageConverter)
     }
@@ -383,11 +404,11 @@ internal class NotionClientImpl(
     ): Page {
         return service.updatePage(
             id = id,
-            parameters = UpdatePageParameters(
+            parameters = PageUpdateParameters(
                 properties = properties.propertyValueList,
                 icon = icon,
                 cover = cover,
-            ).modelToApi(ApiUpdatePageParametersConverter)
+            ).modelToApi(ApiPageUpdateParametersConverter)
         )
             .apiToModel(ApiPageConverter)
     }

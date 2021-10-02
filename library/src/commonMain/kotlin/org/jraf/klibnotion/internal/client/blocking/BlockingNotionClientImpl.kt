@@ -102,20 +102,32 @@ internal class BlockingNotionClientImpl(
     override fun createDatabase(
         parentPageId: UuidString,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertySpecList,
     ) = runBlocking {
         notionClient.databases.createDatabase(
-            parentPageId,
-            title,
-            properties
+            parentPageId = parentPageId,
+            title = title,
+            icon = icon,
+            cover = cover,
+            properties = properties,
         )
     }
 
-    override fun updateDatabase(id: UuidString, title: RichTextList?, properties: PropertySpecList?) = runBlocking {
+    override fun updateDatabase(
+        id: UuidString,
+        title: RichTextList?,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertySpecList?,
+    ) = runBlocking {
         notionClient.databases.updateDatabase(
-            id,
-            title,
-            properties
+            id = id,
+            title = title,
+            icon = icon,
+            cover = cover,
+            properties = properties,
         )
     }
 

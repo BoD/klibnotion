@@ -26,13 +26,16 @@ package org.jraf.klibnotion.internal.api.model.page
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
+import org.jraf.klibnotion.internal.api.model.base.ApiReference
 
 /**
- * See [Reference](https://developers.notion.com/reference/patch-page).
+ * See [Reference](https://developers.notion.com/reference/post-page).
  */
 @Serializable
-internal data class ApiUpdatePageParameters(
+internal data class ApiPageCreateParameters(
+    val parent: ApiReference,
     val properties: Map<String, JsonElement>,
+    val children: List<JsonElement>? = null,
     val icon: JsonElement? = null,
     val cover: JsonElement? = null,
 )

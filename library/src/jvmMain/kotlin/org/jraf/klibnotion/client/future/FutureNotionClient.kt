@@ -127,6 +127,8 @@ interface FutureNotionClient {
         fun createDatabase(
             parentPageId: UuidString,
             title: RichTextList = RichTextList(),
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertySpecList = PropertySpecList(),
         ): Future<Database>
 
@@ -136,6 +138,8 @@ interface FutureNotionClient {
         fun updateDatabase(
             id: UuidString,
             title: RichTextList? = null,
+            icon: EmojiOrFile? = null,
+            cover: File? = null,
             properties: PropertySpecList? = null,
         ): Future<Database>
     }

@@ -25,15 +25,11 @@
 package org.jraf.klibnotion.internal.api.model.page
 
 import org.jraf.klibnotion.model.base.EmojiOrFile
-import org.jraf.klibnotion.model.base.reference.Reference
-import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.property.value.PropertyValue
 
-internal data class CreatePageParameters(
-    val reference: Reference,
+internal data class PageUpdateParameters(
     val properties: List<PropertyValue<*>>,
-    val children: List<Block>?,
     val icon: EmojiOrFile?,
     val cover: File?,
 )

@@ -24,12 +24,15 @@
 
 package org.jraf.klibnotion.internal.api.model.page
 
-import org.jraf.klibnotion.model.base.EmojiOrFile
-import org.jraf.klibnotion.model.file.File
-import org.jraf.klibnotion.model.property.value.PropertyValue
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 
-internal data class UpdatePageParameters(
-    val properties: List<PropertyValue<*>>,
-    val icon: EmojiOrFile?,
-    val cover: File?,
+/**
+ * See [Reference](https://developers.notion.com/reference/patch-page).
+ */
+@Serializable
+internal data class ApiPageUpdateParameters(
+    val properties: Map<String, JsonElement>,
+    val icon: JsonElement? = null,
+    val cover: JsonElement? = null,
 )

@@ -93,21 +93,33 @@ internal class FutureNotionClientImpl(
     override fun createDatabase(
         parentPageId: UuidString,
         title: RichTextList,
+        icon: EmojiOrFile?,
+        cover: File?,
         properties: PropertySpecList,
     ) = GlobalScope.future {
         notionClient.databases.createDatabase(
-            parentPageId,
-            title,
-            properties,
+            parentPageId = parentPageId,
+            title = title,
+            icon = icon,
+            cover = cover,
+            properties = properties,
         )
     }
 
-    override fun updateDatabase(id: UuidString, title: RichTextList?, properties: PropertySpecList?) =
+    override fun updateDatabase(
+        id: UuidString,
+        title: RichTextList?,
+        icon: EmojiOrFile?,
+        cover: File?,
+        properties: PropertySpecList?,
+    ) =
         GlobalScope.future {
             notionClient.databases.updateDatabase(
-                id,
-                title,
-                properties,
+                id = id,
+                title = title,
+                icon = icon,
+                cover = cover,
+                properties = properties,
             )
         }
 

@@ -25,22 +25,23 @@
 package org.jraf.klibnotion.internal.api.model.database.create
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
+import org.jraf.klibnotion.internal.api.model.base.ApiOutEmojiOrFileConverter
 import org.jraf.klibnotion.internal.api.model.base.ApiReferenceConverter
+import org.jraf.klibnotion.internal.api.model.file.ApiOutFileConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
-import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.PageReference
-import org.jraf.klibnotion.model.property.spec.PropertySpecList
-import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal object ApiDatabaseCreateConverter :
-    ApiConverter<ApiDatabaseCreate, Triple<UuidString, RichTextList, PropertySpecList>>() {
-    override fun modelToApi(model: Triple<UuidString, RichTextList, PropertySpecList>): ApiDatabaseCreate {
-        return ApiDatabaseCreate(
-            parent = PageReference(model.first).modelToApi(ApiReferenceConverter),
-            title = model.second.modelToApi(ApiOutRichTextListConverter),
-            properties = model.third.propertySpecList.modelToApi(ApiPropertySpecConverter).toMap()
+internal object ApiDatabaseCreateParametersConverter :
+    ApiConverter<ApiDatabaseCreateParameters, DatabaseCreateParameters>() {
+    override fun modelToApi(model: DatabaseCreateParameters): ApiDatabaseCreateParameters {
+        return ApiDatabaseCreateParameters(
+            parent = PageReference(model.parentPageId).modelToApi(ApiReferenceConverter),
+            title = model.title.modelToApi(ApiOutRichTextListConverter),
+            properties = model.properties.propertySpecList.modelToApi(ApiPropertySpecConverter).toMap(),
+            icon = model.icon?.modelToApi(ApiOutEmojiOrFileConverter),
+            cover = model.cover?.modelToApi(ApiOutFileConverter),
         )
     }
 }

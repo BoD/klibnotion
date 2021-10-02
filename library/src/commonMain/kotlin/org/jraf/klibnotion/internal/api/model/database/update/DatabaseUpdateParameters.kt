@@ -22,26 +22,16 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.database
+package org.jraf.klibnotion.internal.api.model.database.update
 
-import kotlinx.serialization.Serializable
-import org.jraf.klibnotion.internal.api.model.base.ApiEmojiOrFile
-import org.jraf.klibnotion.internal.api.model.base.ApiReference
-import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
-import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
+import org.jraf.klibnotion.model.base.EmojiOrFile
+import org.jraf.klibnotion.model.file.File
+import org.jraf.klibnotion.model.property.spec.PropertySpecList
+import org.jraf.klibnotion.model.richtext.RichTextList
 
-/**
- * See [Reference](https://developers.notion.com/reference/database).
- */
-@Serializable
-internal data class ApiDatabase(
-    val id: String,
-    val parent: ApiReference,
-    val title: List<ApiRichText>,
-    val properties: Map<String, ApiPropertySpec>,
-    val created_time: String,
-    val last_edited_time: String,
-    val icon: ApiEmojiOrFile?,
-    // Technically this can only be "file" or "external", never "emoji"
-    val cover: ApiEmojiOrFile?,
+internal data class DatabaseUpdateParameters(
+    val title: RichTextList?,
+    val icon: EmojiOrFile?,
+    val cover: File?,
+    val properties: PropertySpecList?,
 )

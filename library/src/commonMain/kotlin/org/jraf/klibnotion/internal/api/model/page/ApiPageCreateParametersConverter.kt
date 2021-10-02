@@ -32,10 +32,10 @@ import org.jraf.klibnotion.internal.api.model.file.ApiOutFileConverter
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.property.value.ApiOutPropertyValueConverter
 
-internal object ApiCreatePageParametersConverter :
-    ApiConverter<ApiCreatePageParameters, CreatePageParameters>() {
-    override fun modelToApi(model: CreatePageParameters): ApiCreatePageParameters {
-        return ApiCreatePageParameters(
+internal object ApiPageCreateParametersConverter :
+    ApiConverter<ApiPageCreateParameters, PageCreateParameters>() {
+    override fun modelToApi(model: PageCreateParameters): ApiPageCreateParameters {
+        return ApiPageCreateParameters(
             parent = model.reference.modelToApi(ApiReferenceConverter),
             properties = model.properties.associate(ApiOutPropertyValueConverter::modelToApi),
             children = model.children?.modelToApi(ApiOutBlockConverter),
