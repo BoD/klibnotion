@@ -2,11 +2,10 @@
 
 ## Next version (????-??-??)
 
-## v1.8.0 (2021-10-01)
+## v1.8.0 (2021-10-02)
 
 - Improve support for Files
-- Add
-  support [Page Icons and Cover Images](https://developers.notion.com/changelog/page-icons-cover-images-new-block-types-and-improved-page-file-properties#:~:text=Page%20Icons%20and%20Cover%20Images)
+- Add support [Page Icons and Cover Images](https://developers.notion.com/changelog/page-icons-cover-images-new-block-types-and-improved-page-file-properties#:~:text=Page%20Icons%20and%20Cover%20Images)
 
 ## v1.7.0 (2021-09-10)
 
