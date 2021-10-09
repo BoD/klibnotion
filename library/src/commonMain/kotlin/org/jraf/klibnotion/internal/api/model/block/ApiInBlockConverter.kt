@@ -30,6 +30,7 @@ import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
 import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ChildPageBlockImpl
+import org.jraf.klibnotion.internal.model.block.CodeBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
@@ -120,6 +121,14 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 title = apiModel.child_page!!.title
             )
 
+            "code" -> CodeBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                language = apiModel.code!!.language,
+                text = apiModel.code.toRichTextList()
+            )
+
             else -> UnknownTypeBlockImpl(
                 id = id,
                 created = created,
@@ -131,5 +140,6 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
 
     private fun ApiBlockText?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
     private fun ApiBlockTodo?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCode?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
 
 }

@@ -35,6 +35,7 @@ import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.richtext.ApiOutRichTextListConverter
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BulletedListItemBlock
+import org.jraf.klibnotion.model.block.CodeBlock
 import org.jraf.klibnotion.model.block.Heading1Block
 import org.jraf.klibnotion.model.block.Heading2Block
 import org.jraf.klibnotion.model.block.Heading3Block
@@ -59,6 +60,7 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 is NumberedListItemBlock -> "numbered_list_item"
                 is ToDoBlock -> "to_do"
                 is ToggleBlock -> "toggle"
+                is CodeBlock -> "code"
 
                 else -> throw IllegalStateException()
             }
@@ -67,6 +69,7 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 model.text?.let { text(it) }
                 when (model) {
                     is ToDoBlock -> put("checked", model.checked)
+                    is CodeBlock -> put("language", model.language)
                     else -> {
                     }
                 }

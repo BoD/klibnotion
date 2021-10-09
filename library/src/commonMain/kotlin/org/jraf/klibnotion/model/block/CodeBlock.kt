@@ -22,28 +22,11 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.block
-
-import kotlinx.serialization.Serializable
+package org.jraf.klibnotion.model.block
 
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
-@Serializable
-internal data class ApiBlock(
-    val id: String,
-    val created_time: String,
-    val last_edited_time: String,
-    val has_children: Boolean,
-    val type: String,
-    val paragraph: ApiBlockText? = null,
-    val heading_1: ApiBlockText? = null,
-    val heading_2: ApiBlockText? = null,
-    val heading_3: ApiBlockText? = null,
-    val bulleted_list_item: ApiBlockText? = null,
-    val numbered_list_item: ApiBlockText? = null,
-    val toggle: ApiBlockText? = null,
-    val to_do: ApiBlockTodo? = null,
-    val child_page: ApiBlockChildPage? = null,
-    val code: ApiBlockCode? = null,
-)
+interface CodeBlock : Block {
+    val language: String
+}

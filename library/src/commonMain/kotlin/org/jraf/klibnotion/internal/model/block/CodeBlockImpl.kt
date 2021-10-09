@@ -22,28 +22,20 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.block
+package org.jraf.klibnotion.internal.model.block
 
-import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.model.base.UuidString
+import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.CodeBlock
+import org.jraf.klibnotion.model.date.Timestamp
+import org.jraf.klibnotion.model.richtext.RichTextList
 
-/**
- * See [Reference](https://developers.notion.com/reference/block).
- */
-@Serializable
-internal data class ApiBlock(
-    val id: String,
-    val created_time: String,
-    val last_edited_time: String,
-    val has_children: Boolean,
-    val type: String,
-    val paragraph: ApiBlockText? = null,
-    val heading_1: ApiBlockText? = null,
-    val heading_2: ApiBlockText? = null,
-    val heading_3: ApiBlockText? = null,
-    val bulleted_list_item: ApiBlockText? = null,
-    val numbered_list_item: ApiBlockText? = null,
-    val toggle: ApiBlockText? = null,
-    val to_do: ApiBlockTodo? = null,
-    val child_page: ApiBlockChildPage? = null,
-    val code: ApiBlockCode? = null,
-)
+internal data class CodeBlockImpl(
+    override val id: UuidString,
+    override val text: RichTextList?,
+    override val created: Timestamp,
+    override val lastEdited: Timestamp,
+    override val language: String,
+) : CodeBlock {
+    override val children: List<Block>? = null
+}

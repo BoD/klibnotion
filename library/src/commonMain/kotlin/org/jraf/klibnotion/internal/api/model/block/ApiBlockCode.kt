@@ -25,25 +25,13 @@
 package org.jraf.klibnotion.internal.api.model.block
 
 import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
 @Serializable
-internal data class ApiBlock(
-    val id: String,
-    val created_time: String,
-    val last_edited_time: String,
-    val has_children: Boolean,
-    val type: String,
-    val paragraph: ApiBlockText? = null,
-    val heading_1: ApiBlockText? = null,
-    val heading_2: ApiBlockText? = null,
-    val heading_3: ApiBlockText? = null,
-    val bulleted_list_item: ApiBlockText? = null,
-    val numbered_list_item: ApiBlockText? = null,
-    val toggle: ApiBlockText? = null,
-    val to_do: ApiBlockTodo? = null,
-    val child_page: ApiBlockChildPage? = null,
-    val code: ApiBlockCode? = null,
+internal data class ApiBlockCode(
+    val language: String,
+    val text: List<ApiRichText>,
 )
