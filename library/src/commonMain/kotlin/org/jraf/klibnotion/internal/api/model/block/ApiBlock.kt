@@ -46,4 +46,6 @@ internal data class ApiBlock(
     val to_do: ApiBlockTodo? = null,
     val child_page: ApiBlockChildPage? = null,
     val code: ApiBlockCode? = null,
+    val equation: ApiBlockEquation? = null,
+    val callout: ApiBlockCallout? = null,
 )

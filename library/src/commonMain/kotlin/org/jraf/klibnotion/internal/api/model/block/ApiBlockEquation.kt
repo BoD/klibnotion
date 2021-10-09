@@ -31,7 +31,6 @@ import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
  * See [Reference](https://developers.notion.com/reference/block).
  */
 @Serializable
-internal data class ApiBlockCode(
-    val language: String,
-    val text: List<ApiRichText>,
+internal data class ApiBlockEquation(
+    val expression: String,
 )

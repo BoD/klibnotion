@@ -22,16 +22,10 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.block
+package org.jraf.klibnotion.model.block
 
-import kotlinx.serialization.Serializable
-import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
+import org.jraf.klibnotion.model.base.EmojiOrFile
 
-/**
- * See [Reference](https://developers.notion.com/reference/block).
- */
-@Serializable
-internal data class ApiBlockCode(
-    val language: String,
-    val text: List<ApiRichText>,
-)
+interface CalloutBlock : Block {
+    val icon: EmojiOrFile?
+}

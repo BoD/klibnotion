@@ -25,13 +25,11 @@
 package org.jraf.klibnotion.internal.api.model.block
 
 import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.base.ApiEmojiOrFile
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
-/**
- * See [Reference](https://developers.notion.com/reference/block).
- */
 @Serializable
-internal data class ApiBlockCode(
-    val language: String,
+internal data class ApiBlockCallout(
     val text: List<ApiRichText>,
+    val icon: ApiEmojiOrFile
 )

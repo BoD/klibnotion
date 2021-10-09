@@ -26,11 +26,14 @@ package org.jraf.klibnotion.internal.api.model.block
 
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.internal.api.model.apiToModel
+import org.jraf.klibnotion.internal.api.model.base.ApiEmojiOrFileConverter
 import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
 import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
+import org.jraf.klibnotion.internal.model.block.CalloutBlockImpl
 import org.jraf.klibnotion.internal.model.block.ChildPageBlockImpl
 import org.jraf.klibnotion.internal.model.block.CodeBlockImpl
+import org.jraf.klibnotion.internal.model.block.EquationBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
@@ -129,6 +132,22 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 text = apiModel.code.toRichTextList()
             )
 
+            "equation" -> EquationBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                expression = apiModel.equation!!.expression
+            )
+
+            "callout" -> CalloutBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                text = apiModel.callout.toRichTextList(),
+                children = children,
+                icon = apiModel.callout!!.icon.apiToModel(ApiEmojiOrFileConverter)
+            )
+
             else -> UnknownTypeBlockImpl(
                 id = id,
                 created = created,
@@ -141,5 +160,6 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
     private fun ApiBlockText?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
     private fun ApiBlockTodo?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
     private fun ApiBlockCode?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCallout?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
 
 }
