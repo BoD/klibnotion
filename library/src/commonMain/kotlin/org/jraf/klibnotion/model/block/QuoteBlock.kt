@@ -22,20 +22,9 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.block
+package org.jraf.klibnotion.model.block
 
-import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.EquationBlock
-import org.jraf.klibnotion.model.date.Timestamp
-import org.jraf.klibnotion.model.richtext.RichTextList
-
-internal data class EquationBlockImpl(
-    override val id: UuidString,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
-    override val expression: String,
-) : EquationBlock {
-    override val text: RichTextList? = null
-    override val children: List<Block>? = null
-}
+/**
+ * See [Reference](https://developers.notion.com/reference/block).
+ */
+interface QuoteBlock: Block

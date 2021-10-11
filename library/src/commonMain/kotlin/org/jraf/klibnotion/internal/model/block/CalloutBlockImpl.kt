@@ -31,9 +31,6 @@ import org.jraf.klibnotion.model.block.CalloutBlock
 import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-/**
- * See [Reference](https://developers.notion.com/reference/block).
- */
 internal data class CalloutBlockImpl(
     override val id: UuidString,
     override val text: RichTextList?,

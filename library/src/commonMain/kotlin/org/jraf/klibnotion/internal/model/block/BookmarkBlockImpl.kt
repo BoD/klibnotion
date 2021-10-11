@@ -26,16 +26,17 @@ package org.jraf.klibnotion.internal.model.block
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.EquationBlock
+import org.jraf.klibnotion.model.block.BookmarkBlock
 import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class EquationBlockImpl(
+internal data class BookmarkBlockImpl(
     override val id: UuidString,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
-    override val expression: String,
-) : EquationBlock {
-    override val text: RichTextList? = null
+    override val url: String,
+    override val caption: RichTextList,
+) : BookmarkBlock {
     override val children: List<Block>? = null
+    override val text: RichTextList? = null
 }
