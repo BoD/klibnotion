@@ -36,5 +36,5 @@ internal data class QuoteBlockImpl(
     override val text: RichTextList?,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
-    override val children: List<Block>?,
-) : QuoteBlock
+    override var children: List<Block>?,
+) : QuoteBlock, MutableBlock

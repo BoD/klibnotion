@@ -35,7 +35,7 @@ internal data class BookmarkBlockImpl(
     override val created: Timestamp,
     override val lastEdited: Timestamp,
     override val url: String,
-    override val caption: RichTextList,
+    override val caption: RichTextList?,
 ) : BookmarkBlock {
     override val children: List<Block>? = null
     override val text: RichTextList? = null

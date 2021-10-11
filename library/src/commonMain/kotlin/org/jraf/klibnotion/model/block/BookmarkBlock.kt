@@ -31,5 +31,5 @@ import org.jraf.klibnotion.model.richtext.RichTextList
  */
 interface BookmarkBlock : Block {
     val url: String
-    val caption: RichTextList
+    val caption: RichTextList?
 }
