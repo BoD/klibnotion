@@ -40,6 +40,7 @@ import org.jraf.klibnotion.model.block.CalloutBlock
 import org.jraf.klibnotion.model.block.ChildDatabaseBlock
 import org.jraf.klibnotion.model.block.ChildPageBlock
 import org.jraf.klibnotion.model.block.CodeBlock
+import org.jraf.klibnotion.model.block.DividerBlock
 import org.jraf.klibnotion.model.block.EmbedBlock
 import org.jraf.klibnotion.model.block.EquationBlock
 import org.jraf.klibnotion.model.block.Heading1Block
@@ -48,6 +49,7 @@ import org.jraf.klibnotion.model.block.Heading3Block
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
+import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.block.UnknownTypeBlock
@@ -600,6 +602,8 @@ class Sample {
                     is ChildDatabaseBlock -> "->"
                     is EmbedBlock -> "Embed: ${block.url}"
                     is QuoteBlock -> ">"
+                    is DividerBlock -> "---"
+                    is TableOfContentsBlock -> "toc"
                     is UnknownTypeBlock -> "?"
                 } + " " + block.text.toFormattedString()
             )

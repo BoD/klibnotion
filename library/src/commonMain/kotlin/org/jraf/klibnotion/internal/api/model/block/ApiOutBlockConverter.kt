@@ -39,6 +39,7 @@ import org.jraf.klibnotion.model.block.BookmarkBlock
 import org.jraf.klibnotion.model.block.BulletedListItemBlock
 import org.jraf.klibnotion.model.block.CalloutBlock
 import org.jraf.klibnotion.model.block.CodeBlock
+import org.jraf.klibnotion.model.block.DividerBlock
 import org.jraf.klibnotion.model.block.EmbedBlock
 import org.jraf.klibnotion.model.block.EquationBlock
 import org.jraf.klibnotion.model.block.Heading1Block
@@ -47,6 +48,7 @@ import org.jraf.klibnotion.model.block.Heading3Block
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
+import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
@@ -72,6 +74,9 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 is QuoteBlock -> "quote"
                 is EmbedBlock -> "embed"
                 is CalloutBlock -> "callout"
+                is DividerBlock -> "divider"
+                is TableOfContentsBlock -> "table_of_contents"
+
                 else -> throw IllegalStateException()
             }
             put("type", type)

@@ -31,12 +31,14 @@ import org.jraf.klibnotion.internal.model.block.CalloutBlockImpl
 import org.jraf.klibnotion.internal.model.block.CodeBlockImpl
 import org.jraf.klibnotion.internal.model.block.EmbedBlockImpl
 import org.jraf.klibnotion.internal.model.block.EquationBlockImpl
+import org.jraf.klibnotion.internal.model.block.DividerBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
+import org.jraf.klibnotion.internal.model.block.TableOfContentsBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
@@ -330,6 +332,18 @@ class MutableBlockList(
             icon = icon
         )
     )
+
+    fun divider(): MutableBlockList = add(DividerBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+    ))
+
+    fun tableOfContents(): MutableBlockList = add(TableOfContentsBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP
+    ))
 }
 
 typealias BlockListProducer = MutableBlockList.() -> Unit
@@ -572,4 +586,17 @@ fun callout(
 ): Block = callout(
     richTextList = RichTextList().text(text, linkUrl, annotations),
     icon = icon
+)
+
+
+fun divider(): Block = DividerBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+)
+
+fun tableOfContents(): Block = TableOfContentsBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP
 )

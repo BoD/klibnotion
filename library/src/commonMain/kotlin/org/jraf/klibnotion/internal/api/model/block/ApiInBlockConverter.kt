@@ -35,6 +35,7 @@ import org.jraf.klibnotion.internal.model.block.CalloutBlockImpl
 import org.jraf.klibnotion.internal.model.block.ChildDatabaseBlockImpl
 import org.jraf.klibnotion.internal.model.block.ChildPageBlockImpl
 import org.jraf.klibnotion.internal.model.block.CodeBlockImpl
+import org.jraf.klibnotion.internal.model.block.DividerBlockImpl
 import org.jraf.klibnotion.internal.model.block.EmbedBlockImpl
 import org.jraf.klibnotion.internal.model.block.EquationBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
@@ -43,6 +44,7 @@ import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
+import org.jraf.klibnotion.internal.model.block.TableOfContentsBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
 import org.jraf.klibnotion.internal.model.block.UnknownTypeBlockImpl
@@ -180,6 +182,18 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 lastEdited = lastEdited,
                 url = apiModel.bookmark!!.url,
                 caption = apiModel.bookmark.toRichTextList()
+            )
+
+            "divider" -> DividerBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+            )
+
+            "table_of_contents" -> TableOfContentsBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
             )
 
             else -> UnknownTypeBlockImpl(
