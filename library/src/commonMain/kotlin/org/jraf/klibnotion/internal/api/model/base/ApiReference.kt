@@ -31,7 +31,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class ApiReference(
-    val type: String,
+    val type: String? = null,
     val database_id: String? = null,
     val page_id: String? = null,
 )

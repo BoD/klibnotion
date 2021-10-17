@@ -30,9 +30,9 @@ import org.jraf.klibnotion.internal.model.block.BookmarkBlockImpl
 import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.CalloutBlockImpl
 import org.jraf.klibnotion.internal.model.block.CodeBlockImpl
+import org.jraf.klibnotion.internal.model.block.DividerBlockImpl
 import org.jraf.klibnotion.internal.model.block.EmbedBlockImpl
 import org.jraf.klibnotion.internal.model.block.EquationBlockImpl
-import org.jraf.klibnotion.internal.model.block.DividerBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
@@ -247,6 +247,22 @@ class MutableBlockList(
         caption = caption
     ))
 
+    @JvmOverloads
+    fun bookmark(
+        url: String,
+        caption: String,
+        linkUrl: String? = null,
+        annotations: Annotations = Annotations.DEFAULT,
+    ): MutableBlockList = add(
+        BookmarkBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            caption = RichTextList().text(caption, linkUrl, annotations),
+            url = url
+        )
+    )
+
     fun code(
         language: String,
         text: RichTextList,
@@ -257,6 +273,22 @@ class MutableBlockList(
         text = text,
         language = language
     ))
+
+    @JvmOverloads
+    fun code(
+        language: String,
+        text: String,
+        linkUrl: String? = null,
+        annotations: Annotations = Annotations.DEFAULT,
+    ): MutableBlockList = add(
+        CodeBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            text = RichTextList().text(text, linkUrl, annotations),
+            language = language
+        )
+    )
 
     fun equation(
         expression: String,
