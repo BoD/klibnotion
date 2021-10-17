@@ -27,4 +27,6 @@ package org.jraf.klibnotion.model.block
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
-interface ChildPageBlock : Block
+interface ChildPageBlock : Block {
+    val title: String
+}

@@ -27,4 +27,6 @@ package org.jraf.klibnotion.model.block
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
-interface ChildDatabaseBlock : Block
+interface ChildDatabaseBlock : Block {
+    val title: String
+}

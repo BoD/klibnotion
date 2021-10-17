@@ -587,7 +587,8 @@ class Sample {
             res.appendLine(
                 levelStr + when (block) {
                     is BulletedListItemBlock -> "-"
-                    is ChildPageBlock -> "->"
+                    is ChildPageBlock -> "-> ${block.title}"
+                    is ChildDatabaseBlock -> "-> ${block.title}"
                     is Heading1Block -> "#"
                     is Heading2Block -> "##"
                     is Heading3Block -> "###"
@@ -599,7 +600,6 @@ class Sample {
                     is CodeBlock -> "```${block.language}"
                     is EquationBlock -> "$$"
                     is BookmarkBlock -> "Bookmark: ${block.url}"
-                    is ChildDatabaseBlock -> "->"
                     is EmbedBlock -> "Embed: ${block.url}"
                     is QuoteBlock -> ">"
                     is DividerBlock -> "---"

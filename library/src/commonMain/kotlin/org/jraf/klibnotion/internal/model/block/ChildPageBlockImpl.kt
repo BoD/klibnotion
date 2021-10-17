@@ -34,7 +34,7 @@ internal data class ChildPageBlockImpl(
     override val id: UuidString,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
-    val title: String,
+    override val title: String,
 ) : ChildPageBlock {
     override val text: RichTextList? = null
     override val children: List<Block>? = null

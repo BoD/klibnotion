@@ -34,7 +34,7 @@ internal data class ChildDatabaseBlockImpl(
     override val id: UuidString,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
-    val title: String,
+    override val title: String,
 ) : ChildDatabaseBlock {
     override val text: RichTextList? = null
     override val children: List<Block>? = null
