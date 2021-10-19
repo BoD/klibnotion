@@ -27,16 +27,16 @@ package org.jraf.klibnotion.internal.model.block
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.ChildPageBlock
+import org.jraf.klibnotion.model.block.EmbedBlock
 import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal data class ChildPageBlockImpl(
+internal data class EmbedBlockImpl(
     override val id: UuidString,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
-    override val title: String,
-) : ChildPageBlock {
+    override val url: String,
+) : EmbedBlock {
     override val text: RichTextList? = null
     override val children: List<Block>? = null
 }

@@ -8,6 +8,7 @@
  * repository.
  *
  * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2021-present Yu Jinyan (i@yujinyan.me)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,13 +35,22 @@ import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
 import org.jraf.klibnotion.model.base.reference.PageReference
 import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.BookmarkBlock
 import org.jraf.klibnotion.model.block.BulletedListItemBlock
+import org.jraf.klibnotion.model.block.CalloutBlock
+import org.jraf.klibnotion.model.block.ChildDatabaseBlock
 import org.jraf.klibnotion.model.block.ChildPageBlock
+import org.jraf.klibnotion.model.block.CodeBlock
+import org.jraf.klibnotion.model.block.DividerBlock
+import org.jraf.klibnotion.model.block.EmbedBlock
+import org.jraf.klibnotion.model.block.EquationBlock
 import org.jraf.klibnotion.model.block.Heading1Block
 import org.jraf.klibnotion.model.block.Heading2Block
 import org.jraf.klibnotion.model.block.Heading3Block
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
+import org.jraf.klibnotion.model.block.QuoteBlock
+import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.block.UnknownTypeBlock
@@ -578,7 +588,8 @@ class Sample {
             res.appendLine(
                 levelStr + when (block) {
                     is BulletedListItemBlock -> "-"
-                    is ChildPageBlock -> "->"
+                    is ChildPageBlock -> "-> ${block.title}"
+                    is ChildDatabaseBlock -> "-> ${block.title}"
                     is Heading1Block -> "#"
                     is Heading2Block -> "##"
                     is Heading3Block -> "###"
@@ -586,6 +597,14 @@ class Sample {
                     is ParagraphBlock -> "¶"
                     is ToDoBlock -> if (block.checked) "[X]" else "[ ]"
                     is ToggleBlock -> "▼"
+                    is CalloutBlock -> "> ${block.icon}"
+                    is CodeBlock -> "```${block.language}"
+                    is EquationBlock -> "$$"
+                    is BookmarkBlock -> "Bookmark: ${block.url}"
+                    is EmbedBlock -> "Embed: ${block.url}"
+                    is QuoteBlock -> ">"
+                    is DividerBlock -> "---"
+                    is TableOfContentsBlock -> "toc"
                     is UnknownTypeBlock -> "?"
                 } + " " + block.text.toFormattedString()
             )

@@ -8,6 +8,7 @@
  * repository.
  *
  * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2021-present Yu Jinyan (i@yujinyan.me)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,4 +28,6 @@ package org.jraf.klibnotion.model.block
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
-interface ChildPageBlock : Block
+interface ChildPageBlock : Block {
+    val title: String
+}

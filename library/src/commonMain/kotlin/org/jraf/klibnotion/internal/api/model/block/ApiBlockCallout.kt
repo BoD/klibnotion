@@ -23,20 +23,14 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.block
+package org.jraf.klibnotion.internal.api.model.block
 
-import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.ChildPageBlock
-import org.jraf.klibnotion.model.date.Timestamp
-import org.jraf.klibnotion.model.richtext.RichTextList
+import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.base.ApiEmojiOrFile
+import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
-internal data class ChildPageBlockImpl(
-    override val id: UuidString,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
-    override val title: String,
-) : ChildPageBlock {
-    override val text: RichTextList? = null
-    override val children: List<Block>? = null
-}
+@Serializable
+internal data class ApiBlockCallout(
+    val text: List<ApiRichText>,
+    val icon: ApiEmojiOrFile
+)

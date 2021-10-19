@@ -8,6 +8,7 @@
  * repository.
  *
  * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2021-present Yu Jinyan (i@yujinyan.me)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +26,23 @@
 package org.jraf.klibnotion.model.block
 
 import org.jraf.klibnotion.internal.IRRELEVANT_TIMESTAMP
+import org.jraf.klibnotion.internal.model.block.BookmarkBlockImpl
 import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
+import org.jraf.klibnotion.internal.model.block.CalloutBlockImpl
+import org.jraf.klibnotion.internal.model.block.CodeBlockImpl
+import org.jraf.klibnotion.internal.model.block.EmbedBlockImpl
+import org.jraf.klibnotion.internal.model.block.EquationBlockImpl
+import org.jraf.klibnotion.internal.model.block.DividerBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
+import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
+import org.jraf.klibnotion.internal.model.block.TableOfContentsBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
+import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.richtext.Annotations
@@ -226,6 +236,115 @@ class MutableBlockList(
         children = children,
     )
 
+    fun bookmark(
+        url: String,
+        caption: RichTextList? = null,
+    ): MutableBlockList = add(BookmarkBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        url = url,
+        caption = caption
+    ))
+
+    fun code(
+        language: String,
+        text: RichTextList,
+    ): MutableBlockList = add(CodeBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        text = text,
+        language = language
+    ))
+
+    fun equation(
+        expression: String,
+    ): MutableBlockList = add(EquationBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        expression = expression
+    ))
+
+    fun quote(
+        richTextList: RichTextList,
+        children: BlockListProducer? = null,
+    ): MutableBlockList =
+        add(QuoteBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            text = richTextList,
+            children = children()
+        ))
+
+
+    @JvmOverloads
+    fun quote(
+        text: String,
+        linkUrl: String? = null,
+        annotations: Annotations = Annotations.DEFAULT,
+        children: BlockListProducer? = null,
+    ): MutableBlockList = add(
+        QuoteBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            text = RichTextList().text(text, linkUrl, annotations),
+            children = children()
+        )
+    )
+
+    fun embed(url: String): MutableBlockList = add(EmbedBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        url = url
+    ))
+
+    fun callout(
+        richTextList: RichTextList,
+        icon: EmojiOrFile? = null,
+        children: BlockListProducer? = null,
+    ): MutableBlockList = add(CalloutBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+        children = children(),
+        text = richTextList,
+        icon = icon
+    ))
+
+    @JvmOverloads
+    fun callout(
+        text: String,
+        icon: EmojiOrFile? = null,
+        linkUrl: String? = null,
+        annotations: Annotations = Annotations.DEFAULT,
+        children: BlockListProducer? = null,
+    ): MutableBlockList = add(
+        CalloutBlockImpl(
+            id = "",
+            created = IRRELEVANT_TIMESTAMP,
+            lastEdited = IRRELEVANT_TIMESTAMP,
+            children = children(),
+            text = RichTextList().text(text, linkUrl, annotations),
+            icon = icon
+        )
+    )
+
+    fun divider(): MutableBlockList = add(DividerBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP,
+    ))
+
+    fun tableOfContents(): MutableBlockList = add(TableOfContentsBlockImpl(
+        id = "",
+        created = IRRELEVANT_TIMESTAMP,
+        lastEdited = IRRELEVANT_TIMESTAMP
+    ))
 }
 
 typealias BlockListProducer = MutableBlockList.() -> Unit
@@ -390,4 +509,95 @@ fun toggle(
     annotations: Annotations = Annotations.DEFAULT,
 ): Block = toggle(
     richTextList = RichTextList().text(text, linkUrl, annotations),
+)
+
+fun bookmark(
+    url: String,
+    caption: RichTextList? = null,
+): Block = BookmarkBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    url = url,
+    caption = caption
+)
+
+fun code(
+    language: String,
+    text: RichTextList,
+): Block = CodeBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    text = text,
+    language = language
+)
+
+fun equation(
+    expression: String,
+): Block = EquationBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    expression = expression
+)
+
+fun quote(richTextList: RichTextList): Block = QuoteBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    text = richTextList,
+    children = null
+)
+
+@JvmOverloads
+fun quote(
+    text: String,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = quote(
+    RichTextList().text(text, linkUrl, annotations)
+)
+
+fun embed(url: String): Block = EmbedBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    url = url
+)
+
+fun callout(
+    richTextList: RichTextList,
+    icon: EmojiOrFile? = null,
+): Block = CalloutBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    children = null,
+    text = richTextList,
+    icon = icon
+)
+
+@JvmOverloads
+fun callout(
+    text: String,
+    icon: EmojiOrFile? = null,
+    linkUrl: String? = null,
+    annotations: Annotations = Annotations.DEFAULT,
+): Block = callout(
+    richTextList = RichTextList().text(text, linkUrl, annotations),
+    icon = icon
+)
+
+
+fun divider(): Block = DividerBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+)
+
+fun tableOfContents(): Block = TableOfContentsBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP
 )

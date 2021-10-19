@@ -8,6 +8,7 @@
  * repository.
  *
  * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2021-present Yu Jinyan (i@yujinyan.me)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,4 +46,11 @@ internal data class ApiBlock(
     val toggle: ApiBlockText? = null,
     val to_do: ApiBlockTodo? = null,
     val child_page: ApiBlockChildPage? = null,
+    val child_database: ApiBlockChildDatabase? = null,
+    val code: ApiBlockCode? = null,
+    val equation: ApiBlockEquation? = null,
+    val callout: ApiBlockCallout? = null,
+    val embed: ApiBlockEmbed? = null,
+    val quote: ApiBlockText? = null,
+    val bookmark: ApiBlockBookmark? = null,
 )
