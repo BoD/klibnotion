@@ -4,8 +4,7 @@
 
 ## v1.9.0 (2021-10-23)
 
-- Support more block types following Notion's API evolution
-  - [thanks](https://github.com/BoD/klibnotion/pull/7) [@yujinyan](https://github.com/yujinyan)!
+- Support more block types following Notion's API evolution - [thanks](https://github.com/BoD/klibnotion/pull/7) [@yujinyan](https://github.com/yujinyan)!
 - [Breaking] All properties - including `null` ones - are now always returned on Pages. This means some property types
   that were previously not nullable are now nullable.
 
