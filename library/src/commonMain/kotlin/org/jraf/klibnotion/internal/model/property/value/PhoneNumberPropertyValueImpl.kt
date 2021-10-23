@@ -29,5 +29,5 @@ import org.jraf.klibnotion.model.property.value.PhoneNumberPropertyValue
 internal data class PhoneNumberPropertyValueImpl(
     override val id: String,
     override val name: String,
-    override val value: String,
+    override val value: String?,
 ) : PhoneNumberPropertyValue

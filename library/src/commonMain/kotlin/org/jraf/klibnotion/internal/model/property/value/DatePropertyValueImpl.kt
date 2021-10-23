@@ -30,5 +30,5 @@ import org.jraf.klibnotion.model.property.value.DatePropertyValue
 internal data class DatePropertyValueImpl(
     override val id: String,
     override val name: String,
-    override val value: DateOrDateRange,
+    override val value: DateOrDateRange?,
 ) : DatePropertyValue

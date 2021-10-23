@@ -144,6 +144,7 @@ class Sample {
             unarchivePage(pageId)
             createPageInPageNoContent()
             createPageInPageWithContent()
+            createPageInDatabaseWithNoProperties(databaseId = databaseId)
 
             // Database query
             queryDatabaseSimple(databaseId)
@@ -245,6 +246,7 @@ class Sample {
                     .option("Blue", Color.BLUE)
                 )
                 .number("Number", NumberPropertySpec.NumberFormat.REAL)
+                .number("Number 2", NumberPropertySpec.NumberFormat.NUMBER)
                 .number("Empty number", NumberPropertySpec.NumberFormat.CANADIAN_DOLLAR)
                 .people("People")
                 .phoneNumber("Phone")
@@ -256,6 +258,7 @@ class Sample {
                 .text("Text 1")
                 .text("Text 2")
                 .text("Text 3")
+                .text("Text 4")
                 .url("Url")
                 .formula("Url or no url", """if (empty(prop("Url")), "No URL", prop("Url"))""")
             // Unsupported for now
@@ -323,6 +326,7 @@ class Sample {
                 .email("Email", "aaa@aaa.com")
                 .multiSelectByNames("Multi", "Red", "Green")
                 .number("Number", Random.nextInt())
+                .number("Number 2", null)
                 .people("People", userId)
                 .phoneNumber("Phone", "+1 424 2424 266")
                 .selectByName("Select", "Third")
@@ -449,6 +453,8 @@ class Sample {
             properties = PropertyValueList()
                 .title("The title", "A page in a database (updated) ${Random.nextInt()}")
                 .checkbox("Is checked", Random.nextBoolean())
+                .text("Text 1", null)
+                .number("Number 2", null)
         )
         println(updatedPage)
     }
@@ -493,6 +499,16 @@ class Sample {
             paragraph("Hello, World!")
         }
         println(createdPageInPage)
+    }
+
+    private suspend fun createPageInDatabaseWithNoProperties(databaseId: UuidString) {
+        println("Created page in database (with no properties):")
+        val createdPageInDb: Page = client.pages.createPage(
+            parentDatabase = DatabaseReference(databaseId),
+            icon = Emoji("⚙️"),
+            cover = File("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg️"),
+        )
+        println(createdPageInDb)
     }
 
     private suspend fun queryDatabaseSimple(databaseId: UuidString) {

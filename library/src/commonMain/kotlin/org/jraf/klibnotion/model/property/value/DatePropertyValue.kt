@@ -29,4 +29,4 @@ import org.jraf.klibnotion.model.date.DateOrDateRange
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface DatePropertyValue : PropertyValue<DateOrDateRange>
+interface DatePropertyValue : PropertyValue<DateOrDateRange?>

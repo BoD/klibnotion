@@ -46,17 +46,17 @@ internal object ApiPropertyValueRollupConverter :
             "number" -> NumberRollupPropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiNumberConverter.apiToModel(rollup.number!!)
+                value = rollup.number?.apiToModel(ApiNumberConverter)
             )
             "date" -> DateRollupPropertyValueImpl(
                 id = id,
                 name = name,
-                value = rollup.date!!.apiToModel(ApiDateConverter)
+                value = rollup.date?.apiToModel(ApiDateConverter)
             )
             "array" -> ArrayRollupPropertyValueImpl(
                 id = id,
                 name = name,
-                value = rollup.array!!.map { ("" to it).apiToModel(ApiPropertyValueConverter) }
+                value = rollup.array?.map { ("" to it).apiToModel(ApiPropertyValueConverter) }
             )
 
             else -> UnknownTypeRollupPropertyValueImpl(

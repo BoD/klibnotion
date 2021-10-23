@@ -27,4 +27,4 @@ package org.jraf.klibnotion.model.property.value
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface NumberPropertyValue : PropertyValue<Number>
+interface NumberPropertyValue : PropertyValue<Number?>
