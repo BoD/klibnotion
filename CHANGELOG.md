@@ -2,10 +2,18 @@
 
 ## Next version (????-??-??)
 
+## v1.9.0 (2021-10-23)
+
+- Support more block types following Notion's API evolution
+  - [thanks](https://github.com/BoD/klibnotion/pull/7) [@yujinyan](https://github.com/yujinyan)!
+- [Breaking] All properties - including `null` ones - are now always returned on Pages. This means some property types
+  that were previously not nullable are now nullable.
+
 ## v1.8.0 (2021-10-02)
 
 - Improve support for Files
-- Add support [Page Icons and Cover Images](https://developers.notion.com/changelog/page-icons-cover-images-new-block-types-and-improved-page-file-properties#:~:text=Page%20Icons%20and%20Cover%20Images)
+- Add
+  support [Page Icons and Cover Images](https://developers.notion.com/changelog/page-icons-cover-images-new-block-types-and-improved-page-file-properties#:~:text=Page%20Icons%20and%20Cover%20Images)
 
 ## v1.7.0 (2021-09-10)
 
