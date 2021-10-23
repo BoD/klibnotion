@@ -36,12 +36,12 @@ internal object ApiReferenceConverter : ApiConverter<ApiReference, Reference>() 
         "database_id" -> DatabaseReference(apiModel.database_id!!)
         "page_id" -> PageReference(apiModel.page_id!!)
         "workspace" -> WorkspaceReference
-        else -> UnknownTypeReference(type = type)
+        else -> UnknownTypeReference(type = type ?: "Unknown")
     }
 
     override fun modelToApi(model: Reference) = when (model) {
-        is DatabaseReference -> ApiReference(type = "database_id", database_id = model.id)
-        is PageReference -> ApiReference(type = "page_id", page_id = model.id)
+        is DatabaseReference -> ApiReference(type = null, database_id = model.id)
+        is PageReference -> ApiReference(type = null, page_id = model.id)
         // It is currently not possible to create a page or a database with the workspace as the parent, but
         // allowing this for when it will be possible
         WorkspaceReference -> ApiReference(type = "workspace")

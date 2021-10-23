@@ -56,7 +56,7 @@ internal object ApiPropertyValueFormulaConverter :
             "boolean" -> BooleanFormulaPropertyValueImpl(
                 id = id,
                 name = name,
-                value = formula.boolean,
+                value = formula.boolean!!,
             )
             "date" -> DateFormulaPropertyValueImpl(
                 id = id,

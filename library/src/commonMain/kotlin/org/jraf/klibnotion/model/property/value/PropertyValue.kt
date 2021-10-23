@@ -62,7 +62,7 @@ class PropertyValueList {
         return this
     }
 
-    fun number(idOrName: String, number: Number): PropertyValueList = add(NumberPropertyValueImpl(
+    fun number(idOrName: String, number: Number?): PropertyValueList = add(NumberPropertyValueImpl(
         id = idOrName,
         name = idOrName,
         value = number
@@ -76,11 +76,11 @@ class PropertyValueList {
         annotations: Annotations = Annotations.DEFAULT,
     ): PropertyValueList = text(idOrName = idOrName, richTextList = RichTextList().text(text, linkUrl, annotations))
 
-    fun text(idOrName: String, richTextList: RichTextList): PropertyValueList = add(
+    fun text(idOrName: String, richTextList: RichTextList?): PropertyValueList = add(
         RichTextPropertyValueImpl(
             id = idOrName,
             name = idOrName,
-            value = richTextList,
+            value = richTextList ?: RichTextList(),
         )
     )
 
@@ -92,19 +92,19 @@ class PropertyValueList {
         annotations: Annotations = Annotations.DEFAULT,
     ): PropertyValueList = title(idOrName = idOrName, richTextList = RichTextList().text(text, linkUrl, annotations))
 
-    fun title(idOrName: String, richTextList: RichTextList): PropertyValueList = add(
+    fun title(idOrName: String, richTextList: RichTextList?): PropertyValueList = add(
         TitlePropertyValueImpl(
             id = idOrName,
             name = idOrName,
-            value = richTextList,
+            value = richTextList ?: RichTextList(),
         )
     )
 
-    fun selectByName(idOrName: String, selectName: String): PropertyValueList = add(
+    fun selectByName(idOrName: String, selectName: String?): PropertyValueList = add(
         SelectPropertyValueImpl(
             id = idOrName,
             name = idOrName,
-            value = SelectOptionImpl(id = "", name = selectName, color = Color.DEFAULT)
+            value = selectName?.let { SelectOptionImpl(id = "", name = it, color = Color.DEFAULT) }
         )
     )
 
@@ -129,7 +129,7 @@ class PropertyValueList {
             }
         ))
 
-    fun date(idOrName: String, date: DateOrDateRange): PropertyValueList = add(DatePropertyValueImpl(
+    fun date(idOrName: String, date: DateOrDateRange?): PropertyValueList = add(DatePropertyValueImpl(
         id = idOrName,
         name = idOrName,
         value = date,
@@ -155,7 +155,7 @@ class PropertyValueList {
         )
     )
 
-    fun url(idOrName: String, url: String): PropertyValueList = add(
+    fun url(idOrName: String, url: String?): PropertyValueList = add(
         UrlPropertyValueImpl(
             id = idOrName,
             name = idOrName,
@@ -163,7 +163,7 @@ class PropertyValueList {
         )
     )
 
-    fun email(idOrName: String, email: String): PropertyValueList = add(
+    fun email(idOrName: String, email: String?): PropertyValueList = add(
         EmailPropertyValueImpl(
             id = idOrName,
             name = idOrName,
@@ -171,7 +171,7 @@ class PropertyValueList {
         )
     )
 
-    fun phoneNumber(idOrName: String, phoneNumber: String): PropertyValueList = add(
+    fun phoneNumber(idOrName: String, phoneNumber: String?): PropertyValueList = add(
         PhoneNumberPropertyValueImpl(
             id = idOrName,
             name = idOrName,

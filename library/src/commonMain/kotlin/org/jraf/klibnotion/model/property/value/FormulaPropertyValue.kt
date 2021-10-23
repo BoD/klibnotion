@@ -37,7 +37,7 @@ sealed interface FormulaPropertyValue<T> : PropertyValue<T>
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface BooleanFormulaPropertyValue : FormulaPropertyValue<Boolean?>
+interface BooleanFormulaPropertyValue : FormulaPropertyValue<Boolean>
 
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
@@ -59,6 +59,6 @@ interface StringFormulaPropertyValue : FormulaPropertyValue<String?>
  *
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface UnknownTypeFormulaPropertyValue : FormulaPropertyValue<Unit> {
+interface UnknownTypeFormulaPropertyValue : FormulaPropertyValue<Nothing?> {
     val type: String
 }

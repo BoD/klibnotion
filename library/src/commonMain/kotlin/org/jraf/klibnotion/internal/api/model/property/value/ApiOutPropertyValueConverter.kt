@@ -25,6 +25,7 @@
 package org.jraf.klibnotion.internal.api.model.property.value
 
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.addJsonObject
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
@@ -74,51 +75,76 @@ internal object ApiOutPropertyValueConverter :
             }
 
             is SelectPropertyValue -> buildJsonObject {
-                put("select", buildJsonObject {
-                    if (model.value.name.isNotEmpty()) {
-                        put("name", model.value.name)
-                    } else {
-                        put("id", model.value.id)
-                    }
-                })
+                put(
+                    "select",
+                    model.value?.let {
+                        buildJsonObject {
+                            if (it.name.isNotEmpty()) {
+                                put("name", it.name)
+                            } else {
+                                put("id", it.id)
+                            }
+                        }
+                    } ?: JsonNull
+                )
             }
 
             is MultiSelectPropertyValue -> buildJsonObject {
-                put("multi_select", buildJsonArray {
-                    for (option in model.value)
-                        addJsonObject {
-                            if (option.name.isNotEmpty()) {
-                                put("name", option.name)
-                            } else {
-                                put("id", option.id)
-                            }
+                put(
+                    "multi_select",
+                    model.value.let {
+                        buildJsonArray {
+                            for (option in it)
+                                addJsonObject {
+                                    if (option.name.isNotEmpty()) {
+                                        put("name", option.name)
+                                    } else {
+                                        put("id", option.id)
+                                    }
+                                }
                         }
-                })
+                    }
+                )
             }
 
             is DatePropertyValue -> buildJsonObject {
-                put("date", buildJsonObject {
-                    put("start", model.value.start.modelToApi(ApiDateStringConverter))
-                    model.value.end?.let { put("end", it.modelToApi(ApiDateStringConverter)) }
-                })
+                put(
+                    "date",
+                    model.value?.let {
+                        buildJsonObject {
+                            put("start", it.start.modelToApi(ApiDateStringConverter))
+                            it.end?.let { put("end", it.modelToApi(ApiDateStringConverter)) }
+                        }
+                    } ?: JsonNull
+                )
             }
 
             is RelationPropertyValue -> buildJsonObject {
-                put("relation", buildJsonArray {
-                    for (id in model.value)
-                        addJsonObject {
-                            put("id", id.hyphened())
+                put(
+                    "relation",
+                    model.value.let {
+                        buildJsonArray {
+                            for (id in it)
+                                addJsonObject {
+                                    put("id", id.hyphened())
+                                }
                         }
-                })
+                    }
+                )
             }
 
             is PeoplePropertyValue -> buildJsonObject {
-                put("people", buildJsonArray {
-                    for (user in model.value)
-                        addJsonObject {
-                            put("id", user.id.hyphened())
+                put(
+                    "people",
+                    model.value.let {
+                        buildJsonArray {
+                            for (user in it)
+                                addJsonObject {
+                                    put("id", user.id.hyphened())
+                                }
                         }
-                })
+                    }
+                )
             }
 
             is CheckboxPropertyValue -> buildJsonObject {

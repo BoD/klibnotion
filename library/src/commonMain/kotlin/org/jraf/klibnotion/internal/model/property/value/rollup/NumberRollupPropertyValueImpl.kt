@@ -29,5 +29,5 @@ import org.jraf.klibnotion.model.property.value.NumberRollupPropertyValue
 internal data class NumberRollupPropertyValueImpl(
     override val id: String,
     override val name: String,
-    override val value: Number,
+    override val value: Number?,
 ) : NumberRollupPropertyValue

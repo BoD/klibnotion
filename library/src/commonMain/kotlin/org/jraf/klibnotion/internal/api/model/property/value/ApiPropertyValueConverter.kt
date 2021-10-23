@@ -69,22 +69,22 @@ internal object ApiPropertyValueConverter :
             "number" -> NumberPropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiNumberConverter.apiToModel(apiPropertyValue.number!!)
+                value = apiPropertyValue.number?.apiToModel(ApiNumberConverter)
             )
             "select" -> SelectPropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiSelectOptionConverter.apiToModel(apiPropertyValue.select!!)
+                value = apiPropertyValue.select?.apiToModel(ApiSelectOptionConverter)
             )
             "multi_select" -> MultiSelectPropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiSelectOptionConverter.apiToModel(apiPropertyValue.multi_select!!)
+                value = apiPropertyValue.multi_select!!.apiToModel(ApiSelectOptionConverter)
             )
             "date" -> DatePropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiDateConverter.apiToModel(apiPropertyValue.date!!)
+                value = apiPropertyValue.date?.apiToModel(ApiDateConverter)
             )
             "formula" -> ApiPropertyValueFormulaConverter.apiToModel(apiModel)
             "relation" -> RelationPropertyValueImpl(
@@ -116,22 +116,22 @@ internal object ApiPropertyValueConverter :
             "url" -> UrlPropertyValueImpl(
                 id = id,
                 name = name,
-                value = apiPropertyValue.url!!
+                value = apiPropertyValue.url
             )
             "email" -> EmailPropertyValueImpl(
                 id = id,
                 name = name,
-                value = apiPropertyValue.email!!
+                value = apiPropertyValue.email
             )
             "phone_number" -> PhoneNumberPropertyValueImpl(
                 id = id,
                 name = name,
-                value = apiPropertyValue.phone_number!!
+                value = apiPropertyValue.phone_number
             )
             "created_time" -> CreatedTimePropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiDateStringConverter.apiToModel(apiPropertyValue.created_time!!)
+                value = apiPropertyValue.created_time!!.apiToModel(ApiDateStringConverter)
             )
             "created_by" -> CreatedByPropertyValueImpl(
                 id = id,
@@ -141,7 +141,7 @@ internal object ApiPropertyValueConverter :
             "last_edited_time" -> LastEditedTimePropertyValueImpl(
                 id = id,
                 name = name,
-                value = ApiDateStringConverter.apiToModel(apiPropertyValue.last_edited_time!!)
+                value = apiPropertyValue.last_edited_time!!.apiToModel(ApiDateStringConverter)
             )
             "last_edited_by" -> LastEditedByPropertyValueImpl(
                 id = id,

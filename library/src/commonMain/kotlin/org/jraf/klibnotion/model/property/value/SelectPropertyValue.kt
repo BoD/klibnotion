@@ -29,4 +29,4 @@ import org.jraf.klibnotion.model.property.SelectOption
 /**
  * See [Reference](https://developers.notion.com/reference/page#all-property-values).
  */
-interface SelectPropertyValue : PropertyValue<SelectOption>
+interface SelectPropertyValue : PropertyValue<SelectOption?>

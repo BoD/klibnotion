@@ -30,5 +30,5 @@ import org.jraf.klibnotion.model.property.value.SelectPropertyValue
 internal data class SelectPropertyValueImpl(
     override val id: String,
     override val name: String,
-    override val value: SelectOption,
+    override val value: SelectOption?,
 ) : SelectPropertyValue

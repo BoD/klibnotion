@@ -29,5 +29,5 @@ import org.jraf.klibnotion.model.property.value.BooleanFormulaPropertyValue
 internal data class BooleanFormulaPropertyValueImpl(
     override val id: String,
     override val name: String,
-    override val value: Boolean?,
+    override val value: Boolean,
 ) : BooleanFormulaPropertyValue
