@@ -29,7 +29,6 @@ import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.VideoBlock
 import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.file.File
-import org.jraf.klibnotion.model.richtext.RichText
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal data class VideoBlockImpl(
@@ -37,8 +36,7 @@ internal data class VideoBlockImpl(
     override val created: Timestamp,
     override val lastEdited: Timestamp,
     override val video: File,
-    override val caption: List<RichText>?,
+    override val caption: RichTextList?,
 ) : VideoBlock {
     override val children: List<Block>? = null
-    override val text: RichTextList? = null
 }

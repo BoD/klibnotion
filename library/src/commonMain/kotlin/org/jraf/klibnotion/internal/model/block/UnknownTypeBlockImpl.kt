@@ -28,7 +28,6 @@ import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.UnknownTypeBlock
 import org.jraf.klibnotion.model.date.Timestamp
-import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal data class UnknownTypeBlockImpl(
     override val id: UuidString,
@@ -36,6 +35,5 @@ internal data class UnknownTypeBlockImpl(
     override val lastEdited: Timestamp,
     val type: String,
 ) : UnknownTypeBlock {
-    override val text: RichTextList? = null
     override val children: List<Block>? = null
 }

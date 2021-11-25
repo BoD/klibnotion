@@ -46,6 +46,7 @@ import org.jraf.klibnotion.model.block.EquationBlock
 import org.jraf.klibnotion.model.block.Heading1Block
 import org.jraf.klibnotion.model.block.Heading2Block
 import org.jraf.klibnotion.model.block.Heading3Block
+import org.jraf.klibnotion.model.block.ImageBlock
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
@@ -53,6 +54,7 @@ import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
 import org.jraf.klibnotion.model.block.UnknownTypeBlock
+import org.jraf.klibnotion.model.block.VideoBlock
 import org.jraf.klibnotion.model.block.paragraph
 import org.jraf.klibnotion.model.color.Color
 import org.jraf.klibnotion.model.database.Database
@@ -433,6 +435,10 @@ class Sample {
             bookmark("https://JRAF.org", "The caption of this bookmark")
 
             tableOfContents()
+
+            image("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg", caption = "A caption")
+            video("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                caption = "Some video")
         }
 
         println(createdPageInDb)
@@ -640,26 +646,29 @@ class Sample {
         for (block in this) {
             res.appendLine(
                 levelStr + when (block) {
-                    is BulletedListItemBlock -> "-"
+                    is BulletedListItemBlock -> "- " + block.text.toFormattedString()
                     is ChildPageBlock -> "-> ${block.title}"
                     is ChildDatabaseBlock -> "-> ${block.title}"
-                    is Heading1Block -> "#"
-                    is Heading2Block -> "##"
-                    is Heading3Block -> "###"
-                    is NumberedListItemBlock -> "${numberedListIndex}."
-                    is ParagraphBlock -> "¶"
-                    is ToDoBlock -> if (block.checked) "[X]" else "[ ]"
-                    is ToggleBlock -> "▼"
-                    is CalloutBlock -> "> ${block.icon}"
-                    is CodeBlock -> "```${block.language}"
-                    is EquationBlock -> "$$"
+                    is Heading1Block -> "# " + block.text.toFormattedString()
+                    is Heading2Block -> "## " + block.text.toFormattedString()
+                    is Heading3Block -> "### " + block.text.toFormattedString()
+                    is NumberedListItemBlock -> "${numberedListIndex}. " + block.text.toFormattedString()
+                    is ParagraphBlock -> "¶ " + block.text.toFormattedString()
+                    is ToDoBlock -> (if (block.checked) "[X] " else "[ ] ") + block.text.toFormattedString()
+                    is ToggleBlock -> "▼ " + block.text.toFormattedString()
+                    is CalloutBlock -> "> ${block.icon} " + block.text.toFormattedString()
+                    is CodeBlock -> "```${block.language}\n" + block.text.toFormattedString() + "\n```"
+                    is EquationBlock -> "$$" + block.expression.toFormattedString()
                     is BookmarkBlock -> "Bookmark: ${block.url}"
                     is EmbedBlock -> "Embed: ${block.url}"
-                    is QuoteBlock -> ">"
+                    is QuoteBlock -> "> " + block.text.toFormattedString()
                     is DividerBlock -> "---"
                     is TableOfContentsBlock -> "toc"
+                    is ImageBlock -> "Image: ${block.image.url}"
+                    is VideoBlock -> "Video: ${block.video.url}"
+
                     is UnknownTypeBlock -> "?"
-                } + " " + block.text.toFormattedString()
+                }
             )
 
             // Recurse

@@ -26,7 +26,9 @@
 package org.jraf.klibnotion.model.block
 
 import org.jraf.klibnotion.model.base.EmojiOrFile
+import org.jraf.klibnotion.model.richtext.RichTextList
 
 interface CalloutBlock : Block {
+    val text: RichTextList?
     val icon: EmojiOrFile?
 }

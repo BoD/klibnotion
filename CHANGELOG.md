@@ -2,9 +2,13 @@
 
 ## Next version (????-??-??)
 
+- Support more block types following Notion's API
+  evolution. [Thanks](https://github.com/BoD/klibnotion/pull/21) [@wiyarmir](https://github.com/wiyarmir)!
+
 ## v1.9.0 (2021-10-23)
 
-- Support more block types following Notion's API evolution - [thanks](https://github.com/BoD/klibnotion/pull/7) [@yujinyan](https://github.com/yujinyan)!
+- Support more block types following Notion's API
+  evolution. [Thanks](https://github.com/BoD/klibnotion/pull/7) [@yujinyan](https://github.com/yujinyan)!
 - [Breaking] All properties - including `null` ones - are now always returned on Pages. This means some property types
   that were previously not nullable are now nullable.
 
@@ -45,7 +49,7 @@
 - Make `OAuthGetAccessTokenResult.workspaceIcon` nullable
   (resolves [issue #1](https://github.com/BoD/klibnotion/issues/1))
 - Don't send `null` for empty children when creating a page
-(resolves [issue #2](https://github.com/BoD/klibnotion/issues/2))
+  (resolves [issue #2](https://github.com/BoD/klibnotion/issues/2))
 
 ## v1.5.0 (2021-05-16)
 

@@ -203,7 +203,7 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 id = id,
                 created = created,
                 lastEdited = lastEdited,
-                caption = apiModel.image!!.caption?.apiToModel(ApiRichTextConverter),
+                caption = apiModel.image!!.toRichTextList(),
                 image = apiModel.image.apiToModel(ApiInImageFileConverter)
             )
 
@@ -211,8 +211,8 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 id = id,
                 created = created,
                 lastEdited = lastEdited,
-                caption = apiModel.image!!.caption?.apiToModel(ApiRichTextConverter),
-                video = apiModel.video!!.apiToModel(ApiInVideoFileConverter)
+                caption = apiModel.video!!.toRichTextList(),
+                video = apiModel.video.apiToModel(ApiInVideoFileConverter)
             )
 
             else -> UnknownTypeBlockImpl(
@@ -226,7 +226,13 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
 
     private fun ApiBlockText?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
     private fun ApiBlockTodo?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockCode?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockCallout?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockBookmark?.toRichTextList() = RichTextList(this!!.caption.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCode.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCallout.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockBookmark.toRichTextList() = RichTextList(this!!.caption.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockImage.toRichTextList() =
+        this!!.caption?.let { RichTextList(it.apiToModel(ApiRichTextConverter)) }
+
+    private fun ApiBlockVideo.toRichTextList() =
+        this!!.caption?.let { RichTextList(it.apiToModel(ApiRichTextConverter)) }
+
 }

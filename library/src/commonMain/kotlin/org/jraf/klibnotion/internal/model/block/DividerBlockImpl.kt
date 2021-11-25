@@ -29,13 +29,11 @@ import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.DividerBlock
 import org.jraf.klibnotion.model.date.Timestamp
-import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal data class DividerBlockImpl(
     override val id: UuidString,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
 ) : DividerBlock {
-    override val text: RichTextList? = null
     override val children: List<Block>? = null
 }

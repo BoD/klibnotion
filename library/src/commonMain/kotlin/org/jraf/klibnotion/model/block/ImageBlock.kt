@@ -25,12 +25,12 @@
 package org.jraf.klibnotion.model.block
 
 import org.jraf.klibnotion.model.file.File
-import org.jraf.klibnotion.model.richtext.RichText
+import org.jraf.klibnotion.model.richtext.RichTextList
 
 /**
  * See [reference](https://developers.notion.com/reference/block#image-blocks)
  */
 interface ImageBlock : Block {
     val image: File
-    val caption: List<RichText>?
+    val caption: RichTextList?
 }

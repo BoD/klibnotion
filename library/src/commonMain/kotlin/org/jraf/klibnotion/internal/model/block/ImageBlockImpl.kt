@@ -29,7 +29,6 @@ import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.ImageBlock
 import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.file.File
-import org.jraf.klibnotion.model.richtext.RichText
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal data class ImageBlockImpl(
@@ -37,8 +36,7 @@ internal data class ImageBlockImpl(
     override val created: Timestamp,
     override val lastEdited: Timestamp,
     override val image: File,
-    override val caption: List<RichText>?,
+    override val caption: RichTextList?,
 ) : ImageBlock {
     override val children: List<Block>? = null
-    override val text: RichTextList? = null
 }

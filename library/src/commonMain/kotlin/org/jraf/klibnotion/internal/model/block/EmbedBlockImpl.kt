@@ -29,7 +29,6 @@ import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.EmbedBlock
 import org.jraf.klibnotion.model.date.Timestamp
-import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal data class EmbedBlockImpl(
     override val id: UuidString,
@@ -37,6 +36,5 @@ internal data class EmbedBlockImpl(
     override val lastEdited: Timestamp,
     override val url: String,
 ) : EmbedBlock {
-    override val text: RichTextList? = null
     override val children: List<Block>? = null
 }

@@ -39,6 +39,8 @@ import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.BookmarkBlock
 import org.jraf.klibnotion.model.block.BulletedListItemBlock
 import org.jraf.klibnotion.model.block.CalloutBlock
+import org.jraf.klibnotion.model.block.ChildDatabaseBlock
+import org.jraf.klibnotion.model.block.ChildPageBlock
 import org.jraf.klibnotion.model.block.CodeBlock
 import org.jraf.klibnotion.model.block.DividerBlock
 import org.jraf.klibnotion.model.block.EmbedBlock
@@ -53,6 +55,7 @@ import org.jraf.klibnotion.model.block.QuoteBlock
 import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
+import org.jraf.klibnotion.model.block.UnknownTypeBlock
 import org.jraf.klibnotion.model.block.VideoBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -86,10 +89,23 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
             }
             put("type", type)
             putJsonObject(type) {
-                model.text?.let { text(it) }
                 when (model) {
-                    is ToDoBlock -> put("checked", model.checked)
-                    is CodeBlock -> put("language", model.language)
+                    is Heading1Block -> model.text?.let { text(it) }
+                    is Heading2Block -> model.text?.let { text(it) }
+                    is Heading3Block -> model.text?.let { text(it) }
+                    is BulletedListItemBlock -> model.text?.let { text(it) }
+                    is NumberedListItemBlock -> model.text?.let { text(it) }
+                    is ToggleBlock -> model.text?.let { text(it) }
+                    is ParagraphBlock -> model.text?.let { text(it) }
+                    is QuoteBlock -> model.text?.let { text(it) }
+                    is ToDoBlock -> {
+                        model.text?.let { text(it) }
+                        put("checked", model.checked)
+                    }
+                    is CodeBlock -> {
+                        model.text?.let { text(it) }
+                        put("language", model.language)
+                    }
                     is BookmarkBlock -> {
                         put("url", model.url)
                         model.caption?.let {
@@ -98,30 +114,35 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                     }
                     is EquationBlock -> put("expression", model.expression)
                     is EmbedBlock -> put("url", model.url)
-                    is CalloutBlock -> model.icon?.let {
-                        put("icon", it.modelToApi(ApiOutEmojiOrFileConverter))
+                    is CalloutBlock -> {
+                        model.text?.let { text(it) }
+                        model.icon?.let {
+                            put("icon", it.modelToApi(ApiOutEmojiOrFileConverter))
+                        }
                     }
                     is ImageBlock -> {
-                        val caption = model.caption
-                        caption?.let {
-                            val json = ApiOutRichTextListConverter.modelToApi(RichTextList(caption.toMutableList()))
-                            put("caption", json)
+                        model.caption?.let {
+                            put("caption", it.modelToApi(ApiOutRichTextListConverter))
                         }
                         putJsonObject("external") {
                             put("url", model.image.url)
                         }
                     }
                     is VideoBlock -> {
-                        val caption = model.caption
-                        caption?.let {
-                            val json = ApiOutRichTextListConverter.modelToApi(RichTextList(caption.toMutableList()))
-                            put("caption", json)
+                        model.caption?.let {
+                            put("caption", it.modelToApi(ApiOutRichTextListConverter))
                         }
                         putJsonObject("external") {
                             put("url", model.video.url)
                         }
                     }
-                    else -> {
+
+                    is ChildPageBlock,
+                    is UnknownTypeBlock,
+                    is ChildDatabaseBlock,
+                    is DividerBlock,
+                    is TableOfContentsBlock,
+                    -> {
                     }
                 }
                 model.children?.let {

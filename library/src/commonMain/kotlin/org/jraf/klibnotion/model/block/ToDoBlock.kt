@@ -24,9 +24,12 @@
 
 package org.jraf.klibnotion.model.block
 
+import org.jraf.klibnotion.model.richtext.RichTextList
+
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
 interface ToDoBlock : Block {
+    val text: RichTextList?
     val checked: Boolean
 }

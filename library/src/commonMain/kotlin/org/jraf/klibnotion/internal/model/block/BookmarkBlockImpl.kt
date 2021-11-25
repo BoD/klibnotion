@@ -39,5 +39,4 @@ internal data class BookmarkBlockImpl(
     override val caption: RichTextList?,
 ) : BookmarkBlock {
     override val children: List<Block>? = null
-    override val text: RichTextList? = null
 }

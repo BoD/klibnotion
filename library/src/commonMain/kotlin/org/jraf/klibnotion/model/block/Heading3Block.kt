@@ -24,7 +24,11 @@
 
 package org.jraf.klibnotion.model.block
 
+import org.jraf.klibnotion.model.richtext.RichTextList
+
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
-interface Heading3Block : Block
+interface Heading3Block : Block {
+    val text: RichTextList?
+}
