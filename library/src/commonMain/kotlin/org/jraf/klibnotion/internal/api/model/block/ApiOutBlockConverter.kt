@@ -46,12 +46,14 @@ import org.jraf.klibnotion.model.block.EquationBlock
 import org.jraf.klibnotion.model.block.Heading1Block
 import org.jraf.klibnotion.model.block.Heading2Block
 import org.jraf.klibnotion.model.block.Heading3Block
+import org.jraf.klibnotion.model.block.ImageBlock
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
 import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
+import org.jraf.klibnotion.model.block.VideoBlock
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
@@ -77,6 +79,8 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 is CalloutBlock -> "callout"
                 is DividerBlock -> "divider"
                 is TableOfContentsBlock -> "table_of_contents"
+                is ImageBlock -> "image"
+                is VideoBlock -> "video"
 
                 else -> throw IllegalStateException()
             }
@@ -96,6 +100,26 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                     is EmbedBlock -> put("url", model.url)
                     is CalloutBlock -> model.icon?.let {
                         put("icon", it.modelToApi(ApiOutEmojiOrFileConverter))
+                    }
+                    is ImageBlock -> {
+                        val caption = model.caption
+                        caption?.let {
+                            val json = ApiOutRichTextListConverter.modelToApi(RichTextList(caption.toMutableList()))
+                            put("caption", json)
+                        }
+                        putJsonObject("external") {
+                            put("url", model.image.url)
+                        }
+                    }
+                    is VideoBlock -> {
+                        val caption = model.caption
+                        caption?.let {
+                            val json = ApiOutRichTextListConverter.modelToApi(RichTextList(caption.toMutableList()))
+                            put("caption", json)
+                        }
+                        putJsonObject("external") {
+                            put("url", model.video.url)
+                        }
                     }
                     else -> {
                     }

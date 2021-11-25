@@ -42,6 +42,7 @@ import org.jraf.klibnotion.internal.model.block.EquationBlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
+import org.jraf.klibnotion.internal.model.block.ImageBlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
@@ -49,6 +50,7 @@ import org.jraf.klibnotion.internal.model.block.TableOfContentsBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
 import org.jraf.klibnotion.internal.model.block.UnknownTypeBlockImpl
+import org.jraf.klibnotion.internal.model.block.VideoBlockImpl
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.richtext.RichTextList
 
@@ -195,6 +197,22 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 id = id,
                 created = created,
                 lastEdited = lastEdited,
+            )
+
+            "image" -> ImageBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                caption = apiModel.image!!.caption?.apiToModel(ApiRichTextConverter),
+                image = apiModel.image.apiToModel(ApiInImageFileConverter)
+            )
+
+            "video" -> VideoBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                caption = apiModel.image!!.caption?.apiToModel(ApiRichTextConverter),
+                video = apiModel.video!!.apiToModel(ApiInVideoFileConverter)
             )
 
             else -> UnknownTypeBlockImpl(
