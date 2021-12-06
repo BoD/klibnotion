@@ -46,6 +46,7 @@ import io.ktor.http.ParametersBuilder
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.Url
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.serialization.json.Json
@@ -189,7 +190,8 @@ internal class NotionClientImpl(
                         cause,
                         cause.response.readText()
                     )
-                    throw NotionClientException(cause)
+
+                    if (cause !is CancellationException) throw NotionClientException(cause)
                 }
             }
         }
