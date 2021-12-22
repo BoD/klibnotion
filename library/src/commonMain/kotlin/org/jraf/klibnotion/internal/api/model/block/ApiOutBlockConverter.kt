@@ -52,6 +52,7 @@ import org.jraf.klibnotion.model.block.ImageBlock
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
+import org.jraf.klibnotion.model.block.SyncedBlock
 import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
@@ -84,8 +85,10 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 is TableOfContentsBlock -> "table_of_contents"
                 is ImageBlock -> "image"
                 is VideoBlock -> "video"
+                is SyncedBlock -> "synced_block"
 
-                else -> throw IllegalStateException()
+                is UnknownTypeBlock -> throw IllegalStateException("Unknown type: ${model.type}")
+                else -> throw IllegalStateException("Converter not implemented for ${model::class.simpleName}")
             }
             put("type", type)
             putJsonObject(type) {
@@ -136,10 +139,17 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                             put("url", model.video.url)
                         }
                     }
+                    is SyncedBlock -> {
+                        putJsonObject("synced_from") {
+                            put("block_id", model.syncedFrom)
+                        }
+                    }
+                    is ChildPageBlock, is ChildDatabaseBlock -> {
+                        put("type", "page_id")
+                        put("page_id", model.id)
+                    }
 
-                    is ChildPageBlock,
                     is UnknownTypeBlock,
-                    is ChildDatabaseBlock,
                     is DividerBlock,
                     is TableOfContentsBlock,
                     -> {

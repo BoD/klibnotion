@@ -55,4 +55,5 @@ internal data class ApiBlock(
     val bookmark: ApiBlockBookmark? = null,
     val image: ApiBlockImage? = null,
     val video: ApiBlockVideo? = null,
+    val synced_block: ApiSyncedBlock? = null,
 )
