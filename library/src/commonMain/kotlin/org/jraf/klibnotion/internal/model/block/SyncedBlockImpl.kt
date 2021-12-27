@@ -26,14 +26,14 @@ package org.jraf.klibnotion.internal.model.block
 
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.UnknownTypeBlock
+import org.jraf.klibnotion.model.block.SyncedBlock
 import org.jraf.klibnotion.model.date.Timestamp
 
-internal data class UnknownTypeBlockImpl(
+internal data class SyncedBlockImpl(
     override val id: UuidString,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
-    override val type: String,
-) : UnknownTypeBlock {
+    override val syncedFrom: UuidString?,
+) : SyncedBlock {
     override val children: List<Block>? = null
 }

@@ -9,7 +9,6 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven(url = "https://dl.bintray.com/kotlin/kotlinx/")
     }
 }
 
@@ -17,7 +16,6 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven(url = "https://dl.bintray.com/kotlin/kotlinx/")
     }
 
     group = "org.jraf"

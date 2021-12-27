@@ -8,6 +8,7 @@
  * repository.
  *
  * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2021-present Yu Jinyan (i@yujinyan.me)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,18 +23,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.block
+package org.jraf.klibnotion.model.block
 
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.UnknownTypeBlock
-import org.jraf.klibnotion.model.date.Timestamp
 
-internal data class UnknownTypeBlockImpl(
-    override val id: UuidString,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
-    override val type: String,
-) : UnknownTypeBlock {
-    override val children: List<Block>? = null
+/**
+ * See [Reference](https://developers.notion.com/reference/block).
+ */
+interface SyncedBlock : Block {
+    val syncedFrom: UuidString?
 }

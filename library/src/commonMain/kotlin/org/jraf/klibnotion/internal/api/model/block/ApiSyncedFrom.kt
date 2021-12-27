@@ -22,18 +22,12 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.model.block
+package org.jraf.klibnotion.internal.api.model.block
 
+import kotlinx.serialization.Serializable
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.block.Block
-import org.jraf.klibnotion.model.block.UnknownTypeBlock
-import org.jraf.klibnotion.model.date.Timestamp
 
-internal data class UnknownTypeBlockImpl(
-    override val id: UuidString,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
-    override val type: String,
-) : UnknownTypeBlock {
-    override val children: List<Block>? = null
-}
+@Serializable
+internal data class ApiSyncedFrom(
+    val block_id: UuidString,
+)

@@ -29,4 +29,6 @@ package org.jraf.klibnotion.model.block
  *
  * See [Reference](https://developers.notion.com/reference/block).
  */
-interface UnknownTypeBlock : Block
+interface UnknownTypeBlock : Block {
+    val type: String
+}

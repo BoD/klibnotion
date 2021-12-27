@@ -40,6 +40,7 @@ import org.jraf.klibnotion.internal.model.block.ImageBlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
+import org.jraf.klibnotion.internal.model.block.SyncedBlockImpl
 import org.jraf.klibnotion.internal.model.block.TableOfContentsBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
@@ -324,6 +325,9 @@ class MutableBlockList(
         linkUrl: String? = null,
         annotations: Annotations = Annotations.DEFAULT,
     ) = add(org.jraf.klibnotion.model.block.video(url, caption, linkUrl, annotations))
+
+    fun syncedBlock(syncedFrom: UuidString): MutableBlockList =
+        add(org.jraf.klibnotion.model.block.syncedBlock(syncedFrom))
 }
 
 typealias BlockListProducer = MutableBlockList.() -> Unit
@@ -627,4 +631,11 @@ fun video(
 ): Block = video(
     url = url,
     caption = caption?.let { RichTextList().text(it, linkUrl, annotations) },
+)
+
+fun syncedBlock(syncedFrom: UuidString): Block = SyncedBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    syncedFrom = syncedFrom
 )

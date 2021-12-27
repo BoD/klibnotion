@@ -46,6 +46,7 @@ import org.jraf.klibnotion.internal.model.block.ImageBlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
+import org.jraf.klibnotion.internal.model.block.SyncedBlockImpl
 import org.jraf.klibnotion.internal.model.block.TableOfContentsBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
@@ -213,6 +214,13 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 lastEdited = lastEdited,
                 caption = apiModel.video!!.toRichTextList(),
                 video = apiModel.video.apiToModel(ApiInVideoFileConverter)
+            )
+
+            "synced_block" -> SyncedBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                syncedFrom = apiModel.synced_block?.synced_from?.block_id,
             )
 
             else -> UnknownTypeBlockImpl(
