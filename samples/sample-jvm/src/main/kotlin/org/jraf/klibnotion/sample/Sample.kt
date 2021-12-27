@@ -52,6 +52,7 @@ import org.jraf.klibnotion.model.block.ImageBlock
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
+import org.jraf.klibnotion.model.block.SyncedBlock
 import org.jraf.klibnotion.model.block.TableOfContentsBlock
 import org.jraf.klibnotion.model.block.ToDoBlock
 import org.jraf.klibnotion.model.block.ToggleBlock
@@ -154,11 +155,13 @@ class Sample {
             queryDatabaseFilters(databaseId)
 
             // Blocks
-            val blockId = getPageContents(pageId)
+            val blockId = getPageContents(pageId)[3].id
             appendContentToPage(pageId)
             getBlockById(blockId)
             getBlockByIdWithChildren(blockId)
             updateBlock(blockId)
+            val pageWithSyncedContent = createPageWithSyncedContent(databaseId = databaseId, syncedBlockId = blockId)
+            getPageContents(pageWithSyncedContent)
 
             // Search
             searchPagesSimple()
@@ -558,11 +561,11 @@ class Sample {
         println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
     }
 
-    private suspend fun getPageContents(pageId: UuidString): UuidString {
+    private suspend fun getPageContents(pageId: UuidString): List<Block> {
         println("Page contents:")
         val pageContents = client.blocks.getAllBlockListRecursively(pageId)
         println(pageContents.toFormattedString())
-        return pageContents[3].id
+        return pageContents
     }
 
     private suspend fun appendContentToPage(pageId: UuidString) {
@@ -587,6 +590,20 @@ class Sample {
         val block = client.blocks.updateBlock(blockId, paragraph("A random number: ${Random.nextInt()}"))
         println(block)
     }
+
+    private suspend fun createPageWithSyncedContent(databaseId: UuidString, syncedBlockId: UuidString): UuidString {
+        println("Created page with synced content:")
+        val createdPageInDb: Page = client.pages.createPage(
+            parentDatabase = DatabaseReference(databaseId),
+            properties = PropertyValueList().title("The title", "Synced content")
+        ) {
+            heading1("Synced block")
+            syncedBlock(syncedBlockId)
+        }
+        println(createdPageInDb)
+        return createdPageInDb.id
+    }
+
 
     private suspend fun searchPagesSimple() {
         println("Page search results (simple):")
@@ -667,6 +684,7 @@ class Sample {
                     is TableOfContentsBlock -> "toc"
                     is ImageBlock -> "Image: ${block.image.url}"
                     is VideoBlock -> "Video: ${block.video.url}"
+                    is SyncedBlock -> "{${block.syncedFrom}}"
 
                     is UnknownTypeBlock -> "?"
                 }

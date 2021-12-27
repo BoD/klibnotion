@@ -3,7 +3,8 @@ plugins {
 }
 
 repositories {
-    maven { url = uri("https://kotlin.bintray.com/kotlinx") }
+    mavenLocal()
+    mavenCentral()
 }
 
 kotlin {
