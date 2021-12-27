@@ -8,6 +8,7 @@
  * repository.
  *
  * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * and contributors (https://github.com/BoD/klibnotion/graphs/contributors)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

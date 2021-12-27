@@ -1,5 +1,3 @@
-import kotlin.system.exitProcess
-
 /*
  * This source is part of the
  *      _____  ___   ____
@@ -10,6 +8,7 @@ import kotlin.system.exitProcess
  * repository.
  *
  * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * and contributors (https://github.com/BoD/klibnotion/graphs/contributors)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +22,8 @@ import kotlin.system.exitProcess
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import kotlin.system.exitProcess
 
 suspend fun main(av: Array<String>) {
     NotionCli(av).main()
