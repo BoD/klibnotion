@@ -2,10 +2,13 @@
 
 ## Next version (????-??-??)
 
+- Support more block types (Synced block) following Notion's API
+  evolution. [Thanks](https://github.com/BoD/klibnotion/pull/21) [@wiyarmir](https://github.com/wiyarmir)!
+
 ## v1.10.0 (2021-11-29)
 
 - Support more block types (Image, Video) following Notion's API
-  evolution. [Thanks](https://github.com/BoD/klibnotion/pull/21) [@wiyarmir](https://github.com/wiyarmir)!
+  evolution. [Thanks](https://github.com/BoD/klibnotion/pull/23) [@wiyarmir](https://github.com/wiyarmir)!
 
 ## v1.9.0 (2021-10-23)
 
