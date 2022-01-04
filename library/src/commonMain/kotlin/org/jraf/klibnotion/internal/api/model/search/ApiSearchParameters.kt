@@ -25,6 +25,7 @@
 
 package org.jraf.klibnotion.internal.api.model.search
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -32,7 +33,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class ApiSearchParameters(
-    val query: String? = null,
-    val sort: ApiSearchSort? = null,
-    val filter: ApiSearchFilter,
+    @SerialName("query") val query: String? = null,
+    @SerialName("sort") val sort: ApiSearchSort? = null,
+    @SerialName("filter") val filter: ApiSearchFilter,
+    @SerialName("start_cursor") val startCursor: String? = null,
 )

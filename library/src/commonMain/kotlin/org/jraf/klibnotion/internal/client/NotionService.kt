@@ -127,9 +127,8 @@ internal class NotionService(private val httpClient: HttpClient) {
         }
     }
 
-    suspend fun queryDatabase(id: UuidString, query: ApiDatabaseQuery, startCursor: String?): ApiResultPage<ApiPage> {
+    suspend fun queryDatabase(id: UuidString, query: ApiDatabaseQuery): ApiResultPage<ApiPage> {
         return httpClient.post("$BASE_URL/$DATABASES/$id/query") {
-            if (startCursor != null) parameter(START_CURSOR, startCursor)
             contentType(ContentType.Application.Json)
             body = query
         }
@@ -218,17 +217,15 @@ internal class NotionService(private val httpClient: HttpClient) {
 
     // region Search
 
-    suspend fun searchPages(parameters: ApiSearchParameters, startCursor: String?): ApiResultPage<ApiPage> {
+    suspend fun searchPages(parameters: ApiSearchParameters): ApiResultPage<ApiPage> {
         return httpClient.post("$BASE_URL/$SEARCH") {
-            if (startCursor != null) parameter(START_CURSOR, startCursor)
             contentType(ContentType.Application.Json)
             body = parameters
         }
     }
 
-    suspend fun searchDatabases(parameters: ApiSearchParameters, startCursor: String?): ApiResultPage<ApiDatabase> {
+    suspend fun searchDatabases(parameters: ApiSearchParameters): ApiResultPage<ApiDatabase> {
         return httpClient.post("$BASE_URL/$SEARCH") {
-            if (startCursor != null) parameter(START_CURSOR, startCursor)
             contentType(ContentType.Application.Json)
             body = parameters
         }

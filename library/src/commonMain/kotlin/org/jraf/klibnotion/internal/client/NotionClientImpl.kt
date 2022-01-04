@@ -75,6 +75,7 @@ import org.jraf.klibnotion.internal.api.model.page.ApiPageUpdateParametersConver
 import org.jraf.klibnotion.internal.api.model.page.PageCreateParameters
 import org.jraf.klibnotion.internal.api.model.page.PageUpdateParameters
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverter
+import org.jraf.klibnotion.internal.api.model.search.SearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
 import org.jraf.klibnotion.internal.klibNotionScope
@@ -279,8 +280,7 @@ internal class NotionClientImpl(
     ): ResultPage<Page> {
         return service.queryDatabase(
             id,
-            (query to sort).modelToApi(ApiDatabaseQueryConverter),
-            pagination.startCursor
+            Triple(query, sort, pagination).modelToApi(ApiDatabaseQueryConverter),
         )
             .apiToModel(ApiPageResultPageConverter)
     }
@@ -491,8 +491,12 @@ internal class NotionClientImpl(
         pagination: Pagination,
     ): ResultPage<Page> {
         return service.searchPages(
-            parameters = Triple(query, sort, "page").modelToApi(ApiSearchParametersConverter),
-            startCursor = pagination.startCursor
+            parameters = SearchParameters(
+                query = query,
+                sort = sort,
+                type = "page",
+                startCursor = pagination.startCursor
+            ).modelToApi(ApiSearchParametersConverter),
         )
             .apiToModel(ApiPageResultPageConverter)
     }
@@ -503,8 +507,12 @@ internal class NotionClientImpl(
         pagination: Pagination,
     ): ResultPage<Database> {
         return service.searchDatabases(
-            parameters = Triple(query, sort, "database").modelToApi(ApiSearchParametersConverter),
-            startCursor = pagination.startCursor
+            parameters = SearchParameters(
+                query = query,
+                sort = sort,
+                type = "database",
+                startCursor = pagination.startCursor,
+            ).modelToApi(ApiSearchParametersConverter),
         )
             .apiToModel(ApiPageResultDatabaseConverter)
     }

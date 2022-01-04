@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2022-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  * and contributors (https://github.com/BoD/klibnotion/graphs/contributors)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,17 +23,13 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.database.query
+package org.jraf.klibnotion.internal.api.model.search
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.model.property.sort.PropertySort
 
-/**
- * See [Reference](https://developers.notion.com/reference/post-database-query).
- */
-@Serializable
-internal data class ApiDatabaseQuery(
-    @SerialName("filter") val filter: ApiDatabaseQueryFilters? = null,
-    @SerialName("sorts") val sorts: List<ApiDatabaseQuerySort>? = null,
-    @SerialName("start_cursor") val startCursor: String? = null
+internal data class SearchParameters(
+    val query: String?,
+    val sort: PropertySort?,
+    val type: String,
+    val startCursor: String?,
 )
