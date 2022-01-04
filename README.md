@@ -33,7 +33,7 @@ repositories {
 ```groovy
 dependencies {
     /* ... */
-    implementation 'org.jraf:klibnotion:1.10.0'
+    implementation 'org.jraf:klibnotion:1.11.0'
 }
 ```
 

@@ -2,6 +2,8 @@
 
 ## Next version (????-??-??)
 
+## v1.11.0 (2022-01-04)
+
 - Support more block types (Synced block) following Notion's API
   evolution. [Thanks](https://github.com/BoD/klibnotion/pull/21) [@wiyarmir](https://github.com/wiyarmir)!
 
