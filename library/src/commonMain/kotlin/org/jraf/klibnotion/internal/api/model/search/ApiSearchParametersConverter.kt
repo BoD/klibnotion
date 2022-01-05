@@ -48,6 +48,6 @@ internal object ApiSearchParametersConverter :
             ),
             start_cursor = model.startCursor,
         )
-    }🤦
+    }
 }
 
