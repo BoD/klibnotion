@@ -45,8 +45,9 @@ internal object ApiSearchParametersConverter :
             filter = ApiSearchFilter(
                 property = "object",
                 value = model.type,
-            )
+            ),
+            start_cursor = model.startCursor,
         )
-    }
+    }🤦
 }
 
