@@ -25,7 +25,6 @@
 
 package org.jraf.klibnotion.internal.api.model.database.query
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -33,7 +32,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class ApiDatabaseQuery(
-    @SerialName("filter") val filter: ApiDatabaseQueryFilters? = null,
-    @SerialName("sorts") val sorts: List<ApiDatabaseQuerySort>? = null,
-    @SerialName("start_cursor") val startCursor: String? = null
+    val filter: ApiDatabaseQueryFilters? = null,
+    val sorts: List<ApiDatabaseQuerySort>? = null,
+    val start_cursor: String? = null,
 )
