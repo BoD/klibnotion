@@ -59,7 +59,7 @@ internal object ApiDatabaseQueryConverter :
                     )
                 }
             },
-            startCursor = model.third.startCursor,
+            start_cursor = model.third.startCursor,
         )
     }
 }
