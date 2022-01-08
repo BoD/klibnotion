@@ -31,11 +31,12 @@ import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.model.database.query.DatabaseQuery
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPredicate
 import org.jraf.klibnotion.model.database.query.filter.DatabaseQueryPropertyFilter
+import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.property.sort.PropertySort
 
 internal object ApiDatabaseQueryConverter :
-    ApiConverter<ApiDatabaseQuery, Pair<DatabaseQuery?, PropertySort?>>() {
-    override fun modelToApi(model: Pair<DatabaseQuery?, PropertySort?>): ApiDatabaseQuery {
+    ApiConverter<ApiDatabaseQuery, Triple<DatabaseQuery?, PropertySort?, Pagination>>() {
+    override fun modelToApi(model: Triple<DatabaseQuery?, PropertySort?, Pagination>): ApiDatabaseQuery {
         val query = model.first
         val sort = model.second
         return ApiDatabaseQuery(
@@ -57,7 +58,8 @@ internal object ApiDatabaseQueryConverter :
                         }
                     )
                 }
-            }
+            },
+            start_cursor = model.third.startCursor,
         )
     }
 }

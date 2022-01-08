@@ -29,30 +29,24 @@ import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.model.property.sort.PropertySort
 
 internal object ApiSearchParametersConverter :
-    ApiConverter<
-            ApiSearchParameters,
-            Triple<String?, PropertySort?, String>
-            >() {
-    override fun modelToApi(model: Triple<String?, PropertySort?, String>): ApiSearchParameters {
-        val query = model.first
-        val sort = model.second
-        val type = model.third
-
+    ApiConverter<ApiSearchParameters, SearchParameters>() {
+    override fun modelToApi(model: SearchParameters): ApiSearchParameters {
         return ApiSearchParameters(
-            query = query,
-            sort = sort?.let {
+            query = model.query,
+            sort = model.sort?.let {
                 ApiSearchSort(
-                    direction = when (sort.sorting.first().second) {
+                    direction = when (it.sorting.first().second) {
                         PropertySort.Direction.ASCENDING -> "ascending"
                         PropertySort.Direction.DESCENDING -> "descending"
                     },
-                    timestamp = sort.sorting.first().first
+                    timestamp = it.sorting.first().first
                 )
             },
             filter = ApiSearchFilter(
                 property = "object",
-                value = type,
-            )
+                value = model.type,
+            ),
+            start_cursor = model.startCursor,
         )
     }
 }
