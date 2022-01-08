@@ -2,6 +2,9 @@
 
 ## Next version (????-??-??)
 
+- Fix pagination not working due to start cursor encoded as query parameter (#24)
+  . [Thanks](https://github.com/BoD/klibnotion/pull/25) [@ashdavies](https://github.com/ashdavies)!
+
 ## v1.11.0 (2022-01-04)
 
 - Support more block types (Synced block) following Notion's API
