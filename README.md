@@ -196,10 +196,11 @@ to [`NotionClient.newInstance()`](https://bod.github.io/klibnotion/klibnotion/or
 ## Status
 
 - This library uses the `2021-08-16` version of the Notion API.
+- This library is in active development.
 - The Notion API is still evolving actively and therefore there are some changes that have not been implemented by this
   library yet.
-- This library is in active development.
-- Pull requests are welcome.
+- Pull requests are welcome!
+- If you want to contribute, it is recommended you first try an issue with the ["good first issue"](https://github.com/BoD/klibnotion/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
 
 ## Javascript support
 
