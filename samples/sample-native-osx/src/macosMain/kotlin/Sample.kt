@@ -23,6 +23,9 @@
  * limitations under the License.
  */
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.jraf.klibnotion.client.Authentication
 import org.jraf.klibnotion.client.ClientConfiguration
@@ -69,6 +72,7 @@ import org.jraf.klibnotion.model.emoji.Emoji
 import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.oauth.OAuthCredentials
 import org.jraf.klibnotion.model.page.Page
+import org.jraf.klibnotion.model.pagination.Pagination
 import org.jraf.klibnotion.model.pagination.ResultPage
 import org.jraf.klibnotion.model.property.SelectOption
 import org.jraf.klibnotion.model.property.SelectOptionList
@@ -82,6 +86,7 @@ import org.jraf.klibnotion.model.richtext.text
 import org.jraf.klibnotion.model.user.Person
 import org.jraf.klibnotion.model.user.User
 import platform.Foundation.NSDate
+import kotlin.coroutines.coroutineContext
 import kotlin.random.Random
 import kotlin.system.exitProcess
 
@@ -147,7 +152,7 @@ class Sample {
             unarchivePage(pageId)
             createPageInPageNoContent()
             createPageInPageWithContent()
-            createPageInDatabaseWithNoProperties(databaseId = databaseId)
+            createPageInDatabaseWithNoProperties(databaseId)
 
             // Database query
             queryDatabaseSimple(databaseId)
@@ -163,6 +168,8 @@ class Sample {
             getPageContents(pageWithSyncedContent)
 
             // Search
+            // Create enough data so the next test can iterate over multiple pages - but takes a while so commented out by default
+            // create150PagesInDatabase(databaseId)
             searchPagesSimple()
             searchPagesQuerySort()
             searchDatabasesSimple()
@@ -300,9 +307,17 @@ class Sample {
     }
 
     private suspend fun getDatabaseList() {
-        println("Database list first page:")
-        val databasePage: ResultPage<Database> = client.databases.getDatabaseList()
-        println(databasePage)
+        println("Database list:")
+        val results = mutableListOf<Database>()
+        var resultPage: ResultPage<Database>
+        var pagination = Pagination()
+        do {
+            resultPage = client.databases.getDatabaseList(pagination = pagination)
+            results += resultPage.results
+            resultPage.nextPagination?.let { pagination = it }
+        } while (resultPage.nextPagination != null)
+
+        println(results)
     }
 
     private suspend fun getDatabaseById(databaseId: UuidString) {
@@ -520,10 +535,32 @@ class Sample {
         println(createdPageInDb)
     }
 
+    private suspend fun create150PagesInDatabase(databaseId: UuidString) {
+        println("Creating 150 pages in database:")
+        val job = Job()
+        repeat(150) {
+            GlobalScope.async(coroutineContext + job) {
+                client.pages.createPage(
+                    parentDatabase = DatabaseReference(databaseId),
+                )
+            }
+        }
+        job.children.forEach { it.join() }
+        println("done")
+    }
+
     private suspend fun queryDatabaseSimple(databaseId: UuidString) {
         println("Simple query results:")
-        val simpleQueryResultPage: ResultPage<Page> = client.databases.queryDatabase(databaseId)
-        println(simpleQueryResultPage.results.joinToString("") { it.toFormattedString() })
+        val results = mutableListOf<Page>()
+        var resultPage: ResultPage<Page>
+        var pagination = Pagination()
+        do {
+            resultPage = client.databases.queryDatabase(databaseId, pagination = pagination)
+            results += resultPage.results
+            resultPage.nextPagination?.let { pagination = it }
+        } while (resultPage.nextPagination != null)
+
+        println(results.joinToString("") { it.toFormattedString() })
     }
 
     private suspend fun queryDatabaseFilters(databaseId: UuidString) {
@@ -606,8 +643,15 @@ class Sample {
 
     private suspend fun searchPagesSimple() {
         println("Page search results (simple):")
-        val simplePageSearchResults = client.search.searchPages()
-        println(simplePageSearchResults)
+        val results = mutableListOf<Page>()
+        var resultPage: ResultPage<Page>
+        var pagination = Pagination()
+        do {
+            resultPage = client.search.searchPages(pagination = pagination)
+            results += resultPage.results
+            resultPage.nextPagination?.let { pagination = it }
+        } while (resultPage.nextPagination != null)
+        println(results)
     }
 
     private suspend fun searchPagesQuerySort() {
@@ -622,8 +666,15 @@ class Sample {
 
     private suspend fun searchDatabasesSimple() {
         println("Databases search results (simple):")
-        val simpleDatabasesSearchResults = client.search.searchDatabases()
-        println(simpleDatabasesSearchResults)
+        val results = mutableListOf<Database>()
+        var resultPage: ResultPage<Database>
+        var pagination = Pagination()
+        do {
+            resultPage = client.search.searchDatabases(pagination = pagination)
+            results += resultPage.results
+            resultPage.nextPagination?.let { pagination = it }
+        } while (resultPage.nextPagination != null)
+        println(results)
     }
 
     private suspend fun searchDatabaseQuerySort() {
