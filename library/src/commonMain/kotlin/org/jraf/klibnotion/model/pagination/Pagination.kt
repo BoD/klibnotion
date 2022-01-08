@@ -32,7 +32,7 @@ data class Pagination(
     /**
      * Cursor pointing to the first element of the page to retrieve.
      *
-     * Use [FIRST_CURSOR] to the the first page.
+     * Use [FIRST_CURSOR] to retrieve the first page.
      */
     val startCursor: String? = FIRST_CURSOR,
 ) {

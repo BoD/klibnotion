@@ -234,13 +234,13 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
 
     private fun ApiBlockText?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
     private fun ApiBlockTodo?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockCode.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockCallout.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockBookmark.toRichTextList() = RichTextList(this!!.caption.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCode.toRichTextList() = RichTextList(this.text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCallout.toRichTextList() = RichTextList(this.text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockBookmark.toRichTextList() = RichTextList(this.caption.apiToModel(ApiRichTextConverter))
     private fun ApiBlockImage.toRichTextList() =
-        this!!.caption?.let { RichTextList(it.apiToModel(ApiRichTextConverter)) }
+        this.caption?.let { RichTextList(it.apiToModel(ApiRichTextConverter)) }
 
     private fun ApiBlockVideo.toRichTextList() =
-        this!!.caption?.let { RichTextList(it.apiToModel(ApiRichTextConverter)) }
+        this.caption?.let { RichTextList(it.apiToModel(ApiRichTextConverter)) }
 
 }
