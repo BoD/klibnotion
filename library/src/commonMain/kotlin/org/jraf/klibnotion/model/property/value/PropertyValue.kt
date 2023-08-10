@@ -58,6 +58,8 @@ sealed interface PropertyValue<T> {
 class PropertyValueList {
     internal val propertyValueList = mutableListOf<PropertyValue<*>>()
 
+    fun getAll(): List<PropertyValue<*>> = propertyValueList.toList()
+
     private fun add(propertyValue: PropertyValue<*>): PropertyValueList {
         propertyValueList.add(propertyValue)
         return this
