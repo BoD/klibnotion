@@ -1,9 +1,9 @@
 # klibnotion
 
-A [Notion API (currently beta)](https://developers.notion.com/) client library for Kotlin, Java and more.
+A [Notion API](https://developers.notion.com/) client library for Kotlin, Java and more.
 
 This library is written in [Kotlin Multiplatform](https://kotlinlang.org/docs/reference/multiplatform.html)
-so in theory it can be used from the JVM, Android, iOS, Linux, MacOS, Windows, Javascript and more. In practice it has
+so it can be used from the JVM, Android, iOS, Linux, MacOS, Windows, Javascript and more - in theory. In practice it has
 been tested and has samples for the JVM (Kotlin and Java), and MacOS (Kotlin).
 
 Several flavors of the client are available to match your needs:
@@ -23,17 +23,17 @@ Several flavors of the client are available to match your needs:
 
 The artifact is hosted on the Maven Central repository.
 
-```groovy
+```kotlin
 repositories {
     /* ... */
     mavenCentral()
 }
 ```
 
-```groovy
+```kotlin
 dependencies {
     /* ... */
-    implementation 'org.jraf:klibnotion:1.11.0'
+    implementation("org.jraf:klibnotion:1.11.0")
 }
 ```
 
@@ -50,7 +50,7 @@ You can also explore [the docs](https://bod.github.io/klibnotion/).
 #### Get your API key
 
 You will find your **Internal Integration Token** by following the
-instructions [here](https://developers.notion.com/docs/getting-started).
+instructions [here](https://developers.notion.com/docs/authorization).
 
 #### Instantiate a `NotionClient`
 
@@ -196,16 +196,15 @@ to [`NotionClient.newInstance()`](https://bod.github.io/klibnotion/klibnotion/or
 ## Status
 
 - This library uses the `2021-08-16` version of the Notion API.
-- This library is in active development.
-- The Notion API is still evolving actively and therefore there are some changes that have not been implemented by this
+- The Notion API is still evolving and therefore there are some changes that have not been implemented by this
   library yet.
-- Pull requests are welcome!
+- Development on this library is not very active, the main reason being that I am not using the Notion API anymore.
+- However, pull requests are very welcome, and I **will** publish new versions as needed.
 - If you want to contribute, it is recommended you first try an issue with the ["good first issue"](https://github.com/BoD/klibnotion/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
 
 ## Javascript support
 
-In theory Kotlin Multiplatform projects can also target Javascript but as of today the author couldn't understand how to
-make that work. Please [contact the author](mailto:BoD@JRAF.org) if you want to help :)
+Kotlin Multiplatform projects can target Javascript but as of now this library doesn't support it. See issue #43 if you want to contribute it.
 
 ## Author and License
 
