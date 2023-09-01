@@ -12,7 +12,7 @@ tasks.withType<KotlinCompile> {
 
 dependencies {
     // Kotlin
-    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", Versions.COROUTINES)
+    implementation(libs.kotlinx.coroutines.core)
 
     // Library
     implementation(project(":klibnotion"))

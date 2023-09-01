@@ -1,8 +1,8 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
     id("maven-publish")
-    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
+    alias(libs.plugins.dokka)
     id("signing")
 }
 
@@ -25,7 +25,7 @@ tasks {
     // Generate Javadoc (Dokka) Jar
     register<Jar>("dokkaHtmlJar") {
         archiveClassifier.set("javadoc")
-        from("$buildDir/dokka")
+        from("build/dokka")
         dependsOn(dokkaHtml)
     }
 }
@@ -56,11 +56,11 @@ kotlin {
             kotlin.srcDir(tasks.getByName("generateVersionKt").outputs.files)
 
             dependencies {
-                implementation("io.ktor", "ktor-client-core", Versions.KTOR)
-                implementation("io.ktor", "ktor-client-json", Versions.KTOR)
-                implementation("io.ktor", "ktor-serialization-kotlinx-json", Versions.KTOR)
-                implementation("io.ktor", "ktor-client-content-negotiation", Versions.KTOR)
-                implementation("io.ktor", "ktor-client-logging", Versions.KTOR)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.json)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.client.logging)
             }
         }
         val commonTest by getting {
@@ -72,8 +72,8 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8", Versions.COROUTINES)
-                implementation("io.ktor", "ktor-client-okhttp", Versions.KTOR)
+                implementation(libs.kotlinx.coroutines.jdk8)
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val jvmTest by getting {
@@ -85,7 +85,7 @@ kotlin {
 
         val macosMain by getting {
             dependencies {
-                implementation("io.ktor", "ktor-client-curl", Versions.KTOR)
+                implementation(libs.ktor.client.curl)
             }
         }
         val macosTest by getting {
@@ -151,6 +151,13 @@ signing {
     // signing.password=<your password>
     // signing.secretKeyRingFile=<absolute path to the gpg private key>
     sign(publishing.publications)
+}
+
+// Workaround for https://youtrack.jetbrains.com/issue/KT-46466
+val dependsOnTasks = mutableListOf<String>()
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    dependsOnTasks.add(this.name.replace("publish", "sign").replaceAfter("Publication", ""))
+    dependsOn(dependsOnTasks)
 }
 
 tasks.dokkaHtml.configure {
