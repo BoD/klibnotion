@@ -28,24 +28,25 @@ package org.jraf.klibnotion.internal.client
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.ProxyBuilder
-import io.ktor.client.features.ClientRequestException
-import io.ktor.client.features.HttpResponseValidator
-import io.ktor.client.features.HttpTimeout
-import io.ktor.client.features.UserAgent
-import io.ktor.client.features.defaultRequest
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.DEFAULT
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
+import io.ktor.client.plugins.ClientRequestException
+import io.ktor.client.plugins.HttpResponseValidator
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.UserAgent
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.HttpRequest
 import io.ktor.client.request.header
-import io.ktor.client.statement.readText
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpHeaders
 import io.ktor.http.ParametersBuilder
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.Url
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
@@ -126,8 +127,8 @@ internal class NotionClientImpl(
 
     private val httpClient by lazy {
         createHttpClient(clientConfiguration.httpConfiguration.bypassSslChecks) {
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(
+            install(ContentNegotiation) {
+                json(
                     Json {
                         // XXX Comment this to have API changes make the parsing fail
                         ignoreUnknownKeys = true
@@ -186,10 +187,10 @@ internal class NotionClientImpl(
                 }
             }
             HttpResponseValidator {
-                handleResponseException { cause: Throwable ->
+                handleResponseExceptionWithRequest { cause: Throwable, _: HttpRequest ->
                     if (cause is ClientRequestException) throw NotionClientRequestException(
                         cause,
-                        cause.response.readText()
+                        cause.response.bodyAsText()
                     )
 
                     if (cause !is CancellationException) throw NotionClientException(cause)
@@ -207,14 +208,14 @@ internal class NotionClientImpl(
     override fun getUserPromptUri(oAuthCredentials: OAuthCredentials, uniqueState: String): String {
         return URLBuilder(protocol = URLProtocol.createOrDefault(NotionService.OAUTH_URL_SCHEME),
             host = NotionService.OAUTH_URL_HOST,
-            encodedPath = NotionService.OAUTH_URL_PATH,
+            pathSegments = NotionService.OAUTH_URL_PATH_SEGMENTS,
             parameters = ParametersBuilder().apply {
                 append("client_id", oAuthCredentials.clientId)
                 append("redirect_uri", oAuthCredentials.redirectUri)
                 append("response_type", "code")
                 // XXX Adding a _ to ensure it's not interpreted as a number
                 append("state", "_$uniqueState")
-            }
+            }.build()
         ).buildString()
     }
 

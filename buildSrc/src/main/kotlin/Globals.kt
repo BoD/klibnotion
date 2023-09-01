@@ -7,7 +7,7 @@ object Versions {
 
     // Lib dependencies
     const val KOTLIN_SERIALIZATION = KOTLIN
-    const val KTOR = "1.6.4"
+    const val KTOR = "2.3.3"
     const val COROUTINES = "1.5.2"
     const val SLF4J = "1.7.30"
     const val KOTLINX_CLI = "0.3.3"
