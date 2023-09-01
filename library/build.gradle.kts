@@ -46,8 +46,8 @@ kotlin {
     }
 
     sourceSets.all {
-        languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
-        languageSettings.useExperimentalAnnotation("io.ktor.util.InternalAPI")
+        languageSettings.optIn("kotlin.RequiresOptIn")
+        languageSettings.optIn("io.ktor.util.InternalAPI")
     }
 
     sourceSets {
@@ -58,7 +58,8 @@ kotlin {
             dependencies {
                 implementation("io.ktor", "ktor-client-core", Versions.KTOR)
                 implementation("io.ktor", "ktor-client-json", Versions.KTOR)
-                implementation("io.ktor", "ktor-client-serialization", Versions.KTOR)
+                implementation("io.ktor", "ktor-serialization-kotlinx-json", Versions.KTOR)
+                implementation("io.ktor", "ktor-client-content-negotiation", Versions.KTOR)
                 implementation("io.ktor", "ktor-client-logging", Versions.KTOR)
             }
         }

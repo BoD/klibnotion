@@ -26,6 +26,7 @@
 package org.jraf.klibnotion.internal.client
 
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.parameter
@@ -68,7 +69,7 @@ internal class NotionService(private val httpClient: HttpClient) {
 
         const val OAUTH_URL_SCHEME = "https"
         const val OAUTH_URL_HOST = "api.notion.com"
-        const val OAUTH_URL_PATH = "/v1/$OAUTH/authorize"
+        val OAUTH_URL_PATH_SEGMENTS = listOf("v1", OAUTH, "authorize")
     }
 
     // region OAuth
@@ -86,7 +87,7 @@ internal class NotionService(private val httpClient: HttpClient) {
             )
             contentType(ContentType.Application.Json)
             body = parameters
-        }
+        }.body()
     }
 
     @OptIn(InternalAPI::class)
@@ -102,14 +103,14 @@ internal class NotionService(private val httpClient: HttpClient) {
     // region Users
 
     suspend fun getUser(id: String): ApiUser {
-        return httpClient.get("$BASE_URL/$USERS/$id")
+        return httpClient.get("$BASE_URL/$USERS/$id").body()
     }
 
 
     suspend fun getUserList(startCursor: String?): ApiResultPage<ApiUser> {
         return httpClient.get("$BASE_URL/$USERS") {
             if (startCursor != null) parameter(START_CURSOR, startCursor)
-        }
+        }.body()
     }
 
     // endregion
@@ -118,20 +119,20 @@ internal class NotionService(private val httpClient: HttpClient) {
     // region Databases
 
     suspend fun getDatabase(id: UuidString): ApiDatabase {
-        return httpClient.get("$BASE_URL/$DATABASES/$id")
+        return httpClient.get("$BASE_URL/$DATABASES/$id").body()
     }
 
     suspend fun getDatabaseList(startCursor: String?): ApiResultPage<ApiDatabase> {
         return httpClient.get("$BASE_URL/$DATABASES") {
             if (startCursor != null) parameter(START_CURSOR, startCursor)
-        }
+        }.body()
     }
 
     suspend fun queryDatabase(id: UuidString, query: ApiDatabaseQuery): ApiResultPage<ApiPage> {
         return httpClient.post("$BASE_URL/$DATABASES/$id/query") {
             contentType(ContentType.Application.Json)
             body = query
-        }
+        }.body()
     }
 
     suspend fun createDatabase(
@@ -140,7 +141,7 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.post("$BASE_URL/$DATABASES") {
             contentType(ContentType.Application.Json)
             body = databaseCreate
-        }
+        }.body()
     }
 
     suspend fun updateDatabase(
@@ -150,7 +151,7 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.patch("$BASE_URL/$DATABASES/$id") {
             contentType(ContentType.Application.Json)
             body = updateDatabase
-        }
+        }.body()
     }
 
     // endregion
@@ -159,28 +160,28 @@ internal class NotionService(private val httpClient: HttpClient) {
     // region Pages
 
     suspend fun getPage(id: UuidString): ApiPage {
-        return httpClient.get("$BASE_URL/$PAGES/$id")
+        return httpClient.get("$BASE_URL/$PAGES/$id").body()
     }
 
     suspend fun createPage(parameters: ApiPageCreateParameters): ApiPage {
         return httpClient.post("$BASE_URL/$PAGES") {
             contentType(ContentType.Application.Json)
             body = parameters
-        }
+        }.body()
     }
 
     suspend fun updatePage(id: UuidString, parameters: ApiPageUpdateParameters): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
             body = parameters
-        }
+        }.body()
     }
 
     suspend fun archivePage(id: UuidString, archive: Boolean): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
             body = mapOf("archived" to archive)
-        }
+        }.body()
     }
 
     // endregion
@@ -191,25 +192,25 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun getBlockList(parentId: UuidString, startCursor: String?): ApiResultPage<ApiBlock> {
         return httpClient.get("$BASE_URL/$BLOCKS/$parentId/children") {
             if (startCursor != null) parameter(START_CURSOR, startCursor)
-        }
+        }.body()
     }
 
     suspend fun appendBlockList(parentId: UuidString, parameters: ApiAppendBlocksParameters) {
-        httpClient.patch<Unit>("$BASE_URL/$BLOCKS/$parentId/children") {
+        httpClient.patch("$BASE_URL/$BLOCKS/$parentId/children") {
             contentType(ContentType.Application.Json)
             body = parameters
         }
     }
 
     suspend fun getBlock(id: UuidString): ApiBlock {
-        return httpClient.get("$BASE_URL/$BLOCKS/$id")
+        return httpClient.get("$BASE_URL/$BLOCKS/$id").body()
     }
 
     suspend fun updateBlock(id: UuidString, block: JsonElement): ApiBlock {
         return httpClient.patch("$BASE_URL/$BLOCKS/$id") {
             contentType(ContentType.Application.Json)
             body = block
-        }
+        }.body()
     }
 
     // endregion
@@ -221,14 +222,14 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.post("$BASE_URL/$SEARCH") {
             contentType(ContentType.Application.Json)
             body = parameters
-        }
+        }.body()
     }
 
     suspend fun searchDatabases(parameters: ApiSearchParameters): ApiResultPage<ApiDatabase> {
         return httpClient.post("$BASE_URL/$SEARCH") {
             contentType(ContentType.Application.Json)
             body = parameters
-        }
+        }.body()
     }
 
     // endregion
