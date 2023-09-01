@@ -23,15 +23,15 @@ kotlin {
     }
 
     sourceSets.all {
-        languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
-        languageSettings.useExperimentalAnnotation("kotlinx.cli.ExperimentalCli")
+        languageSettings.optIn("kotlin.RequiresOptIn")
+        languageSettings.optIn("kotlinx.cli.ExperimentalCli")
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
                 // Kotlin
-                implementation("org.jetbrains.kotlinx", "kotlinx-cli", Versions.KOTLINX_CLI)
+                implementation(libs.kotlinx.cli)
 
                 // Library
                 implementation(project(":klibnotion"))

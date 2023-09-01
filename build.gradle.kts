@@ -1,8 +1,8 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
-    id("com.github.ben-manes.versions") version Versions.BEN_MANES_VERSIONS_PLUGIN
-    kotlin("multiplatform") version Versions.KOTLIN apply false
+    alias(libs.plugins.benManes.versions)
+    alias(libs.plugins.kotlin.multiplatform) apply false
 }
 
 buildscript {
@@ -31,13 +31,8 @@ allprojects {
 
 tasks {
     register<Delete>("clean") {
-        delete(rootProject.buildDir)
+        delete(rootProject.file("build"))
         delete(rootProject.file("docs"))
-    }
-
-    wrapper {
-        distributionType = Wrapper.DistributionType.ALL
-        gradleVersion = Versions.GRADLE
     }
 
     // Configuration for gradle-versions-plugin
