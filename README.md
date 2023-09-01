@@ -204,7 +204,7 @@ to [`NotionClient.newInstance()`](https://bod.github.io/klibnotion/klibnotion/or
 
 ## Javascript support
 
-Kotlin Multiplatform projects can target Javascript but as of now this library doesn't support it. See issue #43 if you want to contribute it.
+Kotlin Multiplatform projects can target Javascript but as of now this library doesn't support it. See [issue #43](https://github.com/BoD/klibnotion/issues/43) if you want to contribute it.
 
 ## Author and License
 
