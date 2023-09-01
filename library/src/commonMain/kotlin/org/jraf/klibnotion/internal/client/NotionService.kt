@@ -32,6 +32,7 @@ import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.client.request.patch
 import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
@@ -86,7 +87,7 @@ internal class NotionService(private val httpClient: HttpClient) {
                 getClientSecretBase64(clientId, clientSecret)
             )
             contentType(ContentType.Application.Json)
-            body = parameters
+            setBody(parameters)
         }.body()
     }
 
@@ -131,7 +132,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun queryDatabase(id: UuidString, query: ApiDatabaseQuery): ApiResultPage<ApiPage> {
         return httpClient.post("$BASE_URL/$DATABASES/$id/query") {
             contentType(ContentType.Application.Json)
-            body = query
+            setBody(query)
         }.body()
     }
 
@@ -140,7 +141,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     ): ApiDatabase {
         return httpClient.post("$BASE_URL/$DATABASES") {
             contentType(ContentType.Application.Json)
-            body = databaseCreate
+            setBody(databaseCreate)
         }.body()
     }
 
@@ -150,7 +151,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     ): ApiDatabase {
         return httpClient.patch("$BASE_URL/$DATABASES/$id") {
             contentType(ContentType.Application.Json)
-            body = updateDatabase
+            setBody(updateDatabase)
         }.body()
     }
 
@@ -166,21 +167,21 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun createPage(parameters: ApiPageCreateParameters): ApiPage {
         return httpClient.post("$BASE_URL/$PAGES") {
             contentType(ContentType.Application.Json)
-            body = parameters
+            setBody(parameters)
         }.body()
     }
 
     suspend fun updatePage(id: UuidString, parameters: ApiPageUpdateParameters): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
-            body = parameters
+            setBody(parameters)
         }.body()
     }
 
     suspend fun archivePage(id: UuidString, archive: Boolean): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
-            body = mapOf("archived" to archive)
+            setBody(mapOf("archived" to archive))
         }.body()
     }
 
@@ -198,7 +199,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun appendBlockList(parentId: UuidString, parameters: ApiAppendBlocksParameters) {
         httpClient.patch("$BASE_URL/$BLOCKS/$parentId/children") {
             contentType(ContentType.Application.Json)
-            body = parameters
+            setBody(parameters)
         }
     }
 
@@ -209,7 +210,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun updateBlock(id: UuidString, block: JsonElement): ApiBlock {
         return httpClient.patch("$BASE_URL/$BLOCKS/$id") {
             contentType(ContentType.Application.Json)
-            body = block
+            setBody(block)
         }.body()
     }
 
@@ -221,14 +222,14 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun searchPages(parameters: ApiSearchParameters): ApiResultPage<ApiPage> {
         return httpClient.post("$BASE_URL/$SEARCH") {
             contentType(ContentType.Application.Json)
-            body = parameters
+            setBody(parameters)
         }.body()
     }
 
     suspend fun searchDatabases(parameters: ApiSearchParameters): ApiResultPage<ApiDatabase> {
         return httpClient.post("$BASE_URL/$SEARCH") {
             contentType(ContentType.Application.Json)
-            body = parameters
+            setBody(parameters)
         }.body()
     }
 

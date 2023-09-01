@@ -1,13 +1,11 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import jdk.javadoc.internal.Versions
 
 plugins {
     kotlin("jvm")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
