@@ -56,9 +56,11 @@ private data class NotionError(
     val details: JsonObject? = null,
 ) {
     companion object {
+        private val json = Json { ignoreUnknownKeys = true }
+
         fun fromJsonString(jsonString: String): NotionError? =
             try {
-                Json { ignoreUnknownKeys = true }.decodeFromString(jsonString)
+                json.decodeFromString(jsonString)
             } catch (e: Throwable) {
                 null
             }
