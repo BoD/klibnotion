@@ -1,5 +1,3 @@
-import jdk.javadoc.internal.Versions
-
 plugins {
     kotlin("jvm")
 }
