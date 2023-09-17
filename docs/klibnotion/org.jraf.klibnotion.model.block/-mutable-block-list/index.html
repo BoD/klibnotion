@@ -1,619 +1,547 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html class="no-js">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>MutableBlockList</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
-  <body>
-    <div id="container">
-      <div id="leftColumn"><a href="../../../index.html">
-          <div id="logo"></div>
-        </a>
-        <div id="paneSearch"></div>
-        <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div id="leftToggler"><span class="icon-toggler"></span></div>
-<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="klibnotion::org.jraf.klibnotion.model.block/MutableBlockList///PointingToDeclaration//-390378879">
-          <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../../index.html">klibnotion</a>/<a href="../index.html">org.jraf.klibnotion.model.block</a>/<a href="index.html">MutableBlockList</a></div>
-            <div class="pull-right d-flex">
-              <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector common-like" data-active="" data-filter=":klibnotion:dokkaHtml/commonMain">common</button></div>
-              <div id="searchBar"></div>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            klibnotion
+                    </a>
             </div>
-          </div>
-          <div class="cover ">
-            <h1 class="cover"><span>Mutable</span><wbr></wbr><span>Block</span><wbr></wbr><span><span>List</span></span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">class <a href="index.html">MutableBlockList</a>(blockList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<a href="../-block/index.html">Block</a>&gt;) : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-block/index.html">Block</a>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-          </div>
-          <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
-            <div class="tabs-section-body">
-              <h2 class="">Functions</h2>
-              <div class="table" data-togglable="Functions"><a data-name="-1686151411%2FFunctions%2F-390378879" anchor-label="bookmark" id="-1686151411%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="bookmark.html"><span><span>bookmark</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1686151411%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="bookmark.html">bookmark</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, caption: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="bookmark.html">bookmark</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, caption: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+            <div class="library-version">
+1.12.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":klibnotion:dokkaHtml/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="klibnotion::org.jraf.klibnotion.model.block/MutableBlockList///PointingToDeclaration//-390378879">
+  <div class="breadcrumbs"><a href="../../../index.html">klibnotion</a><span class="delimiter">/</span><a href="../index.html">org.jraf.klibnotion.model.block</a><span class="delimiter">/</span><span class="current">MutableBlockList</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Mutable</span><wbr></wbr><span>Block</span><wbr></wbr><span><span>List</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">MutableBlockList</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blockList<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt;</span><span class="token operator"> = </span>mutableListOf()</span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt; </span></div></div></div>
   </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1056386762%2FFunctions%2F-390378879" anchor-label="bullet" id="-1056386762%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="bullet.html"><span><span>bullet</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1056386762%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="bullet.html">bullet</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="bullet.html">bullet</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="2146588230%2FFunctions%2F-390378879" anchor-label="callout" id="2146588230%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="callout.html"><span><span>callout</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2146588230%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="callout.html">callout</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>, icon: <a href="../../org.jraf.klibnotion.model.base/-emoji-or-file/index.html">EmojiOrFile</a>? = null, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="callout.html">callout</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, icon: <a href="../../org.jraf.klibnotion.model.base/-emoji-or-file/index.html">EmojiOrFile</a>? = null, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1902688630%2FFunctions%2F-390378879" anchor-label="code" id="1902688630%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="code.html"><span><span>code</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1902688630%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="code.html">code</a>(language: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, text: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="code.html">code</a>(language: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1870112721%2FFunctions%2F-390378879" anchor-label="contains" id="-1870112721%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#-1870112721%2FFunctions%2F-390378879"><span><span>contains</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1870112721%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open operator override fun <a href="index.html#-1870112721%2FFunctions%2F-390378879">contains</a>(element: <a href="../-block/index.html">Block</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1455551216%2FFunctions%2F-390378879" anchor-label="containsAll" id="-1455551216%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#-1455551216%2FFunctions%2F-390378879"><span>contains</span><wbr></wbr><span><span>All</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1455551216%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open override fun <a href="index.html#-1455551216%2FFunctions%2F-390378879">containsAll</a>(elements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a>&lt;<a href="../-block/index.html">Block</a>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-470222433%2FFunctions%2F-390378879" anchor-label="divider" id="-470222433%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="divider.html"><span><span>divider</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-470222433%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="divider.html">divider</a>(): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-62530875%2FFunctions%2F-390378879" anchor-label="embed" id="-62530875%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="embed.html"><span><span>embed</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-62530875%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="embed.html">embed</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1467369906%2FFunctions%2F-390378879" anchor-label="equation" id="-1467369906%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="equation.html"><span><span>equation</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1467369906%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="equation.html">equation</a>(expression: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="961975567%2FFunctions%2F-390378879" anchor-label="get" id="961975567%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#961975567%2FFunctions%2F-390378879"><span><span>get</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="961975567%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open operator override fun <a href="index.html#961975567%2FFunctions%2F-390378879">get</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="../-block/index.html">Block</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="71269782%2FFunctions%2F-390378879" anchor-label="heading1" id="71269782%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="heading1.html"><span><span>heading1</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="71269782%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="heading1.html">heading1</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="heading1.html">heading1</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1753607542%2FFunctions%2F-390378879" anchor-label="heading2" id="1753607542%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="heading2.html"><span><span>heading2</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1753607542%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="heading2.html">heading2</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="heading2.html">heading2</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-859021994%2FFunctions%2F-390378879" anchor-label="heading3" id="-859021994%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="heading3.html"><span><span>heading3</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-859021994%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="heading3.html">heading3</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="heading3.html">heading3</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="5277624%2FFunctions%2F-390378879" anchor-label="image" id="5277624%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="image.html"><span><span>image</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="5277624%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="image.html">image</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, caption: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="image.html">image</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, caption: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-889674875%2FFunctions%2F-390378879" anchor-label="indexOf" id="-889674875%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#-889674875%2FFunctions%2F-390378879"><span>index</span><wbr></wbr><span><span>Of</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-889674875%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open override fun <a href="index.html#-889674875%2FFunctions%2F-390378879">indexOf</a>(element: <a href="../-block/index.html">Block</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1000881820%2FFunctions%2F-390378879" anchor-label="isEmpty" id="-1000881820%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#-1000881820%2FFunctions%2F-390378879"><span>is</span><wbr></wbr><span><span>Empty</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1000881820%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open override fun <a href="index.html#-1000881820%2FFunctions%2F-390378879">isEmpty</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1577986619%2FFunctions%2F-390378879" anchor-label="iterator" id="-1577986619%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#-1577986619%2FFunctions%2F-390378879"><span><span>iterator</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1577986619%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open operator override fun <a href="index.html#-1577986619%2FFunctions%2F-390378879">iterator</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterator/index.html">Iterator</a>&lt;<a href="../-block/index.html">Block</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1578814577%2FFunctions%2F-390378879" anchor-label="lastIndexOf" id="-1578814577%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#-1578814577%2FFunctions%2F-390378879"><span>last</span><wbr></wbr><span>Index</span><wbr></wbr><span><span>Of</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1578814577%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open override fun <a href="index.html#-1578814577%2FFunctions%2F-390378879">lastIndexOf</a>(element: <a href="../-block/index.html">Block</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1452260150%2FFunctions%2F-390378879" anchor-label="listIterator" id="-1452260150%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#-236165689%2FFunctions%2F-390378879"><span>list</span><wbr></wbr><span><span>Iterator</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1452260150%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open override fun <a href="index.html#-236165689%2FFunctions%2F-390378879">listIterator</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/index.html">ListIterator</a>&lt;<a href="../-block/index.html">Block</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace">open override fun <a href="index.html#845091493%2FFunctions%2F-390378879">listIterator</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/index.html">ListIterator</a>&lt;<a href="../-block/index.html">Block</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1788682090%2FFunctions%2F-390378879" anchor-label="number" id="-1788682090%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="number.html"><span><span>number</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1788682090%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="number.html">number</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="number.html">number</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-91837104%2FFunctions%2F-390378879" anchor-label="paragraph" id="-91837104%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="paragraph.html"><span><span>paragraph</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-91837104%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="paragraph.html">paragraph</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="paragraph.html">paragraph</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1083944468%2FFunctions%2F-390378879" anchor-label="quote" id="-1083944468%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="quote.html"><span><span>quote</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1083944468%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="quote.html">quote</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="quote.html">quote</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="423386006%2FFunctions%2F-390378879" anchor-label="subList" id="423386006%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#423386006%2FFunctions%2F-390378879"><span>sub</span><wbr></wbr><span><span>List</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="423386006%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">open override fun <a href="index.html#423386006%2FFunctions%2F-390378879">subList</a>(fromIndex: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, toIndex: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-block/index.html">Block</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="944493791%2FFunctions%2F-390378879" anchor-label="syncedBlock" id="944493791%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="synced-block.html"><span>synced</span><wbr></wbr><span><span>Block</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="944493791%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="synced-block.html">syncedBlock</a>(syncedFrom: <a href="../../org.jraf.klibnotion.model.base/index.html#784921236%2FClasslikes%2F-390378879">UuidString</a>): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="890375161%2FFunctions%2F-390378879" anchor-label="tableOfContents" id="890375161%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="table-of-contents.html"><span>table</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Contents</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="890375161%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="table-of-contents.html">tableOfContents</a>(): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1918104310%2FFunctions%2F-390378879" anchor-label="toDo" id="1918104310%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="to-do.html"><span>to</span><wbr></wbr><span><span>Do</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1918104310%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="to-do.html">toDo</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>, checked: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="to-do.html">toDo</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, checked: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1350884982%2FFunctions%2F-390378879" anchor-label="toggle" id="1350884982%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="toggle.html"><span><span>toggle</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1350884982%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="toggle.html">toggle</a>(richTextList: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="toggle.html">toggle</a>(text: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT, children: <a href="../index.html#338856483%2FClasslikes%2F-390378879">BlockListProducer</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1739539528%2FFunctions%2F-390378879" anchor-label="video" id="-1739539528%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="video.html"><span><span>video</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1739539528%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="video.html">video</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, caption: <a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a>? = null): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="video.html">video</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, caption: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, linkUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, annotations: <a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a> = Annotations.DEFAULT): <a href="index.html">MutableBlockList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Properties</h2>
-              <div class="table" data-togglable="Properties"><a data-name="844915858%2FProperties%2F-390378879" anchor-label="size" id="844915858%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#844915858%2FProperties%2F-390378879">size</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="844915858%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="844915858%2FProperties%2F-390378879" anchor-label="size" id="844915858%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">open override val <a href="index.html#844915858%2FProperties%2F-390378879">size</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-                      </div>
-                    </div>
-                  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="678849514%2FConstructors%2F-390378879" anchor-label="MutableBlockList" id="678849514%2FConstructors%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-mutable-block-list.html"><span>Mutable</span><wbr></wbr><span>Block</span><wbr></wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="678849514%2FConstructors%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blockList<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt;</span><span class="token operator"> = </span>mutableListOf()</span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="844915858%2FProperties%2F-390378879" anchor-label="size" id="844915858%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#844915858%2FProperties%2F-390378879"><span><span>size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="844915858%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="index.html#844915858%2FProperties%2F-390378879">size</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1686151411%2FFunctions%2F-390378879" anchor-label="bookmark" id="-1686151411%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bookmark.html"><span><span>bookmark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1686151411%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="bookmark.html"><span class="token function">bookmark</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">caption<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="bookmark.html"><span class="token function">bookmark</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">caption<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1056386762%2FFunctions%2F-390378879" anchor-label="bullet" id="-1056386762%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bullet.html"><span><span>bullet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1056386762%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="bullet.html"><span class="token function">bullet</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="bullet.html"><span class="token function">bullet</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2146588230%2FFunctions%2F-390378879" anchor-label="callout" id="2146588230%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="callout.html"><span><span>callout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2146588230%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="callout.html"><span class="token function">callout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token punctuation">, </span></span><span class="parameter ">icon<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.base/-emoji-or-file/index.html">EmojiOrFile</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="callout.html"><span class="token function">callout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">icon<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.base/-emoji-or-file/index.html">EmojiOrFile</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1902688630%2FFunctions%2F-390378879" anchor-label="code" id="1902688630%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="code.html"><span><span>code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1902688630%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="code.html"><span class="token function">code</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">language<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">text<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="code.html"><span class="token function">code</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">language<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1870112721%2FFunctions%2F-390378879" anchor-label="contains" id="-1870112721%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1870112721%2FFunctions%2F-390378879"><span><span>contains</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1870112721%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="index.html#-1870112721%2FFunctions%2F-390378879"><span class="token function">contains</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">element<span class="token operator">: </span><a href="../-block/index.html">Block</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1455551216%2FFunctions%2F-390378879" anchor-label="containsAll" id="-1455551216%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1455551216%2FFunctions%2F-390378879"><span>contains</span><wbr></wbr><span><span>All</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1455551216%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="index.html#-1455551216%2FFunctions%2F-390378879"><span class="token function">containsAll</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">elements<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-470222433%2FFunctions%2F-390378879" anchor-label="divider" id="-470222433%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="divider.html"><span><span>divider</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-470222433%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="divider.html"><span class="token function">divider</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-62530875%2FFunctions%2F-390378879" anchor-label="embed" id="-62530875%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="embed.html"><span><span>embed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-62530875%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="embed.html"><span class="token function">embed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1467369906%2FFunctions%2F-390378879" anchor-label="equation" id="-1467369906%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="equation.html"><span><span>equation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1467369906%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="equation.html"><span class="token function">equation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">expression<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="961975567%2FFunctions%2F-390378879" anchor-label="get" id="961975567%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#961975567%2FFunctions%2F-390378879"><span><span>get</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="961975567%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="index.html#961975567%2FFunctions%2F-390378879"><span class="token function">get</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-block/index.html">Block</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="71269782%2FFunctions%2F-390378879" anchor-label="heading1" id="71269782%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="heading1.html"><span><span>heading1</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="71269782%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="heading1.html"><span class="token function">heading1</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="heading1.html"><span class="token function">heading1</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1753607542%2FFunctions%2F-390378879" anchor-label="heading2" id="1753607542%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="heading2.html"><span><span>heading2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1753607542%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="heading2.html"><span class="token function">heading2</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="heading2.html"><span class="token function">heading2</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-859021994%2FFunctions%2F-390378879" anchor-label="heading3" id="-859021994%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="heading3.html"><span><span>heading3</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-859021994%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="heading3.html"><span class="token function">heading3</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="heading3.html"><span class="token function">heading3</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="5277624%2FFunctions%2F-390378879" anchor-label="image" id="5277624%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="image.html"><span><span>image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="5277624%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="image.html"><span class="token function">image</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">caption<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="image.html"><span class="token function">image</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">caption<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-889674875%2FFunctions%2F-390378879" anchor-label="indexOf" id="-889674875%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-889674875%2FFunctions%2F-390378879"><span>index</span><wbr></wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-889674875%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="index.html#-889674875%2FFunctions%2F-390378879"><span class="token function">indexOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">element<span class="token operator">: </span><a href="../-block/index.html">Block</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1000881820%2FFunctions%2F-390378879" anchor-label="isEmpty" id="-1000881820%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1000881820%2FFunctions%2F-390378879"><span>is</span><wbr></wbr><span><span>Empty</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1000881820%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="index.html#-1000881820%2FFunctions%2F-390378879"><span class="token function">isEmpty</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1577986619%2FFunctions%2F-390378879" anchor-label="iterator" id="-1577986619%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1577986619%2FFunctions%2F-390378879"><span><span>iterator</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1577986619%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="index.html#-1577986619%2FFunctions%2F-390378879"><span class="token function">iterator</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterator/index.html">Iterator</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1578814577%2FFunctions%2F-390378879" anchor-label="lastIndexOf" id="-1578814577%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1578814577%2FFunctions%2F-390378879"><span>last</span><wbr></wbr><span>Index</span><wbr></wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1578814577%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="index.html#-1578814577%2FFunctions%2F-390378879"><span class="token function">lastIndexOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">element<span class="token operator">: </span><a href="../-block/index.html">Block</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1452260150%2FFunctions%2F-390378879" anchor-label="listIterator" id="-1452260150%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-236165689%2FFunctions%2F-390378879"><span>list</span><wbr></wbr><span><span>Iterator</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1452260150%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="index.html#-236165689%2FFunctions%2F-390378879"><span class="token function">listIterator</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/index.html">ListIterator</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="index.html#845091493%2FFunctions%2F-390378879"><span class="token function">listIterator</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/index.html">ListIterator</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1788682090%2FFunctions%2F-390378879" anchor-label="number" id="-1788682090%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="number.html"><span><span>number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1788682090%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="number.html"><span class="token function">number</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="number.html"><span class="token function">number</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-91837104%2FFunctions%2F-390378879" anchor-label="paragraph" id="-91837104%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="paragraph.html"><span><span>paragraph</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-91837104%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="paragraph.html"><span class="token function">paragraph</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="paragraph.html"><span class="token function">paragraph</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1083944468%2FFunctions%2F-390378879" anchor-label="quote" id="-1083944468%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="quote.html"><span><span>quote</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1083944468%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="quote.html"><span class="token function">quote</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="quote.html"><span class="token function">quote</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="423386006%2FFunctions%2F-390378879" anchor-label="subList" id="423386006%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#423386006%2FFunctions%2F-390378879"><span>sub</span><wbr></wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="423386006%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="index.html#423386006%2FFunctions%2F-390378879"><span class="token function">subList</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">toIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-block/index.html">Block</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="944493791%2FFunctions%2F-390378879" anchor-label="syncedBlock" id="944493791%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="synced-block.html"><span>synced</span><wbr></wbr><span><span>Block</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="944493791%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="synced-block.html"><span class="token function">syncedBlock</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">syncedFrom<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.base/-uuid-string/index.html">UuidString</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="890375161%2FFunctions%2F-390378879" anchor-label="tableOfContents" id="890375161%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="table-of-contents.html"><span>table</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Contents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="890375161%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="table-of-contents.html"><span class="token function">tableOfContents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1918104310%2FFunctions%2F-390378879" anchor-label="toDo" id="1918104310%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-do.html"><span>to</span><wbr></wbr><span><span>Do</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1918104310%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="to-do.html"><span class="token function">toDo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token punctuation">, </span></span><span class="parameter ">checked<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="to-do.html"><span class="token function">toDo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">checked<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1350884982%2FFunctions%2F-390378879" anchor-label="toggle" id="1350884982%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="toggle.html"><span><span>toggle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1350884982%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="toggle.html"><span class="token function">toggle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">richTextList<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="toggle.html"><span class="token function">toggle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT<span class="token punctuation">, </span></span><span class="parameter ">children<span class="token operator">: </span><a href="../-block-list-producer/index.html">BlockListProducer</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1739539528%2FFunctions%2F-390378879" anchor-label="video" id="-1739539528%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="video.html"><span><span>video</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1739539528%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="video.html"><span class="token function">video</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">caption<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-rich-text-list/index.html">RichTextList</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="video.html"><span class="token function">video</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">caption<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">linkUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">annotations<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.richtext/-annotations/index.html">Annotations</a><span class="token operator"> = </span>Annotations.DEFAULT</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MutableBlockList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
-

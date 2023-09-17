@@ -1,343 +1,340 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html class="no-js">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>NotionClient</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
-  <body>
-    <div id="container">
-      <div id="leftColumn"><a href="../../../index.html">
-          <div id="logo"></div>
-        </a>
-        <div id="paneSearch"></div>
-        <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div id="leftToggler"><span class="icon-toggler"></span></div>
-<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="klibnotion::org.jraf.klibnotion.client/NotionClient///PointingToDeclaration//-390378879">
-          <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../../index.html">klibnotion</a>/<a href="../index.html">org.jraf.klibnotion.client</a>/<a href="index.html">NotionClient</a></div>
-            <div class="pull-right d-flex">
-              <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector common-like" data-active="" data-filter=":klibnotion:dokkaHtml/commonMain">common</button><button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":klibnotion:dokkaHtml/jvmMain">jvm</button></div>
-              <div id="searchBar"></div>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            klibnotion
+                    </a>
+            </div>
+            <div class="library-version">
+1.12.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":klibnotion:dokkaHtml/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":klibnotion:dokkaHtml/jvmMain">jvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="klibnotion::org.jraf.klibnotion.client/NotionClient///PointingToDeclaration//-390378879">
+  <div class="breadcrumbs"><a href="../../../index.html">klibnotion</a><span class="delimiter">/</span><a href="../index.html">org.jraf.klibnotion.client</a><span class="delimiter">/</span><span class="current">NotionClient</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Notion</span><wbr></wbr><span><span>Client</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">NotionClient</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-18486023%2FClasslikes%2F-390378879" anchor-label="Blocks" id="-18486023%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-blocks/index.html"><span><span>Blocks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-18486023%2FClasslikes%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-blocks/index.html">Blocks</a></div><div class="brief "><p class="paragraph">Blocks (content) related APIs.</p></div></div></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="cover ">
-            <h1 class="cover"><span>Notion</span><wbr></wbr><span><span>Client</span></span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="index.html">NotionClient</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-          </div>
-          <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Extensions">Extensions</button></div>
-            <div class="tabs-section-body">
-              <h2 class="">Types</h2>
-              <div class="table" data-togglable="Types"><a data-name="-18486023%2FClasslikes%2F-390378879" anchor-label="Blocks" id="-18486023%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-blocks/index.html"><span><span>Blocks</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-18486023%2FClasslikes%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="-blocks/index.html">Blocks</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Blocks (content) related APIs.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
 <a data-name="-1884789673%2FClasslikes%2F-390378879" anchor-label="Companion" id="-1884789673%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-companion/index.html"><span><span>Companion</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1884789673%2FClasslikes%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">object <a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1884789673%2FClasslikes%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-2038024565%2FClasslikes%2F-390378879" anchor-label="Databases" id="-2038024565%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-databases/index.html"><span><span>Databases</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2038024565%2FClasslikes%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="-databases/index.html">Databases</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Database related APIs.</p></div></div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-databases/index.html"><span><span>Databases</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2038024565%2FClasslikes%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-databases/index.html">Databases</a></div><div class="brief "><p class="paragraph">Database related APIs.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="866112524%2FClasslikes%2F-390378879" anchor-label="OAuth" id="866112524%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-o-auth/index.html"><span><span>OAuth</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="866112524%2FClasslikes%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="-o-auth/index.html">OAuth</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">OAuth related APIs.</p></div></div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-o-auth/index.html"><span><span>OAuth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="866112524%2FClasslikes%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-o-auth/index.html">OAuth</a></div><div class="brief "><p class="paragraph">OAuth related APIs.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-344899681%2FClasslikes%2F-390378879" anchor-label="Pages" id="-344899681%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-pages/index.html"><span><span>Pages</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-344899681%2FClasslikes%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="-pages/index.html">Pages</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Page related APIs.</p></div></div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pages/index.html"><span><span>Pages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-344899681%2FClasslikes%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-pages/index.html">Pages</a></div><div class="brief "><p class="paragraph">Page related APIs.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="1487167255%2FClasslikes%2F-390378879" anchor-label="Search" id="1487167255%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-search/index.html"><span><span>Search</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1487167255%2FClasslikes%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="-search/index.html">Search</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Search related APIs.</p></div></div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-search/index.html"><span><span>Search</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1487167255%2FClasslikes%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-search/index.html">Search</a></div><div class="brief "><p class="paragraph">Search related APIs.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-571836965%2FClasslikes%2F-390378879" anchor-label="Users" id="-571836965%2FClasslikes%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-users/index.html"><span><span>Users</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-571836965%2FClasslikes%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="-users/index.html">Users</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">User related APIs.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Functions</h2>
-              <div class="table" data-togglable="Functions"><a data-name="-1835303528%2FFunctions%2F-390378879" anchor-label="close" id="-1835303528%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="close.html"><span><span>close</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1835303528%2FFunctions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">abstract fun <a href="close.html">close</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Dispose of this client instance. This will release some resources so it is recommended to call it after use.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Properties</h2>
-              <div class="table" data-togglable="Properties"><a data-name="1411154564%2FProperties%2F-390378879" anchor-label="blocks" id="1411154564%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="blocks.html">blocks</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1411154564%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="1411154564%2FProperties%2F-390378879" anchor-label="blocks" id="1411154564%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="blocks.html">blocks</a>: <a href="-blocks/index.html">NotionClient.Blocks</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1411154564%2FProperties%2F-390378879" anchor-label="blocks" id="1411154564%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">Block related APIs.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1052457032%2FProperties%2F-390378879" anchor-label="databases" id="-1052457032%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="databases.html">databases</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1052457032%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="-1052457032%2FProperties%2F-390378879" anchor-label="databases" id="-1052457032%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="databases.html">databases</a>: <a href="-databases/index.html">NotionClient.Databases</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1052457032%2FProperties%2F-390378879" anchor-label="databases" id="-1052457032%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">Database related APIs.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1911857735%2FProperties%2F-390378879" anchor-label="oAuth" id="-1911857735%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="o-auth.html">oAuth</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1911857735%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="-1911857735%2FProperties%2F-390378879" anchor-label="oAuth" id="-1911857735%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="o-auth.html">oAuth</a>: <a href="-o-auth/index.html">NotionClient.OAuth</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1911857735%2FProperties%2F-390378879" anchor-label="oAuth" id="-1911857735%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">OAuth related APIs.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1172097356%2FProperties%2F-390378879" anchor-label="pages" id="1172097356%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="pages.html">pages</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1172097356%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="1172097356%2FProperties%2F-390378879" anchor-label="pages" id="1172097356%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="pages.html">pages</a>: <a href="-pages/index.html">NotionClient.Pages</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1172097356%2FProperties%2F-390378879" anchor-label="pages" id="1172097356%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">Page related APIs.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1378159454%2FProperties%2F-390378879" anchor-label="search" id="-1378159454%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="search.html">search</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1378159454%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="-1378159454%2FProperties%2F-390378879" anchor-label="search" id="-1378159454%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="search.html">search</a>: <a href="-search/index.html">NotionClient.Search</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1378159454%2FProperties%2F-390378879" anchor-label="search" id="-1378159454%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">Search related APIs.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="945160072%2FProperties%2F-390378879" anchor-label="users" id="945160072%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="users.html">users</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="945160072%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="945160072%2FProperties%2F-390378879" anchor-label="users" id="945160072%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="users.html">users</a>: <a href="-users/index.html">NotionClient.Users</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="945160072%2FProperties%2F-390378879" anchor-label="users" id="945160072%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">User related APIs.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="tabbedcontent">Extensions</h2>
-              <div class="table" data-togglable="Extensions"><a data-name="1889810257%2FExtensions%2F-390378879" anchor-label="asBlockingNotionClient" id="1889810257%2FExtensions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../org.jraf.klibnotion.client.blocking/as-blocking-notion-client.html"><span>as</span><wbr></wbr><span>Blocking</span><wbr></wbr><span>Notion</span><wbr></wbr><span><span>Client</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1889810257%2FExtensions%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">NotionClient</a>.<a href="../../org.jraf.klibnotion.client.blocking/as-blocking-notion-client.html">asBlockingNotionClient</a>(): <a href="../../org.jraf.klibnotion.client.blocking/-blocking-notion-client/index.html">BlockingNotionClient</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Get a blocking client from a <a href="index.html">NotionClient</a>.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1005722157%2FExtensions%2F1584925525" anchor-label="asFutureNotionClient" id="1005722157%2FExtensions%2F1584925525" data-filterable-set=":klibnotion:dokkaHtml/jvmMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/jvmMain" data-filterable-set=":klibnotion:dokkaHtml/jvmMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../org.jraf.klibnotion.client.future/as-future-notion-client.html"><span>as</span><wbr></wbr><span>Future</span><wbr></wbr><span>Notion</span><wbr></wbr><span><span>Client</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1005722157%2FExtensions%2F1584925525"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">jvm</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":klibnotion:dokkaHtml/jvmMain" data-filterable-set=":klibnotion:dokkaHtml/jvmMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/jvmMain"><div class="symbol monospace">fun <a href="index.html#-340746731%2FExtensions%2F1584925525">NotionClient</a>.<a href="../../org.jraf.klibnotion.client.future/as-future-notion-client.html">asFutureNotionClient</a>(): <a href="../../org.jraf.klibnotion.client.future/-future-notion-client/index.html">FutureNotionClient</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Get a Future based client from a <a href="index.html#-340746731%2FExtensions%2F1584925525">NotionClient</a>.</p></div></div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-users/index.html"><span><span>Users</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-571836965%2FClasslikes%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-users/index.html">Users</a></div><div class="brief "><p class="paragraph">User related APIs.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1411154564%2FProperties%2F-390378879" anchor-label="blocks" id="1411154564%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="blocks.html"><span><span>blocks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1411154564%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="blocks.html">blocks</a><span class="token operator">: </span><a href="-blocks/index.html">NotionClient.Blocks</a></div><div class="brief "><p class="paragraph">Block related APIs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1052457032%2FProperties%2F-390378879" anchor-label="databases" id="-1052457032%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="databases.html"><span><span>databases</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1052457032%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="databases.html">databases</a><span class="token operator">: </span><a href="-databases/index.html">NotionClient.Databases</a></div><div class="brief "><p class="paragraph">Database related APIs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1911857735%2FProperties%2F-390378879" anchor-label="oAuth" id="-1911857735%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="o-auth.html"><span>o</span><wbr></wbr><span><span>Auth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1911857735%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="o-auth.html">oAuth</a><span class="token operator">: </span><a href="-o-auth/index.html">NotionClient.OAuth</a></div><div class="brief "><p class="paragraph">OAuth related APIs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1172097356%2FProperties%2F-390378879" anchor-label="pages" id="1172097356%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pages.html"><span><span>pages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1172097356%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="pages.html">pages</a><span class="token operator">: </span><a href="-pages/index.html">NotionClient.Pages</a></div><div class="brief "><p class="paragraph">Page related APIs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1378159454%2FProperties%2F-390378879" anchor-label="search" id="-1378159454%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="search.html"><span><span>search</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1378159454%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="search.html">search</a><span class="token operator">: </span><a href="-search/index.html">NotionClient.Search</a></div><div class="brief "><p class="paragraph">Search related APIs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="945160072%2FProperties%2F-390378879" anchor-label="users" id="945160072%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="users.html"><span><span>users</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="945160072%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="users.html">users</a><span class="token operator">: </span><a href="-users/index.html">NotionClient.Users</a></div><div class="brief "><p class="paragraph">User related APIs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1889810257%2FFunctions%2F-390378879" anchor-label="asBlockingNotionClient" id="1889810257%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jraf.klibnotion.client.blocking/as-blocking-notion-client.html"><span>as</span><wbr></wbr><span>Blocking</span><wbr></wbr><span>Notion</span><wbr></wbr><span><span>Client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1889810257%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">NotionClient</a><span class="token punctuation">.</span><a href="../../org.jraf.klibnotion.client.blocking/as-blocking-notion-client.html"><span class="token function">asBlockingNotionClient</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.jraf.klibnotion.client.blocking/-blocking-notion-client/index.html">BlockingNotionClient</a></div><div class="brief "><p class="paragraph">Get a blocking client from a <a href="index.html">NotionClient</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1005722157%2FFunctions%2F1584925525" anchor-label="asFutureNotionClient" id="1005722157%2FFunctions%2F1584925525" data-filterable-set=":klibnotion:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":klibnotion:dokkaHtml/jvmMain" data-filterable-set=":klibnotion:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jraf.klibnotion.client.future/as-future-notion-client.html"><span>as</span><wbr></wbr><span>Future</span><wbr></wbr><span>Notion</span><wbr></wbr><span><span>Client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1005722157%2FFunctions%2F1584925525"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":klibnotion:dokkaHtml/jvmMain" data-filterable-set=":klibnotion:dokkaHtml/jvmMain" data-active="" data-toggle=":klibnotion:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">NotionClient</a><span class="token punctuation">.</span><a href="../../org.jraf.klibnotion.client.future/as-future-notion-client.html"><span class="token function">asFutureNotionClient</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.jraf.klibnotion.client.future/-future-notion-client/index.html">FutureNotionClient</a></div><div class="brief "><p class="paragraph">Get a Future based client from a <a href="index.html">NotionClient</a>.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1835303528%2FFunctions%2F-390378879" anchor-label="close" id="-1835303528%2FFunctions%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close.html"><span><span>close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1835303528%2FFunctions%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Dispose of this client instance. This will release some resources so it is recommended to call it after use.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
-

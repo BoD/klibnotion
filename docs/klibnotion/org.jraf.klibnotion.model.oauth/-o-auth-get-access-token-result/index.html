@@ -1,121 +1,164 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html class="no-js">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>OAuthGetAccessTokenResult</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
-  <body>
-    <div id="container">
-      <div id="leftColumn"><a href="../../../index.html">
-          <div id="logo"></div>
-        </a>
-        <div id="paneSearch"></div>
-        <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div id="leftToggler"><span class="icon-toggler"></span></div>
-<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="klibnotion::org.jraf.klibnotion.model.oauth/OAuthGetAccessTokenResult///PointingToDeclaration//-390378879">
-          <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../../index.html">klibnotion</a>/<a href="../index.html">org.jraf.klibnotion.model.oauth</a>/<a href="index.html">OAuthGetAccessTokenResult</a></div>
-            <div class="pull-right d-flex">
-              <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector common-like" data-active="" data-filter=":klibnotion:dokkaHtml/commonMain">common</button></div>
-              <div id="searchBar"></div>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            klibnotion
+                    </a>
+            </div>
+            <div class="library-version">
+1.12.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":klibnotion:dokkaHtml/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="klibnotion::org.jraf.klibnotion.model.oauth/OAuthGetAccessTokenResult///PointingToDeclaration//-390378879">
+  <div class="breadcrumbs"><a href="../../../index.html">klibnotion</a><span class="delimiter">/</span><a href="../index.html">org.jraf.klibnotion.model.oauth</a><span class="delimiter">/</span><span class="current">OAuthGetAccessTokenResult</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>OAuth</span><wbr></wbr><span>Get</span><wbr></wbr><span>Access</span><wbr></wbr><span>Token</span><wbr></wbr><span><span>Result</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">OAuthGetAccessTokenResult</a></div><p class="paragraph">See <a href="https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token">Reference</a>.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1339755241%2FProperties%2F-390378879" anchor-label="accessToken" id="1339755241%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="access-token.html"><span>access</span><wbr></wbr><span><span>Token</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1339755241%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="access-token.html">accessToken</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">An access token used to authorize requests to the Notion API.</p></div></div></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="cover ">
-            <h1 class="cover"><span>OAuth</span><wbr></wbr><span>Get</span><wbr></wbr><span>Access</span><wbr></wbr><span>Token</span><wbr></wbr><span><span>Result</span></span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace">interface <a href="index.html">OAuthGetAccessTokenResult</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">See <a href="https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token">Reference</a>.</p></div></div>
-          </div>
-          <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button></div>
-            <div class="tabs-section-body">
-              <h2 class="">Properties</h2>
-              <div class="table" data-togglable="Properties"><a data-name="1339755241%2FProperties%2F-390378879" anchor-label="accessToken" id="1339755241%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="access-token.html">accessToken</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1339755241%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="1339755241%2FProperties%2F-390378879" anchor-label="accessToken" id="1339755241%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="access-token.html">accessToken</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1339755241%2FProperties%2F-390378879" anchor-label="accessToken" id="1339755241%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">An access token used to authorize requests to the Notion API.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 <a data-name="-372825604%2FProperties%2F-390378879" anchor-label="botId" id="-372825604%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="bot-id.html">botId</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372825604%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="-372825604%2FProperties%2F-390378879" anchor-label="botId" id="-372825604%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="bot-id.html">botId</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-372825604%2FProperties%2F-390378879" anchor-label="botId" id="-372825604%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">An identifier for this authorization.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bot-id.html"><span>bot</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372825604%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="bot-id.html">botId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">An identifier for this authorization.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-1742444272%2FProperties%2F-390378879" anchor-label="workspaceIcon" id="-1742444272%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="workspace-icon.html">workspaceIcon</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1742444272%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="-1742444272%2FProperties%2F-390378879" anchor-label="workspaceIcon" id="-1742444272%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="workspace-icon.html">workspaceIcon</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1742444272%2FProperties%2F-390378879" anchor-label="workspaceIcon" id="-1742444272%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">A URL to an image which can be used to display this authorization in UI.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="workspace-icon.html"><span>workspace</span><wbr></wbr><span><span>Icon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1742444272%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="workspace-icon.html">workspaceIcon</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">A URL to an image which can be used to display this authorization in UI.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-2056770130%2FProperties%2F-390378879" anchor-label="workspaceId" id="-2056770130%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="workspace-id.html">workspaceId</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056770130%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="-2056770130%2FProperties%2F-390378879" anchor-label="workspaceId" id="-2056770130%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="workspace-id.html">workspaceId</a>: <a href="../../org.jraf.klibnotion.model.base/index.html#784921236%2FClasslikes%2F-390378879">UuidString</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2056770130%2FProperties%2F-390378879" anchor-label="workspaceId" id="-2056770130%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">The ID of the workspace where this authorization took place.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="workspace-id.html"><span>workspace</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056770130%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="workspace-id.html">workspaceId</a><span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.base/-uuid-string/index.html">UuidString</a></div><div class="brief "><p class="paragraph">The ID of the workspace where this authorization took place.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="30131006%2FProperties%2F-390378879" anchor-label="workspaceName" id="30131006%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a>
-                <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="workspace-name.html">workspaceName</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="30131006%2FProperties%2F-390378879"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag common-like">common</div>
-                      </div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><a data-name="30131006%2FProperties%2F-390378879" anchor-label="workspaceName" id="30131006%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><div class="symbol monospace">abstract val <a href="workspace-name.html">workspaceName</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="30131006%2FProperties%2F-390378879" anchor-label="workspaceName" id="30131006%2FProperties%2F-390378879" data-filterable-set=":klibnotion:dokkaHtml/commonMain"></a><p class="paragraph">A human-readable name which can be used to display this authorization in UI.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":klibnotion:dokkaHtml/commonMain" data-filterable-set=":klibnotion:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="workspace-name.html"><span>workspace</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="30131006%2FProperties%2F-390378879"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="workspace-name.html">workspaceName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">A human-readable name which can be used to display this authorization in UI.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
-

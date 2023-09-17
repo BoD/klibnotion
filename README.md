@@ -33,7 +33,7 @@ repositories {
 ```kotlin
 dependencies {
     /* ... */
-    implementation("org.jraf:klibnotion:1.11.0")
+    implementation("org.jraf:klibnotion:1.12.0")
 }
 ```
 
