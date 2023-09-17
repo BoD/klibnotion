@@ -2,8 +2,14 @@
 
 ## Next version (????-??-??)
 
-- Fix pagination not working due to start cursor encoded as query parameter (#24)
-  . [Thanks](https://github.com/BoD/klibnotion/pull/25) [@ashdavies](https://github.com/ashdavies)!
+## v1.12.0 (2023-09-17)
+
+- Fix pagination not working due to start cursor encoded as query parameter
+  (#24). [Thanks](https://github.com/BoD/klibnotion/pull/25) @ashdavies!
+- Allow getting readonly propertyValueList (#39). Thanks @KazankovMarch!
+- Bump ktor client version to 2.2.4, kotlin -- 1.6.10 (#40). Thanks @KazankovMarch!
+- Use version catalog and update all dependencies to latest versions. (#42)
+- Do not create Json parser on each `NotionClientRequestException` (#41) Thanks @KazankovMarch!
 
 ## v1.11.0 (2022-01-04)
 
