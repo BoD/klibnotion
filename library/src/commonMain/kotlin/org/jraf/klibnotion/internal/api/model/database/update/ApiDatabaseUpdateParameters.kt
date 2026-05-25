@@ -28,15 +28,16 @@ package org.jraf.klibnotion.internal.api.model.database.update
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
-import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
 
 /**
  * See [Reference](https://developers.notion.com/reference/update-a-database).
+ *
+ * As of API version 2025-09-03, properties are no longer updated here — use the data sources API
+ * (`PATCH /v1/data_sources/{data_source_id}`) instead.
  */
 @Serializable
 internal data class ApiDatabaseUpdateParameters(
     val title: JsonArray? = null,
     val icon: JsonElement? = null,
     val cover: JsonElement? = null,
-    val properties: Map<String, ApiPropertySpec>? = null,
 )

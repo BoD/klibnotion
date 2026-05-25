@@ -23,29 +23,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.database.create
+package org.jraf.klibnotion.internal.api.model.datasource
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonElement
-import org.jraf.klibnotion.internal.api.model.base.ApiReference
 import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpec
 
 /**
- * See [Reference](https://developers.notion.com/reference/create-a-database).
+ * Parameters for PATCH /v1/data_sources/{data_source_id}.
+ *
+ * As of API version 2025-09-03, database property schemas are managed at the data source level,
+ * not the database level. Use this to add or modify properties in a database's data source.
  */
 @Serializable
-internal data class ApiDatabaseCreateParameters(
-    val parent: ApiReference,
-    val title: JsonArray,
-    val icon: JsonElement? = null,
-    val cover: JsonElement? = null,
-    // As of API version 2025-09-03, properties are specified under initial_data_source,
-    // not at the top level of the database create parameters.
-    val initial_data_source: ApiInitialDataSource? = null,
-)
-
-@Serializable
-internal data class ApiInitialDataSource(
+internal data class ApiDataSourceUpdateParameters(
     val properties: Map<String, ApiPropertySpec>? = null,
 )

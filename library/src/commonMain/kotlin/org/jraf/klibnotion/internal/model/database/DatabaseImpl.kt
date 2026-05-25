@@ -43,4 +43,5 @@ internal data class DatabaseImpl(
     override val lastEdited: Timestamp,
     override val icon: EmojiOrFile?,
     override val cover: File?,
+    override val dataSourceIds: List<String>,
 ) : Database

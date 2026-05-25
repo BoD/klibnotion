@@ -66,6 +66,7 @@ import org.jraf.klibnotion.internal.api.model.database.create.DatabaseCreatePara
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
 import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdateParametersConverter
 import org.jraf.klibnotion.internal.api.model.database.update.DatabaseUpdateParameters
+import org.jraf.klibnotion.internal.api.model.datasource.ApiDataSourceUpdateParameters
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResultConverter
@@ -76,6 +77,7 @@ import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageUpdateParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.PageCreateParameters
 import org.jraf.klibnotion.internal.api.model.page.PageUpdateParameters
+import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverter
 import org.jraf.klibnotion.internal.api.model.search.SearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
@@ -142,7 +144,12 @@ internal class NotionClientImpl(
                         // - https://youtrack.jetbrains.com/issue/KTOR-2740
                         // - https://github.com/Kotlin/kotlinx.serialization/issues/1450
                         useAlternativeNames = false
-                    }
+
+                        // Don't encode fields that have their default value (typically null).
+                        // This keeps outgoing request bodies clean: property specs, query filters, etc.
+                        // only include the fields that are actually set.
+                        encodeDefaults = false
+                    },
                 )
             }
             defaultRequest {
@@ -188,7 +195,18 @@ internal class NotionClientImpl(
                 }
             }
             HttpResponseValidator {
+                validateResponse { response ->
+                    val statusCode = response.status.value
+                    if (statusCode >= 400) {
+                        // Read the body here, before ContentNegotiation tries to deserialize it as a domain object.
+                        val body = response.bodyAsText()
+                        throw NotionClientRequestException(ClientRequestException(response, body), body)
+                    }
+                }
                 handleResponseExceptionWithRequest { cause: Throwable, _: HttpRequest ->
+                    // Re-throw NotionClientRequestException as-is (already created in validateResponse).
+                    if (cause is NotionClientRequestException) throw cause
+
                     if (cause is ClientRequestException) throw NotionClientRequestException(
                         cause,
                         cause.response.bodyAsText()
@@ -280,8 +298,12 @@ internal class NotionClientImpl(
         sort: PropertySort?,
         pagination: Pagination,
     ): ResultPage<Page> {
-        return service.queryDatabase(
-            id,
+        // As of API version 2025-09-03, the query endpoint moved to /v1/data_sources/{id}/query.
+        // Fetch the database to obtain the data source ID, then query against it.
+        val database = service.getDatabase(id).apiToModel(ApiDatabaseConverter)
+        val dataSourceId = database.dataSourceIds.firstOrNull() ?: id
+        return service.queryDataSource(
+            dataSourceId,
             Triple(query, sort, pagination).modelToApi(ApiDatabaseQueryConverter),
         )
             .apiToModel(ApiPageResultPageConverter)
@@ -313,16 +335,37 @@ internal class NotionClientImpl(
         cover: File?,
         properties: PropertySpecList?,
     ): Database {
-        return service.updateDatabase(
-            id,
-            DatabaseUpdateParameters(
-                title = title,
-                icon = icon,
-                cover = cover,
-                properties = properties,
-            ).modelToApi(ApiDatabaseUpdateParametersConverter)
-        )
-            .apiToModel(ApiDatabaseConverter)
+        // Step 1: Update metadata (title, icon, cover) via the databases endpoint.
+        // If none of those are provided we still call getDatabase to retrieve data source IDs (needed for step 2).
+        val database = if (title != null || icon != null || cover != null) {
+            service.updateDatabase(
+                id,
+                DatabaseUpdateParameters(
+                    title = title,
+                    icon = icon,
+                    cover = cover,
+                    properties = null,
+                ).modelToApi(ApiDatabaseUpdateParametersConverter),
+            ).apiToModel(ApiDatabaseConverter)
+        } else {
+            service.getDatabase(id).apiToModel(ApiDatabaseConverter)
+        }
+
+        // Step 2: If properties are provided, update the first data source's schema.
+        // As of API version 2025-09-03, properties are managed at the data source level.
+        if (properties != null) {
+            val dataSourceId = database.dataSourceIds.firstOrNull()
+            if (dataSourceId != null) {
+                service.updateDataSource(
+                    dataSourceId,
+                    ApiDataSourceUpdateParameters(
+                        properties = properties.propertySpecList.modelToApi(ApiPropertySpecConverter).toMap(),
+                    ),
+                )
+            }
+        }
+
+        return database
     }
 
     // endregion
@@ -515,7 +558,7 @@ internal class NotionClientImpl(
             parameters = SearchParameters(
                 query = query,
                 sort = sort,
-                type = "database",
+                type = "data_source",
                 startCursor = pagination.startCursor,
             ).modelToApi(ApiSearchParametersConverter),
         )

@@ -49,5 +49,6 @@ internal object ApiDatabaseConverter : ApiConverter<ApiDatabase, Database>() {
         lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp,
         icon = apiModel.icon.apiToModel(ApiEmojiOrFileConverter),
         cover = apiModel.cover.apiToModel(ApiEmojiOrFileConverter) as? File,
+        dataSourceIds = apiModel.data_sources.map { it.id },
     )
 }

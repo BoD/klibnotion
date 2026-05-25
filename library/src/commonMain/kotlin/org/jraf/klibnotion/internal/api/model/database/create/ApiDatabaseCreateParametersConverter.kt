@@ -40,7 +40,11 @@ internal object ApiDatabaseCreateParametersConverter :
         return ApiDatabaseCreateParameters(
             parent = PageReference(model.parentPageId).modelToApi(ApiReferenceConverter),
             title = model.title.modelToApi(ApiOutRichTextListConverter),
-            properties = model.properties.propertySpecList.modelToApi(ApiPropertySpecConverter).toMap(),
+            // As of API version 2025-09-03, properties are specified under initial_data_source.
+            initial_data_source = ApiInitialDataSource(
+                properties = model.properties.propertySpecList.modelToApi(ApiPropertySpecConverter).toMap()
+                    .takeIf { it.isNotEmpty() },
+            ),
             icon = model.icon?.modelToApi(ApiOutEmojiOrFileConverter),
             cover = model.cover?.modelToApi(ApiOutFileConverter),
         )

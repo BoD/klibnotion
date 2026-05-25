@@ -45,4 +45,9 @@ interface Database {
     val lastEdited: Timestamp
     val icon: EmojiOrFile?
     val cover: File?
+
+    /**
+     * IDs of the data sources that own this database's schema (introduced in API version 2025-09-03).
+     */
+    val dataSourceIds: List<String>
 }
