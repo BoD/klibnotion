@@ -33,5 +33,5 @@ import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
  */
 @Serializable
 internal data class ApiBlockText(
-    val text: List<ApiRichText>,
+    val rich_text: List<ApiRichText>,
 )

@@ -168,5 +168,5 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
     }
 
     private fun JsonObjectBuilder.text(richTextList: RichTextList) =
-        put("text", richTextList.modelToApi(ApiOutRichTextListConverter))
+        put("rich_text", richTextList.modelToApi(ApiOutRichTextListConverter))
 }

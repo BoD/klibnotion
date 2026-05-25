@@ -269,9 +269,9 @@ internal class NotionClientImpl(
             .apiToModel(ApiDatabaseConverter)
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override suspend fun getDatabaseList(pagination: Pagination): ResultPage<Database> {
-        return service.getDatabaseList(pagination.startCursor)
-            .apiToModel(ApiPageResultDatabaseConverter)
+        return searchDatabases(pagination = pagination)
     }
 
     override suspend fun queryDatabase(
@@ -526,7 +526,7 @@ internal class NotionClientImpl(
 
     companion object {
         private const val HEADER_NOTION_VERSION = "Notion-Version"
-        private const val NOTION_API_VERSION = "2021-08-16"
+        private const val NOTION_API_VERSION = "2022-02-22"
     }
 }
 

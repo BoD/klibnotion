@@ -314,7 +314,7 @@ class Sample {
         var resultPage: ResultPage<Database>
         var pagination = Pagination()
         do {
-            resultPage = client.databases.getDatabaseList(pagination = pagination)
+            resultPage = client.search.searchDatabases(pagination = pagination)
             results += resultPage.results
             resultPage.nextPagination?.let { pagination = it }
         } while (resultPage.nextPagination != null)

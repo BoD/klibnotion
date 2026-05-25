@@ -115,8 +115,12 @@ interface NotionClient {
         /**
          * List Databases.
          * This lists all the databases that have been shared with your bot.
+         *
+         * **Deprecated:** The underlying API endpoint was deprecated in version 2022-02-22.
+         * Use [org.jraf.klibnotion.client.NotionClient.Search.searchDatabases] instead.
          * @see <a href="https://developers.notion.com/reference/get-databases">List Databases</a>
          */
+        @Deprecated("The List Databases endpoint was deprecated by Notion in API version 2022-02-22. Use search.searchDatabases instead.")
         suspend fun getDatabaseList(pagination: Pagination = Pagination()): ResultPage<Database>
 
         /**

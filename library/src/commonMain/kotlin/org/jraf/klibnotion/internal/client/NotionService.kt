@@ -119,12 +119,6 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.get("$BASE_URL/$DATABASES/$id").body()
     }
 
-    suspend fun getDatabaseList(startCursor: String?): ApiResultPage<ApiDatabase> {
-        return httpClient.get("$BASE_URL/$DATABASES") {
-            if (startCursor != null) parameter(START_CURSOR, startCursor)
-        }.body()
-    }
-
     suspend fun queryDatabase(id: UuidString, query: ApiDatabaseQuery): ApiResultPage<ApiPage> {
         return httpClient.post("$BASE_URL/$DATABASES/$id/query") {
             contentType(ContentType.Application.Json)

@@ -125,9 +125,9 @@ class Sample {
                     // This is only needed to debug with, e.g., Charles Proxy
                     httpProxy = HttpProxy("localhost", 8888),
                     // Can be useful in certain circumstances, but unwise to use in production
-                    bypassSslChecks = true
-                )
-            )
+                    bypassSslChecks = true,
+                ),
+            ),
         )
     }
 
@@ -318,7 +318,7 @@ class Sample {
         var resultPage: ResultPage<Database>
         var pagination = Pagination()
         do {
-            resultPage = client.databases.getDatabaseList(pagination = pagination)
+            resultPage = client.search.searchDatabases(pagination = pagination)
             results += resultPage.results
             resultPage.nextPagination?.let { pagination = it }
         } while (resultPage.nextPagination != null)
@@ -603,7 +603,7 @@ class Sample {
                 ),
             sort = PropertySort()
                 .ascending("Created time")
-                .descending("title")
+                .descending("title"),
         )
         println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
     }
