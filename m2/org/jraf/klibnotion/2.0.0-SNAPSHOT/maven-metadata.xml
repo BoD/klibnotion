@@ -3,44 +3,44 @@
   <groupId>org.jraf</groupId>
   <artifactId>klibnotion</artifactId>
   <versioning>
-    <lastUpdated>20260525105739</lastUpdated>
+    <lastUpdated>20260525105820</lastUpdated>
     <snapshot>
-      <timestamp>20260525.105739</timestamp>
+      <timestamp>20260525.105820</timestamp>
       <buildNumber>1</buildNumber>
     </snapshot>
     <snapshotVersions>
       <snapshotVersion>
+        <extension>jar</extension>
+        <value>2.0.0-20260525.105820-1</value>
+        <updated>20260525105820</updated>
+      </snapshotVersion>
+      <snapshotVersion>
         <classifier>kotlin-tooling-metadata</classifier>
         <extension>json</extension>
-        <value>2.0.0-20260525.105739-1</value>
-        <updated>20260525105739</updated>
+        <value>2.0.0-20260525.105820-1</value>
+        <updated>20260525105820</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>2.0.0-20260525.105739-1</value>
-        <updated>20260525105739</updated>
-      </snapshotVersion>
-      <snapshotVersion>
-        <classifier>javadoc</classifier>
-        <extension>jar</extension>
-        <value>2.0.0-20260525.105739-1</value>
-        <updated>20260525105739</updated>
+        <value>2.0.0-20260525.105820-1</value>
+        <updated>20260525105820</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>module</extension>
-        <value>2.0.0-20260525.105739-1</value>
-        <updated>20260525105739</updated>
+        <value>2.0.0-20260525.105820-1</value>
+        <updated>20260525105820</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>sources</classifier>
         <extension>jar</extension>
-        <value>2.0.0-20260525.105739-1</value>
-        <updated>20260525105739</updated>
+        <value>2.0.0-20260525.105820-1</value>
+        <updated>20260525105820</updated>
       </snapshotVersion>
       <snapshotVersion>
+        <classifier>javadoc</classifier>
         <extension>jar</extension>
-        <value>2.0.0-20260525.105739-1</value>
-        <updated>20260525105739</updated>
+        <value>2.0.0-20260525.105820-1</value>
+        <updated>20260525105820</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
