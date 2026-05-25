@@ -29,10 +29,20 @@ import kotlinx.serialization.Serializable
 
 /**
  * See [Reference](https://developers.notion.com/reference/database).
+ *
+ * As of API version 2022-06-28, the relation type is either `single_property` (no synced
+ * property) or `dual_property` (synced property info lives inside the nested object).
  */
 @Serializable
 internal data class ApiPropertySpecRelation(
     val database_id: String,
-    val synced_property_name: String,
-    val synced_property_id: String,
+    val type: String? = null,
+    val single_property: ApiEmpty? = null,
+    val dual_property: ApiPropertySpecRelationDualProperty? = null,
+)
+
+@Serializable
+internal data class ApiPropertySpecRelationDualProperty(
+    val synced_property_name: String? = null,
+    val synced_property_id: String? = null,
 )

@@ -526,7 +526,7 @@ internal class NotionClientImpl(
 
     companion object {
         private const val HEADER_NOTION_VERSION = "Notion-Version"
-        private const val NOTION_API_VERSION = "2022-02-22"
+        private const val NOTION_API_VERSION = "2022-06-28"
     }
 }
 

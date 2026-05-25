@@ -35,4 +35,6 @@ internal data class ApiReference(
     val type: String? = null,
     val database_id: String? = null,
     val page_id: String? = null,
+    val block_id: String? = null,
+    val workspace: Boolean? = null,
 )
