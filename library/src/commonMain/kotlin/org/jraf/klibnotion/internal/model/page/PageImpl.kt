@@ -28,18 +28,18 @@ package org.jraf.klibnotion.internal.model.page
 import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.Reference
-import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.page.Page
 import org.jraf.klibnotion.model.property.value.PropertyValue
+import kotlin.time.Instant
 
 internal data class PageImpl(
     override val id: UuidString,
     override val parent: Reference,
     override val propertyValues: List<PropertyValue<*>>,
     override val inTrash: Boolean,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
+    override val created: Instant,
+    override val lastEdited: Instant,
     override val url: String,
     override val icon: EmojiOrFile?,
     override val cover: File?,

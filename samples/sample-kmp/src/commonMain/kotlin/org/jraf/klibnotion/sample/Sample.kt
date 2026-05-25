@@ -29,6 +29,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.jraf.klibnotion.client.Authentication
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpConfiguration
@@ -88,10 +92,10 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.richtext.text
 import org.jraf.klibnotion.model.user.Person
 import org.jraf.klibnotion.model.user.User
-import org.slf4j.simple.SimpleLogger
 import kotlin.coroutines.coroutineContext
 import kotlin.random.Random
-import kotlin.system.exitProcess
+import kotlin.time.Clock
+import kotlin.time.Duration.Companion.days
 
 // !!!!! DO THIS FIRST !!!!!
 // Replace this constant with your Internal Integration Token
@@ -133,8 +137,6 @@ class Sample {
     }
 
     fun main() {
-        System.setProperty(SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "DEBUG");
-
         runBlocking {
             setupAuthentication()
 
@@ -187,9 +189,6 @@ class Sample {
 
             // Close
             client.close()
-
-            // Exit process
-            exitProcess(0)
         }
     }
 
@@ -198,7 +197,7 @@ class Sample {
             val oAuthCredentials = OAuthCredentials(
                 clientId = OAUTH_CLIENT_ID,
                 clientSecret = OAUTH_CLIENT_SECRET,
-                redirectUri = OAUTH_REDIRECT_URI
+                redirectUri = OAUTH_REDIRECT_URI,
             )
 
             // 1/ Authenticate the user / integration
@@ -208,7 +207,7 @@ class Sample {
 
             // 2/ Extract code
             println("After successful authentication please paste the URL in the browser's bar, and press enter:")
-            val redirectUri = readLine()!!
+            val redirectUri = readln()
             val codeAndUniqueState = client.oAuth.extractCodeAndStateFromRedirectUri(redirectUri)
             println(codeAndUniqueState)
             if (codeAndUniqueState == null || codeAndUniqueState.state != uniqueState) {
@@ -219,7 +218,7 @@ class Sample {
             // 3/ Exchange code for an access token
             val getAccessTokenResult = client.oAuth.getAccessToken(
                 oAuthCredentials = oAuthCredentials,
-                code = codeAndUniqueState.code
+                code = codeAndUniqueState.code,
             )
             println(getAccessTokenResult)
 
@@ -262,27 +261,31 @@ class Sample {
                 .file("File")
                 .lastEditedBy("Last edited by")
                 .lastEditedTime("Last edited time")
-                .multiSelect("Multi", SelectOptionList()
-                    .option("Red", Color.RED)
-                    .option("Green", Color.GREEN)
-                    .option("Blue", Color.BLUE)
+                .multiSelect(
+                    "Multi",
+                    SelectOptionList()
+                        .option("Red", Color.RED)
+                        .option("Green", Color.GREEN)
+                        .option("Blue", Color.BLUE),
                 )
                 .number("Number", NumberPropertySpec.NumberFormat.REAL)
                 .number("Number 2", NumberPropertySpec.NumberFormat.NUMBER)
                 .number("Empty number", NumberPropertySpec.NumberFormat.CANADIAN_DOLLAR)
                 .people("People")
                 .phoneNumber("Phone")
-                .select("Select", SelectOptionList()
-                    .option("First", Color.RED)
-                    .option("Second", Color.GREEN)
-                    .option("Third", Color.BLUE)
+                .select(
+                    "Select",
+                    SelectOptionList()
+                        .option("First", Color.RED)
+                        .option("Second", Color.GREEN)
+                        .option("Third", Color.BLUE),
                 )
                 .text("Text 1")
                 .text("Text 2")
                 .text("Text 3")
                 .text("Text 4")
                 .url("Url")
-                .formula("Url or no url", """if (empty(prop("Url")), "No URL", prop("Url"))""")
+                .formula("Url or no url", """if (empty(prop("Url")), "No URL", prop("Url"))"""),
             // Unsupported for now
             //.relation(...)
             //.rollup(...)
@@ -305,13 +308,14 @@ class Sample {
         println("Updated database:")
         val updatedDatabase = client.databases.updateDatabase(
             id = databaseId,
-            properties = PropertySpecList().select("Select",
+            properties = PropertySpecList().select(
+                "Select",
                 SelectOptionList()
                     .option("First 2", Color.PURPLE)
                     .option("Second 2", Color.GREEN)
                     .option("Third 2", Color.BLUE)
-                    .option("Fourth", Color.ORANGE)
-            )
+                    .option("Fourth", Color.ORANGE),
+            ),
         )
         println(updatedDatabase)
     }
@@ -350,8 +354,8 @@ class Sample {
                     "Some date",
                     DateOrDateRange(
                         start = DateTime(newDateNow()),
-                        end = Date(newDateTomorrow())
-                    )
+                        end = Date(newDateTomorrow()),
+                    ),
                 )
                 .email("Email", "aaa@aaa.com")
                 .multiSelectByNames("Multi", "Red", "Green")
@@ -363,7 +367,8 @@ class Sample {
 
                 .text("Text 1", "Title ${Random.nextInt()}", annotations = Annotations(color = Color.BLUE))
                 .text(
-                    "Text 2", RichTextList()
+                    "Text 2",
+                    RichTextList()
                         .text("default ")
                         .text("red ", Annotations(color = Color.RED))
                         .text("pink background ", Annotations(color = Color.PINK_BACKGROUND))
@@ -372,10 +377,11 @@ class Sample {
                         .text("strikethrough ", Annotations.STRIKETHROUGH)
                         .text("underline ", Annotations.UNDERLINE)
                         .text("code ", Annotations.CODE)
-                        .text("mixed", Annotations(bold = true, italic = true, color = Color.PURPLE))
+                        .text("mixed", Annotations(bold = true, italic = true, color = Color.PURPLE)),
                 )
                 .text(
-                    "Text 3", RichTextList()
+                    "Text 3",
+                    RichTextList()
                         .text("some url", linkUrl = "https://JRAF.org").text("\n")
                         .userMention(userId).text("\n")
                         .databaseMention(databaseId).text("\n")
@@ -384,10 +390,10 @@ class Sample {
                         .text("\n")
                         .equation(
                             "f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi",
-                            Annotations(color = Color.YELLOW)
-                        )
+                            Annotations(color = Color.YELLOW),
+                        ),
                 )
-                .url("Url", "https://zgluteks.com")
+                .url("Url", "https://zgluteks.com"),
             // Unsupported for now
             // .relation("Relation", ROOT_PAGE_ID)
         ) {
@@ -437,12 +443,15 @@ class Sample {
                 heading3("This too!")
             }
 
-            code("kotlin", """
+            code(
+                "kotlin",
+                """
                 data class Person(
                     val firstName: String,
                     val lastName: String,
                 )
-            """.trimIndent())
+            """.trimIndent(),
+            )
 
             divider()
 
@@ -465,8 +474,10 @@ class Sample {
             tableOfContents()
 
             image("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg", caption = "A caption")
-            video("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-                caption = "Some video")
+            video(
+                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                caption = "Some video",
+            )
         }
 
         println(createdPageInDb)
@@ -488,7 +499,7 @@ class Sample {
                 .title("The title", "A page in a database (updated) ${Random.nextInt()}")
                 .checkbox("Is checked", Random.nextBoolean())
                 .text("Text 1", null)
-                .number("Number 2", null)
+                .number("Number 2", null),
         )
         println(updatedPage)
     }
@@ -581,15 +592,15 @@ class Sample {
                 .any(
                     DatabaseQueryPropertyFilter.Text(
                         propertyIdOrName = "Text 1",
-                        predicate = DatabaseQueryPredicate.Text.Contains("Title")
+                        predicate = DatabaseQueryPredicate.Text.Contains("Title"),
                     ),
                     DatabaseQueryPropertyFilter.Text(
                         propertyIdOrName = "Text 2",
-                        predicate = DatabaseQueryPredicate.Text.Equals("default red pink background bold italic strikethrough underline code mixed")
+                        predicate = DatabaseQueryPredicate.Text.Equals("default red pink background bold italic strikethrough underline code mixed"),
                     ),
                     DatabaseQueryPropertyFilter.Number(
                         propertyIdOrName = "Number",
-                        predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(1)
+                        predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(1),
                     ),
                     // Should work but doesn't
 //                    DatabaseQueryPropertyFilter.Formula(
@@ -602,7 +613,7 @@ class Sample {
                     ),
                     DatabaseQueryPropertyFilter.Checkbox(
                         propertyIdOrName = "Is checked",
-                        predicate = DatabaseQueryPredicate.Checkbox(true)
+                        predicate = DatabaseQueryPredicate.Checkbox(true),
                     ),
                 ),
             sort = PropertySort()
@@ -678,7 +689,7 @@ class Sample {
         println("Created page with synced content:")
         val createdPageInDb: Page = client.pages.createPage(
             parentDatabase = DatabaseReference(databaseId),
-            properties = PropertyValueList().title("The title", "Synced content")
+            properties = PropertyValueList().title("The title", "Synced content"),
         ) {
             heading1("Synced block")
             syncedBlock(syncedBlockId)
@@ -706,7 +717,7 @@ class Sample {
         val queryPageSearchResults =
             client.search.searchPages(
                 query = "page",
-                sort = PropertySort().descending("last_edited_time")
+                sort = PropertySort().descending("last_edited_time"),
             )
         println(queryPageSearchResults)
     }
@@ -728,14 +739,15 @@ class Sample {
         println("Databases search results (query):")
         val queryDatabasesSearchResults = client.search.searchDatabases(
             query = "database",
-            sort = PropertySort().descending("last_edited_time")
+            sort = PropertySort().descending("last_edited_time"),
         )
         println(queryDatabasesSearchResults)
     }
 
-    private fun newDateNow() = java.util.Date()
+    private fun newDateNow(): LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
-    private fun newDateTomorrow() = java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)
+    private fun newDateTomorrow(): LocalDate =
+        (Clock.System.now() + 1.days).toLocalDateTime(TimeZone.currentSystemDefault()).date
 
     private fun Page.toFormattedString(): String {
         val res = StringBuilder("-----------\n")
@@ -798,5 +810,3 @@ class Sample {
         return res.toString()
     }
 }
-
-fun main() = Sample().main()

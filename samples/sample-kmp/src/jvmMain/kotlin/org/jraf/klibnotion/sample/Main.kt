@@ -23,8 +23,11 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.date
+package org.jraf.klibnotion.sample
 
-import java.util.Date
+import org.slf4j.simple.SimpleLogger
 
-actual typealias Timestamp = Date
+fun main() {
+    System.setProperty(SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "DEBUG")
+    Sample().main()
+}

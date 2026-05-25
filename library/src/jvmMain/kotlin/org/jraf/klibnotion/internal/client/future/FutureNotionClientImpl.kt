@@ -73,6 +73,7 @@ internal class FutureNotionClientImpl(
         notionClient.databases.getDatabase(id)
     }
 
+    @Suppress("DEPRECATION")
     override fun getDatabaseList(pagination: Pagination) = GlobalScope.future {
         notionClient.databases.getDatabaseList(pagination)
     }

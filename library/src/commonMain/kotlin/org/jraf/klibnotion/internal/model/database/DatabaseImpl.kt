@@ -29,18 +29,18 @@ import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.Reference
 import org.jraf.klibnotion.model.database.Database
-import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.richtext.RichTextList
+import kotlin.time.Instant
 
 internal data class DatabaseImpl(
     override val id: UuidString,
     override val parent: Reference,
     override val title: RichTextList,
     override val propertySpecs: List<PropertySpec>,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
+    override val created: Instant,
+    override val lastEdited: Instant,
     override val icon: EmojiOrFile?,
     override val cover: File?,
     override val dataSourceIds: List<String>,

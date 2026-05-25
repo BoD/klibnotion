@@ -28,12 +28,12 @@ package org.jraf.klibnotion.internal.model.block
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.DividerBlock
-import org.jraf.klibnotion.model.date.Timestamp
+import kotlin.time.Instant
 
 internal data class DividerBlockImpl(
     override val id: UuidString,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
+    override val created: Instant,
+    override val lastEdited: Instant,
 ) : DividerBlock {
     override val children: List<Block>? = null
 }

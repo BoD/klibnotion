@@ -12,9 +12,6 @@ application {
 }
 
 dependencies {
-    // Kotlin
-    implementation(libs.kotlinx.coroutines.core)
-
     // Logging
     implementation(libs.slf4j.simple)
 

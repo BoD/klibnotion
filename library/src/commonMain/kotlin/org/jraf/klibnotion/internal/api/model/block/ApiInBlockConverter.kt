@@ -53,14 +53,15 @@ import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
 import org.jraf.klibnotion.internal.model.block.UnknownTypeBlockImpl
 import org.jraf.klibnotion.internal.model.block.VideoBlockImpl
+import org.jraf.klibnotion.internal.toInstant
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
     override fun apiToModel(apiModel: ApiBlock): Block {
         val id = apiModel.id
-        val created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp
-        val lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp
+        val created = apiModel.created_time.apiToModel(ApiDateStringConverter).toInstant()
+        val lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).toInstant()
         // HACK: we use empty list as a signal that there are children that need fetching
         val children: List<Block>? = if (apiModel.has_children) emptyList() else null
         return when (val type = apiModel.type) {

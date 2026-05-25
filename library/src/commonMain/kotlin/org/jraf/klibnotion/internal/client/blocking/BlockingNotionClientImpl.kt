@@ -82,6 +82,7 @@ internal class BlockingNotionClientImpl(
         notionClient.databases.getDatabase(id)
     }
 
+    @Suppress("DEPRECATION")
     override fun getDatabaseList(pagination: Pagination) = runBlocking {
         notionClient.databases.getDatabaseList(pagination)
     }

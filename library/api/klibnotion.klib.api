@@ -1263,7 +1263,7 @@ abstract interface org.jraf.klibnotion.model.database/Database { // org.jraf.kli
     abstract val cover // org.jraf.klibnotion.model.database/Database.cover|{}cover[0]
         abstract fun <get-cover>(): org.jraf.klibnotion.model.file/File? // org.jraf.klibnotion.model.database/Database.cover.<get-cover>|<get-cover>(){}[0]
     abstract val created // org.jraf.klibnotion.model.database/Database.created|{}created[0]
-        abstract fun <get-created>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.database/Database.created.<get-created>|<get-created>(){}[0]
+        abstract fun <get-created>(): kotlin.time/Instant // org.jraf.klibnotion.model.database/Database.created.<get-created>|<get-created>(){}[0]
     abstract val dataSourceIds // org.jraf.klibnotion.model.database/Database.dataSourceIds|{}dataSourceIds[0]
         abstract fun <get-dataSourceIds>(): kotlin.collections/List<kotlin/String> // org.jraf.klibnotion.model.database/Database.dataSourceIds.<get-dataSourceIds>|<get-dataSourceIds>(){}[0]
     abstract val icon // org.jraf.klibnotion.model.database/Database.icon|{}icon[0]
@@ -1271,7 +1271,7 @@ abstract interface org.jraf.klibnotion.model.database/Database { // org.jraf.kli
     abstract val id // org.jraf.klibnotion.model.database/Database.id|{}id[0]
         abstract fun <get-id>(): kotlin/String // org.jraf.klibnotion.model.database/Database.id.<get-id>|<get-id>(){}[0]
     abstract val lastEdited // org.jraf.klibnotion.model.database/Database.lastEdited|{}lastEdited[0]
-        abstract fun <get-lastEdited>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.database/Database.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
+        abstract fun <get-lastEdited>(): kotlin.time/Instant // org.jraf.klibnotion.model.database/Database.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
     abstract val parent // org.jraf.klibnotion.model.database/Database.parent|{}parent[0]
         abstract fun <get-parent>(): org.jraf.klibnotion.model.base.reference/Reference // org.jraf.klibnotion.model.database/Database.parent.<get-parent>|<get-parent>(){}[0]
     abstract val propertySpecs // org.jraf.klibnotion.model.database/Database.propertySpecs|{}propertySpecs[0]
@@ -1316,7 +1316,7 @@ abstract interface org.jraf.klibnotion.model.page/Page { // org.jraf.klibnotion.
     abstract val cover // org.jraf.klibnotion.model.page/Page.cover|{}cover[0]
         abstract fun <get-cover>(): org.jraf.klibnotion.model.file/File? // org.jraf.klibnotion.model.page/Page.cover.<get-cover>|<get-cover>(){}[0]
     abstract val created // org.jraf.klibnotion.model.page/Page.created|{}created[0]
-        abstract fun <get-created>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.page/Page.created.<get-created>|<get-created>(){}[0]
+        abstract fun <get-created>(): kotlin.time/Instant // org.jraf.klibnotion.model.page/Page.created.<get-created>|<get-created>(){}[0]
     abstract val icon // org.jraf.klibnotion.model.page/Page.icon|{}icon[0]
         abstract fun <get-icon>(): org.jraf.klibnotion.model.base/EmojiOrFile? // org.jraf.klibnotion.model.page/Page.icon.<get-icon>|<get-icon>(){}[0]
     abstract val id // org.jraf.klibnotion.model.page/Page.id|{}id[0]
@@ -1324,7 +1324,7 @@ abstract interface org.jraf.klibnotion.model.page/Page { // org.jraf.klibnotion.
     abstract val inTrash // org.jraf.klibnotion.model.page/Page.inTrash|{}inTrash[0]
         abstract fun <get-inTrash>(): kotlin/Boolean // org.jraf.klibnotion.model.page/Page.inTrash.<get-inTrash>|<get-inTrash>(){}[0]
     abstract val lastEdited // org.jraf.klibnotion.model.page/Page.lastEdited|{}lastEdited[0]
-        abstract fun <get-lastEdited>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.page/Page.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
+        abstract fun <get-lastEdited>(): kotlin.time/Instant // org.jraf.klibnotion.model.page/Page.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
     abstract val parent // org.jraf.klibnotion.model.page/Page.parent|{}parent[0]
         abstract fun <get-parent>(): org.jraf.klibnotion.model.base.reference/Reference // org.jraf.klibnotion.model.page/Page.parent.<get-parent>|<get-parent>(){}[0]
     abstract val propertyValues // org.jraf.klibnotion.model.page/Page.propertyValues|{}propertyValues[0]
@@ -1627,11 +1627,11 @@ sealed interface org.jraf.klibnotion.model.block/Block { // org.jraf.klibnotion.
     abstract val children // org.jraf.klibnotion.model.block/Block.children|{}children[0]
         abstract fun <get-children>(): kotlin.collections/List<org.jraf.klibnotion.model.block/Block>? // org.jraf.klibnotion.model.block/Block.children.<get-children>|<get-children>(){}[0]
     abstract val created // org.jraf.klibnotion.model.block/Block.created|{}created[0]
-        abstract fun <get-created>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.block/Block.created.<get-created>|<get-created>(){}[0]
+        abstract fun <get-created>(): kotlin.time/Instant // org.jraf.klibnotion.model.block/Block.created.<get-created>|<get-created>(){}[0]
     abstract val id // org.jraf.klibnotion.model.block/Block.id|{}id[0]
         abstract fun <get-id>(): kotlin/String // org.jraf.klibnotion.model.block/Block.id.<get-id>|<get-id>(){}[0]
     abstract val lastEdited // org.jraf.klibnotion.model.block/Block.lastEdited|{}lastEdited[0]
-        abstract fun <get-lastEdited>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.block/Block.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
+        abstract fun <get-lastEdited>(): kotlin.time/Instant // org.jraf.klibnotion.model.block/Block.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
 }
 
 sealed interface org.jraf.klibnotion.model.property.spec/PropertySpec { // org.jraf.klibnotion.model.property.spec/PropertySpec|null[0]
@@ -1872,13 +1872,13 @@ final class org.jraf.klibnotion.model.database.query/DatabaseQuery { // org.jraf
 }
 
 final class org.jraf.klibnotion.model.date/Date : org.jraf.klibnotion.model.date/DateOrDateTime { // org.jraf.klibnotion.model.date/Date|null[0]
-    constructor <init>(platform.Foundation/NSDate) // org.jraf.klibnotion.model.date/Date.<init>|<init>(platform.Foundation.NSDate){}[0]
+    constructor <init>(kotlinx.datetime/LocalDate) // org.jraf.klibnotion.model.date/Date.<init>|<init>(kotlinx.datetime.LocalDate){}[0]
 
-    final val timestamp // org.jraf.klibnotion.model.date/Date.timestamp|{}timestamp[0]
-        final fun <get-timestamp>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/Date.timestamp.<get-timestamp>|<get-timestamp>(){}[0]
+    final val date // org.jraf.klibnotion.model.date/Date.date|{}date[0]
+        final fun <get-date>(): kotlinx.datetime/LocalDate // org.jraf.klibnotion.model.date/Date.date.<get-date>|<get-date>(){}[0]
 
-    final fun component1(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/Date.component1|component1(){}[0]
-    final fun copy(platform.Foundation/NSDate = ...): org.jraf.klibnotion.model.date/Date // org.jraf.klibnotion.model.date/Date.copy|copy(platform.Foundation.NSDate){}[0]
+    final fun component1(): kotlinx.datetime/LocalDate // org.jraf.klibnotion.model.date/Date.component1|component1(){}[0]
+    final fun copy(kotlinx.datetime/LocalDate = ...): org.jraf.klibnotion.model.date/Date // org.jraf.klibnotion.model.date/Date.copy|copy(kotlinx.datetime.LocalDate){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // org.jraf.klibnotion.model.date/Date.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // org.jraf.klibnotion.model.date/Date.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // org.jraf.klibnotion.model.date/Date.toString|toString(){}[0]
@@ -1901,16 +1901,16 @@ final class org.jraf.klibnotion.model.date/DateOrDateRange { // org.jraf.klibnot
 }
 
 final class org.jraf.klibnotion.model.date/DateTime : org.jraf.klibnotion.model.date/DateOrDateTime { // org.jraf.klibnotion.model.date/DateTime|null[0]
-    constructor <init>(platform.Foundation/NSDate, kotlin/String = ...) // org.jraf.klibnotion.model.date/DateTime.<init>|<init>(platform.Foundation.NSDate;kotlin.String){}[0]
+    constructor <init>(kotlinx.datetime/LocalDateTime, kotlinx.datetime/TimeZone = ...) // org.jraf.klibnotion.model.date/DateTime.<init>|<init>(kotlinx.datetime.LocalDateTime;kotlinx.datetime.TimeZone){}[0]
 
-    final val timeZoneId // org.jraf.klibnotion.model.date/DateTime.timeZoneId|{}timeZoneId[0]
-        final fun <get-timeZoneId>(): kotlin/String // org.jraf.klibnotion.model.date/DateTime.timeZoneId.<get-timeZoneId>|<get-timeZoneId>(){}[0]
-    final val timestamp // org.jraf.klibnotion.model.date/DateTime.timestamp|{}timestamp[0]
-        final fun <get-timestamp>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/DateTime.timestamp.<get-timestamp>|<get-timestamp>(){}[0]
+    final val dateTime // org.jraf.klibnotion.model.date/DateTime.dateTime|{}dateTime[0]
+        final fun <get-dateTime>(): kotlinx.datetime/LocalDateTime // org.jraf.klibnotion.model.date/DateTime.dateTime.<get-dateTime>|<get-dateTime>(){}[0]
+    final val timeZone // org.jraf.klibnotion.model.date/DateTime.timeZone|{}timeZone[0]
+        final fun <get-timeZone>(): kotlinx.datetime/TimeZone // org.jraf.klibnotion.model.date/DateTime.timeZone.<get-timeZone>|<get-timeZone>(){}[0]
 
-    final fun component1(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/DateTime.component1|component1(){}[0]
-    final fun component2(): kotlin/String // org.jraf.klibnotion.model.date/DateTime.component2|component2(){}[0]
-    final fun copy(platform.Foundation/NSDate = ..., kotlin/String = ...): org.jraf.klibnotion.model.date/DateTime // org.jraf.klibnotion.model.date/DateTime.copy|copy(platform.Foundation.NSDate;kotlin.String){}[0]
+    final fun component1(): kotlinx.datetime/LocalDateTime // org.jraf.klibnotion.model.date/DateTime.component1|component1(){}[0]
+    final fun component2(): kotlinx.datetime/TimeZone // org.jraf.klibnotion.model.date/DateTime.component2|component2(){}[0]
+    final fun copy(kotlinx.datetime/LocalDateTime = ..., kotlinx.datetime/TimeZone = ...): org.jraf.klibnotion.model.date/DateTime // org.jraf.klibnotion.model.date/DateTime.copy|copy(kotlinx.datetime.LocalDateTime;kotlinx.datetime.TimeZone){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // org.jraf.klibnotion.model.date/DateTime.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // org.jraf.klibnotion.model.date/DateTime.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // org.jraf.klibnotion.model.date/DateTime.toString|toString(){}[0]
@@ -2096,10 +2096,7 @@ open class org.jraf.klibnotion.model.exceptions/NotionClientException : kotlin/E
         open fun <get-cause>(): kotlin/Throwable // org.jraf.klibnotion.model.exceptions/NotionClientException.cause.<get-cause>|<get-cause>(){}[0]
 }
 
-sealed class org.jraf.klibnotion.model.date/DateOrDateTime { // org.jraf.klibnotion.model.date/DateOrDateTime|null[0]
-    open val timestamp // org.jraf.klibnotion.model.date/DateOrDateTime.timestamp|{}timestamp[0]
-        open fun <get-timestamp>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/DateOrDateTime.timestamp.<get-timestamp>|<get-timestamp>(){}[0]
-}
+sealed class org.jraf.klibnotion.model.date/DateOrDateTime // org.jraf.klibnotion.model.date/DateOrDateTime|null[0]
 
 final object org.jraf.klibnotion.model.base.reference/WorkspaceReference : org.jraf.klibnotion.model.base.reference/Reference // org.jraf.klibnotion.model.base.reference/WorkspaceReference|null[0]
 

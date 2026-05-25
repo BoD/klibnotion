@@ -28,12 +28,12 @@ package org.jraf.klibnotion.internal.model.block
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.EquationBlock
-import org.jraf.klibnotion.model.date.Timestamp
+import kotlin.time.Instant
 
 internal data class EquationBlockImpl(
     override val id: UuidString,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
+    override val created: Instant,
+    override val lastEdited: Instant,
     override val expression: String,
 ) : EquationBlock {
     override val children: List<Block>? = null

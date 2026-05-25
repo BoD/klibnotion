@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2021-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2026-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  * and contributors (https://github.com/BoD/klibnotion/graphs/contributors)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,8 +23,6 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.model.date
+import org.jraf.klibnotion.sample.Sample
 
-import platform.Foundation.NSDate
-
-actual typealias Timestamp = NSDate
+fun main() = Sample().main()

@@ -182,15 +182,13 @@ class BlockingSample {
                                 .userMention(USER_ID, Annotations.DEFAULT).text("\n", Annotations.DEFAULT)
                                 .databaseMention(DATABASE_ID, Annotations.DEFAULT).text("\n", Annotations.DEFAULT)
                                 .pageMention(PAGE_ID, Annotations.DEFAULT).text("\n", Annotations.DEFAULT)
-                                .dateMention(new DateTime(new java.util.Date(), "GMT"), null, new Annotations(Color.GREEN)).text("\n", Annotations.DEFAULT)
+                                .dateMention(dateTimeNow(), null, new Annotations(Color.GREEN)).text("\n", Annotations.DEFAULT)
                                 .equation("f(\\relax{x}) = \\int_{-\\infty}^\\infty \\hat f(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi", new Annotations(Color.YELLOW))
                         )
                         .selectByName("Species", "Alien")
                         .multiSelectByNames("Planets", "Tatooine", "Bespin")
                         .date("Some date",
-                                new DateOrDateRange(
-                                        new DateTime(new java.util.Date(), "GMT"),
-                                        new Date(new java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)))
+                                new DateOrDateRange(dateTimeNow(), dateTomorrow())
                         )
                         .relation("Android version", PAGE_ID)
                         .people("User", USER_ID)
@@ -218,9 +216,7 @@ class BlockingSample {
                         .selectByName("Species", "Alien")
                         .multiSelectByNames("Planets", "Tatooine", "Bespin")
                         .date("Some date",
-                                new DateOrDateRange(
-                                        new DateTime(new java.util.Date(), "GMT"),
-                                        new Date(new java.util.Date(System.currentTimeMillis() + 24L * 3600L * 1000L)))
+                                new DateOrDateRange(dateTimeNow(), dateTomorrow())
                         )
                         .relation("Android version", PAGE_ID)
                         .people("User", USER_ID)
@@ -234,6 +230,23 @@ class BlockingSample {
 
         // Close
         client.close();
+    }
+
+    private static DateTime dateTimeNow() {
+        java.time.LocalDateTime now = java.time.LocalDateTime.now(java.time.ZoneId.of("GMT"));
+        return new DateTime(
+                new kotlinx.datetime.LocalDateTime(
+                        now.getYear(), now.getMonthValue(), now.getDayOfMonth(),
+                        now.getHour(), now.getMinute(), now.getSecond(), now.getNano()),
+                kotlinx.datetime.TimeZone.Companion.of("GMT")
+        );
+    }
+
+    private static Date dateTomorrow() {
+        java.time.LocalDate tomorrow = java.time.LocalDate.now(java.time.ZoneId.of("GMT")).plusDays(1);
+        return new Date(
+                new kotlinx.datetime.LocalDate(tomorrow.getYear(), tomorrow.getMonthValue(), tomorrow.getDayOfMonth())
+        );
     }
 
     public static void main(String[] av) {

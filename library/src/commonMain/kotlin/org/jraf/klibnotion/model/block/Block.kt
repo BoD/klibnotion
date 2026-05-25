@@ -25,7 +25,7 @@
 
 package org.jraf.klibnotion.model.block
 
-import org.jraf.klibnotion.internal.IRRELEVANT_TIMESTAMP
+import org.jraf.klibnotion.internal.IRRELEVANT_INSTANT
 import org.jraf.klibnotion.internal.model.block.BookmarkBlockImpl
 import org.jraf.klibnotion.internal.model.block.BulletedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.CalloutBlockImpl
@@ -48,18 +48,18 @@ import org.jraf.klibnotion.internal.model.block.VideoBlockImpl
 import org.jraf.klibnotion.internal.model.file.FileImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
-import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.richtext.Annotations
 import org.jraf.klibnotion.model.richtext.RichTextList
 import kotlin.jvm.JvmOverloads
+import kotlin.time.Instant
 
 /**
  * See [Reference](https://developers.notion.com/reference/block).
  */
 sealed interface Block {
     val id: UuidString
-    val created: Timestamp
-    val lastEdited: Timestamp
+    val created: Instant
+    val lastEdited: Instant
     val children: List<Block>?
 }
 
@@ -74,13 +74,15 @@ class MutableBlockList(
 
     @JvmOverloads
     fun paragraph(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(ParagraphBlockImpl(
-            id = "",
-            created = IRRELEVANT_TIMESTAMP,
-            lastEdited = IRRELEVANT_TIMESTAMP,
-            richTextList,
-            children()
-        ))
+        add(
+            ParagraphBlockImpl(
+                id = "",
+                created = IRRELEVANT_INSTANT,
+                lastEdited = IRRELEVANT_INSTANT,
+                richTextList,
+                children(),
+            ),
+        )
 
     @JvmOverloads
     fun paragraph(
@@ -93,7 +95,6 @@ class MutableBlockList(
         children = children,
     )
 
-    @JvmOverloads
     fun heading1(richTextList: RichTextList): MutableBlockList =
         add(org.jraf.klibnotion.model.block.heading1(richTextList))
 
@@ -126,12 +127,15 @@ class MutableBlockList(
 
     @JvmOverloads
     fun bullet(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(BulletedListItemBlockImpl(
-            id = "",
-            created = IRRELEVANT_TIMESTAMP,
-            lastEdited = IRRELEVANT_TIMESTAMP,
-            richTextList,
-            children()))
+        add(
+            BulletedListItemBlockImpl(
+                id = "",
+                created = IRRELEVANT_INSTANT,
+                lastEdited = IRRELEVANT_INSTANT,
+                richTextList,
+                children(),
+            ),
+        )
 
     @JvmOverloads
     fun bullet(
@@ -146,13 +150,15 @@ class MutableBlockList(
 
     @JvmOverloads
     fun number(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(NumberedListItemBlockImpl(
-            id = "",
-            created = IRRELEVANT_TIMESTAMP,
-            lastEdited = IRRELEVANT_TIMESTAMP,
-            richTextList,
-            children()
-        ))
+        add(
+            NumberedListItemBlockImpl(
+                id = "",
+                created = IRRELEVANT_INSTANT,
+                lastEdited = IRRELEVANT_INSTANT,
+                richTextList,
+                children(),
+            ),
+        )
 
     @JvmOverloads
     fun number(
@@ -167,14 +173,16 @@ class MutableBlockList(
 
     @JvmOverloads
     fun toDo(richTextList: RichTextList, checked: Boolean, children: BlockListProducer? = null): MutableBlockList =
-        add(ToDoBlockImpl(
-            id = "",
-            created = IRRELEVANT_TIMESTAMP,
-            lastEdited = IRRELEVANT_TIMESTAMP,
-            richTextList,
-            checked,
-            children()
-        ))
+        add(
+            ToDoBlockImpl(
+                id = "",
+                created = IRRELEVANT_INSTANT,
+                lastEdited = IRRELEVANT_INSTANT,
+                richTextList,
+                checked,
+                children(),
+            ),
+        )
 
     @JvmOverloads
     fun toDo(
@@ -191,13 +199,15 @@ class MutableBlockList(
 
     @JvmOverloads
     fun toggle(richTextList: RichTextList, children: BlockListProducer? = null): MutableBlockList =
-        add(ToggleBlockImpl(
-            id = "",
-            created = IRRELEVANT_TIMESTAMP,
-            lastEdited = IRRELEVANT_TIMESTAMP,
-            richTextList,
-            children()
-        ))
+        add(
+            ToggleBlockImpl(
+                id = "",
+                created = IRRELEVANT_INSTANT,
+                lastEdited = IRRELEVANT_INSTANT,
+                richTextList,
+                children(),
+            ),
+        )
 
     @JvmOverloads
     fun toggle(
@@ -246,13 +256,15 @@ class MutableBlockList(
         richTextList: RichTextList,
         children: BlockListProducer? = null,
     ): MutableBlockList =
-        add(QuoteBlockImpl(
-            id = "",
-            created = IRRELEVANT_TIMESTAMP,
-            lastEdited = IRRELEVANT_TIMESTAMP,
-            text = richTextList,
-            children = children()
-        ))
+        add(
+            QuoteBlockImpl(
+                id = "",
+                created = IRRELEVANT_INSTANT,
+                lastEdited = IRRELEVANT_INSTANT,
+                text = richTextList,
+                children = children(),
+            ),
+        )
 
 
     @JvmOverloads
@@ -273,14 +285,16 @@ class MutableBlockList(
         richTextList: RichTextList,
         icon: EmojiOrFile? = null,
         children: BlockListProducer? = null,
-    ): MutableBlockList = add(CalloutBlockImpl(
-        id = "",
-        created = IRRELEVANT_TIMESTAMP,
-        lastEdited = IRRELEVANT_TIMESTAMP,
-        children = children(),
-        text = richTextList,
-        icon = icon
-    ))
+    ): MutableBlockList = add(
+        CalloutBlockImpl(
+            id = "",
+            created = IRRELEVANT_INSTANT,
+            lastEdited = IRRELEVANT_INSTANT,
+            children = children(),
+            text = richTextList,
+            icon = icon,
+        ),
+    )
 
     @JvmOverloads
     fun callout(
@@ -345,8 +359,8 @@ fun content(content: BlockListProducer) = content()
 
 fun paragraph(richTextList: RichTextList): Block = ParagraphBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     richTextList,
     null,
 )
@@ -362,9 +376,9 @@ fun paragraph(
 
 fun heading1(richTextList: RichTextList): Block = Heading1BlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
-    richTextList
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
+    richTextList,
 )
 
 @JvmOverloads
@@ -378,9 +392,9 @@ fun heading1(
 
 fun heading2(richTextList: RichTextList): Block = Heading2BlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
-    richTextList
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
+    richTextList,
 )
 
 @JvmOverloads
@@ -394,9 +408,9 @@ fun heading2(
 
 fun heading3(richTextList: RichTextList): Block = Heading3BlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
-    richTextList
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
+    richTextList,
 )
 
 @JvmOverloads
@@ -410,8 +424,8 @@ fun heading3(
 
 fun bulletedListItem(richTextList: RichTextList): Block = BulletedListItemBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     richTextList,
     null,
 )
@@ -427,10 +441,10 @@ fun bulletedListItem(
 
 fun numberedListItem(richTextList: RichTextList): Block = NumberedListItemBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     richTextList,
-    null
+    null,
 )
 
 @JvmOverloads
@@ -444,11 +458,11 @@ fun numberedListItem(
 
 fun toDo(richTextList: RichTextList, checked: Boolean): Block = ToDoBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     richTextList,
     checked,
-    null
+    null,
 )
 
 @JvmOverloads
@@ -464,8 +478,8 @@ fun toDo(
 
 fun toggle(richTextList: RichTextList): Block = ToggleBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     richTextList,
     null,
 )
@@ -484,10 +498,10 @@ fun bookmark(
     caption: RichTextList? = null,
 ): Block = BookmarkBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     url = url,
-    caption = caption
+    caption = caption,
 )
 
 @JvmOverloads
@@ -506,10 +520,10 @@ fun code(
     text: RichTextList,
 ): Block = CodeBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     text = text,
-    language = language
+    language = language,
 )
 
 @JvmOverloads
@@ -527,17 +541,17 @@ fun equation(
     expression: String,
 ): Block = EquationBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
-    expression = expression
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
+    expression = expression,
 )
 
 fun quote(richTextList: RichTextList): Block = QuoteBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     text = richTextList,
-    children = null
+    children = null,
 )
 
 @JvmOverloads
@@ -551,9 +565,9 @@ fun quote(
 
 fun embed(url: String): Block = EmbedBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
-    url = url
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
+    url = url,
 )
 
 fun callout(
@@ -561,11 +575,11 @@ fun callout(
     icon: EmojiOrFile? = null,
 ): Block = CalloutBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     children = null,
     text = richTextList,
-    icon = icon
+    icon = icon,
 )
 
 @JvmOverloads
@@ -582,14 +596,14 @@ fun callout(
 
 fun divider(): Block = DividerBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
 )
 
 fun tableOfContents(): Block = TableOfContentsBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
 )
 
 fun image(
@@ -597,8 +611,8 @@ fun image(
     caption: RichTextList? = null,
 ): Block = ImageBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     image = FileImpl(name = "image", url = url),
     caption = caption,
 )
@@ -619,8 +633,8 @@ fun video(
     caption: RichTextList? = null,
 ): Block = VideoBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     video = FileImpl(name = "video", url = url),
     caption = caption,
 )
@@ -638,15 +652,15 @@ fun video(
 
 fun syncedBlock(syncedFrom: UuidString): Block = SyncedBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
-    syncedFrom = syncedFrom
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
+    syncedFrom = syncedFrom,
 )
 
 fun originalSyncedBlock(children: BlockListProducer? = null): Block = SyncedBlockImpl(
     id = "",
-    created = IRRELEVANT_TIMESTAMP,
-    lastEdited = IRRELEVANT_TIMESTAMP,
+    created = IRRELEVANT_INSTANT,
+    lastEdited = IRRELEVANT_INSTANT,
     syncedFrom = null,
     children = children(),
 )
