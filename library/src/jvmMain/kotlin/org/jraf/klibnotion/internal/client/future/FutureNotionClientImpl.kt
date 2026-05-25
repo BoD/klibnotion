@@ -91,6 +91,20 @@ internal class FutureNotionClientImpl(
         )
     }
 
+    override fun queryDataSource(
+        dataSourceId: UuidString,
+        query: DatabaseQuery?,
+        sort: PropertySort?,
+        pagination: Pagination,
+    ) = GlobalScope.future {
+        notionClient.databases.queryDataSource(
+            dataSourceId,
+            query,
+            sort,
+            pagination,
+        )
+    }
+
     override fun createDatabase(
         parentPageId: UuidString,
         title: RichTextList,

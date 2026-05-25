@@ -96,7 +96,21 @@ internal class BlockingNotionClientImpl(
             id,
             query,
             sort,
-            pagination
+            pagination,
+        )
+    }
+
+    override fun queryDataSource(
+        dataSourceId: UuidString,
+        query: DatabaseQuery?,
+        sort: PropertySort?,
+        pagination: Pagination,
+    ) = runBlocking {
+        notionClient.databases.queryDataSource(
+            dataSourceId,
+            query,
+            sort,
+            pagination,
         )
     }
 

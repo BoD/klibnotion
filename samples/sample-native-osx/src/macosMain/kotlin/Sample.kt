@@ -139,7 +139,9 @@ class Sample {
             getUserById(userId)
 
             // Databases
-            val databaseId = createDatabase()
+            val database = createDatabase()
+            val databaseId = database.id
+            val dataSourceId = database.dataSourceIds.firstOrNull() ?: databaseId
             updateDatabaseTitleAndIcon(databaseId)
             updateDatabaseProperties(databaseId)
             getDatabaseList()
@@ -158,6 +160,7 @@ class Sample {
             // Database query
             queryDatabaseSimple(databaseId)
             queryDatabaseFilters(databaseId)
+            queryDataSourceSimple(dataSourceId)
 
             // Blocks
             val blockId = getPageContents(pageId)[3].id
@@ -236,7 +239,7 @@ class Sample {
         println(user)
     }
 
-    private suspend fun createDatabase(): UuidString {
+    private suspend fun createDatabase(): Database {
         // Create a database
         println("Created database:")
         val createdDatabase = client.databases.createDatabase(
@@ -281,7 +284,7 @@ class Sample {
             //.rollup(...)
         )
         println(createdDatabase)
-        return createdDatabase.id
+        return createdDatabase
     }
 
     private suspend fun updateDatabaseTitleAndIcon(databaseId: UuidString) {
@@ -603,6 +606,20 @@ class Sample {
                 .descending("title"),
         )
         println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
+    }
+
+    private suspend fun queryDataSourceSimple(dataSourceId: UuidString) {
+        println("Simple data source query results:")
+        val results = mutableListOf<Page>()
+        var resultPage: ResultPage<Page>
+        var pagination = Pagination()
+        do {
+            resultPage = client.databases.queryDataSource(dataSourceId, pagination = pagination)
+            results += resultPage.results
+            resultPage.nextPagination?.let { pagination = it }
+        } while (resultPage.nextPagination != null)
+
+        println(results.joinToString("") { it.toFormattedString() })
     }
 
     private suspend fun getPageContents(pageId: UuidString): List<Block> {

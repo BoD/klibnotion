@@ -124,6 +124,16 @@ interface BlockingNotionClient {
         ): ResultPage<Page>
 
         /**
+         * See [NotionClient.Databases.queryDataSource].
+         */
+        fun queryDataSource(
+            dataSourceId: UuidString,
+            query: DatabaseQuery? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): ResultPage<Page>
+
+        /**
          * See [NotionClient.Databases.createDatabase].
          */
         fun createDatabase(

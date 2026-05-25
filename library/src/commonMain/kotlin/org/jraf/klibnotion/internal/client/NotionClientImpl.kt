@@ -302,6 +302,15 @@ internal class NotionClientImpl(
         // Fetch the database to obtain the data source ID, then query against it.
         val database = service.getDatabase(id).apiToModel(ApiDatabaseConverter)
         val dataSourceId = database.dataSourceIds.firstOrNull() ?: id
+        return queryDataSource(dataSourceId, query, sort, pagination)
+    }
+
+    override suspend fun queryDataSource(
+        dataSourceId: UuidString,
+        query: DatabaseQuery?,
+        sort: PropertySort?,
+        pagination: Pagination,
+    ): ResultPage<Page> {
         return service.queryDataSource(
             dataSourceId,
             Triple(query, sort, pagination).modelToApi(ApiDatabaseQueryConverter),

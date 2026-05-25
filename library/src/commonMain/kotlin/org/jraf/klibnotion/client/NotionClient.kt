@@ -125,10 +125,28 @@ interface NotionClient {
 
         /**
          * Query a database.
+         *
+         * This method fetches the database first to resolve the data source ID, then queries against it.
+         * If you already have the data source ID (from [Database.dataSourceIds]), prefer [queryDataSource]
+         * to avoid the extra network round-trip.
          * @see <a href="https://developers.notion.com/reference/post-database-query">Query a database</a>
          */
         suspend fun queryDatabase(
             id: UuidString,
+            query: DatabaseQuery? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): ResultPage<Page>
+
+        /**
+         * Query a data source directly by its ID, without the extra round-trip of [queryDatabase].
+         *
+         * Obtain the data source ID from [Database.dataSourceIds] after calling [getDatabase] or
+         * [createDatabase]. This is the efficient path when you already have the ID.
+         * @see <a href="https://developers.notion.com/reference/post-database-query">Query a database</a>
+         */
+        suspend fun queryDataSource(
+            dataSourceId: UuidString,
             query: DatabaseQuery? = null,
             sort: PropertySort? = null,
             pagination: Pagination = Pagination(),

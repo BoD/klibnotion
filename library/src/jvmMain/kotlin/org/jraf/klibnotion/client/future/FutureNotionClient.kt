@@ -123,6 +123,16 @@ interface FutureNotionClient {
         ): Future<ResultPage<Page>>
 
         /**
+         * See [NotionClient.Databases.queryDataSource].
+         */
+        fun queryDataSource(
+            dataSourceId: UuidString,
+            query: DatabaseQuery? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): Future<ResultPage<Page>>
+
+        /**
          * See [NotionClient.Databases.createDatabase].
          */
         fun createDatabase(
