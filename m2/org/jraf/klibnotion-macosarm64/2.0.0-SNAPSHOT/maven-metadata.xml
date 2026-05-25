@@ -3,44 +3,44 @@
   <groupId>org.jraf</groupId>
   <artifactId>klibnotion-macosarm64</artifactId>
   <versioning>
-    <lastUpdated>20260525102430</lastUpdated>
+    <lastUpdated>20260525102548</lastUpdated>
     <snapshot>
-      <timestamp>20260525.102430</timestamp>
+      <timestamp>20260525.102548</timestamp>
       <buildNumber>1</buildNumber>
     </snapshot>
     <snapshotVersions>
       <snapshotVersion>
-        <classifier>javadoc</classifier>
-        <extension>jar</extension>
-        <value>2.0.0-20260525.102430-1</value>
-        <updated>20260525102430</updated>
-      </snapshotVersion>
-      <snapshotVersion>
         <extension>klib</extension>
-        <value>2.0.0-20260525.102430-1</value>
-        <updated>20260525102430</updated>
-      </snapshotVersion>
-      <snapshotVersion>
-        <extension>module</extension>
-        <value>2.0.0-20260525.102430-1</value>
-        <updated>20260525102430</updated>
+        <value>2.0.0-20260525.102548-1</value>
+        <updated>20260525102548</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>metadata</classifier>
         <extension>jar</extension>
-        <value>2.0.0-20260525.102430-1</value>
-        <updated>20260525102430</updated>
+        <value>2.0.0-20260525.102548-1</value>
+        <updated>20260525102548</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>2.0.0-20260525.102430-1</value>
-        <updated>20260525102430</updated>
+        <value>2.0.0-20260525.102548-1</value>
+        <updated>20260525102548</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>javadoc</classifier>
+        <extension>jar</extension>
+        <value>2.0.0-20260525.102548-1</value>
+        <updated>20260525102548</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>module</extension>
+        <value>2.0.0-20260525.102548-1</value>
+        <updated>20260525102548</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>sources</classifier>
         <extension>jar</extension>
-        <value>2.0.0-20260525.102430-1</value>
-        <updated>20260525102430</updated>
+        <value>2.0.0-20260525.102548-1</value>
+        <updated>20260525102548</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
