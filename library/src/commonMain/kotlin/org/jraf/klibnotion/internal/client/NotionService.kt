@@ -171,7 +171,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun archivePage(id: UuidString, archive: Boolean): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
-            setBody(mapOf("archived" to archive))
+            setBody(mapOf("in_trash" to archive))
         }.body()
     }
 

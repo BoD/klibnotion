@@ -39,7 +39,7 @@ interface Page {
     val id: UuidString
     val parent: Reference
     val propertyValues: List<PropertyValue<*>>
-    val archived: Boolean
+    val inTrash: Boolean
     val created: Timestamp
     val lastEdited: Timestamp
     val url: String

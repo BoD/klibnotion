@@ -211,8 +211,8 @@ internal class FutureNotionClientImpl(
         notionClient.pages.updatePage(id, icon, cover, properties)
     }
 
-    override fun setPageArchived(id: UuidString, archived: Boolean) = GlobalScope.future {
-        notionClient.pages.setPageArchived(id, archived)
+    override fun setPageInTrash(id: UuidString, inTrash: Boolean) = GlobalScope.future {
+        notionClient.pages.setPageInTrash(id, inTrash)
     }
 
     override fun getBlockList(parentId: UuidString, pagination: Pagination) = GlobalScope.future {
@@ -223,13 +223,15 @@ internal class FutureNotionClientImpl(
         notionClient.blocks.getAllBlockListRecursively(parentId)
     }
 
-    override fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) = GlobalScope.future<Void?> {
-        notionClient.blocks.appendBlockList(parentId, blocks)
+    override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) =
+        GlobalScope.future<Void?> {
+            notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
         null
     }
 
-    override fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) = GlobalScope.future<Void?> {
-        notionClient.blocks.appendBlockList(parentId, blocks)
+    override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: BlockListProducer) =
+        GlobalScope.future<Void?> {
+            notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
         null
     }
 

@@ -34,4 +34,15 @@ import kotlinx.serialization.json.JsonElement
 @Serializable
 internal data class ApiAppendBlocksParameters(
     val children: List<JsonElement>,
+    val position: ApiAppendBlocksPosition? = null,
+)
+
+/**
+ * Specifies where to insert appended blocks. As of API version 2026-03-11, this replaces the old `after` parameter.
+ * See [Reference](https://developers.notion.com/reference/patch-block-children).
+ */
+@Serializable
+internal data class ApiAppendBlocksPosition(
+    val type: String,
+    val block_id: String? = null,
 )

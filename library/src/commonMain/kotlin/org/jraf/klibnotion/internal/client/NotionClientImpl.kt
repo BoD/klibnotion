@@ -418,8 +418,8 @@ internal class NotionClientImpl(
             .apiToModel(ApiPageConverter)
     }
 
-    override suspend fun setPageArchived(id: UuidString, archived: Boolean): Page {
-        return service.archivePage(id, archived)
+    override suspend fun setPageInTrash(id: UuidString, inTrash: Boolean): Page {
+        return service.archivePage(id, inTrash)
             .apiToModel(ApiPageConverter)
     }
 
@@ -460,12 +460,15 @@ internal class NotionClientImpl(
         job.children.forEach { it.join() }
     }
 
-    override suspend fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) {
-        service.appendBlockList(parentId, blocks.modelToApi(ApiAppendBlocksParametersConverter))
+    override suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) {
+        service.appendBlockList(
+            parentId,
+            ApiAppendBlocksParametersConverter.modelToApi(blocks, afterBlockId),
+        )
     }
 
-    override suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) =
-        appendBlockList(parentId, blocks() ?: MutableBlockList())
+    override suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: BlockListProducer) =
+        appendBlockList(parentId, afterBlockId, blocks() ?: MutableBlockList())
 
     override suspend fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean): Block {
         val block = service.getBlock(id)
@@ -526,7 +529,7 @@ internal class NotionClientImpl(
 
     companion object {
         private const val HEADER_NOTION_VERSION = "Notion-Version"
-        private const val NOTION_API_VERSION = "2022-06-28"
+        private const val NOTION_API_VERSION = "2026-03-11"
     }
 }
 

@@ -23,23 +23,18 @@
  * limitations under the License.
  */
 
-package org.jraf.klibnotion.internal.api.model.block
+package org.jraf.klibnotion.internal.model.block
 
-import org.jraf.klibnotion.internal.api.model.ApiConverter
-import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
+import org.jraf.klibnotion.model.block.MeetingNotesBlock
+import org.jraf.klibnotion.model.date.Timestamp
+import org.jraf.klibnotion.model.richtext.RichTextList
 
-internal object ApiAppendBlocksParametersConverter : ApiConverter<ApiAppendBlocksParameters, List<Block>>() {
-    override fun modelToApi(model: List<Block>): ApiAppendBlocksParameters {
-        return ApiAppendBlocksParameters(children = model.modelToApi(ApiOutBlockConverter))
-    }
-
-    fun modelToApi(model: List<Block>, afterBlockId: UuidString?): ApiAppendBlocksParameters {
-        return ApiAppendBlocksParameters(
-            children = model.modelToApi(ApiOutBlockConverter),
-            position = afterBlockId?.let { ApiAppendBlocksPosition(type = "block_id", block_id = it) },
-        )
-    }
-}
-
+internal data class MeetingNotesBlockImpl(
+    override val id: UuidString,
+    override val text: RichTextList?,
+    override val created: Timestamp,
+    override val lastEdited: Timestamp,
+    override var children: List<Block>?,
+) : MeetingNotesBlock, MutableBlock

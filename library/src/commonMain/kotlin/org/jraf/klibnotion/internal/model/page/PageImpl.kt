@@ -37,7 +37,7 @@ internal data class PageImpl(
     override val id: UuidString,
     override val parent: Reference,
     override val propertyValues: List<PropertyValue<*>>,
-    override val archived: Boolean,
+    override val inTrash: Boolean,
     override val created: Timestamp,
     override val lastEdited: Timestamp,
     override val url: String,

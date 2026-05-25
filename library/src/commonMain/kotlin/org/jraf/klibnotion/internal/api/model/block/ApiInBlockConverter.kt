@@ -43,6 +43,7 @@ import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
 import org.jraf.klibnotion.internal.model.block.ImageBlockImpl
+import org.jraf.klibnotion.internal.model.block.MeetingNotesBlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
@@ -221,6 +222,14 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 created = created,
                 lastEdited = lastEdited,
                 syncedFrom = apiModel.synced_block?.synced_from?.block_id,
+            )
+
+            "meeting_notes" -> MeetingNotesBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                text = apiModel.meeting_notes?.toRichTextList(),
+                children = children,
             )
 
             else -> UnknownTypeBlockImpl(

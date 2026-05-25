@@ -209,8 +209,8 @@ internal class BlockingNotionClientImpl(
         notionClient.pages.updatePage(id, icon, cover, properties)
     }
 
-    override fun setPageArchived(id: UuidString, archived: Boolean) = runBlocking {
-        notionClient.pages.setPageArchived(id, archived)
+    override fun setPageInTrash(id: UuidString, inTrash: Boolean) = runBlocking {
+        notionClient.pages.setPageInTrash(id, inTrash)
     }
 
     override fun getBlockList(parentId: UuidString, pagination: Pagination) = runBlocking {
@@ -221,12 +221,14 @@ internal class BlockingNotionClientImpl(
         notionClient.blocks.getAllBlockListRecursively(parentId)
     }
 
-    override fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) = runBlocking {
-        notionClient.blocks.appendBlockList(parentId, blocks)
+    override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) =
+        runBlocking {
+            notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
     }
 
-    override fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) = runBlocking {
-        notionClient.blocks.appendBlockList(parentId, blocks)
+    override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: BlockListProducer) =
+        runBlocking {
+            notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
     }
 
     override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = runBlocking {

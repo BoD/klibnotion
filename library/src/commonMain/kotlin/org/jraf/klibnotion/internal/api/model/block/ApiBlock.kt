@@ -58,4 +58,5 @@ internal data class ApiBlock(
     val image: ApiBlockImage? = null,
     val video: ApiBlockVideo? = null,
     val synced_block: ApiSyncedBlock? = null,
+    val meeting_notes: ApiBlockText? = null,
 )

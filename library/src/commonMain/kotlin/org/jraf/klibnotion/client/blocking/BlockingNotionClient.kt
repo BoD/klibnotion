@@ -210,9 +210,9 @@ interface BlockingNotionClient {
         ): Page
 
         /**
-         * See [NotionClient.Pages.setPageArchived].
+         * See [NotionClient.Pages.setPageInTrash].
          */
-        fun setPageArchived(id: UuidString, archived: Boolean): Page
+        fun setPageInTrash(id: UuidString, inTrash: Boolean): Page
     }
 
     /**
@@ -232,12 +232,12 @@ interface BlockingNotionClient {
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: MutableBlockList)
+        fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: MutableBlockList)
 
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
+        fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: BlockListProducer)
 
         /**
          * See [NotionClient.Blocks.getBlock].

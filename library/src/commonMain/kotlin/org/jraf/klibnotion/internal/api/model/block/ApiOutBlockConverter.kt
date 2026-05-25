@@ -50,6 +50,7 @@ import org.jraf.klibnotion.model.block.Heading1Block
 import org.jraf.klibnotion.model.block.Heading2Block
 import org.jraf.klibnotion.model.block.Heading3Block
 import org.jraf.klibnotion.model.block.ImageBlock
+import org.jraf.klibnotion.model.block.MeetingNotesBlock
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
@@ -87,6 +88,7 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 is ImageBlock -> "image"
                 is VideoBlock -> "video"
                 is SyncedBlock -> "synced_block"
+                is MeetingNotesBlock -> "meeting_notes"
 
                 is UnknownTypeBlock -> throw IllegalStateException("Unknown type: ${model.type}")
                 else -> throw IllegalStateException("Converter not implemented for ${model::class.simpleName}")
@@ -157,6 +159,7 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                     is UnknownTypeBlock,
                     is DividerBlock,
                     is TableOfContentsBlock,
+                    is MeetingNotesBlock,
                     -> {
                     }
                 }

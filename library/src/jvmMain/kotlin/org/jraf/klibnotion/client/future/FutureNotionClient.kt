@@ -209,9 +209,9 @@ interface FutureNotionClient {
         ): Future<Page>
 
         /**
-         * See [NotionClient.Pages.setPageArchived].
+         * See [NotionClient.Pages.setPageInTrash].
          */
-        fun setPageArchived(id: UuidString, archived: Boolean): Future<Page>
+        fun setPageInTrash(id: UuidString, inTrash: Boolean): Future<Page>
     }
 
     /**
@@ -231,12 +231,20 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: MutableBlockList): Future<Void?>
+        fun appendBlockList(
+            parentId: UuidString,
+            afterBlockId: UuidString? = null,
+            blocks: MutableBlockList,
+        ): Future<Void?>
 
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: BlockListProducer): Future<Void?>
+        fun appendBlockList(
+            parentId: UuidString,
+            afterBlockId: UuidString? = null,
+            blocks: BlockListProducer,
+        ): Future<Void?>
 
         /**
          * See [NotionClient.Blocks.getBlock].

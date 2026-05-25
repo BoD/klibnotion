@@ -50,6 +50,7 @@ import org.jraf.klibnotion.model.block.Heading1Block
 import org.jraf.klibnotion.model.block.Heading2Block
 import org.jraf.klibnotion.model.block.Heading3Block
 import org.jraf.klibnotion.model.block.ImageBlock
+import org.jraf.klibnotion.model.block.MeetingNotesBlock
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
@@ -486,19 +487,19 @@ class Sample {
     }
 
     private suspend fun archivePage(pageId: UuidString) {
-        println("Archived page:")
-        val archivedPage: Page = client.pages.setPageArchived(
+        println("Moved page to trash:")
+        val archivedPage: Page = client.pages.setPageInTrash(
             id = pageId,
-            archived = true,
+            inTrash = true,
         )
         println(archivedPage)
     }
 
     private suspend fun unarchivePage(pageId: UuidString) {
-        println("Unarchived page:")
-        val unarchivedPage: Page = client.pages.setPageArchived(
+        println("Restored page from trash:")
+        val unarchivedPage: Page = client.pages.setPageInTrash(
             id = pageId,
-            archived = false,
+            inTrash = false,
         )
         println(unarchivedPage)
     }
@@ -760,9 +761,10 @@ class Sample {
                     is ImageBlock -> "Image: ${block.image.url}"
                     is VideoBlock -> "Video: ${block.video.url}"
                     is SyncedBlock -> "{${block.syncedFrom}}"
+                    is MeetingNotesBlock -> "📝 " + block.text.toFormattedString()
 
                     is UnknownTypeBlock -> "?"
-                }
+                },
             )
 
             // Recurse

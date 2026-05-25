@@ -235,10 +235,10 @@ interface NotionClient {
         ): Page
 
         /**
-         * Mark the page as archived or not.
-         * @see <a href="https://developers.notion.com/reference/patch-page#archive-delete-a-page">Archive a page</a>
+         * Move the page to trash, or restore it from trash.
+         * @see <a href="https://developers.notion.com/reference/patch-page#archive-delete-a-page">Move a page to trash</a>
          */
-        suspend fun setPageArchived(id: UuidString, archived: Boolean): Page
+        suspend fun setPageInTrash(id: UuidString, inTrash: Boolean): Page
     }
 
     /**
@@ -268,15 +268,19 @@ interface NotionClient {
 
         /**
          * Append blocks to the children of the specified object.
+         *
+         * @param afterBlockId If set, the new blocks are inserted after this block. If `null`, the blocks are appended at the end.
          * @see <a href="https://developers.notion.com/reference/patch-block-children">Append block children</a>
          */
-        suspend fun appendBlockList(parentId: UuidString, blocks: MutableBlockList)
+        suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: MutableBlockList)
 
         /**
          * Append blocks to the children of the specified object.
+         *
+         * @param afterBlockId If set, the new blocks are inserted after this block. If `null`, the blocks are appended at the end.
          * @see <a href="https://developers.notion.com/reference/patch-block-children">Append block children</a>
          */
-        suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
+        suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: BlockListProducer)
 
         /**
          * Retrieve a block.
