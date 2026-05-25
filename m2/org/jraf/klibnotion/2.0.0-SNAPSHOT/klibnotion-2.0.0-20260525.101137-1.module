@@ -1,0 +1,169 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.jraf",
+    "module": "klibnotion",
+    "version": "2.0.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "klibnotion-metadata-2.0.0-SNAPSHOT.jar",
+          "url": "klibnotion-2.0.0-SNAPSHOT.jar",
+          "size": 256315,
+          "sha512": "b7a64d1441ec23793151348ca1446e108bbdae9d0cdbec995f2bb486e6233ac46ef453a1eed69b50d9bfcb99675f4b6be917da6b5eed3749e33a0ca793f4039a",
+          "sha256": "0d2bf15415d8fa5de887f4a604850de12390639187b9798d7d687271aa87b206",
+          "sha1": "9e0fd9a65b869261b3612b8da848c5cf8287ceb5",
+          "md5": "4cc7f30a6d1bc0b440a76a9ba7ba6459"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "klibnotion-kotlin-2.0.0-SNAPSHOT-sources.jar",
+          "url": "klibnotion-2.0.0-SNAPSHOT-sources.jar",
+          "size": 332248,
+          "sha512": "9a9d3bc26af72ca15117868b922c5f04d3883018ae44d2846ccdf23f02167dd8432b3fb49af261cc6681b1cce90f273efdcd19805293d888cf4172d31b200df4",
+          "sha256": "74481152f29a00dd5f417627abe473589657b9b466097a5ad4865311f9c39f89",
+          "sha1": "d32c659a4b69adeda9fe9e253bfd9d49813c2dc8",
+          "md5": "d05a3944b0a37506ade916af6fcfe891"
+        }
+      ]
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0-SNAPSHOT/klibnotion-jvm-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0-SNAPSHOT/klibnotion-jvm-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0-SNAPSHOT/klibnotion-jvm-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0-SNAPSHOT/klibnotion-macosarm64-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0-SNAPSHOT/klibnotion-macosarm64-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0-SNAPSHOT/klibnotion-macosarm64-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    }
+  ]
+}

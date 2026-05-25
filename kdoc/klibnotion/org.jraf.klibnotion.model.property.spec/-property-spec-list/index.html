@@ -1,0 +1,400 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PropertySpecList</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    klibnotion-root
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;org.jraf.klibnotion.model.property.spec/-property-spec-list/index.html&quot;}">2.0.0-SNAPSHOT</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":klibnotion/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":klibnotion/commonMain" data-filter=":klibnotion/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    klibnotion-root
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="klibnotion::org.jraf.klibnotion.model.property.spec/PropertySpecList///PointingToDeclaration//-818043238">
+  <div class="breadcrumbs"><a href="../../index.html">klibnotion</a><span class="delimiter">/</span><a href="../index.html">org.jraf.klibnotion.model.property.spec</a><span class="delimiter">/</span><span class="current">PropertySpecList</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Property</span><wbr><span>Spec</span><wbr><span><span>List</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">PropertySpecList</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1962190762%2FConstructors%2F-818043238" anchor-label="PropertySpecList" id="-1962190762%2FConstructors%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-property-spec-list.html"><span>Property</span><wbr><span>Spec</span><wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1962190762%2FConstructors%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="412746083%2FFunctions%2F-818043238" anchor-label="checkbox" id="412746083%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="checkbox.html"><span><span>checkbox</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="412746083%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="checkbox.html"><span class="token function">checkbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1549327917%2FFunctions%2F-818043238" anchor-label="createdBy" id="1549327917%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="created-by.html"><span>created</span><wbr><span><span>By</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1549327917%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="created-by.html"><span class="token function">createdBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1845406819%2FFunctions%2F-818043238" anchor-label="createdTime" id="1845406819%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="created-time.html"><span>created</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1845406819%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="created-time.html"><span class="token function">createdTime</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="33763726%2FFunctions%2F-818043238" anchor-label="date" id="33763726%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="date.html"><span><span>date</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="33763726%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="date.html"><span class="token function">date</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="578884138%2FFunctions%2F-818043238" anchor-label="email" id="578884138%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="email.html"><span><span>email</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="578884138%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="email.html"><span class="token function">email</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1126208292%2FFunctions%2F-818043238" anchor-label="file" id="-1126208292%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="file.html"><span><span>file</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1126208292%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="file.html"><span class="token function">file</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="762697881%2FFunctions%2F-818043238" anchor-label="formula" id="762697881%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="formula.html"><span><span>formula</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="762697881%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="formula.html"><span class="token function">formula</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">expression<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2135961078%2FFunctions%2F-818043238" anchor-label="lastEditedBy" id="2135961078%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="last-edited-by.html"><span>last</span><wbr><span>Edited</span><wbr><span><span>By</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2135961078%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="last-edited-by.html"><span class="token function">lastEditedBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1335808532%2FFunctions%2F-818043238" anchor-label="lastEditedTime" id="-1335808532%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="last-edited-time.html"><span>last</span><wbr><span>Edited</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1335808532%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="last-edited-time.html"><span class="token function">lastEditedTime</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1718257013%2FFunctions%2F-818043238" anchor-label="multiSelect" id="-1718257013%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="multi-select.html"><span>multi</span><wbr><span><span>Select</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1718257013%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="multi-select.html"><span class="token function">multiSelect</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.property/-select-option-list/index.html">SelectOptionList</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="308692222%2FFunctions%2F-818043238" anchor-label="number" id="308692222%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="number.html"><span><span>number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="308692222%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="number.html"><span class="token function">number</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="../-number-property-spec/-number-format/index.html">NumberPropertySpec.NumberFormat</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-567596689%2FFunctions%2F-818043238" anchor-label="people" id="-567596689%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="people.html"><span><span>people</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-567596689%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="people.html"><span class="token function">people</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="724984677%2FFunctions%2F-818043238" anchor-label="phoneNumber" id="724984677%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="phone-number.html"><span>phone</span><wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="724984677%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="phone-number.html"><span class="token function">phoneNumber</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1393795068%2FFunctions%2F-818043238" anchor-label="select" id="-1393795068%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="select.html"><span><span>select</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1393795068%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="select.html"><span class="token function">select</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><a href="../../org.jraf.klibnotion.model.property/-select-option-list/index.html">SelectOptionList</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-832737331%2FFunctions%2F-818043238" anchor-label="text" id="-832737331%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="text.html"><span><span>text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-832737331%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="text.html"><span class="token function">text</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1777859558%2FFunctions%2F-818043238" anchor-label="title" id="1777859558%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="title.html"><span><span>title</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1777859558%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="title.html"><span class="token function">title</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="677000061%2FFunctions%2F-818043238" anchor-label="url" id="677000061%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="url.html"><span><span>url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="677000061%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="url.html"><span class="token function">url</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PropertySpecList</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

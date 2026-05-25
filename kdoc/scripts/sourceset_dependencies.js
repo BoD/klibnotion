@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":klibnotion/appleMain":[":klibnotion/nativeMain"],":klibnotion/commonMain":[],":klibnotion/jvmMain":[":klibnotion/commonMain"],":klibnotion/macosArm64Main":[":klibnotion/macosMain"],":klibnotion/macosMain":[":klibnotion/appleMain"],":klibnotion/nativeMain":[":klibnotion/commonMain"]}'

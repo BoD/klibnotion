@@ -1,0 +1,329 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>BlockingNotionClient</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    klibnotion-root
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;org.jraf.klibnotion.client.blocking/-blocking-notion-client/index.html&quot;}">2.0.0-SNAPSHOT</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":klibnotion/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":klibnotion/commonMain" data-filter=":klibnotion/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    klibnotion-root
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="klibnotion::org.jraf.klibnotion.client.blocking/BlockingNotionClient///PointingToDeclaration//-818043238">
+  <div class="breadcrumbs"><a href="../../index.html">klibnotion</a><span class="delimiter">/</span><a href="../index.html">org.jraf.klibnotion.client.blocking</a><span class="delimiter">/</span><span class="current">BlockingNotionClient</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Blocking</span><wbr><span>Notion</span><wbr><span><span>Client</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">BlockingNotionClient</a></div><p class="paragraph">A 'blocking' version of a Notion client.</p><p class="paragraph">All the methods here are blocking, meaning the calling thread will wait for the result to be available.</p><p class="paragraph">This is useful from Java, which doesn't have a notion of <code class="lang-kotlin">suspend</code> functions.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="-2097189551%2FClasslikes%2F-818043238" anchor-label="Blocks" id="-2097189551%2FClasslikes%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-blocks/index.html"><span><span>Blocks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2097189551%2FClasslikes%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-blocks/index.html">Blocks</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/-blocks/index.html">NotionClient.Blocks</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="438613811%2FClasslikes%2F-818043238" anchor-label="Databases" id="438613811%2FClasslikes%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-databases/index.html"><span><span>Databases</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="438613811%2FClasslikes%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-databases/index.html">Databases</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/-databases/index.html">NotionClient.Databases</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1353246900%2FClasslikes%2F-818043238" anchor-label="OAuth" id="1353246900%2FClasslikes%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-o-auth/index.html"><span><span>OAuth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1353246900%2FClasslikes%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-o-auth/index.html">OAuth</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/-o-auth/index.html">NotionClient.OAuth</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="142234695%2FClasslikes%2F-818043238" anchor-label="Pages" id="142234695%2FClasslikes%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pages/index.html"><span><span>Pages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="142234695%2FClasslikes%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-pages/index.html">Pages</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/-pages/index.html">NotionClient.Pages</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-591536273%2FClasslikes%2F-818043238" anchor-label="Search" id="-591536273%2FClasslikes%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-search/index.html"><span><span>Search</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-591536273%2FClasslikes%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-search/index.html">Search</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/-search/index.html">NotionClient.Search</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-84702589%2FClasslikes%2F-818043238" anchor-label="Users" id="-84702589%2FClasslikes%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-users/index.html"><span><span>Users</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-84702589%2FClasslikes%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-users/index.html">Users</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/-users/index.html">NotionClient.Users</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-667548964%2FProperties%2F-818043238" anchor-label="blocks" id="-667548964%2FProperties%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="blocks.html"><span><span>blocks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-667548964%2FProperties%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="blocks.html">blocks</a><span class="token operator">: </span><a href="-blocks/index.html">BlockingNotionClient.Blocks</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/blocks.html">NotionClient.blocks</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1424181344%2FProperties%2F-818043238" anchor-label="databases" id="1424181344%2FProperties%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="databases.html"><span><span>databases</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1424181344%2FProperties%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="databases.html">databases</a><span class="token operator">: </span><a href="-databases/index.html">BlockingNotionClient.Databases</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/databases.html">NotionClient.databases</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1424723359%2FProperties%2F-818043238" anchor-label="oAuth" id="-1424723359%2FProperties%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="o-auth.html"><span>o</span><wbr><span><span>Auth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1424723359%2FProperties%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="o-auth.html">oAuth</a><span class="token operator">: </span><a href="-o-auth/index.html">BlockingNotionClient.OAuth</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/o-auth.html">NotionClient.oAuth</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1659231732%2FProperties%2F-818043238" anchor-label="pages" id="1659231732%2FProperties%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pages.html"><span><span>pages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1659231732%2FProperties%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="pages.html">pages</a><span class="token operator">: </span><a href="-pages/index.html">BlockingNotionClient.Pages</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/pages.html">NotionClient.pages</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="838104314%2FProperties%2F-818043238" anchor-label="search" id="838104314%2FProperties%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="search.html"><span><span>search</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="838104314%2FProperties%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="search.html">search</a><span class="token operator">: </span><a href="-search/index.html">BlockingNotionClient.Search</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/search.html">NotionClient.search</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1432294448%2FProperties%2F-818043238" anchor-label="users" id="1432294448%2FProperties%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="users.html"><span><span>users</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1432294448%2FProperties%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="users.html">users</a><span class="token operator">: </span><a href="-users/index.html">BlockingNotionClient.Users</a></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/users.html">NotionClient.users</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1348169152%2FFunctions%2F-818043238" anchor-label="close" id="-1348169152%2FFunctions%2F-818043238" data-filterable-set=":klibnotion/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close.html"><span><span>close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1348169152%2FFunctions%2F-818043238"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">See <a href="../../org.jraf.klibnotion.client/-notion-client/close.html">NotionClient.close</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

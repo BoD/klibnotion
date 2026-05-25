@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jraf</groupId>
+  <artifactId>klibnotion-jvm</artifactId>
+  <versioning>
+    <latest>2.0.0-SNAPSHOT</latest>
+    <versions>
+      <version>2.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20260525101348</lastUpdated>
+  </versioning>
+</metadata>
