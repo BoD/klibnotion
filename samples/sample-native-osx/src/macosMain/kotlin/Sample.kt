@@ -198,7 +198,7 @@ class Sample {
 
             // 2/ Extract code
             println("After successful authentication please paste the URL in the browser's bar, and press enter:")
-            val redirectUri = readLine()!!
+            val redirectUri = readln()
             val codeAndUniqueState = client.oAuth.extractCodeAndStateFromRedirectUri(redirectUri)
             println(codeAndUniqueState)
             if (codeAndUniqueState == null || codeAndUniqueState.state != uniqueState) {

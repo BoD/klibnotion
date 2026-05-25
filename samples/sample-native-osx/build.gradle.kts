@@ -3,18 +3,17 @@ plugins {
 }
 
 kotlin {
-    macosX64("macos") {
+    macosArm64 {
         binaries {
             executable()
         }
     }
 
     sourceSets {
-        val macosMain by getting {
+        macosMain {
             dependencies {
                 // Library
                 implementation(project(":klibnotion"))
-                // implementation("org.jraf", "klibnotion", "1.0.0")
             }
         }
     }

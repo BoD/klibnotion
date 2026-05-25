@@ -25,7 +25,7 @@
 
 package org.jraf.klibnotion.client
 
-import org.jraf.klibnotion.internal.client.VERSION
+import org.jraf.klibnotion.VERSION
 import kotlin.jvm.JvmOverloads
 
 data class ClientConfiguration @JvmOverloads constructor(

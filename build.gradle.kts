@@ -1,55 +1,14 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import com.gradleup.librarian.gradle.Librarian
 
 plugins {
-    alias(libs.plugins.benManes.versions)
-    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.multiplatform).apply(false)
+    alias(libs.plugins.librarian).apply(false)
 }
 
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
-}
+Librarian.root(project)
 
-allprojects {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
+// `./gradlew refreshVersions` to update dependencies
+// `./gradlew publishToMavenLocal` to publish to local Maven repository
+// `LIBRARIAN_SONATYPE_USERNAME=xxxx LIBRARIAN_SONATYPE_PASSWORD=xxxx LIBRARIAN_SIGNING_PRIVATE_KEY=`cat /path/to/armored/ascii/private-key.gpg` LIBRARIAN_SIGNING_PRIVATE_KEY_PASSWORD=xxxx ./gradlew librarianPublishToMavenCentral` to publish to Maven Central
 
-    group = "org.jraf"
-    version = "1.12.0"
-
-    // Show a report in the log when running tests
-    tasks.withType<Test> {
-        testLogging {
-            events("passed", "skipped", "failed", "standardOut", "standardError")
-        }
-    }
-}
-
-tasks {
-    register<Delete>("clean") {
-        delete(rootProject.file("build"))
-        delete(rootProject.file("docs"))
-    }
-
-    // Configuration for gradle-versions-plugin
-    // Run `./gradlew dependencyUpdates` to see latest versions of dependencies
-    withType<DependencyUpdatesTask> {
-        resolutionStrategy {
-            componentSelection {
-                all {
-                    if (
-                        setOf("alpha", "beta", "rc", "preview", "eap", "m1", "m2").any {
-                            candidate.version.contains(it, true)
-                        }
-                    ) {
-                        reject("Non stable")
-                    }
-                }
-            }
-        }
-    }
-}
+// To make a release: create a tag, this will trigger a build which will push the artifact and create the release on GitHub.

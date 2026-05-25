@@ -7,3 +7,5 @@ out
 !.idea/codeStyles
 !.idea/copyright
 local.properties
+versions.properties
+.kotlin

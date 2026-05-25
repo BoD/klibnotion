@@ -1,6 +1,6 @@
 # Changelog
 
-## Next version (????-??-??)
+## Next version (unreleased)
 
 ## v1.12.0 (2023-09-17)
 

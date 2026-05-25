@@ -36,8 +36,6 @@ import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
-import io.ktor.util.InternalAPI
-import io.ktor.util.encodeBase64
 import kotlinx.serialization.json.JsonElement
 import org.jraf.klibnotion.internal.api.model.block.ApiAppendBlocksParameters
 import org.jraf.klibnotion.internal.api.model.block.ApiBlock
@@ -54,6 +52,7 @@ import org.jraf.klibnotion.internal.api.model.pagination.ApiResultPage
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUser
 import org.jraf.klibnotion.model.base.UuidString
+import kotlin.io.encoding.Base64
 
 internal class NotionService(private val httpClient: HttpClient) {
     companion object {
@@ -75,7 +74,6 @@ internal class NotionService(private val httpClient: HttpClient) {
 
     // region OAuth
 
-    @OptIn(InternalAPI::class)
     suspend fun getOAuthAccessToken(
         clientId: String,
         clientSecret: String,
@@ -91,10 +89,8 @@ internal class NotionService(private val httpClient: HttpClient) {
         }.body()
     }
 
-    @OptIn(InternalAPI::class)
     private fun getClientSecretBase64(clientId: String, clientSecret: String): String {
-        // TODO Don't depend on private encodeBase64 KTOR API
-        val clientSecretBase64 = "$clientId:$clientSecret".encodeBase64()
+        val clientSecretBase64 = Base64.encode("$clientId:$clientSecret".encodeToByteArray())
         return "Basic $clientSecretBase64"
     }
 
