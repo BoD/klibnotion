@@ -1,5 +1,12 @@
 # klibnotion
 
+<header style="text-align: center;">
+
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Forg%2Fjraf%2Fklibnotion-jvm%2Fmaven-metadata.xml&style=flat-square&label=maven-central&color=%235C96B2&strategy=latestProperty)](https://central.sonatype.com/artifact/org.jraf/klibnotion)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Snapshots](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2Forg%2Fjraf%2Fklibnotion-jvm%2Fmaven-metadata.xml&style=flat-square&label=snapshots&color=%2315252D&strategy=latestProperty)](https://central.sonatype.com/repository/maven-snapshots/org/jraf/klibnotion-jvm/maven-metadata.xml)
+
+</header>
+
 A [Notion API](https://developers.notion.com/) client library for Kotlin and Java.
 
 This library is written in [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform/) and can be used from the JVM (Kotlin and Java), Android, and MacOS native.
@@ -20,7 +27,6 @@ The artifact is hosted on the Maven Central repository.
 
 ```kotlin
 dependencies {
-    /* ... */
     implementation("org.jraf:klibnotion:1.12.0")
 }
 ```
@@ -163,8 +169,7 @@ A proxy can be configured by passing a [`HttpConfiguration`](https://bod.github.
 
 - This library uses the `2021-08-16` version of the Notion API.
 - The Notion API is still evolving and therefore there are some changes that have not been implemented by this library yet.
-- Development on this library is not very active, the main reason being that I am not using the Notion API anymore.
-- However, pull requests are very welcome, and I will publish new versions as needed.
+- Development on this library is not very active, however, pull requests are very welcome, and new versions will be published as needed.
 - If you want to contribute, it is recommended you first try an issue with the ["good first issue"](https://github.com/BoD/klibnotion/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
 
 ## Author and License
