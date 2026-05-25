@@ -32,7 +32,6 @@ import kotlinx.cli.Subcommand
 import kotlinx.cli.required
 import kotlinx.cli.vararg
 
-@Suppress("PropertyName", "PrivatePropertyName")
 class Arguments(av: Array<String>) {
     private val parser = ArgParser("notion-cli")
 

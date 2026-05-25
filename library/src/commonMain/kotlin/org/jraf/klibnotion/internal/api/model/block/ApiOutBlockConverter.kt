@@ -27,6 +27,7 @@ package org.jraf.klibnotion.internal.api.model.block
 
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -140,8 +141,12 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                         }
                     }
                     is SyncedBlock -> {
-                        putJsonObject("synced_from") {
-                            put("block_id", model.syncedFrom)
+                        if (model.syncedFrom != null) {
+                            putJsonObject("synced_from") {
+                                put("block_id", model.syncedFrom)
+                            }
+                        } else {
+                            put("synced_from", JsonNull)
                         }
                     }
                     is ChildPageBlock, is ChildDatabaseBlock -> {

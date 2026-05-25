@@ -164,7 +164,9 @@ class Sample {
             getBlockById(blockId)
             getBlockByIdWithChildren(blockId)
             updateBlock(blockId)
-            val pageWithSyncedContent = createPageWithSyncedContent(databaseId = databaseId, syncedBlockId = blockId)
+            val originalSyncedBlockId = createOriginalSyncedBlock(databaseId)
+            val pageWithSyncedContent =
+                createPageWithSyncedContent(databaseId = databaseId, syncedBlockId = originalSyncedBlockId)
             getPageContents(pageWithSyncedContent)
 
             // Search
@@ -581,9 +583,14 @@ class Sample {
                         propertyIdOrName = "Number",
                         predicate = DatabaseQueryPredicate.Number.GreaterThanOrEqualTo(1)
                     ),
-                    DatabaseQueryPropertyFilter.Formula(
-                        propertyIdOrName = "Url or no url",
-                        predicate = DatabaseQueryPredicate.Formula.Text.IsNotEmpty
+                    // Should work but doesn't
+//                    DatabaseQueryPropertyFilter.Formula(
+//                        propertyIdOrName = "Url or no url",
+//                        predicate = DatabaseQueryPredicate.Formula.Text.IsNotEmpty
+//                    ),
+                    DatabaseQueryPropertyFilter.Url(
+                        propertyIdOrName = "Url",
+                        predicate = DatabaseQueryPredicate.Text.IsNotEmpty,
                     ),
                     DatabaseQueryPropertyFilter.Checkbox(
                         propertyIdOrName = "Is checked",
@@ -592,7 +599,7 @@ class Sample {
                 ),
             sort = PropertySort()
                 .ascending("Created time")
-                .descending("title")
+                .descending("title"),
         )
         println(filteredQueryResultPage.results.joinToString("") { it.toFormattedString() })
     }
@@ -625,6 +632,24 @@ class Sample {
         println("Updated block:")
         val block = client.blocks.updateBlock(blockId, paragraph("A random number: ${Random.nextInt()}"))
         println(block)
+    }
+
+    private suspend fun createOriginalSyncedBlock(databaseId: UuidString): UuidString {
+        println("Creating page with original synced block:")
+        val page: Page = client.pages.createPage(
+            parentDatabase = DatabaseReference(databaseId),
+            properties = PropertyValueList().title("The title", "Original synced block source"),
+        ) {
+            originalSyncedBlock {
+                paragraph("This is the original synced content")
+            }
+        }
+        println(page)
+        val syncedBlockId = client.blocks.getBlockList(page.id).results
+            .first { it is SyncedBlock }
+            .id
+        println("Original synced block ID: $syncedBlockId")
+        return syncedBlockId
     }
 
     private suspend fun createPageWithSyncedContent(databaseId: UuidString, syncedBlockId: UuidString): UuidString {

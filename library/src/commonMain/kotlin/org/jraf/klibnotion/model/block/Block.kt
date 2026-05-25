@@ -328,6 +328,9 @@ class MutableBlockList(
 
     fun syncedBlock(syncedFrom: UuidString): MutableBlockList =
         add(org.jraf.klibnotion.model.block.syncedBlock(syncedFrom))
+
+    fun originalSyncedBlock(children: BlockListProducer? = null): MutableBlockList =
+        add(org.jraf.klibnotion.model.block.originalSyncedBlock(children))
 }
 
 typealias BlockListProducer = MutableBlockList.() -> Unit
@@ -638,4 +641,12 @@ fun syncedBlock(syncedFrom: UuidString): Block = SyncedBlockImpl(
     created = IRRELEVANT_TIMESTAMP,
     lastEdited = IRRELEVANT_TIMESTAMP,
     syncedFrom = syncedFrom
+)
+
+fun originalSyncedBlock(children: BlockListProducer? = null): Block = SyncedBlockImpl(
+    id = "",
+    created = IRRELEVANT_TIMESTAMP,
+    lastEdited = IRRELEVANT_TIMESTAMP,
+    syncedFrom = null,
+    children = children(),
 )

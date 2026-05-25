@@ -4,6 +4,7 @@ ktor = "3.5.0"
 coroutines = "1.11.0"
 kotlinx-cli = "0.3.6"
 librarian = "0.2.2-SNAPSHOT"
+slf4j = "2.0.18"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -23,3 +24,5 @@ kotlinx-coroutines-jdk9 = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 
 kotlinx-cli = { group = "org.jetbrains.kotlinx", name = "kotlinx-cli", version.ref = "kotlinx-cli" }
+
+slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }

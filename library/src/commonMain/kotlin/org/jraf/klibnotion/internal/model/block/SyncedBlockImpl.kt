@@ -35,6 +35,5 @@ internal data class SyncedBlockImpl(
     override val created: Timestamp,
     override val lastEdited: Timestamp,
     override val syncedFrom: UuidString?,
-) : SyncedBlock {
-    override val children: List<Block>? = null
-}
+    override val children: List<Block>? = null,
+) : SyncedBlock

@@ -264,7 +264,7 @@ internal object ApiFormulaDatabaseQueryFilterConverter :
     override fun modelToApi(model: DatabaseQueryPredicate.Formula): ApiFormulaDatabaseQueryFilter {
         return when (model) {
             is DatabaseQueryPredicate.Formula.Text ->
-                ApiFormulaDatabaseQueryFilter(text = model.modelToApi(ApiFormulaTextDatabaseQueryFilterConverter))
+                ApiFormulaDatabaseQueryFilter(string = model.modelToApi(ApiFormulaTextDatabaseQueryFilterConverter))
             is DatabaseQueryPredicate.Formula.Checkbox ->
                 ApiFormulaDatabaseQueryFilter(checkbox = model.modelToApi(ApiFormulaCheckboxDatabaseQueryFilterConverter))
             is DatabaseQueryPredicate.Formula.Number ->
