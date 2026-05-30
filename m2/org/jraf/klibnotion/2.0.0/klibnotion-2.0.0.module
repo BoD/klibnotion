@@ -1,0 +1,183 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.jraf",
+    "module": "klibnotion",
+    "version": "2.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.11.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "klibnotion-metadata-2.0.0.jar",
+          "url": "klibnotion-2.0.0.jar",
+          "size": 259086,
+          "sha512": "4e407fb5ccc84f1a882999d4a9ab2899a742d15cd2ed75024d39a3ead58eecfedc9857fac2b7ac676682d52cf27ccca3aaec1de9464fb61b8174a507f1fae126",
+          "sha256": "8bfa2f2a1c8b4f14ecf7028a211debe482f9523d53bc471e99b5172afec5c3ab",
+          "sha1": "f73f201036141764314873a74151304c8ac1a35c",
+          "md5": "a73720cb2429776bfc4ef39b98eb7c7a"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "klibnotion-kotlin-2.0.0-sources.jar",
+          "url": "klibnotion-2.0.0-sources.jar",
+          "size": 336637,
+          "sha512": "1718fe1898994a9eeae0705045cabc3e2a81dd9c8615095877668e3f1fdcde216481a7cba5e106ba891e084443d102ac86c6d60d2f3d4e738ef4d925c5bba1fe",
+          "sha256": "f562876cd2064e649d3ca05372195fa529c16f793582f0e1c68a25570f1746aa",
+          "sha1": "18a2d9b840ef9601c0eaf533a75f2f48fe6e0b13",
+          "md5": "ff89ae39584f7e89d426ed8a309d21f0"
+        }
+      ]
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0/klibnotion-jvm-2.0.0.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0/klibnotion-jvm-2.0.0.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0/klibnotion-jvm-2.0.0.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0/klibnotion-macosarm64-2.0.0.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "name": "macosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0/klibnotion-macosarm64-2.0.0.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0/klibnotion-macosarm64-2.0.0.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0"
+      }
+    }
+  ]
+}
