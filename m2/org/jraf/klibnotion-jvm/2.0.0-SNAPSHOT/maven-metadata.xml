@@ -3,38 +3,38 @@
   <groupId>org.jraf</groupId>
   <artifactId>klibnotion-jvm</artifactId>
   <versioning>
-    <lastUpdated>20260530100805</lastUpdated>
+    <lastUpdated>20260530100848</lastUpdated>
     <snapshot>
-      <timestamp>20260530.100805</timestamp>
+      <timestamp>20260530.100848</timestamp>
       <buildNumber>1</buildNumber>
     </snapshot>
     <snapshotVersions>
       <snapshotVersion>
-        <extension>jar</extension>
-        <value>2.0.0-20260530.100805-1</value>
-        <updated>20260530100805</updated>
-      </snapshotVersion>
-      <snapshotVersion>
-        <classifier>sources</classifier>
-        <extension>jar</extension>
-        <value>2.0.0-20260530.100805-1</value>
-        <updated>20260530100805</updated>
+        <extension>pom</extension>
+        <value>2.0.0-20260530.100848-1</value>
+        <updated>20260530100848</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>module</extension>
-        <value>2.0.0-20260530.100805-1</value>
-        <updated>20260530100805</updated>
+        <value>2.0.0-20260530.100848-1</value>
+        <updated>20260530100848</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>javadoc</classifier>
         <extension>jar</extension>
-        <value>2.0.0-20260530.100805-1</value>
-        <updated>20260530100805</updated>
+        <value>2.0.0-20260530.100848-1</value>
+        <updated>20260530100848</updated>
       </snapshotVersion>
       <snapshotVersion>
-        <extension>pom</extension>
-        <value>2.0.0-20260530.100805-1</value>
-        <updated>20260530100805</updated>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>2.0.0-20260530.100848-1</value>
+        <updated>20260530100848</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>2.0.0-20260530.100848-1</value>
+        <updated>20260530100848</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
