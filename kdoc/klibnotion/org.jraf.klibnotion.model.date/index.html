@@ -43,8 +43,6 @@
         <div class="navigation-controls">
         <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
                 <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":klibnotion/commonMain">common</button>
-                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":klibnotion/jvmMain">jvm</button>
-                <button class="platform-tag platform-selector native-like" data-active="" aria-pressed="true" data-filter=":klibnotion/macosMain">macos</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
                 <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
@@ -58,20 +56,6 @@
                                 <input type="checkbox" class="checkbox--input" id=":klibnotion/commonMain" data-filter=":klibnotion/commonMain">
                                 <span class="checkbox--icon"></span>
                                 common
-                            </label>
-                        </li>
-                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
-                            <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":klibnotion/jvmMain" data-filter=":klibnotion/jvmMain">
-                                <span class="checkbox--icon"></span>
-                                jvm
-                            </label>
-                        </li>
-                        <li role="option" class="dropdown--option platform-selector-option native-like" tabindex="0">
-                            <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":klibnotion/macosMain" data-filter=":klibnotion/macosMain">
-                                <span class="checkbox--icon"></span>
-                                macos
                             </label>
                         </li>
                 </ul>
@@ -105,7 +89,7 @@
         </nav>
         <div id="resizer" class="resizer" data-item-type="BAR"></div>
         <div id="main" data-item-type="SECTION" role="main">
-<div class="main-content" data-page-type="package" id="content" pageids="klibnotion::org.jraf.klibnotion.model.date////PointingToDeclaration//-263203100">
+<div class="main-content" data-page-type="package" id="content" pageids="klibnotion::org.jraf.klibnotion.model.date////PointingToDeclaration//-818043238">
   <div class="breadcrumbs"><a href="../index.html">klibnotion</a><span class="delimiter">/</span><span class="current">org.jraf.klibnotion.model.date</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
@@ -125,7 +109,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-date/index.html">Date</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>timestamp<span class="token operator">: </span><a href="-timestamp/index.html">Timestamp</a></span></span><span class="token punctuation">)</span> : <a href="-date-or-date-time/index.html">DateOrDateTime</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-date/index.html">Date</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>date<span class="token operator">: </span><span data-unresolved-link="kotlinx.datetime/LocalDate///PointingToDeclaration/">LocalDate</span></span></span><span class="token punctuation">)</span> : <a href="-date-or-date-time/index.html">DateOrDateTime</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -170,24 +154,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-date-time/index.html">DateTime</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>timestamp<span class="token operator">: </span><a href="-timestamp/index.html">Timestamp</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>timeZoneId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>getLocalTimeZoneId()</span></span><span class="token punctuation">)</span> : <a href="-date-or-date-time/index.html">DateOrDateTime</a></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="230161263%2FClasslikes%2F-263203100" anchor-label="Timestamp" id="230161263%2FClasslikes%2F-263203100" data-filterable-set=":klibnotion/commonMain,:klibnotion/jvmMain,:klibnotion/macosMain"></a>
-          <div class="table-row table-row_content" data-filterable-current=":klibnotion/commonMain,:klibnotion/jvmMain,:klibnotion/macosMain" data-filterable-set=":klibnotion/commonMain,:klibnotion/jvmMain,:klibnotion/macosMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="-timestamp/index.html"><span><span>Timestamp</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="230161263%2FClasslikes%2F-263203100"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":klibnotion/commonMain" data-filterable-set=":klibnotion/commonMain" data-active="" data-toggle=":klibnotion/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":klibnotion/jvmMain" data-filterable-set=":klibnotion/jvmMain" data-toggle=":klibnotion/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":klibnotion/macosMain" data-filterable-set=":klibnotion/macosMain" data-toggle=":klibnotion/macosMain">macos</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">class </span><a href="-timestamp/index.html">Timestamp</a></div></div><div class="content sourceset-dependent-content" data-togglable=":klibnotion/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-timestamp/index.html">Timestamp</a><span class="token operator"> = </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Date.html">Date</a></div><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-timestamp/index.html">Timestamp</a><span class="token operator"> = </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Date.html">Date</a></div></div><div class="content sourceset-dependent-content" data-togglable=":klibnotion/macosMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-timestamp/index.html">Timestamp</a><span class="token operator"> = </span><span data-unresolved-link="platform.Foundation/NSDate///PointingToDeclaration/">NSDate</span></div><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-timestamp/index.html">Timestamp</a><span class="token operator"> = </span><span data-unresolved-link="platform.Foundation/NSDate///PointingToDeclaration/">NSDate</span></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":klibnotion/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-date-time/index.html">DateTime</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>dateTime<span class="token operator">: </span><span data-unresolved-link="kotlinx.datetime/LocalDateTime///PointingToDeclaration/">LocalDateTime</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>timeZone<span class="token operator">: </span><span data-unresolved-link="kotlinx.datetime/TimeZone///PointingToDeclaration/">TimeZone</span><span class="token operator"> = </span>TimeZone.currentSystemDefault()</span></span><span class="token punctuation">)</span> : <a href="-date-or-date-time/index.html">DateOrDateTime</a></div></div></div>
                 </div>
               </div>
             </div>

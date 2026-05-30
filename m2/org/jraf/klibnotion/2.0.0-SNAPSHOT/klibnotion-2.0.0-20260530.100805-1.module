@@ -1,0 +1,183 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.jraf",
+    "module": "klibnotion",
+    "version": "2.0.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.11.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "klibnotion-metadata-2.0.0-SNAPSHOT.jar",
+          "url": "klibnotion-2.0.0-SNAPSHOT.jar",
+          "size": 259086,
+          "sha512": "4e407fb5ccc84f1a882999d4a9ab2899a742d15cd2ed75024d39a3ead58eecfedc9857fac2b7ac676682d52cf27ccca3aaec1de9464fb61b8174a507f1fae126",
+          "sha256": "8bfa2f2a1c8b4f14ecf7028a211debe482f9523d53bc471e99b5172afec5c3ab",
+          "sha1": "f73f201036141764314873a74151304c8ac1a35c",
+          "md5": "a73720cb2429776bfc4ef39b98eb7c7a"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "klibnotion-kotlin-2.0.0-SNAPSHOT-sources.jar",
+          "url": "klibnotion-2.0.0-SNAPSHOT-sources.jar",
+          "size": 336644,
+          "sha512": "ebcd56aa2f96771eeb881e62d5014860b6f73535fb73f7162f2cdf2127c422b5b1bf688d623db28b52bbb92049ba1fb21ef9f4f77bdc776eb8469996970f6f00",
+          "sha256": "f4b0d6c342e442e05f586f6e53218c251adad4ad9c550e9bf6163e1d17bb5428",
+          "sha1": "a9e2e190ba5003f5d2eefd29e8e79fcbb49db83e",
+          "md5": "0fd868f70c5962f3897556113049a5ec"
+        }
+      ]
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0-SNAPSHOT/klibnotion-jvm-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0-SNAPSHOT/klibnotion-jvm-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../klibnotion-jvm/2.0.0-SNAPSHOT/klibnotion-jvm-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-jvm",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0-SNAPSHOT/klibnotion-macosarm64-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0-SNAPSHOT/klibnotion-macosarm64-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../klibnotion-macosarm64/2.0.0-SNAPSHOT/klibnotion-macosarm64-2.0.0-SNAPSHOT.module",
+        "group": "org.jraf",
+        "module": "klibnotion-macosarm64",
+        "version": "2.0.0-SNAPSHOT"
+      }
+    }
+  ]
+}

@@ -3,22 +3,22 @@
   <groupId>org.jraf</groupId>
   <artifactId>kdoc</artifactId>
   <versioning>
-    <lastUpdated>20260525105820</lastUpdated>
+    <lastUpdated>20260530100805</lastUpdated>
     <snapshot>
-      <timestamp>20260525.105820</timestamp>
+      <timestamp>20260530.100805</timestamp>
       <buildNumber>1</buildNumber>
     </snapshot>
     <snapshotVersions>
       <snapshotVersion>
-        <classifier>javadoc</classifier>
-        <extension>jar</extension>
-        <value>2.0.0-20260525.105820-1</value>
-        <updated>20260525105820</updated>
+        <extension>pom</extension>
+        <value>2.0.0-20260530.100805-1</value>
+        <updated>20260530100805</updated>
       </snapshotVersion>
       <snapshotVersion>
-        <extension>pom</extension>
-        <value>2.0.0-20260525.105820-1</value>
-        <updated>20260525105820</updated>
+        <classifier>javadoc</classifier>
+        <extension>jar</extension>
+        <value>2.0.0-20260530.100805-1</value>
+        <updated>20260530100805</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
