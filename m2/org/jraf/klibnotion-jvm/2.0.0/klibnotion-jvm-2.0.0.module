@@ -1,0 +1,172 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../klibnotion/2.0.0/klibnotion-2.0.0.module",
+    "group": "org.jraf",
+    "module": "klibnotion",
+    "version": "2.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.11.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "klibnotion-jvm-2.0.0.jar",
+          "url": "klibnotion-jvm-2.0.0.jar",
+          "size": 1345877,
+          "sha512": "f8f2d6295cb40008412dd5fc2acd413c6d60756739bae3a0735645d52835c980d61124227fdef7bda4de982fbd27ae1258d407a555eaf58b004fe8dc53c53c2b",
+          "sha256": "a32c6b5564cfdcb318d8afebd290c4d5f72ca453bf3a65ec1a413390ae75a0b8",
+          "sha1": "ecfa32200994e546529cd4810203530b59a2314c",
+          "md5": "c36953aba94167a1cd80ded4c8e7fd5a"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.11.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-okhttp",
+          "version": {
+            "requires": "3.5.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.5.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-json",
+          "version": {
+            "requires": "3.5.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.5.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.5.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "klibnotion-jvm-2.0.0.jar",
+          "url": "klibnotion-jvm-2.0.0.jar",
+          "size": 1345877,
+          "sha512": "f8f2d6295cb40008412dd5fc2acd413c6d60756739bae3a0735645d52835c980d61124227fdef7bda4de982fbd27ae1258d407a555eaf58b004fe8dc53c53c2b",
+          "sha256": "a32c6b5564cfdcb318d8afebd290c4d5f72ca453bf3a65ec1a413390ae75a0b8",
+          "sha1": "ecfa32200994e546529cd4810203530b59a2314c",
+          "md5": "c36953aba94167a1cd80ded4c8e7fd5a"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "klibnotion-jvm-2.0.0-sources.jar",
+          "url": "klibnotion-jvm-2.0.0-sources.jar",
+          "size": 343333,
+          "sha512": "5dd901fcfb04d8581cea078727d4ac068c29cf54579fd161420f4da681e1d104dd968dd20e5d9c8188dabb01d5da5b88fc022d2c421076c11bbf81def2207ff7",
+          "sha256": "e286a4d6f97bf0cfbc8c171b82b5f6e80af890e080175c008e412b7b9f405c42",
+          "sha1": "f0ed2bc46192cff29c6a485d046a40aa2e283ce6",
+          "md5": "53a6d0deaf733f83ddff5a7b6fed8bb4"
+        }
+      ]
+    }
+  ]
+}
