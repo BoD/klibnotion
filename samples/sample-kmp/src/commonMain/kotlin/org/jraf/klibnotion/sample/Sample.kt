@@ -109,24 +109,27 @@ private const val OAUTH_CLIENT_ID = "00000000-0000-0000-0000-000000000000"
 private const val OAUTH_CLIENT_SECRET = "secret_XXX"
 private const val OAUTH_REDIRECT_URI = "https://example.com"
 
-// Set to false to use the TOKEN above, true to setup and use OAuth
-private const val USE_OAUTH = false
+// Set to false to use the TOKEN above, true to use OAuth to get an access token
+private const val GET_ACCESS_TOKEN_FROM_OAUTH = false
 
 // Replace with a page id that your integration has access to
-private const val ROOT_PAGE_ID = "00000000-0000-0000-0000-000000000000"
+private const val ROOT_PAGE_ID = "19af8da9cae3490fa43cc1c2f1faa678"
 
 class Sample {
-    private val authentication = Authentication()
-
     private val client: NotionClient by lazy {
         // Create the client
         NotionClient.newInstance(
             ClientConfiguration(
-                authentication,
-                HttpConfiguration(
+                authentication = if (GET_ACCESS_TOKEN_FROM_OAUTH) {
+                    // OAuth flow: we don't have an access token yet, pass null
+                    null
+                } else {
+                    Authentication(TOKEN)
+                },
+                httpConfiguration = HttpConfiguration(
                     // Uncomment to see more logs
                     loggingLevel = HttpLoggingLevel.BODY,
-//                    loggingLevel = HttpLoggingLevel.INFO,
+                    //                    loggingLevel = HttpLoggingLevel.INFO,
                     // This is only needed to debug with, e.g., Charles Proxy
                     httpProxy = HttpProxy("localhost", 8888),
                     // Can be useful in certain circumstances, but unwise to use in production
@@ -138,7 +141,9 @@ class Sample {
 
     fun main() {
         runBlocking {
-            setupAuthentication()
+            if (GET_ACCESS_TOKEN_FROM_OAUTH) {
+                getAccessTokenFromOAuth()
+            }
 
             // Users
             val userId = getFirstUserId()
@@ -192,41 +197,35 @@ class Sample {
         }
     }
 
-    private suspend fun setupAuthentication() {
-        if (USE_OAUTH) {
-            val oAuthCredentials = OAuthCredentials(
-                clientId = OAUTH_CLIENT_ID,
-                clientSecret = OAUTH_CLIENT_SECRET,
-                redirectUri = OAUTH_REDIRECT_URI,
-            )
+    private suspend fun getAccessTokenFromOAuth() {
+        val oAuthCredentials = OAuthCredentials(
+            clientId = OAUTH_CLIENT_ID,
+            clientSecret = OAUTH_CLIENT_SECRET,
+            redirectUri = OAUTH_REDIRECT_URI,
+        )
 
-            // 1/ Authenticate the user / integration
-            val uniqueState = Random.nextLong().toString()
-            println("Navigate to this URL in a browser:")
-            println(client.oAuth.getUserPromptUri(oAuthCredentials = oAuthCredentials, uniqueState = uniqueState))
+        // 1/ Authenticate the user / integration
+        val uniqueState = Random.nextLong().toString()
+        println("Navigate to this URL in a browser:")
+        println(client.oAuth.getUserPromptUri(oAuthCredentials = oAuthCredentials, uniqueState = uniqueState))
 
-            // 2/ Extract code
-            println("After successful authentication please paste the URL in the browser's bar, and press enter:")
-            val redirectUri = readln()
-            val codeAndUniqueState = client.oAuth.extractCodeAndStateFromRedirectUri(redirectUri)
-            println(codeAndUniqueState)
-            if (codeAndUniqueState == null || codeAndUniqueState.state != uniqueState) {
-                println("Something is wrong! Giving up.")
-                throw Exception()
-            }
-
-            // 3/ Exchange code for an access token
-            val getAccessTokenResult = client.oAuth.getAccessToken(
-                oAuthCredentials = oAuthCredentials,
-                code = codeAndUniqueState.code,
-            )
-            println(getAccessTokenResult)
-
-            // 4/ Use obtained access token for subsequent API calls
-            authentication.accessToken = getAccessTokenResult.accessToken
-        } else {
-            authentication.accessToken = TOKEN
+        // 2/ Extract code
+        println("After successful authentication please paste the URL in the browser's bar, and press enter:")
+        val redirectUri = readln()
+        val codeAndUniqueState = client.oAuth.extractCodeAndStateFromRedirectUri(redirectUri)
+        println(codeAndUniqueState)
+        if (codeAndUniqueState == null || codeAndUniqueState.state != uniqueState) {
+            println("Something is wrong! Giving up.")
+            throw Exception()
         }
+
+        // 3/ Exchange code for an access token
+        val getAccessTokenResult = client.oAuth.getAccessToken(
+            oAuthCredentials = oAuthCredentials,
+            code = codeAndUniqueState.code,
+        )
+        println("Here is the access token that you can save for future runs (instead of going through the OAuth flow again):")
+        println(getAccessTokenResult.accessToken)
     }
 
     private suspend fun getFirstUserId(): UuidString {

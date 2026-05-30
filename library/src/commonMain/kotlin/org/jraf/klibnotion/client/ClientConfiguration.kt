@@ -29,7 +29,11 @@ import org.jraf.klibnotion.VERSION
 import kotlin.jvm.JvmOverloads
 
 data class ClientConfiguration @JvmOverloads constructor(
-    val authentication: Authentication,
+    /**
+     * Pass null to access oAuth APIs, which are unauthenticated. Otherwise pass an [Authentication] instance with
+     * the `accessToken` to access authenticated APIs.
+     */
+    val authentication: Authentication?,
     val httpConfiguration: HttpConfiguration = HttpConfiguration(),
     val userAgent: String = "klibnotion/$VERSION",
 )

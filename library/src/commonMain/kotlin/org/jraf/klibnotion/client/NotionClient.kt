@@ -79,6 +79,9 @@ interface NotionClient {
 
         /**
          * Retrieve the OAuth access token from a code obtained via [getUserPromptUri] and [extractCodeAndStateFromRedirectUri].
+         *
+         * This also updates this [NotionClient] instance to use the retrieved access token for subsequent API calls.
+         *
          * @see <a href="https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token">Exchanging the grant for an access token</a>
          */
         suspend fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String): OAuthGetAccessTokenResult

@@ -26,17 +26,5 @@
 package org.jraf.klibnotion.client
 
 data class Authentication(
-    var accessToken: String,
-) {
-    /**
-     * Use this constructor if you need to set the access token later on,
-     * e.g. when using the OAuth flow.
-     */
-    constructor() : this(accessToken = UNSET)
-
-    internal val isSet get() = accessToken != UNSET
-
-    companion object {
-        private const val UNSET = "unset"
-    }
-}
+    val accessToken: String,
+)

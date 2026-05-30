@@ -52,6 +52,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.serialization.json.Json
+import org.jraf.klibnotion.client.Authentication
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
@@ -112,7 +113,7 @@ import org.jraf.klibnotion.model.user.User
 import kotlin.coroutines.coroutineContext
 
 internal class NotionClientImpl(
-    clientConfiguration: ClientConfiguration,
+    private var clientConfiguration: ClientConfiguration,
 ) : NotionClient,
     NotionClient.OAuth,
     NotionClient.Users,
@@ -155,7 +156,7 @@ internal class NotionClientImpl(
             defaultRequest {
                 if (headers[HttpHeaders.Authorization] == null) {
                     val authentication = clientConfiguration.authentication
-                    if (!authentication.isSet) throw IllegalStateException("You must set the Authentication accessToken before making this call")
+                        ?: throw IllegalStateException("You must set the Authentication accessToken before making this call")
                     header(
                         HttpHeaders.Authorization,
                         "Bearer ${authentication.accessToken}"
@@ -250,16 +251,18 @@ internal class NotionClientImpl(
     }
 
     override suspend fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String): OAuthGetAccessTokenResult {
-        return service.getOAuthAccessToken(
+        val accessTokenResult = service.getOAuthAccessToken(
             clientId = oAuthCredentials.clientId,
             clientSecret = oAuthCredentials.clientSecret,
             parameters = ApiOAuthGetAccessTokenParameters(
                 grant_type = "authorization_code",
                 redirect_uri = oAuthCredentials.redirectUri,
                 code = code,
-            )
+            ),
         )
             .apiToModel(ApiOAuthGetAccessTokenResultConverter)
+        clientConfiguration = clientConfiguration.copy(authentication = Authentication(accessTokenResult.accessToken))
+        return accessTokenResult
     }
 
     // endregion
