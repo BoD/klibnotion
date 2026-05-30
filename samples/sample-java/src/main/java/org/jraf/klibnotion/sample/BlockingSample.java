@@ -77,7 +77,6 @@ class BlockingSample {
                                 // Uncomment to see more logs
                                 // loggingLevel = HttpLoggingLevel.BODY,
                                 HttpLoggingLevel.INFO,
-                                null,
                                 // This is only needed to debug with, e.g., Charles Proxy
                                 new HttpProxy("localhost", 8888),
                                 true
