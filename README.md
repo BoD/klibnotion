@@ -23,7 +23,7 @@ The artifact is hosted on the Maven Central repository.
 
 ```kotlin
 dependencies {
-    implementation("org.jraf:klibnotion:1.12.0")
+    implementation("org.jraf:klibnotion:2.0.0")
 }
 ```
 
