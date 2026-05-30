@@ -110,6 +110,7 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Databases.getDatabaseList].
          */
+        @Deprecated("The List Databases endpoint was deprecated by Notion in API version 2022-02-22. Use search.searchDatabases instead.")
         fun getDatabaseList(pagination: Pagination = Pagination()): Future<ResultPage<Database>>
 
         /**
