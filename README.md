@@ -35,7 +35,7 @@ The easiest way to see how to use it is to look at the samples:
 - [Blocking (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/BlockingSample.java)
 - [Future (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/FutureSample.java)
 
-You can also explore [the docs](https://bod.github.io/klibnotion/).
+You can also explore [the reference doc](https://jraf.org/klibnotion/kdoc/).
 
 #### Get your API key
 
