@@ -28,6 +28,7 @@ package org.jraf.klibnotion.internal.client.future
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.future.future
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.future.FutureNotionClient
@@ -271,6 +272,9 @@ internal class FutureNotionClientImpl(
         notionClient.search.searchDatabases(query, sort, pagination)
     }
 
-    override fun close() = notionClient.close()
+    override fun close() {
+        notionClient.close()
+        coroutineScope.cancel()
+    }
 
 }
