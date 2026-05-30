@@ -110,6 +110,7 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Databases.getDatabaseList].
          */
+        @Deprecated("The List Databases endpoint was deprecated by Notion in API version 2022-02-22. Use search.searchDatabases instead.")
         fun getDatabaseList(pagination: Pagination = Pagination()): Future<ResultPage<Database>>
 
         /**
@@ -117,6 +118,16 @@ interface FutureNotionClient {
          */
         fun queryDatabase(
             id: UuidString,
+            query: DatabaseQuery? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): Future<ResultPage<Page>>
+
+        /**
+         * See [NotionClient.Databases.queryDataSource].
+         */
+        fun queryDataSource(
+            dataSourceId: UuidString,
             query: DatabaseQuery? = null,
             sort: PropertySort? = null,
             pagination: Pagination = Pagination(),
@@ -209,9 +220,9 @@ interface FutureNotionClient {
         ): Future<Page>
 
         /**
-         * See [NotionClient.Pages.setPageArchived].
+         * See [NotionClient.Pages.setPageInTrash].
          */
-        fun setPageArchived(id: UuidString, archived: Boolean): Future<Page>
+        fun setPageInTrash(id: UuidString, inTrash: Boolean): Future<Page>
     }
 
     /**
@@ -231,12 +242,20 @@ interface FutureNotionClient {
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: MutableBlockList): Future<Void?>
+        fun appendBlockList(
+            parentId: UuidString,
+            afterBlockId: UuidString? = null,
+            blocks: MutableBlockList,
+        ): Future<Void?>
 
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: BlockListProducer): Future<Void?>
+        fun appendBlockList(
+            parentId: UuidString,
+            afterBlockId: UuidString? = null,
+            blocks: BlockListProducer,
+        ): Future<Void?>
 
         /**
          * See [NotionClient.Blocks.getBlock].

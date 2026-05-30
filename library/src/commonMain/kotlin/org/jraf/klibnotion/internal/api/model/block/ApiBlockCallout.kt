@@ -31,6 +31,6 @@ import org.jraf.klibnotion.internal.api.model.richtext.ApiRichText
 
 @Serializable
 internal data class ApiBlockCallout(
-    val text: List<ApiRichText>,
-    val icon: ApiEmojiOrFile
+    val rich_text: List<ApiRichText>,
+    val icon: ApiEmojiOrFile,
 )

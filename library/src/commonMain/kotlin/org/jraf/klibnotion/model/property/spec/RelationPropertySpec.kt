@@ -38,17 +38,14 @@ interface RelationPropertySpec : PropertySpec {
     val databaseId: UuidString
 
     /**
-     * By default, relations are formed as two synced properties across databases: if you make a change to one property,
-     * it updates the synced property at the same time.
-     * [syncedPropertyName] refers to the name of the property in the related database.
+     * For dual-property relations, the name of the synced property in the related database.
+     * `null` for single-property relations.
      */
-    val syncedPropertyName: String
+    val syncedPropertyName: String?
 
     /**
-     * By default, relations are formed as two synced properties across databases: if you make a change to one property,
-     * it updates the synced property at the same time.
-     * [syncedPropertyId] refers to the id of the property in the related database.
-     * Like [PropertySpec.id], this is usually a short string of random letters and symbols.
+     * For dual-property relations, the id of the synced property in the related database.
+     * `null` for single-property relations.
      */
-    val syncedPropertyId: String
+    val syncedPropertyId: String?
 }

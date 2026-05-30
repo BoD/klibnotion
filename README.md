@@ -1,11 +1,7 @@
 # klibnotion
 
-<header style="text-align: center;">
-
 [![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Forg%2Fjraf%2Fklibnotion-jvm%2Fmaven-metadata.xml&style=flat-square&label=maven-central&color=%235C96B2&strategy=latestProperty)](https://central.sonatype.com/artifact/org.jraf/klibnotion)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Snapshots](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2Forg%2Fjraf%2Fklibnotion-jvm%2Fmaven-metadata.xml&style=flat-square&label=snapshots&color=%2315252D&strategy=latestProperty)](https://central.sonatype.com/repository/maven-snapshots/org/jraf/klibnotion-jvm/maven-metadata.xml)
-
-</header>
 
 A [Notion API](https://developers.notion.com/) client library for Kotlin and Java.
 
@@ -39,7 +35,7 @@ The easiest way to see how to use it is to look at the samples:
 - [Blocking (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/BlockingSample.java)
 - [Future (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/FutureSample.java)
 
-You can also explore [the docs](https://bod.github.io/klibnotion/).
+You can also explore [the reference doc](https://jraf.org/klibnotion/kdoc/).
 
 #### Get your API key
 
@@ -56,29 +52,35 @@ val notionClient = NotionClient.newInstance(
 )
 ```
 
-To get other flavors of the client:
+To get other flavors of the client (Java):
 
-- Blocking: `BlockingNotionClient blockingClient = BlockingNotionClientUtils.asBlockingNotionClient(notionClient)`
-- Future: `FutureNotionClient futureClient = FutureNotionClientUtils.asFutureNotionClient(notionClient)`
+- Blocking: `BlockingNotionClient blockingClient = BlockingNotionClientUtils.asBlockingNotionClient(notionClient);`
+- Future: `FutureNotionClient futureClient = FutureNotionClientUtils.asFutureNotionClient(notionClient);`
 
 #### Use the `NotionClient`
 
-The client gives access to several API "areas":
+The client gives access to several API areas:
 
-- [`oAuth`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/index.html)
-- [`users`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-users/index.html)
-- [`databases`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-databases/index.html)
-- [`pages`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-pages/index.html)
-- [`blocks`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-blocks/index.html)
+- [`oAuth`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/index.html)
+- [`users`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-users/index.html)
+- [
+  `databases`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-databases/index.html)
+- [`pages`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-pages/index.html)
+- [`blocks`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-blocks/index.html)
 
-Each area exposes related APIs, for instance: [`notionClient.pages.getPage`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-pages/get-page.html).
+Each area exposes related APIs, for instance: [
+`notionClient.pages.getPage`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-pages/get-page.html).
 
 #### Pagination
 
 The APIs that are paginated all follow the same principle:
 
-- take a [`Pagination`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.model.pagination/-pagination/index.html) object as a parameter, which defines the page to retrieve
-- return a [`ResultPage<T>`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.model.pagination/-result-page/index.html) with the result list but also a reference to the next `Pagination` objects (handy when retrieving several pages).
+- take a [
+  `Pagination`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.model.pagination/-pagination/index.html)
+  object as a parameter, which defines the page to retrieve
+- return a [
+  `ResultPage<T>`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.model.pagination/-result-page/index.html)
+  with the result list but also a reference to the next `Pagination` objects (handy when retrieving several pages).
 
 #### Content DSL
 
@@ -148,27 +150,44 @@ toggle("This is a toggle!") {
 
 #### OAuth support
 
-1. Use [`oAuth.getUserPromptUri`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/get-user-prompt-uri.html) to get a URI that will prompt users to agree to add your integration to their workspace
-2. After agreeing and upon success, they will be redirected to a specific URI containing a code. Use [`oAuth.extractCodeAndStateFromRedirectUri`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/extract-code-and-state-from-redirect-uri.html) to extract the code from this URI.
-3. Exchange the code for an access token using [`oAuth.getAccessToken`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/get-access-token.html)
-4. Save this token. You can now use it by setting the [`accessToken`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-authentication/access-token.html) property of the [`Authentication`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-authentication/index.html) object you used when building your [`NotionClient`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/index.html).
+1. Build your [
+   `NotionClient`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-companion/new-instance.html)
+   with a
+   `null` [Authentication](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-authentication/index.html).
+2. Use [
+   `oAuth.getUserPromptUri`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/get-user-prompt-uri.html)
+   to get a URI that will prompt users to agree to add your integration to their workspace
+3. After agreeing and upon success, they will be redirected to a specific URI containing a code. Use [
+   `oAuth.extractCodeAndStateFromRedirectUri`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/extract-code-and-state-from-redirect-uri.html)
+   to extract the code from this URI.
+4. Exchange the code for an access token using [
+   `oAuth.getAccessToken`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-o-auth/get-access-token.html)
+5. The `NotionClient` is updated with the token so you can now make authenticated calls. Securely save the token so you
+   can pass it to the `authentication` next time you build your `NotionClient`.
 
 See [the sample](samples/sample-jvm/src/main/kotlin/org/jraf/klibnotion/sample/Sample.kt) for a working example.
 
 #### Logging
 
-To log HTTP requests/response, pass a [`HttpConfiguration`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-http-configuration/index.html) to [`NotionClient.newInstance()`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-companion/new-instance.html?query=fun%20newInstance(configuration:%20ClientConfiguration):%20NotionClient).
+To log HTTP requests/response, pass a [
+`HttpConfiguration`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-http-configuration/index.html)
+to [
+`NotionClient.newInstance()`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-companion/new-instance.html?query=fun%20newInstance(configuration:%20ClientConfiguration):%20NotionClient).
 
-Several [levels](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-http-logging-level/index.html) are available: `NONE`, `INFO`, `HEADERS`, `BODY` and `ALL`
+Several [levels](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-http-logging-level/index.html)
+are available: `NONE`, `INFO`, `HEADERS`, `BODY` and `ALL`
 
 #### Proxy
 
-A proxy can be configured by passing a [`HttpConfiguration`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-http-configuration/index.html) to [`NotionClient.newInstance()`](https://bod.github.io/klibnotion/klibnotion/org.jraf.klibnotion.client/-notion-client/-companion/new-instance.html?query=fun%20newInstance(configuration:%20ClientConfiguration):%20NotionClient).
+A proxy can be configured by passing a [
+`HttpConfiguration`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-http-configuration/index.html)
+to [
+`NotionClient.newInstance()`](https://jraf.org/klibnotion/kdoc/klibnotion/org.jraf.klibnotion.client/-notion-client/-companion/new-instance.html?query=fun%20newInstance(configuration:%20ClientConfiguration):%20NotionClient).
 
 ## Status
 
-- This library uses the `2021-08-16` version of the Notion API.
-- The Notion API is still evolving and therefore there are some changes that have not been implemented by this library yet.
+- This library uses the `2026-03-11` version of the Notion API.
+- The Notion API is still evolving and there may be some changes that have not been implemented by this library yet.
 - Development on this library is not very active, however, pull requests are very welcome, and new versions will be published as needed.
 - If you want to contribute, it is recommended you first try an issue with the ["good first issue"](https://github.com/BoD/klibnotion/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
 

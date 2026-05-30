@@ -111,6 +111,7 @@ interface BlockingNotionClient {
         /**
          * See [NotionClient.Databases.getDatabaseList].
          */
+        @Deprecated("The List Databases endpoint was deprecated by Notion in API version 2022-02-22. Use search.searchDatabases instead.")
         fun getDatabaseList(pagination: Pagination = Pagination()): ResultPage<Database>
 
         /**
@@ -118,6 +119,16 @@ interface BlockingNotionClient {
          */
         fun queryDatabase(
             id: UuidString,
+            query: DatabaseQuery? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): ResultPage<Page>
+
+        /**
+         * See [NotionClient.Databases.queryDataSource].
+         */
+        fun queryDataSource(
+            dataSourceId: UuidString,
             query: DatabaseQuery? = null,
             sort: PropertySort? = null,
             pagination: Pagination = Pagination(),
@@ -210,9 +221,9 @@ interface BlockingNotionClient {
         ): Page
 
         /**
-         * See [NotionClient.Pages.setPageArchived].
+         * See [NotionClient.Pages.setPageInTrash].
          */
-        fun setPageArchived(id: UuidString, archived: Boolean): Page
+        fun setPageInTrash(id: UuidString, inTrash: Boolean): Page
     }
 
     /**
@@ -232,12 +243,12 @@ interface BlockingNotionClient {
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: MutableBlockList)
+        fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: MutableBlockList)
 
         /**
          * See [NotionClient.Blocks.appendBlockList].
          */
-        fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
+        fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: BlockListProducer)
 
         /**
          * See [NotionClient.Blocks.getBlock].

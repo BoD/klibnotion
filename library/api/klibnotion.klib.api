@@ -66,8 +66,8 @@ abstract interface org.jraf.klibnotion.client.blocking/BlockingNotionClient { //
     abstract fun close() // org.jraf.klibnotion.client.blocking/BlockingNotionClient.close|close(){}[0]
 
     abstract interface Blocks { // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks|null[0]
-        abstract fun appendBlockList(kotlin/String, kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>) // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>){}[0]
-        abstract fun appendBlockList(kotlin/String, org.jraf.klibnotion.model.block/MutableBlockList) // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;org.jraf.klibnotion.model.block.MutableBlockList){}[0]
+        abstract fun appendBlockList(kotlin/String, kotlin/String? = ..., kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>) // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;kotlin.String?;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>){}[0]
+        abstract fun appendBlockList(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.block/MutableBlockList) // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.block.MutableBlockList){}[0]
         abstract fun getAllBlockListRecursively(kotlin/String): kotlin.collections/List<org.jraf.klibnotion.model.block/Block> // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks.getAllBlockListRecursively|getAllBlockListRecursively(kotlin.String){}[0]
         abstract fun getBlock(kotlin/String, kotlin/Boolean): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks.getBlock|getBlock(kotlin.String;kotlin.Boolean){}[0]
         abstract fun getBlockList(kotlin/String, org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.block/Block> // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Blocks.getBlockList|getBlockList(kotlin.String;org.jraf.klibnotion.model.pagination.Pagination){}[0]
@@ -78,6 +78,7 @@ abstract interface org.jraf.klibnotion.client.blocking/BlockingNotionClient { //
         abstract fun createDatabase(kotlin/String, org.jraf.klibnotion.model.richtext/RichTextList = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.property.spec/PropertySpecList = ...): org.jraf.klibnotion.model.database/Database // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Databases.createDatabase|createDatabase(kotlin.String;org.jraf.klibnotion.model.richtext.RichTextList;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.property.spec.PropertySpecList){}[0]
         abstract fun getDatabase(kotlin/String): org.jraf.klibnotion.model.database/Database // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Databases.getDatabase|getDatabase(kotlin.String){}[0]
         abstract fun getDatabaseList(org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.database/Database> // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Databases.getDatabaseList|getDatabaseList(org.jraf.klibnotion.model.pagination.Pagination){}[0]
+        abstract fun queryDataSource(kotlin/String, org.jraf.klibnotion.model.database.query/DatabaseQuery? = ..., org.jraf.klibnotion.model.property.sort/PropertySort? = ..., org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.page/Page> // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Databases.queryDataSource|queryDataSource(kotlin.String;org.jraf.klibnotion.model.database.query.DatabaseQuery?;org.jraf.klibnotion.model.property.sort.PropertySort?;org.jraf.klibnotion.model.pagination.Pagination){}[0]
         abstract fun queryDatabase(kotlin/String, org.jraf.klibnotion.model.database.query/DatabaseQuery? = ..., org.jraf.klibnotion.model.property.sort/PropertySort? = ..., org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.page/Page> // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Databases.queryDatabase|queryDatabase(kotlin.String;org.jraf.klibnotion.model.database.query.DatabaseQuery?;org.jraf.klibnotion.model.property.sort.PropertySort?;org.jraf.klibnotion.model.pagination.Pagination){}[0]
         abstract fun updateDatabase(kotlin/String, org.jraf.klibnotion.model.richtext/RichTextList? = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.property.spec/PropertySpecList? = ...): org.jraf.klibnotion.model.database/Database // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Databases.updateDatabase|updateDatabase(kotlin.String;org.jraf.klibnotion.model.richtext.RichTextList?;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.property.spec.PropertySpecList?){}[0]
     }
@@ -94,7 +95,7 @@ abstract interface org.jraf.klibnotion.client.blocking/BlockingNotionClient { //
         abstract fun createPage(org.jraf.klibnotion.model.base.reference/PageReference, org.jraf.klibnotion.model.richtext/RichTextList = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Pages.createPage|createPage(org.jraf.klibnotion.model.base.reference.PageReference;org.jraf.klibnotion.model.richtext.RichTextList;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>){}[0]
         abstract fun createPage(org.jraf.klibnotion.model.base.reference/PageReference, org.jraf.klibnotion.model.richtext/RichTextList = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.block/MutableBlockList? = ...): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Pages.createPage|createPage(org.jraf.klibnotion.model.base.reference.PageReference;org.jraf.klibnotion.model.richtext.RichTextList;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.block.MutableBlockList?){}[0]
         abstract fun getPage(kotlin/String): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Pages.getPage|getPage(kotlin.String){}[0]
-        abstract fun setPageArchived(kotlin/String, kotlin/Boolean): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Pages.setPageArchived|setPageArchived(kotlin.String;kotlin.Boolean){}[0]
+        abstract fun setPageInTrash(kotlin/String, kotlin/Boolean): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Pages.setPageInTrash|setPageInTrash(kotlin.String;kotlin.Boolean){}[0]
         abstract fun updatePage(kotlin/String, org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.property.value/PropertyValueList): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client.blocking/BlockingNotionClient.Pages.updatePage|updatePage(kotlin.String;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.property.value.PropertyValueList){}[0]
     }
 
@@ -126,8 +127,8 @@ abstract interface org.jraf.klibnotion.client/NotionClient { // org.jraf.klibnot
     abstract fun close() // org.jraf.klibnotion.client/NotionClient.close|close(){}[0]
 
     abstract interface Blocks { // org.jraf.klibnotion.client/NotionClient.Blocks|null[0]
-        abstract suspend fun appendBlockList(kotlin/String, kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>) // org.jraf.klibnotion.client/NotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>){}[0]
-        abstract suspend fun appendBlockList(kotlin/String, org.jraf.klibnotion.model.block/MutableBlockList) // org.jraf.klibnotion.client/NotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;org.jraf.klibnotion.model.block.MutableBlockList){}[0]
+        abstract suspend fun appendBlockList(kotlin/String, kotlin/String? = ..., kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>) // org.jraf.klibnotion.client/NotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;kotlin.String?;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>){}[0]
+        abstract suspend fun appendBlockList(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.block/MutableBlockList) // org.jraf.klibnotion.client/NotionClient.Blocks.appendBlockList|appendBlockList(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.block.MutableBlockList){}[0]
         abstract suspend fun getAllBlockListRecursively(kotlin/String): kotlin.collections/List<org.jraf.klibnotion.model.block/Block> // org.jraf.klibnotion.client/NotionClient.Blocks.getAllBlockListRecursively|getAllBlockListRecursively(kotlin.String){}[0]
         abstract suspend fun getBlock(kotlin/String, kotlin/Boolean = ...): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.client/NotionClient.Blocks.getBlock|getBlock(kotlin.String;kotlin.Boolean){}[0]
         abstract suspend fun getBlockList(kotlin/String, org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.block/Block> // org.jraf.klibnotion.client/NotionClient.Blocks.getBlockList|getBlockList(kotlin.String;org.jraf.klibnotion.model.pagination.Pagination){}[0]
@@ -138,6 +139,7 @@ abstract interface org.jraf.klibnotion.client/NotionClient { // org.jraf.klibnot
         abstract suspend fun createDatabase(kotlin/String, org.jraf.klibnotion.model.richtext/RichTextList = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.property.spec/PropertySpecList = ...): org.jraf.klibnotion.model.database/Database // org.jraf.klibnotion.client/NotionClient.Databases.createDatabase|createDatabase(kotlin.String;org.jraf.klibnotion.model.richtext.RichTextList;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.property.spec.PropertySpecList){}[0]
         abstract suspend fun getDatabase(kotlin/String): org.jraf.klibnotion.model.database/Database // org.jraf.klibnotion.client/NotionClient.Databases.getDatabase|getDatabase(kotlin.String){}[0]
         abstract suspend fun getDatabaseList(org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.database/Database> // org.jraf.klibnotion.client/NotionClient.Databases.getDatabaseList|getDatabaseList(org.jraf.klibnotion.model.pagination.Pagination){}[0]
+        abstract suspend fun queryDataSource(kotlin/String, org.jraf.klibnotion.model.database.query/DatabaseQuery? = ..., org.jraf.klibnotion.model.property.sort/PropertySort? = ..., org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.page/Page> // org.jraf.klibnotion.client/NotionClient.Databases.queryDataSource|queryDataSource(kotlin.String;org.jraf.klibnotion.model.database.query.DatabaseQuery?;org.jraf.klibnotion.model.property.sort.PropertySort?;org.jraf.klibnotion.model.pagination.Pagination){}[0]
         abstract suspend fun queryDatabase(kotlin/String, org.jraf.klibnotion.model.database.query/DatabaseQuery? = ..., org.jraf.klibnotion.model.property.sort/PropertySort? = ..., org.jraf.klibnotion.model.pagination/Pagination = ...): org.jraf.klibnotion.model.pagination/ResultPage<org.jraf.klibnotion.model.page/Page> // org.jraf.klibnotion.client/NotionClient.Databases.queryDatabase|queryDatabase(kotlin.String;org.jraf.klibnotion.model.database.query.DatabaseQuery?;org.jraf.klibnotion.model.property.sort.PropertySort?;org.jraf.klibnotion.model.pagination.Pagination){}[0]
         abstract suspend fun updateDatabase(kotlin/String, org.jraf.klibnotion.model.richtext/RichTextList? = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.property.spec/PropertySpecList? = ...): org.jraf.klibnotion.model.database/Database // org.jraf.klibnotion.client/NotionClient.Databases.updateDatabase|updateDatabase(kotlin.String;org.jraf.klibnotion.model.richtext.RichTextList?;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.property.spec.PropertySpecList?){}[0]
     }
@@ -154,7 +156,7 @@ abstract interface org.jraf.klibnotion.client/NotionClient { // org.jraf.klibnot
         abstract suspend fun createPage(org.jraf.klibnotion.model.base.reference/PageReference, org.jraf.klibnotion.model.richtext/RichTextList = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client/NotionClient.Pages.createPage|createPage(org.jraf.klibnotion.model.base.reference.PageReference;org.jraf.klibnotion.model.richtext.RichTextList;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>){}[0]
         abstract suspend fun createPage(org.jraf.klibnotion.model.base.reference/PageReference, org.jraf.klibnotion.model.richtext/RichTextList = ..., org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.block/MutableBlockList? = ...): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client/NotionClient.Pages.createPage|createPage(org.jraf.klibnotion.model.base.reference.PageReference;org.jraf.klibnotion.model.richtext.RichTextList;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.block.MutableBlockList?){}[0]
         abstract suspend fun getPage(kotlin/String): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client/NotionClient.Pages.getPage|getPage(kotlin.String){}[0]
-        abstract suspend fun setPageArchived(kotlin/String, kotlin/Boolean): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client/NotionClient.Pages.setPageArchived|setPageArchived(kotlin.String;kotlin.Boolean){}[0]
+        abstract suspend fun setPageInTrash(kotlin/String, kotlin/Boolean): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client/NotionClient.Pages.setPageInTrash|setPageInTrash(kotlin.String;kotlin.Boolean){}[0]
         abstract suspend fun updatePage(kotlin/String, org.jraf.klibnotion.model.base/EmojiOrFile? = ..., org.jraf.klibnotion.model.file/File? = ..., org.jraf.klibnotion.model.property.value/PropertyValueList): org.jraf.klibnotion.model.page/Page // org.jraf.klibnotion.client/NotionClient.Pages.updatePage|updatePage(kotlin.String;org.jraf.klibnotion.model.base.EmojiOrFile?;org.jraf.klibnotion.model.file.File?;org.jraf.klibnotion.model.property.value.PropertyValueList){}[0]
     }
 
@@ -243,6 +245,11 @@ abstract interface org.jraf.klibnotion.model.block/ImageBlock : org.jraf.klibnot
         abstract fun <get-caption>(): org.jraf.klibnotion.model.richtext/RichTextList? // org.jraf.klibnotion.model.block/ImageBlock.caption.<get-caption>|<get-caption>(){}[0]
     abstract val image // org.jraf.klibnotion.model.block/ImageBlock.image|{}image[0]
         abstract fun <get-image>(): org.jraf.klibnotion.model.file/File // org.jraf.klibnotion.model.block/ImageBlock.image.<get-image>|<get-image>(){}[0]
+}
+
+abstract interface org.jraf.klibnotion.model.block/MeetingNotesBlock : org.jraf.klibnotion.model.block/Block { // org.jraf.klibnotion.model.block/MeetingNotesBlock|null[0]
+    abstract val text // org.jraf.klibnotion.model.block/MeetingNotesBlock.text|{}text[0]
+        abstract fun <get-text>(): org.jraf.klibnotion.model.richtext/RichTextList? // org.jraf.klibnotion.model.block/MeetingNotesBlock.text.<get-text>|<get-text>(){}[0]
 }
 
 abstract interface org.jraf.klibnotion.model.block/NumberedListItemBlock : org.jraf.klibnotion.model.block/Block { // org.jraf.klibnotion.model.block/NumberedListItemBlock|null[0]
@@ -1256,13 +1263,15 @@ abstract interface org.jraf.klibnotion.model.database/Database { // org.jraf.kli
     abstract val cover // org.jraf.klibnotion.model.database/Database.cover|{}cover[0]
         abstract fun <get-cover>(): org.jraf.klibnotion.model.file/File? // org.jraf.klibnotion.model.database/Database.cover.<get-cover>|<get-cover>(){}[0]
     abstract val created // org.jraf.klibnotion.model.database/Database.created|{}created[0]
-        abstract fun <get-created>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.database/Database.created.<get-created>|<get-created>(){}[0]
+        abstract fun <get-created>(): kotlin.time/Instant // org.jraf.klibnotion.model.database/Database.created.<get-created>|<get-created>(){}[0]
+    abstract val dataSourceIds // org.jraf.klibnotion.model.database/Database.dataSourceIds|{}dataSourceIds[0]
+        abstract fun <get-dataSourceIds>(): kotlin.collections/List<kotlin/String> // org.jraf.klibnotion.model.database/Database.dataSourceIds.<get-dataSourceIds>|<get-dataSourceIds>(){}[0]
     abstract val icon // org.jraf.klibnotion.model.database/Database.icon|{}icon[0]
         abstract fun <get-icon>(): org.jraf.klibnotion.model.base/EmojiOrFile? // org.jraf.klibnotion.model.database/Database.icon.<get-icon>|<get-icon>(){}[0]
     abstract val id // org.jraf.klibnotion.model.database/Database.id|{}id[0]
         abstract fun <get-id>(): kotlin/String // org.jraf.klibnotion.model.database/Database.id.<get-id>|<get-id>(){}[0]
     abstract val lastEdited // org.jraf.klibnotion.model.database/Database.lastEdited|{}lastEdited[0]
-        abstract fun <get-lastEdited>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.database/Database.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
+        abstract fun <get-lastEdited>(): kotlin.time/Instant // org.jraf.klibnotion.model.database/Database.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
     abstract val parent // org.jraf.klibnotion.model.database/Database.parent|{}parent[0]
         abstract fun <get-parent>(): org.jraf.klibnotion.model.base.reference/Reference // org.jraf.klibnotion.model.database/Database.parent.<get-parent>|<get-parent>(){}[0]
     abstract val propertySpecs // org.jraf.klibnotion.model.database/Database.propertySpecs|{}propertySpecs[0]
@@ -1304,18 +1313,18 @@ abstract interface org.jraf.klibnotion.model.oauth/OAuthGetAccessTokenResult { /
 }
 
 abstract interface org.jraf.klibnotion.model.page/Page { // org.jraf.klibnotion.model.page/Page|null[0]
-    abstract val archived // org.jraf.klibnotion.model.page/Page.archived|{}archived[0]
-        abstract fun <get-archived>(): kotlin/Boolean // org.jraf.klibnotion.model.page/Page.archived.<get-archived>|<get-archived>(){}[0]
     abstract val cover // org.jraf.klibnotion.model.page/Page.cover|{}cover[0]
         abstract fun <get-cover>(): org.jraf.klibnotion.model.file/File? // org.jraf.klibnotion.model.page/Page.cover.<get-cover>|<get-cover>(){}[0]
     abstract val created // org.jraf.klibnotion.model.page/Page.created|{}created[0]
-        abstract fun <get-created>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.page/Page.created.<get-created>|<get-created>(){}[0]
+        abstract fun <get-created>(): kotlin.time/Instant // org.jraf.klibnotion.model.page/Page.created.<get-created>|<get-created>(){}[0]
     abstract val icon // org.jraf.klibnotion.model.page/Page.icon|{}icon[0]
         abstract fun <get-icon>(): org.jraf.klibnotion.model.base/EmojiOrFile? // org.jraf.klibnotion.model.page/Page.icon.<get-icon>|<get-icon>(){}[0]
     abstract val id // org.jraf.klibnotion.model.page/Page.id|{}id[0]
         abstract fun <get-id>(): kotlin/String // org.jraf.klibnotion.model.page/Page.id.<get-id>|<get-id>(){}[0]
+    abstract val inTrash // org.jraf.klibnotion.model.page/Page.inTrash|{}inTrash[0]
+        abstract fun <get-inTrash>(): kotlin/Boolean // org.jraf.klibnotion.model.page/Page.inTrash.<get-inTrash>|<get-inTrash>(){}[0]
     abstract val lastEdited // org.jraf.klibnotion.model.page/Page.lastEdited|{}lastEdited[0]
-        abstract fun <get-lastEdited>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.page/Page.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
+        abstract fun <get-lastEdited>(): kotlin.time/Instant // org.jraf.klibnotion.model.page/Page.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
     abstract val parent // org.jraf.klibnotion.model.page/Page.parent|{}parent[0]
         abstract fun <get-parent>(): org.jraf.klibnotion.model.base.reference/Reference // org.jraf.klibnotion.model.page/Page.parent.<get-parent>|<get-parent>(){}[0]
     abstract val propertyValues // org.jraf.klibnotion.model.page/Page.propertyValues|{}propertyValues[0]
@@ -1409,9 +1418,9 @@ abstract interface org.jraf.klibnotion.model.property.spec/RelationPropertySpec 
     abstract val databaseId // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.databaseId|{}databaseId[0]
         abstract fun <get-databaseId>(): kotlin/String // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.databaseId.<get-databaseId>|<get-databaseId>(){}[0]
     abstract val syncedPropertyId // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.syncedPropertyId|{}syncedPropertyId[0]
-        abstract fun <get-syncedPropertyId>(): kotlin/String // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.syncedPropertyId.<get-syncedPropertyId>|<get-syncedPropertyId>(){}[0]
+        abstract fun <get-syncedPropertyId>(): kotlin/String? // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.syncedPropertyId.<get-syncedPropertyId>|<get-syncedPropertyId>(){}[0]
     abstract val syncedPropertyName // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.syncedPropertyName|{}syncedPropertyName[0]
-        abstract fun <get-syncedPropertyName>(): kotlin/String // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.syncedPropertyName.<get-syncedPropertyName>|<get-syncedPropertyName>(){}[0]
+        abstract fun <get-syncedPropertyName>(): kotlin/String? // org.jraf.klibnotion.model.property.spec/RelationPropertySpec.syncedPropertyName.<get-syncedPropertyName>|<get-syncedPropertyName>(){}[0]
 }
 
 abstract interface org.jraf.klibnotion.model.property.spec/RichTextPropertySpec : org.jraf.klibnotion.model.property.spec/PropertySpec // org.jraf.klibnotion.model.property.spec/RichTextPropertySpec|null[0]
@@ -1618,11 +1627,11 @@ sealed interface org.jraf.klibnotion.model.block/Block { // org.jraf.klibnotion.
     abstract val children // org.jraf.klibnotion.model.block/Block.children|{}children[0]
         abstract fun <get-children>(): kotlin.collections/List<org.jraf.klibnotion.model.block/Block>? // org.jraf.klibnotion.model.block/Block.children.<get-children>|<get-children>(){}[0]
     abstract val created // org.jraf.klibnotion.model.block/Block.created|{}created[0]
-        abstract fun <get-created>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.block/Block.created.<get-created>|<get-created>(){}[0]
+        abstract fun <get-created>(): kotlin.time/Instant // org.jraf.klibnotion.model.block/Block.created.<get-created>|<get-created>(){}[0]
     abstract val id // org.jraf.klibnotion.model.block/Block.id|{}id[0]
         abstract fun <get-id>(): kotlin/String // org.jraf.klibnotion.model.block/Block.id.<get-id>|<get-id>(){}[0]
     abstract val lastEdited // org.jraf.klibnotion.model.block/Block.lastEdited|{}lastEdited[0]
-        abstract fun <get-lastEdited>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.block/Block.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
+        abstract fun <get-lastEdited>(): kotlin.time/Instant // org.jraf.klibnotion.model.block/Block.lastEdited.<get-lastEdited>|<get-lastEdited>(){}[0]
 }
 
 sealed interface org.jraf.klibnotion.model.property.spec/PropertySpec { // org.jraf.klibnotion.model.property.spec/PropertySpec|null[0]
@@ -1667,20 +1676,16 @@ final class <#A: kotlin/Any> org.jraf.klibnotion.model.pagination/ResultPage { /
 }
 
 final class org.jraf.klibnotion.client/Authentication { // org.jraf.klibnotion.client/Authentication|null[0]
-    constructor <init>() // org.jraf.klibnotion.client/Authentication.<init>|<init>(){}[0]
     constructor <init>(kotlin/String) // org.jraf.klibnotion.client/Authentication.<init>|<init>(kotlin.String){}[0]
 
-    final var accessToken // org.jraf.klibnotion.client/Authentication.accessToken|{}accessToken[0]
+    final val accessToken // org.jraf.klibnotion.client/Authentication.accessToken|{}accessToken[0]
         final fun <get-accessToken>(): kotlin/String // org.jraf.klibnotion.client/Authentication.accessToken.<get-accessToken>|<get-accessToken>(){}[0]
-        final fun <set-accessToken>(kotlin/String) // org.jraf.klibnotion.client/Authentication.accessToken.<set-accessToken>|<set-accessToken>(kotlin.String){}[0]
 
     final fun component1(): kotlin/String // org.jraf.klibnotion.client/Authentication.component1|component1(){}[0]
     final fun copy(kotlin/String = ...): org.jraf.klibnotion.client/Authentication // org.jraf.klibnotion.client/Authentication.copy|copy(kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // org.jraf.klibnotion.client/Authentication.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // org.jraf.klibnotion.client/Authentication.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // org.jraf.klibnotion.client/Authentication.toString|toString(){}[0]
-
-    final object Companion // org.jraf.klibnotion.client/Authentication.Companion|null[0]
 }
 
 final class org.jraf.klibnotion.client/BaseUri { // org.jraf.klibnotion.client/BaseUri|null[0]
@@ -1703,26 +1708,26 @@ final class org.jraf.klibnotion.client/BaseUri { // org.jraf.klibnotion.client/B
 }
 
 final class org.jraf.klibnotion.client/ClientConfiguration { // org.jraf.klibnotion.client/ClientConfiguration|null[0]
-    constructor <init>(org.jraf.klibnotion.client/Authentication, org.jraf.klibnotion.client/HttpConfiguration = ..., kotlin/String = ...) // org.jraf.klibnotion.client/ClientConfiguration.<init>|<init>(org.jraf.klibnotion.client.Authentication;org.jraf.klibnotion.client.HttpConfiguration;kotlin.String){}[0]
+    constructor <init>(org.jraf.klibnotion.client/Authentication?, org.jraf.klibnotion.client/HttpConfiguration = ..., kotlin/String = ...) // org.jraf.klibnotion.client/ClientConfiguration.<init>|<init>(org.jraf.klibnotion.client.Authentication?;org.jraf.klibnotion.client.HttpConfiguration;kotlin.String){}[0]
 
     final val authentication // org.jraf.klibnotion.client/ClientConfiguration.authentication|{}authentication[0]
-        final fun <get-authentication>(): org.jraf.klibnotion.client/Authentication // org.jraf.klibnotion.client/ClientConfiguration.authentication.<get-authentication>|<get-authentication>(){}[0]
+        final fun <get-authentication>(): org.jraf.klibnotion.client/Authentication? // org.jraf.klibnotion.client/ClientConfiguration.authentication.<get-authentication>|<get-authentication>(){}[0]
     final val httpConfiguration // org.jraf.klibnotion.client/ClientConfiguration.httpConfiguration|{}httpConfiguration[0]
         final fun <get-httpConfiguration>(): org.jraf.klibnotion.client/HttpConfiguration // org.jraf.klibnotion.client/ClientConfiguration.httpConfiguration.<get-httpConfiguration>|<get-httpConfiguration>(){}[0]
     final val userAgent // org.jraf.klibnotion.client/ClientConfiguration.userAgent|{}userAgent[0]
         final fun <get-userAgent>(): kotlin/String // org.jraf.klibnotion.client/ClientConfiguration.userAgent.<get-userAgent>|<get-userAgent>(){}[0]
 
-    final fun component1(): org.jraf.klibnotion.client/Authentication // org.jraf.klibnotion.client/ClientConfiguration.component1|component1(){}[0]
+    final fun component1(): org.jraf.klibnotion.client/Authentication? // org.jraf.klibnotion.client/ClientConfiguration.component1|component1(){}[0]
     final fun component2(): org.jraf.klibnotion.client/HttpConfiguration // org.jraf.klibnotion.client/ClientConfiguration.component2|component2(){}[0]
     final fun component3(): kotlin/String // org.jraf.klibnotion.client/ClientConfiguration.component3|component3(){}[0]
-    final fun copy(org.jraf.klibnotion.client/Authentication = ..., org.jraf.klibnotion.client/HttpConfiguration = ..., kotlin/String = ...): org.jraf.klibnotion.client/ClientConfiguration // org.jraf.klibnotion.client/ClientConfiguration.copy|copy(org.jraf.klibnotion.client.Authentication;org.jraf.klibnotion.client.HttpConfiguration;kotlin.String){}[0]
+    final fun copy(org.jraf.klibnotion.client/Authentication? = ..., org.jraf.klibnotion.client/HttpConfiguration = ..., kotlin/String = ...): org.jraf.klibnotion.client/ClientConfiguration // org.jraf.klibnotion.client/ClientConfiguration.copy|copy(org.jraf.klibnotion.client.Authentication?;org.jraf.klibnotion.client.HttpConfiguration;kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // org.jraf.klibnotion.client/ClientConfiguration.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // org.jraf.klibnotion.client/ClientConfiguration.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // org.jraf.klibnotion.client/ClientConfiguration.toString|toString(){}[0]
 }
 
 final class org.jraf.klibnotion.client/HttpConfiguration { // org.jraf.klibnotion.client/HttpConfiguration|null[0]
-    constructor <init>(org.jraf.klibnotion.client/HttpLoggingLevel = ..., org.jraf.klibnotion.client/BaseUri? = ..., org.jraf.klibnotion.client/HttpProxy? = ..., kotlin/Boolean = ...) // org.jraf.klibnotion.client/HttpConfiguration.<init>|<init>(org.jraf.klibnotion.client.HttpLoggingLevel;org.jraf.klibnotion.client.BaseUri?;org.jraf.klibnotion.client.HttpProxy?;kotlin.Boolean){}[0]
+    constructor <init>(org.jraf.klibnotion.client/HttpLoggingLevel = ..., org.jraf.klibnotion.client/HttpProxy? = ..., kotlin/Boolean = ...) // org.jraf.klibnotion.client/HttpConfiguration.<init>|<init>(org.jraf.klibnotion.client.HttpLoggingLevel;org.jraf.klibnotion.client.HttpProxy?;kotlin.Boolean){}[0]
 
     final val bypassSslChecks // org.jraf.klibnotion.client/HttpConfiguration.bypassSslChecks|{}bypassSslChecks[0]
         final fun <get-bypassSslChecks>(): kotlin/Boolean // org.jraf.klibnotion.client/HttpConfiguration.bypassSslChecks.<get-bypassSslChecks>|<get-bypassSslChecks>(){}[0]
@@ -1730,14 +1735,11 @@ final class org.jraf.klibnotion.client/HttpConfiguration { // org.jraf.klibnotio
         final fun <get-httpProxy>(): org.jraf.klibnotion.client/HttpProxy? // org.jraf.klibnotion.client/HttpConfiguration.httpProxy.<get-httpProxy>|<get-httpProxy>(){}[0]
     final val loggingLevel // org.jraf.klibnotion.client/HttpConfiguration.loggingLevel|{}loggingLevel[0]
         final fun <get-loggingLevel>(): org.jraf.klibnotion.client/HttpLoggingLevel // org.jraf.klibnotion.client/HttpConfiguration.loggingLevel.<get-loggingLevel>|<get-loggingLevel>(){}[0]
-    final val mockServerBaserUri // org.jraf.klibnotion.client/HttpConfiguration.mockServerBaserUri|{}mockServerBaserUri[0]
-        final fun <get-mockServerBaserUri>(): org.jraf.klibnotion.client/BaseUri? // org.jraf.klibnotion.client/HttpConfiguration.mockServerBaserUri.<get-mockServerBaserUri>|<get-mockServerBaserUri>(){}[0]
 
     final fun component1(): org.jraf.klibnotion.client/HttpLoggingLevel // org.jraf.klibnotion.client/HttpConfiguration.component1|component1(){}[0]
-    final fun component2(): org.jraf.klibnotion.client/BaseUri? // org.jraf.klibnotion.client/HttpConfiguration.component2|component2(){}[0]
-    final fun component3(): org.jraf.klibnotion.client/HttpProxy? // org.jraf.klibnotion.client/HttpConfiguration.component3|component3(){}[0]
-    final fun component4(): kotlin/Boolean // org.jraf.klibnotion.client/HttpConfiguration.component4|component4(){}[0]
-    final fun copy(org.jraf.klibnotion.client/HttpLoggingLevel = ..., org.jraf.klibnotion.client/BaseUri? = ..., org.jraf.klibnotion.client/HttpProxy? = ..., kotlin/Boolean = ...): org.jraf.klibnotion.client/HttpConfiguration // org.jraf.klibnotion.client/HttpConfiguration.copy|copy(org.jraf.klibnotion.client.HttpLoggingLevel;org.jraf.klibnotion.client.BaseUri?;org.jraf.klibnotion.client.HttpProxy?;kotlin.Boolean){}[0]
+    final fun component2(): org.jraf.klibnotion.client/HttpProxy? // org.jraf.klibnotion.client/HttpConfiguration.component2|component2(){}[0]
+    final fun component3(): kotlin/Boolean // org.jraf.klibnotion.client/HttpConfiguration.component3|component3(){}[0]
+    final fun copy(org.jraf.klibnotion.client/HttpLoggingLevel = ..., org.jraf.klibnotion.client/HttpProxy? = ..., kotlin/Boolean = ...): org.jraf.klibnotion.client/HttpConfiguration // org.jraf.klibnotion.client/HttpConfiguration.copy|copy(org.jraf.klibnotion.client.HttpLoggingLevel;org.jraf.klibnotion.client.HttpProxy?;kotlin.Boolean){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // org.jraf.klibnotion.client/HttpConfiguration.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // org.jraf.klibnotion.client/HttpConfiguration.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // org.jraf.klibnotion.client/HttpConfiguration.toString|toString(){}[0]
@@ -1834,6 +1836,7 @@ final class org.jraf.klibnotion.model.block/MutableBlockList : kotlin.collection
     final fun listIterator(kotlin/Int): kotlin.collections/ListIterator<org.jraf.klibnotion.model.block/Block> // org.jraf.klibnotion.model.block/MutableBlockList.listIterator|listIterator(kotlin.Int){}[0]
     final fun number(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.richtext/Annotations = ..., kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>? = ...): org.jraf.klibnotion.model.block/MutableBlockList // org.jraf.klibnotion.model.block/MutableBlockList.number|number(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.richtext.Annotations;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>?){}[0]
     final fun number(org.jraf.klibnotion.model.richtext/RichTextList, kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>? = ...): org.jraf.klibnotion.model.block/MutableBlockList // org.jraf.klibnotion.model.block/MutableBlockList.number|number(org.jraf.klibnotion.model.richtext.RichTextList;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>?){}[0]
+    final fun originalSyncedBlock(kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>? = ...): org.jraf.klibnotion.model.block/MutableBlockList // org.jraf.klibnotion.model.block/MutableBlockList.originalSyncedBlock|originalSyncedBlock(kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>?){}[0]
     final fun paragraph(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.richtext/Annotations = ..., kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>? = ...): org.jraf.klibnotion.model.block/MutableBlockList // org.jraf.klibnotion.model.block/MutableBlockList.paragraph|paragraph(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.richtext.Annotations;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>?){}[0]
     final fun paragraph(org.jraf.klibnotion.model.richtext/RichTextList, kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>? = ...): org.jraf.klibnotion.model.block/MutableBlockList // org.jraf.klibnotion.model.block/MutableBlockList.paragraph|paragraph(org.jraf.klibnotion.model.richtext.RichTextList;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>?){}[0]
     final fun quote(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.richtext/Annotations = ..., kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>? = ...): org.jraf.klibnotion.model.block/MutableBlockList // org.jraf.klibnotion.model.block/MutableBlockList.quote|quote(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.richtext.Annotations;kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>?){}[0]
@@ -1862,13 +1865,13 @@ final class org.jraf.klibnotion.model.database.query/DatabaseQuery { // org.jraf
 }
 
 final class org.jraf.klibnotion.model.date/Date : org.jraf.klibnotion.model.date/DateOrDateTime { // org.jraf.klibnotion.model.date/Date|null[0]
-    constructor <init>(platform.Foundation/NSDate) // org.jraf.klibnotion.model.date/Date.<init>|<init>(platform.Foundation.NSDate){}[0]
+    constructor <init>(kotlinx.datetime/LocalDate) // org.jraf.klibnotion.model.date/Date.<init>|<init>(kotlinx.datetime.LocalDate){}[0]
 
-    final val timestamp // org.jraf.klibnotion.model.date/Date.timestamp|{}timestamp[0]
-        final fun <get-timestamp>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/Date.timestamp.<get-timestamp>|<get-timestamp>(){}[0]
+    final val date // org.jraf.klibnotion.model.date/Date.date|{}date[0]
+        final fun <get-date>(): kotlinx.datetime/LocalDate // org.jraf.klibnotion.model.date/Date.date.<get-date>|<get-date>(){}[0]
 
-    final fun component1(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/Date.component1|component1(){}[0]
-    final fun copy(platform.Foundation/NSDate = ...): org.jraf.klibnotion.model.date/Date // org.jraf.klibnotion.model.date/Date.copy|copy(platform.Foundation.NSDate){}[0]
+    final fun component1(): kotlinx.datetime/LocalDate // org.jraf.klibnotion.model.date/Date.component1|component1(){}[0]
+    final fun copy(kotlinx.datetime/LocalDate = ...): org.jraf.klibnotion.model.date/Date // org.jraf.klibnotion.model.date/Date.copy|copy(kotlinx.datetime.LocalDate){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // org.jraf.klibnotion.model.date/Date.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // org.jraf.klibnotion.model.date/Date.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // org.jraf.klibnotion.model.date/Date.toString|toString(){}[0]
@@ -1891,16 +1894,16 @@ final class org.jraf.klibnotion.model.date/DateOrDateRange { // org.jraf.klibnot
 }
 
 final class org.jraf.klibnotion.model.date/DateTime : org.jraf.klibnotion.model.date/DateOrDateTime { // org.jraf.klibnotion.model.date/DateTime|null[0]
-    constructor <init>(platform.Foundation/NSDate, kotlin/String = ...) // org.jraf.klibnotion.model.date/DateTime.<init>|<init>(platform.Foundation.NSDate;kotlin.String){}[0]
+    constructor <init>(kotlinx.datetime/LocalDateTime, kotlinx.datetime/TimeZone = ...) // org.jraf.klibnotion.model.date/DateTime.<init>|<init>(kotlinx.datetime.LocalDateTime;kotlinx.datetime.TimeZone){}[0]
 
-    final val timeZoneId // org.jraf.klibnotion.model.date/DateTime.timeZoneId|{}timeZoneId[0]
-        final fun <get-timeZoneId>(): kotlin/String // org.jraf.klibnotion.model.date/DateTime.timeZoneId.<get-timeZoneId>|<get-timeZoneId>(){}[0]
-    final val timestamp // org.jraf.klibnotion.model.date/DateTime.timestamp|{}timestamp[0]
-        final fun <get-timestamp>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/DateTime.timestamp.<get-timestamp>|<get-timestamp>(){}[0]
+    final val dateTime // org.jraf.klibnotion.model.date/DateTime.dateTime|{}dateTime[0]
+        final fun <get-dateTime>(): kotlinx.datetime/LocalDateTime // org.jraf.klibnotion.model.date/DateTime.dateTime.<get-dateTime>|<get-dateTime>(){}[0]
+    final val timeZone // org.jraf.klibnotion.model.date/DateTime.timeZone|{}timeZone[0]
+        final fun <get-timeZone>(): kotlinx.datetime/TimeZone // org.jraf.klibnotion.model.date/DateTime.timeZone.<get-timeZone>|<get-timeZone>(){}[0]
 
-    final fun component1(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/DateTime.component1|component1(){}[0]
-    final fun component2(): kotlin/String // org.jraf.klibnotion.model.date/DateTime.component2|component2(){}[0]
-    final fun copy(platform.Foundation/NSDate = ..., kotlin/String = ...): org.jraf.klibnotion.model.date/DateTime // org.jraf.klibnotion.model.date/DateTime.copy|copy(platform.Foundation.NSDate;kotlin.String){}[0]
+    final fun component1(): kotlinx.datetime/LocalDateTime // org.jraf.klibnotion.model.date/DateTime.component1|component1(){}[0]
+    final fun component2(): kotlinx.datetime/TimeZone // org.jraf.klibnotion.model.date/DateTime.component2|component2(){}[0]
+    final fun copy(kotlinx.datetime/LocalDateTime = ..., kotlinx.datetime/TimeZone = ...): org.jraf.klibnotion.model.date/DateTime // org.jraf.klibnotion.model.date/DateTime.copy|copy(kotlinx.datetime.LocalDateTime;kotlinx.datetime.TimeZone){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // org.jraf.klibnotion.model.date/DateTime.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // org.jraf.klibnotion.model.date/DateTime.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // org.jraf.klibnotion.model.date/DateTime.toString|toString(){}[0]
@@ -2086,10 +2089,7 @@ open class org.jraf.klibnotion.model.exceptions/NotionClientException : kotlin/E
         open fun <get-cause>(): kotlin/Throwable // org.jraf.klibnotion.model.exceptions/NotionClientException.cause.<get-cause>|<get-cause>(){}[0]
 }
 
-sealed class org.jraf.klibnotion.model.date/DateOrDateTime { // org.jraf.klibnotion.model.date/DateOrDateTime|null[0]
-    open val timestamp // org.jraf.klibnotion.model.date/DateOrDateTime.timestamp|{}timestamp[0]
-        open fun <get-timestamp>(): platform.Foundation/NSDate // org.jraf.klibnotion.model.date/DateOrDateTime.timestamp.<get-timestamp>|<get-timestamp>(){}[0]
-}
+sealed class org.jraf.klibnotion.model.date/DateOrDateTime // org.jraf.klibnotion.model.date/DateOrDateTime|null[0]
 
 final object org.jraf.klibnotion.model.base.reference/WorkspaceReference : org.jraf.klibnotion.model.base.reference/Reference // org.jraf.klibnotion.model.base.reference/WorkspaceReference|null[0]
 
@@ -2120,6 +2120,7 @@ final fun org.jraf.klibnotion.model.block/image(kotlin/String, kotlin/String? = 
 final fun org.jraf.klibnotion.model.block/image(kotlin/String, org.jraf.klibnotion.model.richtext/RichTextList? = ...): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.model.block/image|image(kotlin.String;org.jraf.klibnotion.model.richtext.RichTextList?){}[0]
 final fun org.jraf.klibnotion.model.block/numberedListItem(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.richtext/Annotations = ...): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.model.block/numberedListItem|numberedListItem(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.richtext.Annotations){}[0]
 final fun org.jraf.klibnotion.model.block/numberedListItem(org.jraf.klibnotion.model.richtext/RichTextList): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.model.block/numberedListItem|numberedListItem(org.jraf.klibnotion.model.richtext.RichTextList){}[0]
+final fun org.jraf.klibnotion.model.block/originalSyncedBlock(kotlin/Function1<org.jraf.klibnotion.model.block/MutableBlockList, kotlin/Unit>? = ...): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.model.block/originalSyncedBlock|originalSyncedBlock(kotlin.Function1<org.jraf.klibnotion.model.block.MutableBlockList,kotlin.Unit>?){}[0]
 final fun org.jraf.klibnotion.model.block/paragraph(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.richtext/Annotations = ...): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.model.block/paragraph|paragraph(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.richtext.Annotations){}[0]
 final fun org.jraf.klibnotion.model.block/paragraph(org.jraf.klibnotion.model.richtext/RichTextList): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.model.block/paragraph|paragraph(org.jraf.klibnotion.model.richtext.RichTextList){}[0]
 final fun org.jraf.klibnotion.model.block/quote(kotlin/String, kotlin/String? = ..., org.jraf.klibnotion.model.richtext/Annotations = ...): org.jraf.klibnotion.model.block/Block // org.jraf.klibnotion.model.block/quote|quote(kotlin.String;kotlin.String?;org.jraf.klibnotion.model.richtext.Annotations){}[0]

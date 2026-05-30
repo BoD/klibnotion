@@ -111,8 +111,8 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
                 name = name,
                 id = id,
                 databaseId = apiPropertySpec.relation!!.database_id,
-                syncedPropertyName = apiPropertySpec.relation.synced_property_name,
-                syncedPropertyId = apiPropertySpec.relation.synced_property_id
+                syncedPropertyName = apiPropertySpec.relation.dual_property?.synced_property_name,
+                syncedPropertyId = apiPropertySpec.relation.dual_property?.synced_property_id,
             )
             "rollup" -> RollupPropertySpecImpl(
                 name = name,
@@ -156,11 +156,22 @@ internal object ApiPropertySpecConverter : ApiConverter<Pair<String, ApiProperty
             is CheckboxPropertySpec -> ApiPropertySpec(type = "checkbox", checkbox = ApiEmpty())
             is RelationPropertySpec -> ApiPropertySpec(
                 type = "relation",
-                relation = ApiPropertySpecRelation(
-                    database_id = model.databaseId,
-                    synced_property_name = model.syncedPropertyName,
-                    synced_property_id = model.syncedPropertyId,
-                )
+                relation = if (model.syncedPropertyName != null && model.syncedPropertyId != null) {
+                    ApiPropertySpecRelation(
+                        database_id = model.databaseId,
+                        type = "dual_property",
+                        dual_property = ApiPropertySpecRelationDualProperty(
+                            synced_property_name = model.syncedPropertyName,
+                            synced_property_id = model.syncedPropertyId,
+                        ),
+                    )
+                } else {
+                    ApiPropertySpecRelation(
+                        database_id = model.databaseId,
+                        type = "single_property",
+                        single_property = ApiEmpty(),
+                    )
+                },
             )
             is MultiSelectPropertySpec -> ApiPropertySpec(
                 type = "multi_select",

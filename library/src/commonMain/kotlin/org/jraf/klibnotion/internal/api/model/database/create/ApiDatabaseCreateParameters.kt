@@ -40,5 +40,12 @@ internal data class ApiDatabaseCreateParameters(
     val title: JsonArray,
     val icon: JsonElement? = null,
     val cover: JsonElement? = null,
-    val properties: Map<String, ApiPropertySpec>,
+    // As of API version 2025-09-03, properties are specified under initial_data_source,
+    // not at the top level of the database create parameters.
+    val initial_data_source: ApiInitialDataSource? = null,
+)
+
+@Serializable
+internal data class ApiInitialDataSource(
+    val properties: Map<String, ApiPropertySpec>? = null,
 )

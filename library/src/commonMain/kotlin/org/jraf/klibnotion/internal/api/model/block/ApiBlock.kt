@@ -26,6 +26,7 @@
 package org.jraf.klibnotion.internal.api.model.block
 
 import kotlinx.serialization.Serializable
+import org.jraf.klibnotion.internal.api.model.base.ApiReference
 
 /**
  * See [Reference](https://developers.notion.com/reference/block).
@@ -37,6 +38,7 @@ internal data class ApiBlock(
     val last_edited_time: String,
     val has_children: Boolean,
     val type: String,
+    val parent: ApiReference? = null,
     val paragraph: ApiBlockText? = null,
     val heading_1: ApiBlockText? = null,
     val heading_2: ApiBlockText? = null,
@@ -56,4 +58,5 @@ internal data class ApiBlock(
     val image: ApiBlockImage? = null,
     val video: ApiBlockVideo? = null,
     val synced_block: ApiSyncedBlock? = null,
+    val meeting_notes: ApiBlockText? = null,
 )

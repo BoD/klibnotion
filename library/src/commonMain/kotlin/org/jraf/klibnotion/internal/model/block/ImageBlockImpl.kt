@@ -28,14 +28,14 @@ package org.jraf.klibnotion.internal.model.block
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.block.ImageBlock
-import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.richtext.RichTextList
+import kotlin.time.Instant
 
 internal data class ImageBlockImpl(
     override val id: UuidString,
-    override val created: Timestamp,
-    override val lastEdited: Timestamp,
+    override val created: Instant,
+    override val lastEdited: Instant,
     override val image: File,
     override val caption: RichTextList?,
 ) : ImageBlock {

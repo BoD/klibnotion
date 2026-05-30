@@ -29,5 +29,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class ApiSyncedBlock(
-    val synced_from: ApiSyncedFrom,
+    val synced_from: ApiSyncedFrom? = null,
 )

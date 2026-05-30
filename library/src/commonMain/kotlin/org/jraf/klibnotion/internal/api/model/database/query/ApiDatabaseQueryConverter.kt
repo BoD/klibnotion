@@ -70,8 +70,9 @@ internal object ApiDatabaseQueryFilterConverter : ApiConverter<ApiDatabaseQueryF
             property = model.propertyIdOrName,
             title = (model as? DatabaseQueryPropertyFilter.Title)?.predicate?.modelToApi(
                 ApiTextDatabaseQueryFilterConverter),
-            text = (model as? DatabaseQueryPropertyFilter.Text)?.predicate?.modelToApi(
-                ApiTextDatabaseQueryFilterConverter),
+            rich_text = (model as? DatabaseQueryPropertyFilter.Text)?.predicate?.modelToApi(
+                ApiTextDatabaseQueryFilterConverter,
+            ),
             number = (model as? DatabaseQueryPropertyFilter.Number)?.predicate?.modelToApi(
                 ApiNumberDatabaseQueryFilterConverter),
             checkbox = (model as? DatabaseQueryPropertyFilter.Checkbox)?.predicate?.modelToApi(
@@ -204,15 +205,15 @@ internal object ApiDateDatabaseQueryFilterConverter :
             is DatabaseQueryPredicate.Date.IsPastWeek ->
                 ApiDateDatabaseQueryFilter(past_week = mapOf())
             is DatabaseQueryPredicate.Date.IsPastMonth ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(past_month = mapOf())
             is DatabaseQueryPredicate.Date.IsPastYear ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(past_year = mapOf())
             is DatabaseQueryPredicate.Date.IsNextWeek ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(next_week = mapOf())
             is DatabaseQueryPredicate.Date.IsNextMonth ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(next_month = mapOf())
             is DatabaseQueryPredicate.Date.IsNextYear ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(next_year = mapOf())
             is DatabaseQueryPredicate.Date.IsEmpty ->
                 ApiDateDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Date.IsNotEmpty ->
@@ -264,7 +265,7 @@ internal object ApiFormulaDatabaseQueryFilterConverter :
     override fun modelToApi(model: DatabaseQueryPredicate.Formula): ApiFormulaDatabaseQueryFilter {
         return when (model) {
             is DatabaseQueryPredicate.Formula.Text ->
-                ApiFormulaDatabaseQueryFilter(text = model.modelToApi(ApiFormulaTextDatabaseQueryFilterConverter))
+                ApiFormulaDatabaseQueryFilter(string = model.modelToApi(ApiFormulaTextDatabaseQueryFilterConverter))
             is DatabaseQueryPredicate.Formula.Checkbox ->
                 ApiFormulaDatabaseQueryFilter(checkbox = model.modelToApi(ApiFormulaCheckboxDatabaseQueryFilterConverter))
             is DatabaseQueryPredicate.Formula.Number ->
@@ -354,15 +355,15 @@ internal object ApiFormulaDateDatabaseQueryFilterConverter :
             is DatabaseQueryPredicate.Formula.Date.IsPastWeek ->
                 ApiDateDatabaseQueryFilter(past_week = mapOf())
             is DatabaseQueryPredicate.Formula.Date.IsPastMonth ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(past_month = mapOf())
             is DatabaseQueryPredicate.Formula.Date.IsPastYear ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(past_year = mapOf())
             is DatabaseQueryPredicate.Formula.Date.IsNextWeek ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(next_week = mapOf())
             is DatabaseQueryPredicate.Formula.Date.IsNextMonth ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(next_month = mapOf())
             is DatabaseQueryPredicate.Formula.Date.IsNextYear ->
-                ApiDateDatabaseQueryFilter(past_week = mapOf())
+                ApiDateDatabaseQueryFilter(next_year = mapOf())
             is DatabaseQueryPredicate.Formula.Date.IsEmpty ->
                 ApiDateDatabaseQueryFilter(is_empty = true)
             is DatabaseQueryPredicate.Formula.Date.IsNotEmpty ->

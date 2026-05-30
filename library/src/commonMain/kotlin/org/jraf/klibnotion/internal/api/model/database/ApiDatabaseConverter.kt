@@ -33,6 +33,7 @@ import org.jraf.klibnotion.internal.api.model.date.ApiDateStringConverter
 import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
 import org.jraf.klibnotion.internal.api.model.richtext.ApiRichTextConverter
 import org.jraf.klibnotion.internal.model.database.DatabaseImpl
+import org.jraf.klibnotion.internal.toInstant
 import org.jraf.klibnotion.model.database.Database
 import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.richtext.RichTextList
@@ -45,9 +46,10 @@ internal object ApiDatabaseConverter : ApiConverter<ApiDatabase, Database>() {
         propertySpecs = ApiPropertySpecConverter.apiToModel(
             apiModel.properties.map { it.key to it.value }
         ),
-        created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp,
-        lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp,
+        created = apiModel.created_time.apiToModel(ApiDateStringConverter).toInstant(),
+        lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).toInstant(),
         icon = apiModel.icon.apiToModel(ApiEmojiOrFileConverter),
         cover = apiModel.cover.apiToModel(ApiEmojiOrFileConverter) as? File,
+        dataSourceIds = apiModel.data_sources.map { it.id },
     )
 }

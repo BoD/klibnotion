@@ -28,10 +28,10 @@ package org.jraf.klibnotion.model.database
 import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.Reference
-import org.jraf.klibnotion.model.date.Timestamp
 import org.jraf.klibnotion.model.file.File
 import org.jraf.klibnotion.model.property.spec.PropertySpec
 import org.jraf.klibnotion.model.richtext.RichTextList
+import kotlin.time.Instant
 
 /**
  * See [Reference](https://developers.notion.com/reference/database).
@@ -41,8 +41,13 @@ interface Database {
     val parent: Reference
     val title: RichTextList
     val propertySpecs: List<PropertySpec>
-    val created: Timestamp
-    val lastEdited: Timestamp
+    val created: Instant
+    val lastEdited: Instant
     val icon: EmojiOrFile?
     val cover: File?
+
+    /**
+     * IDs of the data sources that own this database's schema (introduced in API version 2025-09-03).
+     */
+    val dataSourceIds: List<String>
 }

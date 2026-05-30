@@ -27,6 +27,7 @@ package org.jraf.klibnotion.internal.api.model.block
 
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -49,6 +50,7 @@ import org.jraf.klibnotion.model.block.Heading1Block
 import org.jraf.klibnotion.model.block.Heading2Block
 import org.jraf.klibnotion.model.block.Heading3Block
 import org.jraf.klibnotion.model.block.ImageBlock
+import org.jraf.klibnotion.model.block.MeetingNotesBlock
 import org.jraf.klibnotion.model.block.NumberedListItemBlock
 import org.jraf.klibnotion.model.block.ParagraphBlock
 import org.jraf.klibnotion.model.block.QuoteBlock
@@ -86,6 +88,7 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                 is ImageBlock -> "image"
                 is VideoBlock -> "video"
                 is SyncedBlock -> "synced_block"
+                is MeetingNotesBlock -> "meeting_notes"
 
                 is UnknownTypeBlock -> throw IllegalStateException("Unknown type: ${model.type}")
                 else -> throw IllegalStateException("Converter not implemented for ${model::class.simpleName}")
@@ -140,8 +143,12 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                         }
                     }
                     is SyncedBlock -> {
-                        putJsonObject("synced_from") {
-                            put("block_id", model.syncedFrom)
+                        if (model.syncedFrom != null) {
+                            putJsonObject("synced_from") {
+                                put("block_id", model.syncedFrom)
+                            }
+                        } else {
+                            put("synced_from", JsonNull)
                         }
                     }
                     is ChildPageBlock, is ChildDatabaseBlock -> {
@@ -152,6 +159,7 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
                     is UnknownTypeBlock,
                     is DividerBlock,
                     is TableOfContentsBlock,
+                    is MeetingNotesBlock,
                     -> {
                     }
                 }
@@ -163,5 +171,5 @@ internal object ApiOutBlockConverter : ApiConverter<JsonElement, Block>() {
     }
 
     private fun JsonObjectBuilder.text(richTextList: RichTextList) =
-        put("text", richTextList.modelToApi(ApiOutRichTextListConverter))
+        put("rich_text", richTextList.modelToApi(ApiOutRichTextListConverter))
 }

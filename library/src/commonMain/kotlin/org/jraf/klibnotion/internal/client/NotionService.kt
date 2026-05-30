@@ -43,6 +43,7 @@ import org.jraf.klibnotion.internal.api.model.database.ApiDatabase
 import org.jraf.klibnotion.internal.api.model.database.create.ApiDatabaseCreateParameters
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQuery
 import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdateParameters
+import org.jraf.klibnotion.internal.api.model.datasource.ApiDataSourceUpdateParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResult
 import org.jraf.klibnotion.internal.api.model.page.ApiPage
@@ -63,6 +64,7 @@ internal class NotionService(private val httpClient: HttpClient) {
         private const val OAUTH = "oauth"
         private const val USERS = "users"
         private const val DATABASES = "databases"
+        private const val DATA_SOURCES = "data_sources"
         private const val PAGES = "pages"
         private const val BLOCKS = "blocks"
         private const val SEARCH = "search"
@@ -119,14 +121,11 @@ internal class NotionService(private val httpClient: HttpClient) {
         return httpClient.get("$BASE_URL/$DATABASES/$id").body()
     }
 
-    suspend fun getDatabaseList(startCursor: String?): ApiResultPage<ApiDatabase> {
-        return httpClient.get("$BASE_URL/$DATABASES") {
-            if (startCursor != null) parameter(START_CURSOR, startCursor)
-        }.body()
-    }
-
-    suspend fun queryDatabase(id: UuidString, query: ApiDatabaseQuery): ApiResultPage<ApiPage> {
-        return httpClient.post("$BASE_URL/$DATABASES/$id/query") {
+    /**
+     * Query a data source (introduced in API version 2025-09-03, replaces queryDatabase).
+     */
+    suspend fun queryDataSource(dataSourceId: UuidString, query: ApiDatabaseQuery): ApiResultPage<ApiPage> {
+        return httpClient.post("$BASE_URL/$DATA_SOURCES/$dataSourceId/query") {
             contentType(ContentType.Application.Json)
             setBody(query)
         }.body()
@@ -149,6 +148,19 @@ internal class NotionService(private val httpClient: HttpClient) {
             contentType(ContentType.Application.Json)
             setBody(updateDatabase)
         }.body()
+    }
+
+    /**
+     * Updates the schema (properties) of a data source. Introduced in API version 2025-09-03.
+     */
+    suspend fun updateDataSource(
+        dataSourceId: UuidString,
+        parameters: ApiDataSourceUpdateParameters,
+    ) {
+        httpClient.patch("$BASE_URL/$DATA_SOURCES/$dataSourceId") {
+            contentType(ContentType.Application.Json)
+            setBody(parameters)
+        }
     }
 
     // endregion
@@ -177,7 +189,7 @@ internal class NotionService(private val httpClient: HttpClient) {
     suspend fun archivePage(id: UuidString, archive: Boolean): ApiPage {
         return httpClient.patch("$BASE_URL/$PAGES/$id") {
             contentType(ContentType.Application.Json)
-            setBody(mapOf("archived" to archive))
+            setBody(mapOf("in_trash" to archive))
         }.body()
     }
 

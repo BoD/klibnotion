@@ -32,7 +32,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class ApiFormulaDatabaseQueryFilter(
-    val text: ApiTextDatabaseQueryFilter? = null,
+    val string: ApiTextDatabaseQueryFilter? = null,
     val checkbox: ApiCheckboxDatabaseQueryFilter? = null,
     val number: ApiNumberDatabaseQueryFilter? = null,
     val date: ApiDateDatabaseQueryFilter? = null,

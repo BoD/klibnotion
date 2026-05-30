@@ -3,8 +3,6 @@ public final class org/jraf/klibnotion/VersionKt {
 }
 
 public final class org/jraf/klibnotion/client/Authentication {
-	public static final field Companion Lorg/jraf/klibnotion/client/Authentication$Companion;
-	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun copy (Ljava/lang/String;)Lorg/jraf/klibnotion/client/Authentication;
@@ -12,11 +10,7 @@ public final class org/jraf/klibnotion/client/Authentication {
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAccessToken ()Ljava/lang/String;
 	public fun hashCode ()I
-	public final fun setAccessToken (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-}
-
-public final class org/jraf/klibnotion/client/Authentication$Companion {
 }
 
 public final class org/jraf/klibnotion/client/BaseUri {
@@ -55,21 +49,18 @@ public final class org/jraf/klibnotion/client/ClientConfiguration {
 public final class org/jraf/klibnotion/client/HttpConfiguration {
 	public fun <init> ()V
 	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;)V
-	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;)V
-	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;)V
-	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;Z)V
-	public synthetic fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;)V
+	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;Z)V
+	public synthetic fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/jraf/klibnotion/client/HttpLoggingLevel;
-	public final fun component2 ()Lorg/jraf/klibnotion/client/BaseUri;
-	public final fun component3 ()Lorg/jraf/klibnotion/client/HttpProxy;
-	public final fun component4 ()Z
-	public final fun copy (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;Z)Lorg/jraf/klibnotion/client/HttpConfiguration;
-	public static synthetic fun copy$default (Lorg/jraf/klibnotion/client/HttpConfiguration;Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;ZILjava/lang/Object;)Lorg/jraf/klibnotion/client/HttpConfiguration;
+	public final fun component2 ()Lorg/jraf/klibnotion/client/HttpProxy;
+	public final fun component3 ()Z
+	public final fun copy (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;Z)Lorg/jraf/klibnotion/client/HttpConfiguration;
+	public static synthetic fun copy$default (Lorg/jraf/klibnotion/client/HttpConfiguration;Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;ZILjava/lang/Object;)Lorg/jraf/klibnotion/client/HttpConfiguration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBypassSslChecks ()Z
 	public final fun getHttpProxy ()Lorg/jraf/klibnotion/client/HttpProxy;
 	public final fun getLoggingLevel ()Lorg/jraf/klibnotion/client/HttpLoggingLevel;
-	public final fun getMockServerBaserUri ()Lorg/jraf/klibnotion/client/BaseUri;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -111,8 +102,10 @@ public abstract interface class org/jraf/klibnotion/client/NotionClient {
 }
 
 public abstract interface class org/jraf/klibnotion/client/NotionClient$Blocks {
-	public abstract fun appendBlockList (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun appendBlockList (Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun appendBlockList (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun appendBlockList (Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/NotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/NotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public abstract fun getAllBlockListRecursively (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getBlock (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getBlock$default (Lorg/jraf/klibnotion/client/NotionClient$Blocks;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
@@ -122,6 +115,8 @@ public abstract interface class org/jraf/klibnotion/client/NotionClient$Blocks {
 }
 
 public final class org/jraf/klibnotion/client/NotionClient$Blocks$DefaultImpls {
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/NotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/NotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun getBlock$default (Lorg/jraf/klibnotion/client/NotionClient$Blocks;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun getBlockList$default (Lorg/jraf/klibnotion/client/NotionClient$Blocks;Ljava/lang/String;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
@@ -136,6 +131,8 @@ public abstract interface class org/jraf/klibnotion/client/NotionClient$Database
 	public abstract fun getDatabase (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getDatabaseList (Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getDatabaseList$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun queryDataSource (Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun queryDataSource$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public abstract fun queryDatabase (Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun queryDatabase$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public abstract fun updateDatabase (Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -145,6 +142,7 @@ public abstract interface class org/jraf/klibnotion/client/NotionClient$Database
 public final class org/jraf/klibnotion/client/NotionClient$Databases$DefaultImpls {
 	public static synthetic fun createDatabase$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun getDatabaseList$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun queryDataSource$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun queryDatabase$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun updateDatabase$default (Lorg/jraf/klibnotion/client/NotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
@@ -165,7 +163,7 @@ public abstract interface class org/jraf/klibnotion/client/NotionClient$Pages {
 	public static synthetic fun createPage$default (Lorg/jraf/klibnotion/client/NotionClient$Pages;Lorg/jraf/klibnotion/model/base/reference/PageReference;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun createPage$default (Lorg/jraf/klibnotion/client/NotionClient$Pages;Lorg/jraf/klibnotion/model/base/reference/PageReference;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/block/MutableBlockList;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public abstract fun getPage (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun setPageArchived (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun setPageInTrash (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun updatePage (Ljava/lang/String;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/value/PropertyValueList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun updatePage$default (Lorg/jraf/klibnotion/client/NotionClient$Pages;Ljava/lang/String;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/value/PropertyValueList;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
@@ -211,8 +209,10 @@ public abstract interface class org/jraf/klibnotion/client/blocking/BlockingNoti
 }
 
 public abstract interface class org/jraf/klibnotion/client/blocking/BlockingNotionClient$Blocks {
-	public abstract fun appendBlockList (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public abstract fun appendBlockList (Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;)V
+	public abstract fun appendBlockList (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public abstract fun appendBlockList (Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;)V
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;ILjava/lang/Object;)V
 	public abstract fun getAllBlockListRecursively (Ljava/lang/String;)Ljava/util/List;
 	public abstract fun getBlock (Ljava/lang/String;Z)Lorg/jraf/klibnotion/model/block/Block;
 	public abstract fun getBlockList (Ljava/lang/String;Lorg/jraf/klibnotion/model/pagination/Pagination;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
@@ -221,6 +221,8 @@ public abstract interface class org/jraf/klibnotion/client/blocking/BlockingNoti
 }
 
 public final class org/jraf/klibnotion/client/blocking/BlockingNotionClient$Blocks$DefaultImpls {
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;ILjava/lang/Object;)V
 	public static synthetic fun getBlockList$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Blocks;Ljava/lang/String;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
 }
 
@@ -230,6 +232,8 @@ public abstract interface class org/jraf/klibnotion/client/blocking/BlockingNoti
 	public abstract fun getDatabase (Ljava/lang/String;)Lorg/jraf/klibnotion/model/database/Database;
 	public abstract fun getDatabaseList (Lorg/jraf/klibnotion/model/pagination/Pagination;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
 	public static synthetic fun getDatabaseList$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
+	public abstract fun queryDataSource (Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
+	public static synthetic fun queryDataSource$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
 	public abstract fun queryDatabase (Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
 	public static synthetic fun queryDatabase$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
 	public abstract fun updateDatabase (Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;)Lorg/jraf/klibnotion/model/database/Database;
@@ -239,6 +243,7 @@ public abstract interface class org/jraf/klibnotion/client/blocking/BlockingNoti
 public final class org/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases$DefaultImpls {
 	public static synthetic fun createDatabase$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/database/Database;
 	public static synthetic fun getDatabaseList$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
+	public static synthetic fun queryDataSource$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
 	public static synthetic fun queryDatabase$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/pagination/ResultPage;
 	public static synthetic fun updateDatabase$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/database/Database;
 }
@@ -259,7 +264,7 @@ public abstract interface class org/jraf/klibnotion/client/blocking/BlockingNoti
 	public static synthetic fun createPage$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Pages;Lorg/jraf/klibnotion/model/base/reference/PageReference;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/page/Page;
 	public static synthetic fun createPage$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Pages;Lorg/jraf/klibnotion/model/base/reference/PageReference;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/block/MutableBlockList;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/page/Page;
 	public abstract fun getPage (Ljava/lang/String;)Lorg/jraf/klibnotion/model/page/Page;
-	public abstract fun setPageArchived (Ljava/lang/String;Z)Lorg/jraf/klibnotion/model/page/Page;
+	public abstract fun setPageInTrash (Ljava/lang/String;Z)Lorg/jraf/klibnotion/model/page/Page;
 	public abstract fun updatePage (Ljava/lang/String;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/value/PropertyValueList;)Lorg/jraf/klibnotion/model/page/Page;
 	public static synthetic fun updatePage$default (Lorg/jraf/klibnotion/client/blocking/BlockingNotionClient$Pages;Ljava/lang/String;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/value/PropertyValueList;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/page/Page;
 }
@@ -309,8 +314,10 @@ public abstract interface class org/jraf/klibnotion/client/future/FutureNotionCl
 }
 
 public abstract interface class org/jraf/klibnotion/client/future/FutureNotionClient$Blocks {
-	public abstract fun appendBlockList (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/concurrent/Future;
-	public abstract fun appendBlockList (Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;)Ljava/util/concurrent/Future;
+	public abstract fun appendBlockList (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/concurrent/Future;
+	public abstract fun appendBlockList (Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;)Ljava/util/concurrent/Future;
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/util/concurrent/Future;
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public abstract fun getAllBlockListRecursively (Ljava/lang/String;)Ljava/util/concurrent/Future;
 	public abstract fun getBlock (Ljava/lang/String;Z)Ljava/util/concurrent/Future;
 	public abstract fun getBlockList (Ljava/lang/String;Lorg/jraf/klibnotion/model/pagination/Pagination;)Ljava/util/concurrent/Future;
@@ -319,6 +326,8 @@ public abstract interface class org/jraf/klibnotion/client/future/FutureNotionCl
 }
 
 public final class org/jraf/klibnotion/client/future/FutureNotionClient$Blocks$DefaultImpls {
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/util/concurrent/Future;
+	public static synthetic fun appendBlockList$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Blocks;Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/block/MutableBlockList;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public static synthetic fun getBlockList$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Blocks;Ljava/lang/String;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 }
 
@@ -328,6 +337,8 @@ public abstract interface class org/jraf/klibnotion/client/future/FutureNotionCl
 	public abstract fun getDatabase (Ljava/lang/String;)Ljava/util/concurrent/Future;
 	public abstract fun getDatabaseList (Lorg/jraf/klibnotion/model/pagination/Pagination;)Ljava/util/concurrent/Future;
 	public static synthetic fun getDatabaseList$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Ljava/util/concurrent/Future;
+	public abstract fun queryDataSource (Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;)Ljava/util/concurrent/Future;
+	public static synthetic fun queryDataSource$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public abstract fun queryDatabase (Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;)Ljava/util/concurrent/Future;
 	public static synthetic fun queryDatabase$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public abstract fun updateDatabase (Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;)Ljava/util/concurrent/Future;
@@ -337,6 +348,7 @@ public abstract interface class org/jraf/klibnotion/client/future/FutureNotionCl
 public final class org/jraf/klibnotion/client/future/FutureNotionClient$Databases$DefaultImpls {
 	public static synthetic fun createDatabase$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public static synthetic fun getDatabaseList$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Ljava/util/concurrent/Future;
+	public static synthetic fun queryDataSource$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public static synthetic fun queryDatabase$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/database/query/DatabaseQuery;Lorg/jraf/klibnotion/model/property/sort/PropertySort;Lorg/jraf/klibnotion/model/pagination/Pagination;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public static synthetic fun updateDatabase$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Databases;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/spec/PropertySpecList;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 }
@@ -357,7 +369,7 @@ public abstract interface class org/jraf/klibnotion/client/future/FutureNotionCl
 	public static synthetic fun createPage$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Pages;Lorg/jraf/klibnotion/model/base/reference/PageReference;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public static synthetic fun createPage$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Pages;Lorg/jraf/klibnotion/model/base/reference/PageReference;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/block/MutableBlockList;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 	public abstract fun getPage (Ljava/lang/String;)Ljava/util/concurrent/Future;
-	public abstract fun setPageArchived (Ljava/lang/String;Z)Ljava/util/concurrent/Future;
+	public abstract fun setPageInTrash (Ljava/lang/String;Z)Ljava/util/concurrent/Future;
 	public abstract fun updatePage (Ljava/lang/String;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/value/PropertyValueList;)Ljava/util/concurrent/Future;
 	public static synthetic fun updatePage$default (Lorg/jraf/klibnotion/client/future/FutureNotionClient$Pages;Ljava/lang/String;Lorg/jraf/klibnotion/model/base/EmojiOrFile;Lorg/jraf/klibnotion/model/file/File;Lorg/jraf/klibnotion/model/property/value/PropertyValueList;ILjava/lang/Object;)Ljava/util/concurrent/Future;
 }
@@ -445,9 +457,9 @@ public final class org/jraf/klibnotion/model/base/reference/WorkspaceReference :
 
 public abstract interface class org/jraf/klibnotion/model/block/Block {
 	public abstract fun getChildren ()Ljava/util/List;
-	public abstract fun getCreated ()Ljava/util/Date;
+	public abstract fun getCreated ()Lkotlin/time/Instant;
 	public abstract fun getId ()Ljava/lang/String;
-	public abstract fun getLastEdited ()Ljava/util/Date;
+	public abstract fun getLastEdited ()Lkotlin/time/Instant;
 }
 
 public final class org/jraf/klibnotion/model/block/BlockKt {
@@ -506,6 +518,8 @@ public final class org/jraf/klibnotion/model/block/BlockKt {
 	public static final fun numberedListItem (Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/Annotations;)Lorg/jraf/klibnotion/model/block/Block;
 	public static final fun numberedListItem (Lorg/jraf/klibnotion/model/richtext/RichTextList;)Lorg/jraf/klibnotion/model/block/Block;
 	public static synthetic fun numberedListItem$default (Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/Annotations;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/block/Block;
+	public static final fun originalSyncedBlock (Lkotlin/jvm/functions/Function1;)Lorg/jraf/klibnotion/model/block/Block;
+	public static synthetic fun originalSyncedBlock$default (Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/block/Block;
 	public static final fun paragraph (Ljava/lang/String;)Lorg/jraf/klibnotion/model/block/Block;
 	public static final fun paragraph (Ljava/lang/String;Ljava/lang/String;)Lorg/jraf/klibnotion/model/block/Block;
 	public static final fun paragraph (Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/Annotations;)Lorg/jraf/klibnotion/model/block/Block;
@@ -590,6 +604,10 @@ public abstract interface class org/jraf/klibnotion/model/block/Heading3Block : 
 public abstract interface class org/jraf/klibnotion/model/block/ImageBlock : org/jraf/klibnotion/model/block/Block {
 	public abstract fun getCaption ()Lorg/jraf/klibnotion/model/richtext/RichTextList;
 	public abstract fun getImage ()Lorg/jraf/klibnotion/model/file/File;
+}
+
+public abstract interface class org/jraf/klibnotion/model/block/MeetingNotesBlock : org/jraf/klibnotion/model/block/Block {
+	public abstract fun getText ()Lorg/jraf/klibnotion/model/richtext/RichTextList;
 }
 
 public final class org/jraf/klibnotion/model/block/MutableBlockList : java/util/List, kotlin/jvm/internal/markers/KMappedMarker {
@@ -680,6 +698,8 @@ public final class org/jraf/klibnotion/model/block/MutableBlockList : java/util/
 	public final fun number (Lorg/jraf/klibnotion/model/richtext/RichTextList;Lkotlin/jvm/functions/Function1;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
 	public static synthetic fun number$default (Lorg/jraf/klibnotion/model/block/MutableBlockList;Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/Annotations;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
 	public static synthetic fun number$default (Lorg/jraf/klibnotion/model/block/MutableBlockList;Lorg/jraf/klibnotion/model/richtext/RichTextList;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
+	public final fun originalSyncedBlock (Lkotlin/jvm/functions/Function1;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
+	public static synthetic fun originalSyncedBlock$default (Lorg/jraf/klibnotion/model/block/MutableBlockList;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
 	public final fun paragraph (Ljava/lang/String;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
 	public final fun paragraph (Ljava/lang/String;Ljava/lang/String;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
 	public final fun paragraph (Ljava/lang/String;Ljava/lang/String;Lorg/jraf/klibnotion/model/richtext/Annotations;)Lorg/jraf/klibnotion/model/block/MutableBlockList;
@@ -801,10 +821,11 @@ public final class org/jraf/klibnotion/model/color/Color : java/lang/Enum {
 
 public abstract interface class org/jraf/klibnotion/model/database/Database {
 	public abstract fun getCover ()Lorg/jraf/klibnotion/model/file/File;
-	public abstract fun getCreated ()Ljava/util/Date;
+	public abstract fun getCreated ()Lkotlin/time/Instant;
+	public abstract fun getDataSourceIds ()Ljava/util/List;
 	public abstract fun getIcon ()Lorg/jraf/klibnotion/model/base/EmojiOrFile;
 	public abstract fun getId ()Ljava/lang/String;
-	public abstract fun getLastEdited ()Ljava/util/Date;
+	public abstract fun getLastEdited ()Lkotlin/time/Instant;
 	public abstract fun getParent ()Lorg/jraf/klibnotion/model/base/reference/Reference;
 	public abstract fun getPropertySpecs ()Ljava/util/List;
 	public abstract fun getTitle ()Lorg/jraf/klibnotion/model/richtext/RichTextList;
@@ -1738,12 +1759,12 @@ public final class org/jraf/klibnotion/model/database/query/filter/DatabaseQuery
 }
 
 public final class org/jraf/klibnotion/model/date/Date : org/jraf/klibnotion/model/date/DateOrDateTime {
-	public fun <init> (Ljava/util/Date;)V
-	public final fun component1 ()Ljava/util/Date;
-	public final fun copy (Ljava/util/Date;)Lorg/jraf/klibnotion/model/date/Date;
-	public static synthetic fun copy$default (Lorg/jraf/klibnotion/model/date/Date;Ljava/util/Date;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/date/Date;
+	public fun <init> (Lkotlinx/datetime/LocalDate;)V
+	public final fun component1 ()Lkotlinx/datetime/LocalDate;
+	public final fun copy (Lkotlinx/datetime/LocalDate;)Lorg/jraf/klibnotion/model/date/Date;
+	public static synthetic fun copy$default (Lorg/jraf/klibnotion/model/date/Date;Lkotlinx/datetime/LocalDate;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/date/Date;
 	public fun equals (Ljava/lang/Object;)Z
-	public fun getTimestamp ()Ljava/util/Date;
+	public final fun getDate ()Lkotlinx/datetime/LocalDate;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -1763,20 +1784,18 @@ public final class org/jraf/klibnotion/model/date/DateOrDateRange {
 }
 
 public abstract class org/jraf/klibnotion/model/date/DateOrDateTime {
-	public synthetic fun <init> (Ljava/util/Date;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun getTimestamp ()Ljava/util/Date;
 }
 
 public final class org/jraf/klibnotion/model/date/DateTime : org/jraf/klibnotion/model/date/DateOrDateTime {
-	public fun <init> (Ljava/util/Date;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/util/Date;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/util/Date;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/util/Date;Ljava/lang/String;)Lorg/jraf/klibnotion/model/date/DateTime;
-	public static synthetic fun copy$default (Lorg/jraf/klibnotion/model/date/DateTime;Ljava/util/Date;Ljava/lang/String;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/date/DateTime;
+	public fun <init> (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/TimeZone;)V
+	public synthetic fun <init> (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/TimeZone;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lkotlinx/datetime/LocalDateTime;
+	public final fun component2 ()Lkotlinx/datetime/TimeZone;
+	public final fun copy (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/TimeZone;)Lorg/jraf/klibnotion/model/date/DateTime;
+	public static synthetic fun copy$default (Lorg/jraf/klibnotion/model/date/DateTime;Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/TimeZone;ILjava/lang/Object;)Lorg/jraf/klibnotion/model/date/DateTime;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getTimeZoneId ()Ljava/lang/String;
-	public fun getTimestamp ()Ljava/util/Date;
+	public final fun getDateTime ()Lkotlinx/datetime/LocalDateTime;
+	public final fun getTimeZone ()Lkotlinx/datetime/TimeZone;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -1843,12 +1862,12 @@ public abstract interface class org/jraf/klibnotion/model/oauth/OAuthGetAccessTo
 }
 
 public abstract interface class org/jraf/klibnotion/model/page/Page {
-	public abstract fun getArchived ()Z
 	public abstract fun getCover ()Lorg/jraf/klibnotion/model/file/File;
-	public abstract fun getCreated ()Ljava/util/Date;
+	public abstract fun getCreated ()Lkotlin/time/Instant;
 	public abstract fun getIcon ()Lorg/jraf/klibnotion/model/base/EmojiOrFile;
 	public abstract fun getId ()Ljava/lang/String;
-	public abstract fun getLastEdited ()Ljava/util/Date;
+	public abstract fun getInTrash ()Z
+	public abstract fun getLastEdited ()Lkotlin/time/Instant;
 	public abstract fun getParent ()Lorg/jraf/klibnotion/model/base/reference/Reference;
 	public abstract fun getPropertyValues ()Ljava/util/List;
 	public abstract fun getUrl ()Ljava/lang/String;

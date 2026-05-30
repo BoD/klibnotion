@@ -25,33 +25,48 @@
 
 package org.jraf.klibnotion.internal.api.model.date
 
-import org.jraf.klibnotion.internal.TimeZoneIdParser
-import org.jraf.klibnotion.internal.TimestampFormatter
-import org.jraf.klibnotion.internal.TimestampParser
+import kotlinx.datetime.FixedOffsetTimeZone
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.format.DateTimeComponents
+import kotlinx.datetime.format.format
+import kotlinx.datetime.offsetAt
+import kotlinx.datetime.toInstant
 import org.jraf.klibnotion.internal.api.model.ApiConverter
 import org.jraf.klibnotion.model.date.Date
 import org.jraf.klibnotion.model.date.DateOrDateTime
 import org.jraf.klibnotion.model.date.DateTime
+import kotlin.time.Instant
 
 internal object ApiDateStringConverter : ApiConverter<String, DateOrDateTime>() {
-    private const val DATE_FORMAT = "yyyy-MM-dd"
-    private const val DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+
+    private val DATE_TIME_FORMAT = DateTimeComponents.Format {
+        date(LocalDate.Formats.ISO)
+        chars("T")
+        hour(); chars(":"); minute(); chars(":"); second()
+        chars("."); secondFraction(3)
+        offsetHours(); chars(":"); offsetMinutesOfHour()
+    }
 
     override fun apiToModel(apiModel: String): DateOrDateTime {
-        // Try date + time first, fallback to date only
         return try {
-            val timestamp = TimestampParser(DATE_TIME_FORMAT).parse(apiModel)
-            val timeZoneId = TimeZoneIdParser().parse(apiModel)
-            DateTime(timestamp = timestamp, timeZoneId = timeZoneId)
-        } catch (e: Exception) {
-            Date(TimestampParser(DATE_FORMAT).parse(apiModel))
+            val components = DateTimeComponents.Formats.ISO_DATE_TIME_OFFSET.parse(apiModel)
+            DateTime(components.toLocalDateTime(), FixedOffsetTimeZone(components.toUtcOffset()))
+        } catch (_: Exception) {
+            Date(LocalDate.parse(apiModel))
         }
     }
 
     override fun modelToApi(model: DateOrDateTime): String {
         return when (model) {
-            is DateTime -> TimestampFormatter(DATE_TIME_FORMAT, model.timeZoneId).format(model.timestamp)
-            is Date -> TimestampFormatter(DATE_FORMAT).format(model.timestamp)
+            is DateTime -> {
+                val instant: Instant = model.dateTime.toInstant(model.timeZone)
+                val offset = model.timeZone.offsetAt(instant)
+                DATE_TIME_FORMAT.format {
+                    setDateTimeOffset(instant, offset)
+                }
+            }
+
+            is Date -> model.date.toString()
         }
     }
 }

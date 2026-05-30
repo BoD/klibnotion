@@ -25,22 +25,17 @@
 
 package org.jraf.klibnotion.internal
 
-import org.jraf.klibnotion.model.date.Timestamp
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.toInstant
+import org.jraf.klibnotion.model.date.Date
+import org.jraf.klibnotion.model.date.DateOrDateTime
+import org.jraf.klibnotion.model.date.DateTime
+import kotlin.time.Instant
 
-internal expect fun getLocalTimeZoneId(): String
+internal val IRRELEVANT_INSTANT: Instant = Instant.DISTANT_PAST
 
-internal expect class TimestampFormatter(format: String, timeZoneId: String? = null) {
-    fun format(timestampToFormat: Timestamp): String
+internal fun DateOrDateTime.toInstant(): Instant = when (this) {
+    is DateTime -> dateTime.toInstant(timeZone)
+    is Date -> date.atStartOfDayIn(TimeZone.UTC)
 }
-
-internal expect class TimestampParser(format: String) {
-    fun parse(formattedDate: String): Timestamp
-}
-
-internal class TimeZoneIdParser {
-    // Example value: 2021-07-17T00:00:00.000-05:00
-    // The time zone offset start at index 23
-    fun parse(formattedDate: String): String = formattedDate.substring(23)
-}
-
-internal expect val IRRELEVANT_TIMESTAMP: Timestamp

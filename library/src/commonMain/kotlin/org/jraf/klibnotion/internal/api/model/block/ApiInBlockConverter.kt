@@ -43,6 +43,7 @@ import org.jraf.klibnotion.internal.model.block.Heading1BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading2BlockImpl
 import org.jraf.klibnotion.internal.model.block.Heading3BlockImpl
 import org.jraf.klibnotion.internal.model.block.ImageBlockImpl
+import org.jraf.klibnotion.internal.model.block.MeetingNotesBlockImpl
 import org.jraf.klibnotion.internal.model.block.NumberedListItemBlockImpl
 import org.jraf.klibnotion.internal.model.block.ParagraphBlockImpl
 import org.jraf.klibnotion.internal.model.block.QuoteBlockImpl
@@ -52,14 +53,15 @@ import org.jraf.klibnotion.internal.model.block.ToDoBlockImpl
 import org.jraf.klibnotion.internal.model.block.ToggleBlockImpl
 import org.jraf.klibnotion.internal.model.block.UnknownTypeBlockImpl
 import org.jraf.klibnotion.internal.model.block.VideoBlockImpl
+import org.jraf.klibnotion.internal.toInstant
 import org.jraf.klibnotion.model.block.Block
 import org.jraf.klibnotion.model.richtext.RichTextList
 
 internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
     override fun apiToModel(apiModel: ApiBlock): Block {
         val id = apiModel.id
-        val created = apiModel.created_time.apiToModel(ApiDateStringConverter).timestamp
-        val lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).timestamp
+        val created = apiModel.created_time.apiToModel(ApiDateStringConverter).toInstant()
+        val lastEdited = apiModel.last_edited_time.apiToModel(ApiDateStringConverter).toInstant()
         // HACK: we use empty list as a signal that there are children that need fetching
         val children: List<Block>? = if (apiModel.has_children) emptyList() else null
         return when (val type = apiModel.type) {
@@ -223,6 +225,14 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
                 syncedFrom = apiModel.synced_block?.synced_from?.block_id,
             )
 
+            "meeting_notes" -> MeetingNotesBlockImpl(
+                id = id,
+                created = created,
+                lastEdited = lastEdited,
+                text = apiModel.meeting_notes?.toRichTextList(),
+                children = children,
+            )
+
             else -> UnknownTypeBlockImpl(
                 id = id,
                 created = created,
@@ -232,10 +242,10 @@ internal object ApiInBlockConverter : ApiConverter<ApiBlock, Block>() {
         }
     }
 
-    private fun ApiBlockText?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockTodo?.toRichTextList() = RichTextList(this!!.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockCode.toRichTextList() = RichTextList(this.text.apiToModel(ApiRichTextConverter))
-    private fun ApiBlockCallout.toRichTextList() = RichTextList(this.text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockText?.toRichTextList() = RichTextList(this!!.rich_text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockTodo?.toRichTextList() = RichTextList(this!!.rich_text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCode.toRichTextList() = RichTextList(this.rich_text.apiToModel(ApiRichTextConverter))
+    private fun ApiBlockCallout.toRichTextList() = RichTextList(this.rich_text.apiToModel(ApiRichTextConverter))
     private fun ApiBlockBookmark.toRichTextList() = RichTextList(this.caption.apiToModel(ApiRichTextConverter))
     private fun ApiBlockImage.toRichTextList() =
         this.caption?.let { RichTextList(it.apiToModel(ApiRichTextConverter)) }

@@ -48,7 +48,7 @@ class DatabaseQuery {
     fun addAnyFilters(vararg filter: DatabaseQueryPropertyFilter) = any(*filter)
 
     override fun toString(): String {
-        return "DatabaseQueryImpl(allFilters=$allFilters, anyFilters=$anyFilters)"
+        return "DatabaseQuery(allFilters=$allFilters, anyFilters=$anyFilters)"
     }
 
     override fun equals(other: Any?): Boolean {

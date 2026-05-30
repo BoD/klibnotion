@@ -25,13 +25,15 @@
 
 package org.jraf.klibnotion.model.date
 
-import org.jraf.klibnotion.internal.getLocalTimeZoneId
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
 
-sealed class DateOrDateTime(open val timestamp: Timestamp)
+sealed class DateOrDateTime
 
-data class Date(override val timestamp: Timestamp) : DateOrDateTime(timestamp)
+data class Date(val date: LocalDate) : DateOrDateTime()
 
 data class DateTime(
-    override val timestamp: Timestamp,
-    val timeZoneId: String = getLocalTimeZoneId(),
-) : DateOrDateTime(timestamp)
+    val dateTime: LocalDateTime,
+    val timeZone: TimeZone = TimeZone.currentSystemDefault(),
+) : DateOrDateTime()

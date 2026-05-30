@@ -25,9 +25,9 @@
 
 package org.jraf.klibnotion.internal.client.blocking
 
+import kotlinx.coroutines.runBlocking
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.blocking.BlockingNotionClient
-import org.jraf.klibnotion.internal.runBlocking
 import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
@@ -82,6 +82,8 @@ internal class BlockingNotionClientImpl(
         notionClient.databases.getDatabase(id)
     }
 
+    @Deprecated("The List Databases endpoint was deprecated by Notion in API version 2022-02-22. Use search.searchDatabases instead.")
+    @Suppress("DEPRECATION")
     override fun getDatabaseList(pagination: Pagination) = runBlocking {
         notionClient.databases.getDatabaseList(pagination)
     }
@@ -96,7 +98,21 @@ internal class BlockingNotionClientImpl(
             id,
             query,
             sort,
-            pagination
+            pagination,
+        )
+    }
+
+    override fun queryDataSource(
+        dataSourceId: UuidString,
+        query: DatabaseQuery?,
+        sort: PropertySort?,
+        pagination: Pagination,
+    ) = runBlocking {
+        notionClient.databases.queryDataSource(
+            dataSourceId,
+            query,
+            sort,
+            pagination,
         )
     }
 
@@ -209,8 +225,8 @@ internal class BlockingNotionClientImpl(
         notionClient.pages.updatePage(id, icon, cover, properties)
     }
 
-    override fun setPageArchived(id: UuidString, archived: Boolean) = runBlocking {
-        notionClient.pages.setPageArchived(id, archived)
+    override fun setPageInTrash(id: UuidString, inTrash: Boolean) = runBlocking {
+        notionClient.pages.setPageInTrash(id, inTrash)
     }
 
     override fun getBlockList(parentId: UuidString, pagination: Pagination) = runBlocking {
@@ -221,13 +237,15 @@ internal class BlockingNotionClientImpl(
         notionClient.blocks.getAllBlockListRecursively(parentId)
     }
 
-    override fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) = runBlocking {
-        notionClient.blocks.appendBlockList(parentId, blocks)
-    }
+    override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) =
+        runBlocking {
+            notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
+        }
 
-    override fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) = runBlocking {
-        notionClient.blocks.appendBlockList(parentId, blocks)
-    }
+    override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: BlockListProducer) =
+        runBlocking {
+            notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
+        }
 
     override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = runBlocking {
         notionClient.blocks.getBlock(id, retrieveChildrenRecursively)

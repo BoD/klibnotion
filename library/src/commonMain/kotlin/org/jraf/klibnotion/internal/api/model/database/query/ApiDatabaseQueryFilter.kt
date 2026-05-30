@@ -44,7 +44,7 @@ internal data class ApiDatabaseQueryFilters(
 internal data class ApiDatabaseQueryFilter(
     val property: String,
     val title: ApiTextDatabaseQueryFilter? = null,
-    val text: ApiTextDatabaseQueryFilter? = null,
+    val rich_text: ApiTextDatabaseQueryFilter? = null,
     val number: ApiNumberDatabaseQueryFilter? = null,
     val checkbox: ApiCheckboxDatabaseQueryFilter? = null,
     val select: ApiSelectDatabaseQueryFilter? = null,

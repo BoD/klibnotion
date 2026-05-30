@@ -38,7 +38,7 @@ internal data class ApiPage(
     val id: String,
     val parent: ApiReference,
     val properties: Map<String, ApiPropertyValue>,
-    val archived: Boolean,
+    val in_trash: Boolean,
     val created_time: String,
     val last_edited_time: String,
     val url: String,

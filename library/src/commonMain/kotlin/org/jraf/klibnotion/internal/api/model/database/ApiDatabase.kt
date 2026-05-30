@@ -39,10 +39,20 @@ internal data class ApiDatabase(
     val id: String,
     val parent: ApiReference,
     val title: List<ApiRichText>,
-    val properties: Map<String, ApiPropertySpec>,
+    // As of API version 2025-09-03, properties are no longer included in the top-level database response.
+    // They are accessed separately via the data sources API. Default to empty map for forward compatibility.
+    val properties: Map<String, ApiPropertySpec> = emptyMap(),
+    // As of API version 2025-09-03, databases have one or more data sources which own the schema (properties).
+    val data_sources: List<ApiDataSource> = emptyList(),
     val created_time: String,
     val last_edited_time: String,
     val icon: ApiEmojiOrFile?,
     // Technically this can only be "file" or "external", never "emoji"
     val cover: ApiEmojiOrFile?,
+)
+
+@Serializable
+internal data class ApiDataSource(
+    val id: String,
+    val name: String? = null,
 )

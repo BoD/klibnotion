@@ -49,9 +49,11 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.Url
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
+import org.jraf.klibnotion.client.Authentication
 import org.jraf.klibnotion.client.ClientConfiguration
 import org.jraf.klibnotion.client.HttpLoggingLevel
 import org.jraf.klibnotion.client.NotionClient
@@ -66,6 +68,7 @@ import org.jraf.klibnotion.internal.api.model.database.create.DatabaseCreatePara
 import org.jraf.klibnotion.internal.api.model.database.query.ApiDatabaseQueryConverter
 import org.jraf.klibnotion.internal.api.model.database.update.ApiDatabaseUpdateParametersConverter
 import org.jraf.klibnotion.internal.api.model.database.update.DatabaseUpdateParameters
+import org.jraf.klibnotion.internal.api.model.datasource.ApiDataSourceUpdateParameters
 import org.jraf.klibnotion.internal.api.model.modelToApi
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenParameters
 import org.jraf.klibnotion.internal.api.model.oauth.ApiOAuthGetAccessTokenResultConverter
@@ -76,11 +79,11 @@ import org.jraf.klibnotion.internal.api.model.page.ApiPageResultPageConverter
 import org.jraf.klibnotion.internal.api.model.page.ApiPageUpdateParametersConverter
 import org.jraf.klibnotion.internal.api.model.page.PageCreateParameters
 import org.jraf.klibnotion.internal.api.model.page.PageUpdateParameters
+import org.jraf.klibnotion.internal.api.model.property.spec.ApiPropertySpecConverter
 import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverter
 import org.jraf.klibnotion.internal.api.model.search.SearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
-import org.jraf.klibnotion.internal.klibNotionScope
 import org.jraf.klibnotion.internal.model.block.MutableBlock
 import org.jraf.klibnotion.internal.model.oauth.OAuthCodeAndStateImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
@@ -107,10 +110,9 @@ import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
-import kotlin.coroutines.coroutineContext
 
 internal class NotionClientImpl(
-    clientConfiguration: ClientConfiguration,
+    private var clientConfiguration: ClientConfiguration,
 ) : NotionClient,
     NotionClient.OAuth,
     NotionClient.Users,
@@ -142,13 +144,18 @@ internal class NotionClientImpl(
                         // - https://youtrack.jetbrains.com/issue/KTOR-2740
                         // - https://github.com/Kotlin/kotlinx.serialization/issues/1450
                         useAlternativeNames = false
-                    }
+
+                        // Don't encode fields that have their default value (typically null).
+                        // This keeps outgoing request bodies clean: property specs, query filters, etc.
+                        // only include the fields that are actually set.
+                        encodeDefaults = false
+                    },
                 )
             }
             defaultRequest {
                 if (headers[HttpHeaders.Authorization] == null) {
                     val authentication = clientConfiguration.authentication
-                    if (!authentication.isSet) throw IllegalStateException("You must set the Authentication accessToken before making this call")
+                        ?: throw IllegalStateException("You must set the Authentication accessToken before making this call")
                     header(
                         HttpHeaders.Authorization,
                         "Bearer ${authentication.accessToken}"
@@ -188,7 +195,18 @@ internal class NotionClientImpl(
                 }
             }
             HttpResponseValidator {
+                validateResponse { response ->
+                    val statusCode = response.status.value
+                    if (statusCode >= 400) {
+                        // Read the body here, before ContentNegotiation tries to deserialize it as a domain object.
+                        val body = response.bodyAsText()
+                        throw NotionClientRequestException(ClientRequestException(response, body), body)
+                    }
+                }
                 handleResponseExceptionWithRequest { cause: Throwable, _: HttpRequest ->
+                    // Re-throw NotionClientRequestException as-is (already created in validateResponse).
+                    if (cause is NotionClientRequestException) throw cause
+
                     if (cause is ClientRequestException) throw NotionClientRequestException(
                         cause,
                         cause.response.bodyAsText()
@@ -232,16 +250,18 @@ internal class NotionClientImpl(
     }
 
     override suspend fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String): OAuthGetAccessTokenResult {
-        return service.getOAuthAccessToken(
+        val accessTokenResult = service.getOAuthAccessToken(
             clientId = oAuthCredentials.clientId,
             clientSecret = oAuthCredentials.clientSecret,
             parameters = ApiOAuthGetAccessTokenParameters(
                 grant_type = "authorization_code",
                 redirect_uri = oAuthCredentials.redirectUri,
                 code = code,
-            )
+            ),
         )
             .apiToModel(ApiOAuthGetAccessTokenResultConverter)
+        clientConfiguration = clientConfiguration.copy(authentication = Authentication(accessTokenResult.accessToken))
+        return accessTokenResult
     }
 
     // endregion
@@ -269,9 +289,9 @@ internal class NotionClientImpl(
             .apiToModel(ApiDatabaseConverter)
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override suspend fun getDatabaseList(pagination: Pagination): ResultPage<Database> {
-        return service.getDatabaseList(pagination.startCursor)
-            .apiToModel(ApiPageResultDatabaseConverter)
+        return searchDatabases(pagination = pagination)
     }
 
     override suspend fun queryDatabase(
@@ -280,8 +300,21 @@ internal class NotionClientImpl(
         sort: PropertySort?,
         pagination: Pagination,
     ): ResultPage<Page> {
-        return service.queryDatabase(
-            id,
+        // As of API version 2025-09-03, the query endpoint moved to /v1/data_sources/{id}/query.
+        // Fetch the database to obtain the data source ID, then query against it.
+        val database = service.getDatabase(id).apiToModel(ApiDatabaseConverter)
+        val dataSourceId = database.dataSourceIds.firstOrNull() ?: id
+        return queryDataSource(dataSourceId, query, sort, pagination)
+    }
+
+    override suspend fun queryDataSource(
+        dataSourceId: UuidString,
+        query: DatabaseQuery?,
+        sort: PropertySort?,
+        pagination: Pagination,
+    ): ResultPage<Page> {
+        return service.queryDataSource(
+            dataSourceId,
             Triple(query, sort, pagination).modelToApi(ApiDatabaseQueryConverter),
         )
             .apiToModel(ApiPageResultPageConverter)
@@ -313,16 +346,37 @@ internal class NotionClientImpl(
         cover: File?,
         properties: PropertySpecList?,
     ): Database {
-        return service.updateDatabase(
-            id,
-            DatabaseUpdateParameters(
-                title = title,
-                icon = icon,
-                cover = cover,
-                properties = properties,
-            ).modelToApi(ApiDatabaseUpdateParametersConverter)
-        )
-            .apiToModel(ApiDatabaseConverter)
+        // Step 1: Update metadata (title, icon, cover) via the databases endpoint.
+        // If none of those are provided we still call getDatabase to retrieve data source IDs (needed for step 2).
+        val database = if (title != null || icon != null || cover != null) {
+            service.updateDatabase(
+                id,
+                DatabaseUpdateParameters(
+                    title = title,
+                    icon = icon,
+                    cover = cover,
+                    properties = null,
+                ).modelToApi(ApiDatabaseUpdateParametersConverter),
+            ).apiToModel(ApiDatabaseConverter)
+        } else {
+            service.getDatabase(id).apiToModel(ApiDatabaseConverter)
+        }
+
+        // Step 2: If properties are provided, update the first data source's schema.
+        // As of API version 2025-09-03, properties are managed at the data source level.
+        if (properties != null) {
+            val dataSourceId = database.dataSourceIds.firstOrNull()
+            if (dataSourceId != null) {
+                service.updateDataSource(
+                    dataSourceId,
+                    ApiDataSourceUpdateParameters(
+                        properties = properties.propertySpecList.modelToApi(ApiPropertySpecConverter).toMap(),
+                    ),
+                )
+            }
+        }
+
+        return database
     }
 
     // endregion
@@ -418,8 +472,8 @@ internal class NotionClientImpl(
             .apiToModel(ApiPageConverter)
     }
 
-    override suspend fun setPageArchived(id: UuidString, archived: Boolean): Page {
-        return service.archivePage(id, archived)
+    override suspend fun setPageInTrash(id: UuidString, inTrash: Boolean): Page {
+        return service.archivePage(id, inTrash)
             .apiToModel(ApiPageConverter)
     }
 
@@ -446,26 +500,30 @@ internal class NotionClientImpl(
         return results
     }
 
-    private suspend fun getChildrenRecursively(blockResultPage: ResultPage<Block>) {
-        val job = Job()
-        for (block in blockResultPage.results) {
-            if (block is MutableBlock && block.children?.isEmpty() == true) {
-                @Suppress("DeferredResultUnused")
-                klibNotionScope.async(coroutineContext + job) {
-                    val childrenResultPage = getAllBlockListRecursively(block.id)
-                    block.children = childrenResultPage
+    private suspend fun getChildrenRecursively(blockResultPage: ResultPage<Block>) = coroutineScope {
+        blockResultPage.results
+            .mapNotNull { block ->
+                if (block is MutableBlock && block.children?.isEmpty() == true) {
+                    async {
+                        val childrenResultPage = getAllBlockListRecursively(block.id)
+                        block.children = childrenResultPage
+                    }
+                } else {
+                    null
                 }
             }
-        }
-        job.children.forEach { it.join() }
+            .awaitAll()
     }
 
-    override suspend fun appendBlockList(parentId: UuidString, blocks: MutableBlockList) {
-        service.appendBlockList(parentId, blocks.modelToApi(ApiAppendBlocksParametersConverter))
+    override suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) {
+        service.appendBlockList(
+            parentId,
+            ApiAppendBlocksParametersConverter.modelToApi(blocks, afterBlockId),
+        )
     }
 
-    override suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer) =
-        appendBlockList(parentId, blocks() ?: MutableBlockList())
+    override suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: BlockListProducer) =
+        appendBlockList(parentId, afterBlockId, blocks() ?: MutableBlockList())
 
     override suspend fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean): Block {
         val block = service.getBlock(id)
@@ -512,7 +570,7 @@ internal class NotionClientImpl(
             parameters = SearchParameters(
                 query = query,
                 sort = sort,
-                type = "database",
+                type = "data_source",
                 startCursor = pagination.startCursor,
             ).modelToApi(ApiSearchParametersConverter),
         )
@@ -526,7 +584,7 @@ internal class NotionClientImpl(
 
     companion object {
         private const val HEADER_NOTION_VERSION = "Notion-Version"
-        private const val NOTION_API_VERSION = "2021-08-16"
+        private const val NOTION_API_VERSION = "2026-03-11"
     }
 }
 
@@ -534,4 +592,3 @@ internal expect fun createHttpClient(
     bypassSslChecks: Boolean,
     block: HttpClientConfig<*>.() -> Unit,
 ): HttpClient
-

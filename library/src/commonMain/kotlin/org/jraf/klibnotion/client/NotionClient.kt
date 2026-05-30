@@ -79,6 +79,9 @@ interface NotionClient {
 
         /**
          * Retrieve the OAuth access token from a code obtained via [getUserPromptUri] and [extractCodeAndStateFromRedirectUri].
+         *
+         * This also updates this [NotionClient] instance to use the retrieved access token for subsequent API calls.
+         *
          * @see <a href="https://developers.notion.com/docs/authorization#exchanging-the-grant-for-an-access-token">Exchanging the grant for an access token</a>
          */
         suspend fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String): OAuthGetAccessTokenResult
@@ -115,16 +118,38 @@ interface NotionClient {
         /**
          * List Databases.
          * This lists all the databases that have been shared with your bot.
+         *
+         * **Deprecated:** The underlying API endpoint was deprecated in version 2022-02-22.
+         * Use [org.jraf.klibnotion.client.NotionClient.Search.searchDatabases] instead.
          * @see <a href="https://developers.notion.com/reference/get-databases">List Databases</a>
          */
+        @Deprecated("The List Databases endpoint was deprecated by Notion in API version 2022-02-22. Use search.searchDatabases instead.")
         suspend fun getDatabaseList(pagination: Pagination = Pagination()): ResultPage<Database>
 
         /**
          * Query a database.
+         *
+         * This method fetches the database first to resolve the data source ID, then queries against it.
+         * If you already have the data source ID (from [Database.dataSourceIds]), prefer [queryDataSource]
+         * to avoid the extra network round-trip.
          * @see <a href="https://developers.notion.com/reference/post-database-query">Query a database</a>
          */
         suspend fun queryDatabase(
             id: UuidString,
+            query: DatabaseQuery? = null,
+            sort: PropertySort? = null,
+            pagination: Pagination = Pagination(),
+        ): ResultPage<Page>
+
+        /**
+         * Query a data source directly by its ID, without the extra round-trip of [queryDatabase].
+         *
+         * Obtain the data source ID from [Database.dataSourceIds] after calling [getDatabase] or
+         * [createDatabase]. This is the efficient path when you already have the ID.
+         * @see <a href="https://developers.notion.com/reference/post-database-query">Query a database</a>
+         */
+        suspend fun queryDataSource(
+            dataSourceId: UuidString,
             query: DatabaseQuery? = null,
             sort: PropertySort? = null,
             pagination: Pagination = Pagination(),
@@ -231,10 +256,10 @@ interface NotionClient {
         ): Page
 
         /**
-         * Mark the page as archived or not.
-         * @see <a href="https://developers.notion.com/reference/patch-page#archive-delete-a-page">Archive a page</a>
+         * Move the page to trash, or restore it from trash.
+         * @see <a href="https://developers.notion.com/reference/patch-page#archive-delete-a-page">Move a page to trash</a>
          */
-        suspend fun setPageArchived(id: UuidString, archived: Boolean): Page
+        suspend fun setPageInTrash(id: UuidString, inTrash: Boolean): Page
     }
 
     /**
@@ -264,15 +289,19 @@ interface NotionClient {
 
         /**
          * Append blocks to the children of the specified object.
+         *
+         * @param afterBlockId If set, the new blocks are inserted after this block. If `null`, the blocks are appended at the end.
          * @see <a href="https://developers.notion.com/reference/patch-block-children">Append block children</a>
          */
-        suspend fun appendBlockList(parentId: UuidString, blocks: MutableBlockList)
+        suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: MutableBlockList)
 
         /**
          * Append blocks to the children of the specified object.
+         *
+         * @param afterBlockId If set, the new blocks are inserted after this block. If `null`, the blocks are appended at the end.
          * @see <a href="https://developers.notion.com/reference/patch-block-children">Append block children</a>
          */
-        suspend fun appendBlockList(parentId: UuidString, blocks: BlockListProducer)
+        suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString? = null, blocks: BlockListProducer)
 
         /**
          * Retrieve a block.
