@@ -82,6 +82,7 @@ internal class BlockingNotionClientImpl(
         notionClient.databases.getDatabase(id)
     }
 
+    @Deprecated("The List Databases endpoint was deprecated by Notion in API version 2022-02-22. Use search.searchDatabases instead.")
     @Suppress("DEPRECATION")
     override fun getDatabaseList(pagination: Pagination) = runBlocking {
         notionClient.databases.getDatabaseList(pagination)

@@ -3,8 +3,6 @@ public final class org/jraf/klibnotion/VersionKt {
 }
 
 public final class org/jraf/klibnotion/client/Authentication {
-	public static final field Companion Lorg/jraf/klibnotion/client/Authentication$Companion;
-	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun copy (Ljava/lang/String;)Lorg/jraf/klibnotion/client/Authentication;
@@ -12,11 +10,7 @@ public final class org/jraf/klibnotion/client/Authentication {
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAccessToken ()Ljava/lang/String;
 	public fun hashCode ()I
-	public final fun setAccessToken (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-}
-
-public final class org/jraf/klibnotion/client/Authentication$Companion {
 }
 
 public final class org/jraf/klibnotion/client/BaseUri {
@@ -55,21 +49,18 @@ public final class org/jraf/klibnotion/client/ClientConfiguration {
 public final class org/jraf/klibnotion/client/HttpConfiguration {
 	public fun <init> ()V
 	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;)V
-	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;)V
-	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;)V
-	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;Z)V
-	public synthetic fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;)V
+	public fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;Z)V
+	public synthetic fun <init> (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/jraf/klibnotion/client/HttpLoggingLevel;
-	public final fun component2 ()Lorg/jraf/klibnotion/client/BaseUri;
-	public final fun component3 ()Lorg/jraf/klibnotion/client/HttpProxy;
-	public final fun component4 ()Z
-	public final fun copy (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;Z)Lorg/jraf/klibnotion/client/HttpConfiguration;
-	public static synthetic fun copy$default (Lorg/jraf/klibnotion/client/HttpConfiguration;Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/BaseUri;Lorg/jraf/klibnotion/client/HttpProxy;ZILjava/lang/Object;)Lorg/jraf/klibnotion/client/HttpConfiguration;
+	public final fun component2 ()Lorg/jraf/klibnotion/client/HttpProxy;
+	public final fun component3 ()Z
+	public final fun copy (Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;Z)Lorg/jraf/klibnotion/client/HttpConfiguration;
+	public static synthetic fun copy$default (Lorg/jraf/klibnotion/client/HttpConfiguration;Lorg/jraf/klibnotion/client/HttpLoggingLevel;Lorg/jraf/klibnotion/client/HttpProxy;ZILjava/lang/Object;)Lorg/jraf/klibnotion/client/HttpConfiguration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBypassSslChecks ()Z
 	public final fun getHttpProxy ()Lorg/jraf/klibnotion/client/HttpProxy;
 	public final fun getLoggingLevel ()Lorg/jraf/klibnotion/client/HttpLoggingLevel;
-	public final fun getMockServerBaserUri ()Lorg/jraf/klibnotion/client/BaseUri;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
