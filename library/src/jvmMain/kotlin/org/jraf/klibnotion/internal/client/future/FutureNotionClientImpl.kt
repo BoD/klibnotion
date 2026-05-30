@@ -25,7 +25,9 @@
 
 package org.jraf.klibnotion.internal.client.future
 
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.future.future
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.future.FutureNotionClient
@@ -54,6 +56,9 @@ internal class FutureNotionClientImpl(
     FutureNotionClient.Pages,
     FutureNotionClient.Blocks,
     FutureNotionClient.Search {
+
+    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
     override val oAuth = this
     override val users = this
     override val databases = this
@@ -61,20 +66,20 @@ internal class FutureNotionClientImpl(
     override val blocks = this
     override val search = this
 
-    override fun getUser(id: UuidString) = GlobalScope.future {
+    override fun getUser(id: UuidString) = coroutineScope.future {
         notionClient.users.getUser(id)
     }
 
-    override fun getUserList(pagination: Pagination) = GlobalScope.future {
+    override fun getUserList(pagination: Pagination) = coroutineScope.future {
         notionClient.users.getUserList(pagination)
     }
 
-    override fun getDatabase(id: UuidString) = GlobalScope.future {
+    override fun getDatabase(id: UuidString) = coroutineScope.future {
         notionClient.databases.getDatabase(id)
     }
 
     @Suppress("DEPRECATION")
-    override fun getDatabaseList(pagination: Pagination) = GlobalScope.future {
+    override fun getDatabaseList(pagination: Pagination) = coroutineScope.future {
         notionClient.databases.getDatabaseList(pagination)
     }
 
@@ -83,12 +88,12 @@ internal class FutureNotionClientImpl(
         query: DatabaseQuery?,
         sort: PropertySort?,
         pagination: Pagination,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.databases.queryDatabase(
             id,
             query,
             sort,
-            pagination
+            pagination,
         )
     }
 
@@ -97,7 +102,7 @@ internal class FutureNotionClientImpl(
         query: DatabaseQuery?,
         sort: PropertySort?,
         pagination: Pagination,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.databases.queryDataSource(
             dataSourceId,
             query,
@@ -112,7 +117,7 @@ internal class FutureNotionClientImpl(
         icon: EmojiOrFile?,
         cover: File?,
         properties: PropertySpecList,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.databases.createDatabase(
             parentPageId = parentPageId,
             title = title,
@@ -129,7 +134,7 @@ internal class FutureNotionClientImpl(
         cover: File?,
         properties: PropertySpecList?,
     ) =
-        GlobalScope.future {
+        coroutineScope.future {
             notionClient.databases.updateDatabase(
                 id = id,
                 title = title,
@@ -139,7 +144,7 @@ internal class FutureNotionClientImpl(
             )
         }
 
-    override fun getPage(id: UuidString) = GlobalScope.future {
+    override fun getPage(id: UuidString) = coroutineScope.future {
         notionClient.pages.getPage(id)
     }
 
@@ -149,7 +154,7 @@ internal class FutureNotionClientImpl(
         cover: File?,
         properties: PropertyValueList,
         content: MutableBlockList?,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.pages.createPage(
             parentDatabase = parentDatabase,
             properties = properties,
@@ -165,7 +170,7 @@ internal class FutureNotionClientImpl(
         cover: File?,
         properties: PropertyValueList,
         content: BlockListProducer,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.pages.createPage(
             parentDatabase = parentDatabase,
             properties = properties,
@@ -181,7 +186,7 @@ internal class FutureNotionClientImpl(
         icon: EmojiOrFile?,
         cover: File?,
         content: MutableBlockList?,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.pages.createPage(
             parentPage = parentPage,
             title = title,
@@ -197,7 +202,7 @@ internal class FutureNotionClientImpl(
         icon: EmojiOrFile?,
         cover: File?,
         content: BlockListProducer,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.pages.createPage(
             parentPage = parentPage,
             title = title,
@@ -213,7 +218,7 @@ internal class FutureNotionClientImpl(
     override fun extractCodeAndStateFromRedirectUri(redirectUri: String) =
         notionClient.oAuth.extractCodeAndStateFromRedirectUri(redirectUri)
 
-    override fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String) = GlobalScope.future {
+    override fun getAccessToken(oAuthCredentials: OAuthCredentials, code: String) = coroutineScope.future {
         notionClient.oAuth.getAccessToken(oAuthCredentials, code)
     }
 
@@ -222,47 +227,47 @@ internal class FutureNotionClientImpl(
         icon: EmojiOrFile?,
         cover: File?,
         properties: PropertyValueList,
-    ) = GlobalScope.future {
+    ) = coroutineScope.future {
         notionClient.pages.updatePage(id, icon, cover, properties)
     }
 
-    override fun setPageInTrash(id: UuidString, inTrash: Boolean) = GlobalScope.future {
+    override fun setPageInTrash(id: UuidString, inTrash: Boolean) = coroutineScope.future {
         notionClient.pages.setPageInTrash(id, inTrash)
     }
 
-    override fun getBlockList(parentId: UuidString, pagination: Pagination) = GlobalScope.future {
+    override fun getBlockList(parentId: UuidString, pagination: Pagination) = coroutineScope.future {
         notionClient.blocks.getBlockList(parentId, pagination)
     }
 
-    override fun getAllBlockListRecursively(parentId: UuidString) = GlobalScope.future {
+    override fun getAllBlockListRecursively(parentId: UuidString) = coroutineScope.future {
         notionClient.blocks.getAllBlockListRecursively(parentId)
     }
 
     override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) =
-        GlobalScope.future<Void?> {
+        coroutineScope.future<Void?> {
             notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
-        null
-    }
+            null
+        }
 
     override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: BlockListProducer) =
-        GlobalScope.future<Void?> {
+        coroutineScope.future<Void?> {
             notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
-        null
-    }
+            null
+        }
 
-    override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = GlobalScope.future {
+    override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = coroutineScope.future {
         notionClient.blocks.getBlock(id, retrieveChildrenRecursively)
     }
 
-    override fun updateBlock(id: UuidString, block: Block) = GlobalScope.future {
+    override fun updateBlock(id: UuidString, block: Block) = coroutineScope.future {
         notionClient.blocks.updateBlock(id, block)
     }
 
-    override fun searchPages(query: String?, sort: PropertySort?, pagination: Pagination) = GlobalScope.future {
+    override fun searchPages(query: String?, sort: PropertySort?, pagination: Pagination) = coroutineScope.future {
         notionClient.search.searchPages(query, sort, pagination)
     }
 
-    override fun searchDatabases(query: String?, sort: PropertySort?, pagination: Pagination) = GlobalScope.future {
+    override fun searchDatabases(query: String?, sort: PropertySort?, pagination: Pagination) = coroutineScope.future {
         notionClient.search.searchDatabases(query, sort, pagination)
     }
 

@@ -49,8 +49,9 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.Url
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
 import org.jraf.klibnotion.client.Authentication
 import org.jraf.klibnotion.client.ClientConfiguration
@@ -83,7 +84,6 @@ import org.jraf.klibnotion.internal.api.model.search.ApiSearchParametersConverte
 import org.jraf.klibnotion.internal.api.model.search.SearchParameters
 import org.jraf.klibnotion.internal.api.model.user.ApiUserConverter
 import org.jraf.klibnotion.internal.api.model.user.ApiUserResultPageConverter
-import org.jraf.klibnotion.internal.klibNotionScope
 import org.jraf.klibnotion.internal.model.block.MutableBlock
 import org.jraf.klibnotion.internal.model.oauth.OAuthCodeAndStateImpl
 import org.jraf.klibnotion.model.base.EmojiOrFile
@@ -110,7 +110,6 @@ import org.jraf.klibnotion.model.property.spec.PropertySpecList
 import org.jraf.klibnotion.model.property.value.PropertyValueList
 import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.user.User
-import kotlin.coroutines.coroutineContext
 
 internal class NotionClientImpl(
     private var clientConfiguration: ClientConfiguration,
@@ -501,18 +500,19 @@ internal class NotionClientImpl(
         return results
     }
 
-    private suspend fun getChildrenRecursively(blockResultPage: ResultPage<Block>) {
-        val job = Job()
-        for (block in blockResultPage.results) {
-            if (block is MutableBlock && block.children?.isEmpty() == true) {
-                @Suppress("DeferredResultUnused")
-                klibNotionScope.async(coroutineContext + job) {
-                    val childrenResultPage = getAllBlockListRecursively(block.id)
-                    block.children = childrenResultPage
+    private suspend fun getChildrenRecursively(blockResultPage: ResultPage<Block>) = coroutineScope {
+        blockResultPage.results
+            .mapNotNull { block ->
+                if (block is MutableBlock && block.children?.isEmpty() == true) {
+                    async {
+                        val childrenResultPage = getAllBlockListRecursively(block.id)
+                        block.children = childrenResultPage
+                    }
+                } else {
+                    null
                 }
             }
-        }
-        job.children.forEach { it.join() }
+            .awaitAll()
     }
 
     override suspend fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) {
@@ -592,4 +592,3 @@ internal expect fun createHttpClient(
     bypassSslChecks: Boolean,
     block: HttpClientConfig<*>.() -> Unit,
 ): HttpClient
-

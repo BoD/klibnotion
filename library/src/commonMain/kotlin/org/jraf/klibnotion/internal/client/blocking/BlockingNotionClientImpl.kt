@@ -25,9 +25,9 @@
 
 package org.jraf.klibnotion.internal.client.blocking
 
+import kotlinx.coroutines.runBlocking
 import org.jraf.klibnotion.client.NotionClient
 import org.jraf.klibnotion.client.blocking.BlockingNotionClient
-import org.jraf.klibnotion.internal.runBlocking
 import org.jraf.klibnotion.model.base.EmojiOrFile
 import org.jraf.klibnotion.model.base.UuidString
 import org.jraf.klibnotion.model.base.reference.DatabaseReference
@@ -239,12 +239,12 @@ internal class BlockingNotionClientImpl(
     override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: MutableBlockList) =
         runBlocking {
             notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
-    }
+        }
 
     override fun appendBlockList(parentId: UuidString, afterBlockId: UuidString?, blocks: BlockListProducer) =
         runBlocking {
             notionClient.blocks.appendBlockList(parentId, afterBlockId, blocks)
-    }
+        }
 
     override fun getBlock(id: UuidString, retrieveChildrenRecursively: Boolean) = runBlocking {
         notionClient.blocks.getBlock(id, retrieveChildrenRecursively)

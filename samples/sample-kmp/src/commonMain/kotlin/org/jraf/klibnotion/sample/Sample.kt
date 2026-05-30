@@ -25,9 +25,9 @@
 
 package org.jraf.klibnotion.sample
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -92,7 +92,6 @@ import org.jraf.klibnotion.model.richtext.RichTextList
 import org.jraf.klibnotion.model.richtext.text
 import org.jraf.klibnotion.model.user.Person
 import org.jraf.klibnotion.model.user.User
-import kotlin.coroutines.coroutineContext
 import kotlin.random.Random
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
@@ -113,7 +112,7 @@ private const val OAUTH_REDIRECT_URI = "https://example.com"
 private const val GET_ACCESS_TOKEN_FROM_OAUTH = false
 
 // Replace with a page id that your integration has access to
-private const val ROOT_PAGE_ID = "19af8da9cae3490fa43cc1c2f1faa678"
+private const val ROOT_PAGE_ID = "00000000-0000-0000-0000-000000000000"
 
 class Sample {
     private val client: NotionClient by lazy {
@@ -557,15 +556,15 @@ class Sample {
 
     private suspend fun create150PagesInDatabase(databaseId: UuidString) {
         println("Creating 150 pages in database:")
-        val job = Job()
-        repeat(150) {
-            GlobalScope.async(coroutineContext + job) {
-                client.pages.createPage(
-                    parentDatabase = DatabaseReference(databaseId),
-                )
-            }
+        coroutineScope {
+            (1..150).map {
+                async {
+                    client.pages.createPage(
+                        parentDatabase = DatabaseReference(databaseId),
+                    )
+                }
+            }.awaitAll()
         }
-        job.children.forEach { it.join() }
         println("done")
     }
 
