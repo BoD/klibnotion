@@ -9,9 +9,14 @@ This library is written in [Kotlin Multiplatform](https://kotlinlang.org/docs/mu
 
 Several flavors of the client are available to match your needs:
 
-- [Coroutines (`suspend`) based](https://github.com/BoD/klibnotion/blob/master/library/src/commonMain/kotlin/org/jraf/klibnotion/client/NotionClient.kt): the default client for Kotlin projects
-- [Blocking](https://github.com/BoD/klibnotion/blob/master/library/src/commonMain/kotlin/org/jraf/klibnotion/client/blocking/BlockingNotionClient.kt): useful for Java projects, or if you have your own async mechanism
-- [`Future` based (JVM only)](https://github.com/BoD/klibnotion/blob/master/library/src/jvmMain/kotlin/org/jraf/klibnotion/client/future/FutureNotionClient.kt): useful for Java projects
+- [Coroutines (
+  `suspend`) based](https://github.com/BoD/klibnotion/blob/main/library/src/commonMain/kotlin/org/jraf/klibnotion/client/NotionClient.kt):
+  the default client for Kotlin projects
+- [Blocking](https://github.com/BoD/klibnotion/blob/main/library/src/commonMain/kotlin/org/jraf/klibnotion/client/blocking/BlockingNotionClient.kt):
+  useful for Java projects, or if you have your own async mechanism
+- [
+  `Future` based (JVM only)](https://github.com/BoD/klibnotion/blob/main/library/src/jvmMain/kotlin/org/jraf/klibnotion/client/future/FutureNotionClient.kt):
+  useful for Java projects
 
 ## Usage
 
@@ -31,9 +36,9 @@ dependencies {
 
 The easiest way to see how to use it is to look at the samples:
 
-- [Coroutines (Kotlin)](samples/sample-jvm/src/main/kotlin/org/jraf/klibnotion/sample/Sample.kt)
-- [Blocking (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/BlockingSample.java)
-- [Future (Java)](samples/sample-jvm/src/main/java/org/jraf/klibnotion/sample/FutureSample.java)
+- [Coroutines (Kotlin)](samples/sample-kmp/src/commonMain/kotlin/org/jraf/klibnotion/sample/Sample.kt)
+- [Blocking (Java)](samples/sample-java/src/main/java/org/jraf/klibnotion/sample/BlockingSample.java)
+- [Future (Java)](samples/sample-java/src/main/java/org/jraf/klibnotion/sample/FutureSample.java)
 
 You can also explore [the reference doc](https://jraf.org/klibnotion/kdoc/).
 
@@ -165,7 +170,7 @@ toggle("This is a toggle!") {
 5. The `NotionClient` is updated with the token so you can now make authenticated calls. Securely save the token so you
    can pass it to the `authentication` next time you build your `NotionClient`.
 
-See [the sample](samples/sample-jvm/src/main/kotlin/org/jraf/klibnotion/sample/Sample.kt) for a working example.
+See [the sample](samples/sample-kmp/src/commonMain/kotlin/org/jraf/klibnotion/sample/Sample.kt) for a working example.
 
 #### Logging
 
